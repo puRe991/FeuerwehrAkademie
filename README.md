@@ -1,0 +1,103 @@
+# 🚒 Feuerwehr Online Akademie
+
+> Die vollständige Feuerwehrausbildung von **A bis Z** – als personalisierte, interaktive Web-App. Lernen, prüfen und führen auf Top-Niveau.
+
+Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
+
+![Module](https://img.shields.io/badge/Module-13-d81f26) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-90%2B-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-3-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+
+---
+
+## ✨ Highlights
+
+| Bereich | Beschreibung |
+|---|---|
+| 📚 **Module A–Z** | 13 fachlich fundierte Ausbildungsmodule von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zur Führungslehre (FwDV 100) |
+| 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
+| 📝 **Prüfungen** | Über 90 Prüfungsfragen mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
+| 🎮 **Planspiele** | Verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
+| 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
+| 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
+| 🌗 **Design** | Barrierefreies, responsives Design im Feuerwehr-Look mit Hell-/Dunkelmodus |
+
+## 📖 Ausbildungsmodule
+
+| Code | Modul | Kategorie |
+|---|---|---|
+| A | Rechtsgrundlagen & Organisation | Grundausbildung |
+| B | Brennen & Löschen (Verbrennungslehre) | Grundausbildung |
+| C | Fahrzeugkunde | Technik & Geräte |
+| D | PSA & Gerätekunde | Technik & Geräte |
+| E | Löscheinsatz & Einsatzlehre (FwDV 3) | Einsatzdienst |
+| F | Atemschutz (FwDV 7) | Atemschutz |
+| G | Technische Hilfeleistung | Einsatzdienst |
+| H | Sprechfunk & Digitalfunk | Technik & Geräte |
+| I | ABC-Gefahrstoffe (FwDV 500) | Gefahrenabwehr |
+| J | Erste Hilfe & Sofortmaßnahmen | Medizin |
+| K | Absturzsicherung | Einsatzdienst |
+| L | Führung & Leitung (FwDV 100) | Führung |
+| M | Vorbeugender Brandschutz | Prävention |
+
+## 🎮 Planspiele für Führungskräfte
+
+- **Wohnungsbrand im Mehrfamilienhaus** – Menschenrettung, Innenangriff, Türprozedur
+- **Verkehrsunfall mit eingeklemmter Person** – patientengerechte technische Rettung
+- **Gefahrguteinsatz auf der Autobahn** – GAMS-Regel und FwDV 500 in Aktion
+
+Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht.
+
+## 🚀 Start
+
+Da es sich um eine reine statische Web-App handelt, genügt ein beliebiger Webserver:
+
+```bash
+# Mit Python
+python3 -m http.server 8000
+# → http://localhost:8000
+
+# oder mit Node
+npx serve .
+```
+
+> **Hinweis:** ES-Module benötigen `http://` (nicht `file://`). Einfach über einen lokalen Server oder GitHub Pages öffnen.
+
+### Als GitHub Page veröffentlichen
+
+Der beigefügte Workflow (`.github/workflows/pages.yml`) veröffentlicht das Repository automatisch über GitHub Pages. In den Repo-Einstellungen unter **Pages → Source → GitHub Actions** aktivieren.
+
+## 🏗️ Architektur
+
+```
+FeuerwehrAkademie/
+├── index.html                 App-Shell
+├── manifest.webmanifest       PWA-Manifest
+├── service-worker.js          Offline-Cache
+└── assets/
+    ├── css/
+    │   ├── design-system.css  Design-Tokens, Komponenten, Themes
+    │   └── app.css            App-Layout & spezifische Komponenten
+    └── js/
+        ├── app.js             Router & App-Shell (Hash-Routing)
+        ├── state.js           Persistenter Store (localStorage, Pub/Sub)
+        ├── utils.js           DOM-Helfer, Toasts, Modals, Konfetti
+        ├── data/              Inhalte (Curriculum, Prüfungen, Planspiele, Icons)
+        └── views/             Ansichten (Dashboard, Module, Lektion, Prüfung, Planspiel …)
+```
+
+**Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt. Alle Daten bleiben lokal auf dem Gerät.
+
+## 🎯 Personalisierung & Datenschutz
+
+Alle Lernfortschritte, Prüfungsergebnisse und Profildaten werden ausschließlich **lokal im Browser** (`localStorage`) gespeichert. Es gibt keinen Server, keine Anmeldung und kein Tracking.
+
+## 📋 Fachlicher Hinweis
+
+Die Inhalte dienen der **Aus- und Fortbildung** und orientieren sich an den geltenden FwDV. Sie ersetzen **keine** praktische Ausbildung am Standort. Maßgeblich sind stets die aktuellen Feuerwehr-Dienstvorschriften, die Landesvorschriften, die Unfallverhütungsvorschriften (DGUV) sowie die Hersteller- und Dienstanweisungen. Im Zweifel gelten die Anordnungen der zuständigen Führungskraft.
+
+## 🤝 Erweitern
+
+Neue Module lassen sich einfach in `assets/js/data/curriculum.js` ergänzen (Block-Format ist dokumentiert), Prüfungen in `exams.js`, Planspiele in `planspiele.js`. Die Views passen sich automatisch an.
+
+---
+
+*Erstellt mit dem Ziel, die beste frei verfügbare Feuerwehr-Lernplattform zu sein – und immer einen Mehrwert zu bieten.* 🚒

@@ -1,0 +1,827 @@
+/* =========================================================================
+   CURRICULUM — Feuerwehr Online Akademie
+   Fachlich orientiert an den Feuerwehr-Dienstvorschriften (FwDV) und der
+   Modularen Truppausbildung (MTA). Bildungsinhalte für Aus- und Fortbildung.
+   Hinweis: Ersetzt keine praktische Ausbildung am Standort. Maßgeblich sind
+   die geltenden FwDV, Landesvorschriften und Herstellerangaben.
+
+   Blocktypen im Renderer (siehe views/lesson.js):
+     h2,h3 | p | list/ol(items) | keyfacts(items) | callout(kind,title,text)
+     def(term,text) | steps(items) | mnemonic(letters[],text) | table(head,rows)
+     figure(svg,caption)
+   ========================================================================= */
+
+export const CATEGORIES = {
+  grund:    { label: 'Grundausbildung',   color: '#d81f26' },
+  technik:  { label: 'Technik & Geräte',  color: '#1e5fa8' },
+  einsatz:  { label: 'Einsatzdienst',     color: '#c0392b' },
+  atem:     { label: 'Atemschutz',        color: '#8e44ad' },
+  gefahr:   { label: 'Gefahrenabwehr',    color: '#e67e22' },
+  fuehrung: { label: 'Führung',           color: '#16607a' },
+  medizin:  { label: 'Medizin & Erste Hilfe', color: '#2e9e5b' },
+  praevention:{ label: 'Prävention',      color: '#7f8c8d' },
+};
+
+export const LEVELS = {
+  1: 'Einsteiger',
+  2: 'Truppmann/-frau',
+  3: 'Truppführung',
+  4: 'Gruppen-/Zugführung',
+  5: 'Verbandsführung',
+};
+
+/* Hilfsfunktionen zum kompakten Schreiben von Blöcken */
+const P  = (html) => ({ t: 'p', html });
+const H2 = (id, text) => ({ t: 'h2', id, text });
+const H3 = (text) => ({ t: 'h3', text });
+const UL = (...items) => ({ t: 'list', items });
+const OL = (...items) => ({ t: 'ol', items });
+const KF = (...items) => ({ t: 'keyfacts', items });
+const CO = (kind, title, text) => ({ t: 'callout', kind, title, text });
+const DEF= (term, text) => ({ t: 'def', term, text });
+const STEPS = (...items) => ({ t: 'steps', items });
+const MNE = (letters, text) => ({ t: 'mnemonic', letters, text });
+const TBL = (head, rows) => ({ t: 'table', head, rows });
+
+export const MODULES = [
+
+/* ======================================================================= A */
+{
+  id: 'a-rechtsgrundlagen', code: 'A', title: 'Rechtsgrundlagen & Organisation',
+  category: 'grund', level: 1, icon: 'shield', duration: 45,
+  summary: 'Aufgaben der Feuerwehr, Rechtsrahmen, Organisation und Dienstgrade – das Fundament für jeden Einsatzdienst.',
+  objectives: [
+    'Die gesetzlichen Aufgaben der Feuerwehr benennen',
+    'Aufbau und Organisation der Feuerwehr erklären',
+    'Rechte und Pflichten im Feuerwehrdienst kennen',
+    'Dienstgrade und Funktionen zuordnen',
+  ],
+  tags: ['Recht', 'Organisation', 'Grundlagen'],
+  lessons: [
+    {
+      id: 'a1', title: 'Aufgaben & Rechtsgrundlagen', duration: 20,
+      blocks: [
+        H2('aufgaben', 'Die vier Kernaufgaben'),
+        P('Die Feuerwehr ist Teil der nichtpolizeilichen Gefahrenabwehr. Ihre Aufgaben ergeben sich aus den <b>Brandschutz- und Hilfeleistungsgesetzen der Länder</b> (z. B. BHKG NRW, BayFwG, FwG BW). Die vier klassischen Schutzziele lassen sich mit einem Merkwort einprägen:'),
+        MNE([{l:'R',w:'Retten'},{l:'L',w:'Löschen'},{l:'B',w:'Bergen'},{l:'S',w:'Schützen'}],
+          'Retten (Menschen/Tiere aus Gefahr befreien), Löschen (Brände bekämpfen), Bergen (Sachwerte, auch Leichname), Schützen (vor weiteren Gefahren bewahren).'),
+        KF(
+          '<b>Retten</b> hat immer die höchste Priorität – Menschenrettung geht vor Brandbekämpfung.',
+          '<b>Löschen</b> umfasst die Bekämpfung von Schadenfeuern jeder Art.',
+          '<b>Bergen</b> meint das In-Sicherheit-Bringen von Sachwerten (Personen werden „gerettet", nicht „geborgen", solange sie leben).',
+          '<b>Schützen</b> = Abwehr weiterer Gefahren für Menschen, Umwelt und Sachwerte.'),
+        CO('danger', 'Merksatz', 'Menschenrettung hat absoluten Vorrang. Alle anderen Maßnahmen ordnen sich diesem Ziel unter.'),
+        H2('rechtsrahmen', 'Rechtlicher Rahmen'),
+        P('Feuerwehrrecht ist in Deutschland <b>Ländersache</b>. Es gibt kein bundeseinheitliches Feuerwehrgesetz. Jedes Bundesland regelt Trägerschaft, Aufgaben und Organisation in einem eigenen Gesetz.'),
+        TBL(['Ebene', 'Regelt', 'Beispiel'],[
+          ['Landesgesetz', 'Aufgaben, Träger, Pflichten', 'BHKG NRW, BayFwG'],
+          ['FwDV', 'bundeseinheitliche Taktik & Ausbildung', 'FwDV 3, 7, 100'],
+          ['DGUV Vorschrift', 'Arbeits- & Unfallschutz', 'DGUV V 49 (Feuerwehren)'],
+          ['Satzung', 'örtliche Regelungen der Gemeinde', 'Feuerwehrsatzung'],
+        ]),
+        DEF('Träger der Feuerwehr', 'In der Regel die Gemeinde. Sie ist verpflichtet, eine den örtlichen Verhältnissen entsprechende leistungsfähige Feuerwehr aufzustellen, auszurüsten und zu unterhalten (Pflichtaufgabe).'),
+      ],
+    },
+    {
+      id: 'a2', title: 'Organisation, Arten & Dienstgrade', duration: 25,
+      blocks: [
+        H2('arten', 'Arten von Feuerwehren'),
+        UL(
+          '<b>Freiwillige Feuerwehr (FF):</b> ehrenamtliche Kräfte – die häufigste Form in Deutschland.',
+          '<b>Berufsfeuerwehr (BF):</b> hauptamtliche Kräfte, Pflicht in Großstädten (i. d. R. > 100.000 Einwohner).',
+          '<b>Werkfeuerwehr (WF):</b> in Industrie-/Gewerbebetrieben, teils behördlich angeordnet.',
+          '<b>Pflichtfeuerwehr:</b> Ausnahme, wenn keine ausreichende FF zustande kommt.'),
+        H2('gliederung', 'Taktische Gliederung'),
+        P('Die kleinste selbstständige taktische Einheit ist die <b>Gruppe</b>. Einheiten bauen aufeinander auf:'),
+        TBL(['Einheit', 'Stärke (Führer + Mannschaft)', 'Kurzform'],[
+          ['Trupp', '0/2 bis 0/3', 'z. B. Angriffstrupp'],
+          ['Staffel', '1/5 = 6 Einsatzkräfte', '1/5/6'],
+          ['Gruppe', '1/8 = 9 Einsatzkräfte', '1/8/9'],
+          ['Zug', 'i. d. R. 1/21 = 22 (Verband)', 'Zugtrupp + 2 Gruppen'],
+        ]),
+        CO('info', 'Stärkeangabe lesen', 'Die Schreibweise „1/8/9" bedeutet: 1 Führer, 8 Mannschaft, 9 gesamt.'),
+        H2('gruppe', 'Die Gruppe im Löscheinsatz (FwDV 3)'),
+        P('Eine Gruppe (1/8) besteht aus dem Gruppenführer und diesen Funktionen:'),
+        UL(
+          '<b>Melder</b> – unterstützt den Gruppenführer, übernimmt Sonderaufgaben.',
+          '<b>Maschinist</b> – bedient Fahrzeug und Pumpe.',
+          '<b>Angriffstrupp (A-Trupp)</b> – Menschenrettung & Brandbekämpfung, erstes Rohr.',
+          '<b>Wassertrupp (W-Trupp)</b> – stellt die Wasserversorgung her, dann Sicherheitstrupp.',
+          '<b>Schlauchtrupp (S-Trupp)</b> – verlegt Schläuche, unterstützt die Trupps.'),
+        H2('dienstgrade', 'Dienstgrade & Funktionen'),
+        P('Dienstgrade richten sich nach dem Landesrecht und zeigen Ausbildungsstand/Funktion an. Wichtig ist die Unterscheidung zwischen <b>Dienstgrad</b> (Rang) und <b>Funktion</b> (Aufgabe im Einsatz, z. B. Gruppenführer).'),
+        CO('tip', 'Praxis', 'Im Einsatz zählt die Funktion, nicht der Dienstgrad. Wer die Funktion „Gruppenführer" wahrnimmt, führt – unabhängig vom Rang der Untergebenen.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= B */
+{
+  id: 'b-brennen-loeschen', code: 'B', title: 'Brennen & Löschen',
+  category: 'grund', level: 1, icon: 'fire', duration: 55,
+  summary: 'Verbrennungslehre, das Verbrennungsdreieck, Brandklassen und die vier Löschwirkungen – naturwissenschaftliches Fundament der Brandbekämpfung.',
+  objectives: [
+    'Voraussetzungen einer Verbrennung erklären (Verbrennungsdreieck/-fünfeck)',
+    'Brandklassen A–F unterscheiden und Löschmittel zuordnen',
+    'Die vier Löschwirkungen beschreiben',
+    'Gefahren wie Flashover und Backdraft erkennen',
+  ],
+  tags: ['Verbrennung', 'Löschmittel', 'Brandklassen', 'Chemie'],
+  lessons: [
+    {
+      id: 'b1', title: 'Verbrennung verstehen', duration: 25,
+      blocks: [
+        H2('dreieck', 'Das Verbrennungsdreieck'),
+        P('Eine Verbrennung ist eine <b>exotherme Oxidation</b> – ein Stoff reagiert unter Wärme- und Lichterscheinung mit Sauerstoff. Damit sie abläuft, müssen drei Faktoren gleichzeitig zusammenkommen:'),
+        KF(
+          '<b>Brennbarer Stoff</b> – fest, flüssig oder gasförmig',
+          '<b>Sauerstoff</b> – i. d. R. aus der Luft (~21 %)',
+          '<b>Zündtemperatur / Energie</b> – ausreichende Wärme zum Zünden'),
+        CO('info', 'Erweiterung: Verbrennungsfünfeck', 'Modern ergänzt man das Dreieck um das <b>richtige Mengenverhältnis</b> und den <b>ungestörten Kettenreaktions­ablauf</b> (Radikalkettenreaktion). Fehlt einer dieser fünf Faktoren, erlischt das Feuer – genau hier setzt jedes Löschverfahren an.'),
+        H2('begriffe', 'Wichtige Kenngrößen'),
+        DEF('Flammpunkt', 'Niedrigste Temperatur, bei der eine brennbare Flüssigkeit so viel Dampf abgibt, dass sich über ihr ein zündfähiges Dampf-Luft-Gemisch bildet (z. B. Benzin ca. −20 °C, Diesel ca. +55 °C).'),
+        DEF('Zündtemperatur', 'Temperatur, bei der sich ein brennbarer Stoff ohne äußere Zündquelle selbst entzündet (Selbstentzündung).'),
+        DEF('Explosionsgrenzen (UEG/OEG)', 'Bereich der Gas-/Dampfkonzentration in Luft, in dem ein zündfähiges Gemisch besteht. Unterhalb der UEG „zu mager", oberhalb der OEG „zu fett".'),
+        CO('warn', 'Gefahr', 'Flüssigkeiten brennen nie selbst – es brennt immer der Dampf über der Flüssigkeit. Deshalb ist der Flammpunkt so entscheidend.'),
+      ],
+    },
+    {
+      id: 'b2', title: 'Brandklassen & Löschmittel', duration: 20,
+      blocks: [
+        H2('klassen', 'Die Brandklassen nach DIN EN 2'),
+        TBL(['Klasse', 'Brennbare Stoffe', 'Geeignetes Löschmittel'],[
+          ['A', 'feste Stoffe (Holz, Papier, Textil, Kohle) – Glutbrände', 'Wasser, wässrige Netzmittel, ABC-Pulver'],
+          ['B', 'flüssige/flüssig werdende Stoffe (Benzin, Öl, Wachs, Lack)', 'Schaum, ABC/BC-Pulver, CO₂'],
+          ['C', 'Gase (Methan, Propan, Wasserstoff)', 'ABC/BC-Pulver – zuerst Gaszufuhr stoppen!'],
+          ['D', 'Metalle (Magnesium, Aluminium, Natrium)', 'Metallbrandpulver (D-Pulver), trockener Sand'],
+          ['F', 'Speiseöle/-fette in Frittier-/Küchengeräten', 'Fettbrand-Löscher (Verseifung), nie Wasser!'],
+        ]),
+        CO('danger', 'Fettbrand niemals mit Wasser!', 'Wasser verdampft schlagartig im heißen Fett – es entsteht eine Fettexplosion (Dampfexplosion) mit meterhoher Stichflamme. Fettbrände nur ersticken (Deckel, F-Löscher).'),
+        CO('warn', 'Klasse E entfällt', 'Eine eigene „Brandklasse E" (elektrische Anlagen) gibt es offiziell nicht mehr. Entscheidend ist die Eignung des Löschmittels und der Sicherheitsabstand bei Spannung.'),
+        H2('wirkungen', 'Die vier Löschwirkungen'),
+        P('Jedes Löschmittel greift an mindestens einer Seite des Verbrennungsdreiecks an:'),
+        UL(
+          '<b>Abkühlen (Wasser):</b> Entzug von Wärmeenergie – Temperatur unter die Zündtemperatur senken.',
+          '<b>Ersticken (Schaum, CO₂, Sand):</b> Verdrängen/Trennen des Sauerstoffs vom Brennstoff.',
+          '<b>Trennen/Nährstoffentzug:</b> Entfernen des brennbaren Stoffs (z. B. Gaszufuhr absperren).',
+          '<b>Antikatalytischer Effekt (Pulver):</b> Unterbrechen der chemischen Kettenreaktion (Radikalfänger).'),
+        DEF('Wasser als Löschmittel', '1 Liter Wasser bindet beim Verdampfen ca. 2,26 MJ Energie und dehnt sich auf ~1700 Liter Wasserdampf aus. Daher die enorme Kühlwirkung – aber auch das Risiko der Wasserdampfbildung in Innenräumen.'),
+      ],
+    },
+    {
+      id: 'b3', title: 'Brandphasen & extreme Brandereignisse', duration: 15,
+      blocks: [
+        H2('phasen', 'Der Brandverlauf'),
+        P('Ein Zimmerbrand durchläuft typische Phasen: <b>Entstehungsbrand → Schwelbrand/Wachstum → Vollbrand → Abklingen</b>. Der kritische Übergang vom Wachstum zum Vollbrand ist der Flashover.'),
+        H2('flashover', 'Flashover (Feuerübersprung)'),
+        DEF('Flashover', 'Schlagartige Durchzündung aller brennbaren Oberflächen in einem Raum, sobald diese durch Wärmestrahlung ihre Zündtemperatur erreichen. Vorwarnzeichen: starke Rauchgasschichtung, Pyrolysegase, „Rollover" (Flammenzungen im Rauch).'),
+        H2('backdraft', 'Backdraft (Rauchgasexplosion)'),
+        DEF('Backdraft', 'In einem sauerstoffarmen, geschlossenen Brandraum sammeln sich unverbrannte, heiße Pyrolysegase. Wird plötzlich Sauerstoff zugeführt (Tür/Fenster öffnen), zünden diese schlagartig explosionsartig durch.'),
+        CO('danger', 'Anzeichen für Backdraft-Gefahr', 'Pulsierender Rauch aus Ritzen, an Scheiben kondensierte Öle, nach innen gesogener Rauch, heiße Türen, pfeifende Geräusche. → Tür kontrolliert öffnen, Türprozedur anwenden, nicht ungeschützt öffnen!'),
+        CO('tip', 'Innenangriff-Grundsatz', 'Immer geduckt vorgehen, Temperaturschichtung beachten, mit dem Hohlstrahlrohr die Rauchgasschicht kühlen und Rückweg sichern. Nie ohne zweiten (Sicherheits-)Trupp und Wasser am Rohr.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= C */
+{
+  id: 'c-fahrzeugkunde', code: 'C', title: 'Fahrzeugkunde',
+  category: 'technik', level: 2, icon: 'truck', duration: 40,
+  summary: 'Genormte Feuerwehrfahrzeuge nach DIN, ihre Kennzeichnung, Beladung und Einsatzwerte – vom LF bis zur DLK.',
+  objectives: [
+    'Fahrzeugklassen und ihre Kurzbezeichnungen entschlüsseln',
+    'Löschgruppenfahrzeuge und ihre Beladung beschreiben',
+    'Hubrettungs- und Sonderfahrzeuge einordnen',
+    'Bedeutung von Wassertank, Pumpe und Besatzung erklären',
+  ],
+  tags: ['Fahrzeuge', 'DIN', 'Technik'],
+  lessons: [
+    {
+      id: 'c1', title: 'Systematik & Kurzbezeichnungen', duration: 20,
+      blocks: [
+        H2('system', 'Wie sich Fahrzeugnamen zusammensetzen'),
+        P('Feuerwehrfahrzeuge sind in Deutschland genormt (DIN EN 1846 / DIN 14530 ff.). Die Kurzbezeichnung verrät Typ und oft die Löschwassermenge.'),
+        TBL(['Kürzel', 'Bedeutung', 'Besatzung'],[
+          ['LF', 'Löschgruppenfahrzeug', '1/8 (Gruppe)'],
+          ['HLF', 'Hilfeleistungslöschgruppenfahrzeug', '1/8'],
+          ['TLF', 'Tanklöschfahrzeug (großer Wassertank)', '1/2 – 1/5'],
+          ['DLK', 'Drehleiter mit Korb', '1/2'],
+          ['RW', 'Rüstwagen (technische Hilfe)', '1/2'],
+          ['ELW', 'Einsatzleitwagen (Führung)', '1/x'],
+          ['TSF(-W)', 'Tragkraftspritzenfahrzeug (-Wasser)', '1/5 (Staffel)'],
+          ['MTF', 'Mannschaftstransportfahrzeug', '1/8'],
+        ]),
+        CO('info', 'Zahlenzusatz', 'Beim LF 20 steht die „20" für die Pumpenleistung (Nennförderstrom 2000 l/min bei 10 bar), nicht für die Tankgröße. Historisch (LF 8/6) bezeichnete die zweite Zahl den Wassertank in hundert Litern.'),
+      ],
+    },
+    {
+      id: 'c2', title: 'Löschfahrzeuge & Sonderfahrzeuge', duration: 20,
+      blocks: [
+        H2('lf', 'Das (H)LF – das Arbeitspferd'),
+        P('Das Löschgruppenfahrzeug ist das Standardfahrzeug der meisten Wehren. Es transportiert eine komplette Gruppe (1/8), Löschwasser (600–2000 l), eine Feuerlöschkreiselpumpe und umfangreiche Beladung für Brandbekämpfung und einfache technische Hilfe.'),
+        KF(
+          'Feuerlöschkreiselpumpe (FPN 10-2000 beim LF 20)',
+          'Löschwasserbehälter 1000–2000 l',
+          'Tragbare Leitern, Schläuche, Armaturen',
+          '4 umluftunabhängige Atemschutzgeräte in der Mannschaftskabine',
+          'Beim HLF zusätzlich hydraulischer Rettungssatz (Schere/Spreizer)'),
+        H2('dlk', 'Drehleiter (DLK 23-12)'),
+        P('Die „23-12" bedeutet: <b>23 m Nennrettungshöhe</b> bei <b>12 m Ausladung</b>. Sie dient der Menschenrettung aus Höhen, dem Einsatz als Angriffsweg und als Arbeitsplattform (Wenderohr).'),
+        CO('tip', 'Der zweite Rettungsweg', 'In vielen Gebäuden bildet die Drehleiter den „zweiten Rettungsweg" der Feuerwehr. Deshalb müssen Flächen für die Feuerwehr (Aufstellflächen) freigehalten werden.'),
+        H2('sonder', 'Weitere Fahrzeuge'),
+        UL(
+          '<b>RW / Rüstwagen:</b> schwere technische Hilfe, Seilwinde, Stromerzeuger, umfangreiches Werkzeug.',
+          '<b>GW (Gerätewagen):</b> Spezialbeladung, z. B. GW-Gefahrgut, GW-Atemschutz, GW-Logistik.',
+          '<b>ELW 1/2:</b> Einsatzleitung und Kommunikation.',
+          '<b>SW / Schlauchwagen:</b> lange Schlauchstrecken für die Wasserförderung über lange Wegstrecke.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= D */
+{
+  id: 'd-geraetekunde', code: 'D', title: 'Persönliche Schutzausrüstung & Gerätekunde',
+  category: 'technik', level: 1, icon: 'helmet', duration: 45,
+  summary: 'Die persönliche Schutzausrüstung (PSA), Schläuche, Armaturen und Strahlrohre – die Werkzeuge, mit denen jede Einsatzkraft arbeitet.',
+  objectives: [
+    'Bestandteile der PSA und ihren Schutzzweck benennen',
+    'Saug- und Druckschläuche sowie Kupplungen unterscheiden',
+    'Armaturen zur Wasserführung zuordnen',
+    'Funktion des Hohlstrahlrohrs erklären',
+  ],
+  tags: ['PSA', 'Schläuche', 'Armaturen', 'Ausrüstung'],
+  lessons: [
+    {
+      id: 'd1', title: 'Persönliche Schutzausrüstung (PSA)', duration: 20,
+      blocks: [
+        H2('psa', 'Schutz von Kopf bis Fuß'),
+        P('Die PSA schützt die Einsatzkraft vor Hitze, mechanischen Einwirkungen, Nässe und Sichtbarkeitsrisiken. Sie ist normgerecht zu tragen – unvollständige PSA bedeutet Verzicht auf Schutz.'),
+        UL(
+          '<b>Feuerwehrhelm</b> (DIN EN 443) mit Nackenschutz und Visier',
+          '<b>Feuerwehrschutzanzug</b> / Überjacke & -hose (HuPF bzw. EN 469)',
+          '<b>Feuerwehrschutzhandschuhe</b> (EN 659)',
+          '<b>Feuerwehrstiefel</b> mit Zehen- und Durchtrittschutz',
+          '<b>Feuerwehr-Haltegurt</b> mit Feuerwehrleine',
+          'Ggf. <b>Flammschutzhaube</b> und <b>Warnkleidung</b> nach EN ISO 20471'),
+        CO('danger', 'Grundsatz', 'Keine PSA – kein Einsatz. Wer nicht vollständig geschützt ist, gefährdet sich selbst und blockiert seine Gruppe. Baumwoll-Unterbekleidung tragen (keine schmelzenden Kunstfasern auf der Haut).'),
+        H2('kennzeichnung', 'Funktionskennzeichnung'),
+        P('Helmkennzeichnung und Funktionswesten helfen, Funktionen im Einsatz auf einen Blick zu erkennen (z. B. farbige Helmkennung für Führungskräfte, Westen „Gruppenführer", „Einsatzleiter", „Atemschutzüberwachung").'),
+      ],
+    },
+    {
+      id: 'd2', title: 'Schläuche, Kupplungen & Armaturen', duration: 25,
+      blocks: [
+        H2('schlaeuche', 'Schlaucharten'),
+        TBL(['Typ', 'Verwendung', 'Größen'],[
+          ['Saugschlauch (A)', 'formstabil, Wasserentnahme aus offenem Gewässer', 'A-110'],
+          ['Druckschlauch B', 'Zubringer-/Verteilerleitung', 'B-75, meist 20 m'],
+          ['Druckschlauch C', 'Angriffsleitung zum Strahlrohr', 'C-42/C-52, 15 m'],
+          ['Druckschlauch D', 'Kleinlöschgeräte, wenig genutzt', 'D-25'],
+        ]),
+        DEF('Storz-Kupplung', 'Genormte Knaggenkupplung (Symmetrisch, „geschlechtslos"), die Schläuche und Armaturen schnell und dicht verbindet. Kupplungsgrößen: A, B, C, D.'),
+        H2('armaturen', 'Armaturen der Wasserführung'),
+        P('Armaturen steuern und verteilen das Löschwasser. Man unterscheidet Armaturen zur Wasserentnahme, -fortleitung und -abgabe.'),
+        UL(
+          '<b>Standrohr:</b> Wasserentnahme aus dem Unterflurhydranten.',
+          '<b>Verteiler (B-CBC):</b> teilt eine B-Leitung auf mehrere C-Leitungen auf – Schlüsselstelle des Gruppenführers.',
+          '<b>Sammelstück (A-2B):</b> führt zwei B-Leitungen zur Pumpe zusammen.',
+          '<b>Stützkrümmer:</b> nimmt die Rückstoßkraft am B-Rohr auf.',
+          '<b>Übergangsstücke</b> und <b>Blindkupplungen</b> zum Anpassen/Verschließen.'),
+        H2('strahlrohr', 'Das Hohlstrahlrohr'),
+        P('Das moderne Hohlstrahlrohr löst das alte Mehrzweckstrahlrohr zunehmend ab. Es erlaubt die stufenlose Regelung von <b>Durchflussmenge</b> und <b>Sprühbild</b> (Vollstrahl ↔ Sprühstrahl) direkt am Rohr.'),
+        KF(
+          'Vollstrahl: große Wurfweite, punktuelle Kühlung',
+          'Sprühstrahl: großer Wärmeschutz-„Schirm", effektive Rauchgaskühlung',
+          'Mannschutzbrause: schützt den Trupp vor Wärmestrahlung',
+          'Durchflussregelung: bedarfsgerechter Wassereinsatz, weniger Wasserschaden'),
+        CO('tip', 'Türprozedur', 'Vor dem Öffnen einer Brandraumtür kurze Sprühstöße („Puls-Gun-Technik") zur Rauchgaskühlung abgeben – reduziert die Flashover-Gefahr deutlich.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= E */
+{
+  id: 'e-loescheinsatz', code: 'E', title: 'Löscheinsatz & Einsatzlehre (FwDV 3)',
+  category: 'einsatz', level: 2, icon: 'water', duration: 50,
+  summary: 'Der geregelte Ablauf des Löscheinsatzes nach FwDV 3: Aufgaben der Trupps, Wasserversorgung und Einheiten im Einsatz.',
+  objectives: [
+    'Den Einsatzablauf einer Gruppe nach FwDV 3 beschreiben',
+    'Aufgaben von Angriffs-, Wasser- und Schlauchtrupp zuordnen',
+    'Die Wasserversorgung vom Hydranten zum Strahlrohr aufbauen',
+    'Das Kommando „zum Einsatz fertig" korrekt umsetzen',
+  ],
+  tags: ['FwDV 3', 'Löscheinsatz', 'Taktik', 'Gruppe'],
+  lessons: [
+    {
+      id: 'e1', title: 'Einsatzablauf & Truppaufgaben', duration: 25,
+      blocks: [
+        H2('grundsatz', 'Der Einsatzbefehl'),
+        P('Der Gruppenführer entwickelt aus der <b>Lageerkundung</b> seinen Entschluss und gibt den Einsatzbefehl in fester Reihenfolge. Der klassische Befehlsaufbau lautet:'),
+        MNE([{l:'E',w:'Einheit'},{l:'A',w:'Auftrag'},{l:'M',w:'Mittel'},{l:'Z',w:'Ziel'},{l:'W',w:'Weg'}],
+          '„Einheit – Auftrag – Mittel – Ziel – Weg": Wer macht was, womit, wozu und auf welchem Weg. Beispiel: „Angriffstrupp – zur Menschenrettung – mit C-Rohr – über die Treppe – vor!"'),
+        H2('trupps', 'Aufgaben der Trupps (Löscheinsatz)'),
+        TBL(['Trupp', 'Grundaufgabe', 'Danach'],[
+          ['Angriffstrupp', 'Menschenrettung & Brandbekämpfung (1. Rohr)', 'hält den Innenangriff'],
+          ['Wassertrupp', 'Wasserversorgung Verteiler ← Pumpe herstellen', 'stellt Sicherheitstrupp'],
+          ['Schlauchtrupp', 'Schlauchleitung Verteiler → Angriffstrupp verlegen', 'unterstützt / 2. Rohr'],
+        ]),
+        CO('info', 'Faustregel Wasserversorgung', 'Der Wassertrupp arbeitet „von der Pumpe zum Verteiler". Der Angriffstrupp arbeitet „vom Verteiler zum Brand". Der Verteiler ist die Nahtstelle.'),
+        H2('sicherheit', 'Der Sicherheitstrupp'),
+        DEF('Sicherheitstrupp', 'Bei einem Atemschutzeinsatz muss ein zweiter, ausgerüsteter Trupp bereitstehen, um einen in Not geratenen Trupp zu retten. Grundsatz: „Kein Innenangriff unter Atemschutz ohne Sicherheitstrupp."'),
+      ],
+    },
+    {
+      id: 'e2', title: 'Wasserförderung & besondere Einsätze', duration: 25,
+      blocks: [
+        H2('foerderung', 'Wasserförderung über lange Wegstrecke'),
+        P('Reicht die Löschwassermenge am Objekt nicht aus, wird über eine lange B-Schlauchstrecke gefördert. Bei großen Höhenunterschieden oder Entfernungen kommen <b>Verstärkerpumpen</b> zum Einsatz.'),
+        KF(
+          'Reibungsverluste steigen mit Länge und Durchfluss',
+          'Höhenunterschied: je 10 m Höhe ≈ 1 bar Druckverlust',
+          'Eingangsdruck an Folgepumpe mind. 1,5 bar halten (Kavitation vermeiden)',
+          'Kommunikation zwischen den Pumpen ist entscheidend'),
+        H2('offenes', 'Wasserentnahme aus offenem Gewässer'),
+        STEPS(
+          'Saugschläuche kuppeln und mit Saugkorb + Ventilleine sichern',
+          'Halteleine anbringen, Saugleitung zu Wasser bringen',
+          'Entlüftungseinrichtung betätigen, bis Wasser ansteht',
+          'Pumpe langsam auf Betriebsdruck bringen, Druckabgang öffnen'),
+        CO('warn', 'Kavitation', 'Zu hohe Saughöhe oder verstopfter Saugkorb führen zu Kavitation (Dampfblasenbildung) – die Pumpe „reißt ab" und kann beschädigt werden. Max. geodätische Saughöhe praktisch ca. 7,5 m.'),
+        H2('riegel', 'Riegelstellung & Brandausbreitung'),
+        P('Bei ausgedehnten Bränden verhindert eine <b>Riegelstellung</b> das Übergreifen auf Nachbarobjekte. Der Gruppenführer bestimmt Abschnitte; Prioritäten sind Menschenrettung, dann Ausbreitungsverhinderung, dann Ablöschen.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= F */
+{
+  id: 'f-atemschutz', code: 'F', title: 'Atemschutz (FwDV 7)',
+  category: 'atem', level: 3, icon: 'mask', duration: 60,
+  summary: 'Umluftunabhängiger Atemschutz: Gerätekunde, Einsatzgrundsätze, Atemschutzüberwachung und Notfallverfahren – lebenswichtiges Spezialwissen.',
+  objectives: [
+    'Aufbau und Funktion des Pressluftatmers erklären',
+    'Einsatzgrundsätze und -grenzen nach FwDV 7 einhalten',
+    'Atemschutzüberwachung führen und Rückzugszeitpunkt berechnen',
+    'Notfallverfahren und Verhalten bei Gerätestörung kennen',
+  ],
+  tags: ['Atemschutz', 'FwDV 7', 'PA', 'Innenangriff'],
+  lessons: [
+    {
+      id: 'f1', title: 'Gerätekunde Pressluftatmer', duration: 25,
+      blocks: [
+        H2('warum', 'Warum Atemschutz?'),
+        P('Brandrauch ist die häufigste Todesursache bei Bränden. Er enthält u. a. <b>Kohlenstoffmonoxid (CO)</b>, <b>Kohlenstoffdioxid (CO₂)</b>, Blausäure (HCN) und reizende/toxische Pyrolyseprodukte, ist heiß und sichtbehindernd. Zusätzlich sinkt der Sauerstoffgehalt.'),
+        CO('danger', 'Kohlenstoffmonoxid', 'CO ist farb-, geruch- und geschmacklos und bindet ca. 200–300× stärker an Hämoglobin als Sauerstoff. Schon geringe Konzentrationen wirken tödlich – deshalb nie ohne umluftunabhängigen Atemschutz in den Rauch.'),
+        H2('aufbau', 'Aufbau des Pressluftatmers (PA)'),
+        UL(
+          '<b>Druckluftflasche(n):</b> Stahl 300 bar oder Composite bis 300 bar, z. B. 6,8 l.',
+          '<b>Druckminderer:</b> reduziert Flaschendruck auf Mitteldruck (~7 bar).',
+          '<b>Lungenautomat (LA):</b> liefert Atemluft nach Bedarf, meist Überdruck (Plus-System).',
+          '<b>Atemanschluss (Vollmaske):</b> dichtet ab, schützt das Gesicht.',
+          '<b>Warneinrichtung:</b> akustisches Signal bei ca. 50–55 bar Restdruck.',
+          '<b>Trageeinrichtung</b> mit Bebänderung.'),
+        DEF('Überdruck-System', 'In der Maske herrscht permanent leichter Überdruck. Vorteil: Bei einer Undichtigkeit strömt Luft nach außen – keine Schadstoffe nach innen. Preis: höherer Luftverbrauch.'),
+        H2('einsatzkurz', 'Einsatzkurzprüfung'),
+        P('Vor jedem Einsatz führt der Geräteträger die Einsatzkurzprüfung durch: Flaschendruck (voll ≥ 270 bar), Hochdruckdichtprüfung, Funktion der Warneinrichtung und Dichtsitz der Maske.'),
+      ],
+    },
+    {
+      id: 'f2', title: 'Einsatzgrundsätze & Überwachung', duration: 20,
+      blocks: [
+        H2('grundsaetze', 'Einsatzgrundsätze nach FwDV 7'),
+        UL(
+          'Atemschutz nur trupp­weise (mind. 2 Personen) einsetzen.',
+          'Ständige Verbindung halten (Sicht, Ruf, Leine/Funk).',
+          'Rückweg sichern und beobachten.',
+          'Vor Rückzug denken: rechtzeitig umkehren, bevor die Luft knapp wird.',
+          'Bei Störung/Gefahr: gemeinsam als Trupp zurückziehen.'),
+        H2('grenzen', 'Einsatzgrenzen'),
+        P('Voraussetzungen für den Geräteträger: körperliche Eignung (arbeitsmedizinische Vorsorge <b>G 26.3</b>), Mindestalter, gültige Ausbildung und regelmäßige Übungen sowie Belastungsübung (Atemschutzstrecke).'),
+        H2('ueberwachung', 'Atemschutzüberwachung'),
+        P('Für jeden eingesetzten Trupp wird eine Überwachung geführt: Notiert werden Namen, Einsatzbeginn, Anfangsdruck und der berechnete Rückzugs-/Warnzeitpunkt. Die Überwachung hält ständigen Kontakt.'),
+        CO('info', 'Faustformel Rückzug', 'Rückzug rechtzeitig antreten! Grundregel: Für den Rückweg mindestens so viel Luft einplanen wie für den Hinweg verbraucht wurde – zzgl. Sicherheitsreserve. Spätestens bei Ansprechen der Warneinrichtung (~55 bar) ist der Rückzug bereits abzuschließen.'),
+      ],
+    },
+    {
+      id: 'f3', title: 'Notfallverfahren', duration: 15,
+      blocks: [
+        H2('mayday', 'Notfallmeldung „Mayday"'),
+        P('Gerät ein Trupp in eine lebensbedrohliche Notlage (Orientierungsverlust, Einschluss, Luftmangel, Verletzung), setzt er unverzüglich einen Notruf über Funk ab.'),
+        MNE([{l:'M',w:'Mayday'},{l:'A',w:'Atemschutznotfall'},{l:'N',w:'Name/Trupp'},{l:'V',w:'Vitalstatus'}],
+          'Nach dem Absetzen: Ruhe bewahren, Standort halten, Luft sparen (ruhig atmen), Kontakt zur Wand/Leine halten, Signal geben (Rufen, Klopfen, Lampe).'),
+        H2('sparen', 'Luft sparen im Notfall'),
+        STEPS(
+          'Ruhig und tief atmen, Panik vermeiden – Panik verdreifacht den Verbrauch',
+          'Notruf absetzen und Position beschreiben',
+          'Zur Wand orientieren und Rückzugsweg suchen',
+          'Bemerkbar machen: rufen, klopfen, Lampe zur Decke richten',
+          'Auf Sicherheitstrupp warten, Kräfte einteilen'),
+        CO('danger', 'Sicherheitstrupp', 'Der Sicherheitstrupp geht mit zusätzlichem Atemschutz-Rettungsgerät (z. B. Reserveluft/Rettungsmaske) vor. Er wird sofort alarmiert, sobald ein Mayday eingeht.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= G */
+{
+  id: 'g-technische-hilfe', code: 'G', title: 'Technische Hilfeleistung',
+  category: 'einsatz', level: 2, icon: 'wrench', duration: 45,
+  summary: 'Technische Rettung bei Verkehrsunfällen und Notlagen: Einsatzstellensicherung, hydraulischer Rettungssatz und patientengerechte Rettung.',
+  objectives: [
+    'Eine Einsatzstelle im Verkehr absichern',
+    'Den hydraulischen Rettungssatz und seine Einsatzgrundsätze beschreiben',
+    'Den Ablauf einer patientenorientierten Rettung erklären',
+    'Gefahren an der Einsatzstelle erkennen (Airbag, Batterie, Betriebsstoffe)',
+  ],
+  tags: ['THL', 'Verkehrsunfall', 'Rettung', 'Hydraulik'],
+  lessons: [
+    {
+      id: 'g1', title: 'Einsatzstelle & Gefahren', duration: 20,
+      blocks: [
+        H2('sichern', 'Einsatzstellensicherung'),
+        P('Die eigene Sicherheit hat Vorrang. Vor jeder Tätigkeit wird die Einsatzstelle gegen den fließenden Verkehr abgesichert und ein Sicherheitsabstand geschaffen.'),
+        STEPS(
+          'Warnkleidung tragen, Fahrzeug als Sperre schräg stellen (Verkehrsschutz)',
+          'Warnleuchten/Blaulicht, Verkehrswarnanlage, Warndreieck weit vorher',
+          'Brandschutz sicherstellen (C-Rohr/Löscher bereitstellen)',
+          'Fahrzeug gegen Wegrollen/Bewegung sichern, Zündung aus',
+          'Batterie ggf. abklemmen (Minuspol zuerst)'),
+        H2('gefahren', 'Gefahren am Unfallfahrzeug'),
+        UL(
+          '<b>Nicht ausgelöste Airbags / Gurtstraffer:</b> Sicherheitsabstände einhalten (Front ~30 cm, Seite ~15 cm – herstellerabhängig).',
+          '<b>Betriebsstoffe:</b> Kraftstoff, Öl, Kühlmittel – Brand-/Rutschgefahr.',
+          '<b>Alternative Antriebe:</b> Hochvolt-Systeme (E-/Hybrid), Gasanlagen (CNG/LPG), Wasserstoff – besondere Verfahren!',
+          '<b>Fahrzeugstabilität:</b> Fahrzeug vor Arbeitsbeginn stabilisieren (Unterbau, Keile).'),
+        CO('danger', 'Hochvolt-Fahrzeuge', 'Bei E-Fahrzeugen orange gekennzeichnete HV-Leitungen niemals durchtrennen. Rettungsdatenblatt/Rettungskarte nutzen, HV-System freischalten, auf thermisches Durchgehen der Batterie achten.'),
+      ],
+    },
+    {
+      id: 'g2', title: 'Rettungssatz & patientengerechte Rettung', duration: 25,
+      blocks: [
+        H2('satz', 'Der hydraulische Rettungssatz'),
+        TBL(['Gerät', 'Funktion'],[
+          ['Spreizer', 'Aufdrücken, Ziehen, Quetschen – z. B. Türen öffnen'],
+          ['Schere', 'Durchtrennen von Blechen, Holmen, Pedalen'],
+          ['Rettungszylinder', 'Wegdrücken/Aufstemmen größerer Abstände'],
+          ['Pedalschneider/Kombigerät', 'kompakte Sonderarbeiten'],
+        ]),
+        CO('warn', 'Verstärkte Holme', 'Moderne Karosserien enthalten hochfeste (borlegierte) Stähle. Nicht jede Schere schneidet jeden Holm – Schnittstellen bewusst wählen, Herstellerhinweise beachten.'),
+        H2('ablauf', 'Patientenorientierte Rettung'),
+        P('Die Rettung richtet sich nach dem Zustand des Patienten. Man unterscheidet:'),
+        UL(
+          '<b>Sofortrettung / Crash-Rettung:</b> bei unmittelbarer Lebensgefahr (z. B. Brand, Atemstillstand) – schnellstmöglich, Kompromisse bei Schonung.',
+          '<b>Schonende Rettung:</b> Standard – abgestimmt mit dem Rettungsdienst, achsengerecht, unter HWS-Schutz.'),
+        H2('goldene', 'Die „goldene Stunde"'),
+        DEF('Golden Hour of Shock', 'Ziel ist, den Patienten möglichst innerhalb einer Stunde nach dem Unfall in der geeigneten Klinik zu haben. Feuerwehr und Rettungsdienst arbeiten deshalb parallel und eng abgestimmt („Innerer und äußerer Rettungsring").'),
+        CO('tip', 'Zusammenarbeit', 'Die technische Rettung folgt der Medizin: Der Notarzt/Rettungsdienst gibt Tempo und Rettungsweg vor. Ständige Kommunikation über den Zustand des Patienten ist Pflicht.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= H */
+{
+  id: 'h-sprechfunk', code: 'H', title: 'Sprechfunk & Digitalfunk',
+  category: 'technik', level: 2, icon: 'radio', duration: 40,
+  summary: 'Funkbetrieb nach FwDV 810: Betriebsarten, Nachrichtenaufbau, Buchstabieralphabet und Digitalfunk BOS (TETRA).',
+  objectives: [
+    'Betriebsarten und Rufnamensystematik erklären',
+    'Eine Nachricht formgerecht abwickeln',
+    'Das Buchstabieralphabet sicher anwenden',
+    'Grundlagen des Digitalfunks (TMO/DMO) beschreiben',
+  ],
+  tags: ['Funk', 'FwDV 810', 'TETRA', 'Kommunikation'],
+  lessons: [
+    {
+      id: 'h1', title: 'Grundlagen & Nachrichtenverkehr', duration: 20,
+      blocks: [
+        H2('warum', 'Warum diszipliniert funken?'),
+        P('Funk ist die Lebensader der Einsatzführung. Ein Funkkanal wird von vielen geteilt – deshalb gilt: <b>kurz, klar, eindeutig</b>. Erst denken, dann Sprechtaste drücken, kurz warten, dann sprechen.'),
+        KF(
+          'Disziplin: nur betriebsnotwendige Nachrichten',
+          'Klare Aussprache, normale Sprechgeschwindigkeit',
+          'Vollständige Rufnamen verwenden',
+          'Wichtige Angaben (Zahlen, Namen) buchstabieren'),
+        H2('ablauf', 'Ablauf einer Nachricht (Anruf)'),
+        STEPS(
+          'Anruf: „Florian Musterstadt 1/44 von Florian Musterstadt 11/1 – kommen"',
+          'Antwort der Gegenstelle: „…11/1 von …1/44 – kommen"',
+          'Nachricht durchgeben, Ende mit „kommen"',
+          'Empfang bestätigen: „verstanden" – Abschluss mit „Ende"'),
+        DEF('Wichtige Sprechgruppen', '„kommen" = Ende der eigenen Durchsage, Antwort erwartet. „verstanden" = Nachricht empfangen. „Ende" = Gespräch beendet. „Frage" = es folgt eine Frage. „Wiederholen Sie" = Nachricht bitte erneut.'),
+      ],
+    },
+    {
+      id: 'h2', title: 'Buchstabieralphabet & Digitalfunk', duration: 20,
+      blocks: [
+        H2('alphabet', 'Deutsches Buchstabieralphabet'),
+        P('Zum eindeutigen Buchstabieren wird das genormte Alphabet verwendet (Auszug):'),
+        TBL(['A–I', 'J–R', 'S–Z'],[
+          ['A Anton, B Berta, C Cäsar', 'J Julius, K Kaufmann, L Ludwig', 'S Samuel, T Theodor, U Ulrich'],
+          ['D Dora, E Emil, F Friedrich', 'M Martha, N Nordpol, O Otto', 'V Viktor, W Wilhelm, X Xanthippe'],
+          ['G Gustav, H Heinrich, I Ida', 'P Paula, Q Quelle, R Richard', 'Y Ypsilon, Z Zacharias'],
+        ]),
+        H2('digital', 'Digitalfunk BOS (TETRA)'),
+        P('Der bundesweite Digitalfunk für Behörden und Organisationen mit Sicherheitsaufgaben (BOS) basiert auf dem TETRA-Standard. Er bietet abhörsicheren, verschlüsselten Sprech- und Datenfunk.'),
+        UL(
+          '<b>TMO (Trunked Mode Operation):</b> Netzbetrieb über Basisstationen – große Reichweite, Gesprächsgruppen.',
+          '<b>DMO (Direct Mode Operation):</b> Direktbetrieb Gerät-zu-Gerät ohne Netz – für den lokalen Einsatzstellenfunk.',
+          '<b>Notruftaste:</b> priorisierte Notfallmeldung an die Leitstelle.',
+          '<b>Endgeräte:</b> HRT (Handfunk), MRT (Fahrzeugfunk), FRT (feste Station).'),
+        CO('info', 'Vorteil Digitalfunk', 'Bessere Sprachqualität, Abhörsicherheit durch Verschlüsselung, Gruppenkommunikation und Datenübertragung (Status/Text). Im Einsatzstellenfunk meist DMO, überörtlich TMO.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= I */
+{
+  id: 'i-gefahrgut', code: 'I', title: 'ABC-Gefahrstoffe (FwDV 500)',
+  category: 'gefahr', level: 3, icon: 'hazmat', duration: 55,
+  summary: 'Einsatz bei atomaren, biologischen und chemischen Gefahren: Kennzeichnung, GAMS-Regel, Gefahrengruppen und Dekontamination.',
+  objectives: [
+    'Gefahrstoffe anhand von Kennzeichnung identifizieren (Warntafel, GHS)',
+    'Die GAMS-Regel als Ersteinsatz-Grundregel anwenden',
+    'Gefahrengruppen und Schutzausrüstung zuordnen',
+    'Grundlagen der Dekontamination erklären',
+  ],
+  tags: ['ABC', 'Gefahrgut', 'FwDV 500', 'CBRN'],
+  lessons: [
+    {
+      id: 'i1', title: 'Erkennen & Kennzeichnung', duration: 25,
+      blocks: [
+        H2('gefahren', 'Die Gefahren der Gefahrstoffe'),
+        P('ABC steht für <b>Atomare (radiologische), Biologische und Chemische</b> Gefahren. Die möglichen Schädigungswege fasst man mit den „4 A" bzw. „AAAA" zusammen:'),
+        MNE([{l:'A',w:'Atemgifte'},{l:'A',w:'Angst'},{l:'A',w:'Ausbreitung'},{l:'A',w:'Atomare Gefahr'}],
+          'Ergänzt um: Chemische Gefahr, Erkrankung/Verletzung, Explosion, Einsturz, Elektrizität – die klassischen „Gefahren der Einsatzstelle".'),
+        CO('info', 'Gefahren der Einsatzstelle', 'Merkschema „4 A – 1 C – 4 E": Atemgifte, Angst, Ausbreitung, Atomare Gefahr | Chemische Gefahr | Erkrankung/Verletzung, Explosion, Einsturz, Elektrizität.'),
+        H2('kennzeichnung', 'Kennzeichnung im Transport'),
+        DEF('Orangefarbene Warntafel', 'An Gefahrgut-Transportern. Oben die <b>Gefahrnummer</b> (Kemler-Zahl), unten die <b>UN-Nummer</b> (Stoffnummer). Beispiel 33/1203 = leicht entzündlicher Stoff / Benzin.'),
+        UL(
+          '<b>Kemler-Zahl:</b> erste Ziffer = Hauptgefahr, weitere = Nebengefahren. Verdopplung = Verstärkung. Vorangestelltes „X" = darf nicht mit Wasser in Berührung kommen!',
+          '<b>UN-Nummer:</b> identifiziert den konkreten Stoff (Nachschlagen in Hommel/ERICARD).',
+          '<b>Gefahrzettel (Rauten):</b> Symbol + Klasse (z. B. Klasse 3 entzündbare Flüssigkeiten).',
+          '<b>GHS/CLP-Piktogramme:</b> Kennzeichnung ortsfester Gebinde/Chemikalien.'),
+        CO('danger', 'Erste Ziffer 0', 'Steht als zweite Ziffer eine 0, hat der Stoff keine weitere Nebengefahr. Ein „X" vor der Kemler-Zahl warnt: gefährliche Reaktion mit Wasser – kein Wasser einsetzen!'),
+      ],
+    },
+    {
+      id: 'i2', title: 'GAMS-Regel & Gefahrengruppen', duration: 30,
+      blocks: [
+        H2('gams', 'Die GAMS-Regel'),
+        P('Für die ersteintreffende Einheit ohne Spezialausrüstung gilt die <b>GAMS-Regel</b> als Handlungsrahmen:'),
+        MNE([{l:'G',w:'Gefahr erkennen'},{l:'A',w:'Absperren'},{l:'M',w:'Menschen retten'},{l:'S',w:'Spezialkräfte'}],
+          'Gefahr erkennen → Absperren (Abstand!) → Menschenrettung nur mit Eigenschutz → Spezialkräfte (Gefahrgutzug, Fachberater) nachfordern.'),
+        CO('warn', 'Abstand ist Schutz', 'Grundregel Abstand: bei unklarer Lage mind. 50 m, bei größeren Mengen/Explosionsgefahr deutlich mehr. Windrichtung beachten – immer von der windzugewandten Seite (Luv) annähern.'),
+        H2('gruppen', 'Gefahrengruppen (FwDV 500)'),
+        TBL(['Gruppe', 'Bedeutung', 'Schutz'],[
+          ['I', 'geringe Gefahr', 'umluftunabhängiger Atemschutz + Schutzkleidung (Form 1)'],
+          ['II', 'erhöhte Gefahr', 'Kontaminationsschutz (Form 2), erweiterte Maßnahmen'],
+          ['III', 'hohe Gefahr', 'Chemikalienschutzanzug (CSA, Form 3), Dekon zwingend'],
+        ]),
+        H2('dekon', 'Dekontamination'),
+        DEF('Dekontamination (Dekon)', 'Entfernen oder Unschädlichmachen gefährlicher Stoffe von Personen, Geräten und Kleidung. Es gibt Stufen von der Notdekon (schnell, lebensrettend) bis zur Standard-/Gerätedekon. Ziel: Verschleppung verhindern.'),
+        STEPS(
+          'Gefahrenbereich mit Zugangskontrolle einrichten (Schwarz-/Weißbereich)',
+          'Dekon-Platz an der Grenze aufbauen (Dekon-P für Personen)',
+          'Kontaminierte grob und fein dekontaminieren',
+          'Registrierung, ärztliche Kontrolle, Abtransport'),
+        CO('info', 'Zonenmodell', 'Klassisch: Gefahrenzone (rot, nur Schutzausrüstung), Dekon-/Absperrbereich (gelb), sicherer Bereich (grün). Übergänge nur über den Dekon-Platz.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= J */
+{
+  id: 'j-erste-hilfe', code: 'J', title: 'Erste Hilfe & lebensrettende Sofortmaßnahmen',
+  category: 'medizin', level: 1, icon: 'heart', duration: 40,
+  summary: 'Lebensrettende Sofortmaßnahmen: Notruf, Auffinden einer Person, stabile Seitenlage und Herz-Lungen-Wiederbelebung nach aktuellen Leitlinien.',
+  objectives: [
+    'Die Rettungskette und den Notruf korrekt anwenden',
+    'Eine bewusstlose Person versorgen (Atemkontrolle, Seitenlage)',
+    'Die Herz-Lungen-Wiederbelebung durchführen',
+    'Einen AED einsetzen',
+  ],
+  tags: ['Erste Hilfe', 'Reanimation', 'AED', 'Notfall'],
+  lessons: [
+    {
+      id: 'j1', title: 'Rettungskette & Basismaßnahmen', duration: 20,
+      blocks: [
+        H2('kette', 'Die Rettungskette'),
+        P('Der Behandlungserfolg hängt von einer lückenlosen Kette ab. Jedes Glied zählt – das schwächste bestimmt das Ergebnis.'),
+        UL(
+          '<b>Sofortmaßnahmen</b> (Absichern, Notruf, lebensrettende Handgriffe)',
+          '<b>Erste Hilfe</b> durch Anwesende',
+          '<b>Rettungsdienst</b> (Transport, notfallmedizinische Versorgung)',
+          '<b>Krankenhaus</b> (definitive Versorgung)'),
+        H2('notruf', 'Notruf 112'),
+        MNE([{l:'W',w:'Wo'},{l:'W',w:'Was'},{l:'W',w:'Wie viele'},{l:'W',w:'Welche'},{l:'W',w:'Warten'}],
+          'Wo ist es passiert? Was ist geschehen? Wie viele Betroffene? Welche Verletzungen/Erkrankungen? Warten auf Rückfragen – nicht auflegen!'),
+        H2('auffinden', 'Auffinden einer Person'),
+        STEPS(
+          'Eigenschutz beachten, Bewusstsein prüfen (ansprechen, anfassen)',
+          'Bei fehlender Reaktion: laut um Hilfe rufen',
+          'Atemwege freimachen (Kopf überstrecken, Kinn anheben)',
+          'Atmung prüfen (max. 10 Sek.: sehen, hören, fühlen)',
+          'Normale Atmung → stabile Seitenlage; keine normale Atmung → Reanimation'),
+      ],
+    },
+    {
+      id: 'j2', title: 'Reanimation & AED', duration: 20,
+      blocks: [
+        H2('hlw', 'Herz-Lungen-Wiederbelebung (HLW)'),
+        P('Bei Kreislaufstillstand (keine normale Atmung) sofort mit der HLW beginnen. Nach aktuellen ERC-Leitlinien im Verhältnis <b>30 : 2</b> (Kompressionen : Beatmungen).'),
+        KF(
+          'Druckpunkt: Mitte des Brustkorbs (untere Sternumhälfte)',
+          'Drucktiefe: 5–6 cm beim Erwachsenen',
+          'Frequenz: 100–120 pro Minute',
+          'Brustkorb vollständig entlasten, Unterbrechungen minimieren'),
+        CO('tip', 'Nur-Drücken ist besser als Nichts', 'Wer sich eine Beatmung nicht zutraut, führt durchgehende Thoraxkompressionen durch. Entscheidend ist ununterbrochenes, kräftiges Drücken bis zum Eintreffen des Rettungsdienstes.'),
+        H2('aed', 'Automatisierter Externer Defibrillator (AED)'),
+        STEPS(
+          'AED sofort holen lassen und einschalten',
+          'Elektroden nach Bild aufkleben (rechts unter Schlüsselbein, links seitlich unter Achsel)',
+          'Analyse abwarten – dabei Patient nicht berühren',
+          'Bei Aufforderung Schock auslösen, danach sofort weiter drücken',
+          'Anweisungen des Geräts bis zum Eintreffen des Rettungsdienstes folgen'),
+        CO('danger', 'Zeit ist Leben', 'Mit jeder Minute ohne Reanimation sinkt die Überlebenswahrscheinlichkeit um ca. 10 %. Frühe HLW und frühe Defibrillation sind die entscheidenden Glieder.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= K */
+{
+  id: 'k-absturzsicherung', code: 'K', title: 'Absturzsicherung & Retten aus Höhen',
+  category: 'einsatz', level: 3, icon: 'rope', duration: 35,
+  summary: 'Sicherung gegen Absturz und Rettung aus Höhen und Tiefen: Ausrüstung, Sicherungsmethoden und Grundsätze der Gerätesatz-Absturzsicherung.',
+  objectives: [
+    'Gefahren durch Absturz einschätzen',
+    'Bestandteile des Gerätesatzes Absturzsicherung benennen',
+    'Grundsätze der Selbst- und Fremdsicherung erklären',
+    'Anschlagpunkte richtig auswählen',
+  ],
+  tags: ['Absturzsicherung', 'Höhenrettung', 'Sicherung'],
+  lessons: [
+    {
+      id: 'k1', title: 'Grundlagen & Ausrüstung', duration: 20,
+      blocks: [
+        H2('warum', 'Wann Absturzsicherung?'),
+        P('Sobald an Einsatzstellen Absturzgefahr besteht (Dächer, Gruben, Silos, Brücken), muss gesichert werden. Der <b>Gerätesatz Absturzsicherung</b> dient der Sicherung von Einsatzkräften – nicht als vollwertige Höhenrettung (dafür: Höhenrettungsgruppe).'),
+        CO('warn', 'Abgrenzung', 'Der Gerätesatz Absturzsicherung ist zur Sicherung und einfachen Rettung gedacht. Komplexe Rettungen aus großen Höhen/Tiefen sind Aufgabe speziell ausgebildeter Höhenretter.'),
+        H2('satz', 'Gerätesatz Absturzsicherung (Auszug)'),
+        UL(
+          '<b>Auffanggurt</b> (Ganzkörpergurt nach EN 361)',
+          '<b>Kernmantel-Dynamikseil</b> und Verbindungsmittel',
+          '<b>Bandschlingen</b> zum Anschlagen',
+          '<b>Karabiner</b> mit Verschlusssicherung (EN 362)',
+          '<b>Abseil-/Sicherungsgerät</b> und Auffanggerät',
+          'Feuerwehrhaltegurt ist <b>keine</b> Absturzsicherung!'),
+        H2('anschlag', 'Anschlagpunkte'),
+        KF(
+          'Tragfähig und geprüft (im Zweifel höhere Sicherheit wählen)',
+          'Möglichst hoch anschlagen → geringere Sturzhöhe',
+          'Scharfe Kanten vermeiden/schützen (Kantenschutz)',
+          'Pendelsturz vermeiden – möglichst senkrecht über der Person'),
+        CO('danger', 'Sturzfaktor & Hängetrauma', 'Je höher der Sturzfaktor, desto größere Kräfte. Nach einem Sturz droht bei bewegungslosem Hängen im Gurt ein lebensgefährliches Hängetrauma – schnelle Rettung und richtige Lagerung sind entscheidend.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= L */
+{
+  id: 'l-fuehrung-fwdv100', code: 'L', title: 'Führung & Leitung im Einsatz (FwDV 100)',
+  category: 'fuehrung', level: 4, icon: 'compass', duration: 65,
+  summary: 'Führungslehre nach FwDV 100: Führungssystem, Führungsvorgang (Lagefeststellung–Planung–Befehl), Führungsstufen und Führungsorganisation.',
+  objectives: [
+    'Das Führungssystem der FwDV 100 erklären',
+    'Den Führungsvorgang als Regelkreis anwenden',
+    'Führungsstufen A–D unterscheiden',
+    'Eine strukturierte Lagebeurteilung durchführen',
+  ],
+  tags: ['Führung', 'FwDV 100', 'Einsatzleitung', 'Taktik'],
+  lessons: [
+    {
+      id: 'l1', title: 'Führungssystem & Führungsvorgang', duration: 30,
+      blocks: [
+        H2('system', 'Das Führungssystem'),
+        P('Führung ist die zielgerichtete Einflussnahme auf Menschen zur Erfüllung eines Auftrags. Die FwDV 100 beschreibt ein <b>Führungssystem</b> aus drei zusammenwirkenden Komponenten:'),
+        UL(
+          '<b>Führungsorganisation:</b> Aufbau der Führung (wer führt wen, Führungsstufen, Stab).',
+          '<b>Führungsvorgang:</b> der methodische Ablauf des Führens (Regelkreis).',
+          '<b>Führungsmittel:</b> Hilfsmittel der Führung (Kommunikation, Führungsassistenten, Kartenwerk, IT).'),
+        H2('vorgang', 'Der Führungsvorgang'),
+        P('Der Führungsvorgang ist ein <b>Regelkreis</b>, der ständig durchlaufen wird, solange der Einsatz läuft:'),
+        STEPS(
+          'Lagefeststellung – Erkundung & Kontrolle: Was ist passiert, was droht?',
+          'Planung – Beurteilung & Entschluss: Möglichkeiten abwägen, entscheiden',
+          'Befehlsgebung – Umsetzung: klare Aufträge erteilen',
+          'zurück zur Lagefeststellung: Wirkung kontrollieren, nachsteuern'),
+        CO('info', 'Regelkreis', 'Lagefeststellung → Planung → Befehlsgebung → (Kontrolle) → Lagefeststellung … Führung ist nie „fertig", sondern passt sich der sich ändernden Lage laufend an.'),
+        H2('beurteilung', 'Die Lagebeurteilung'),
+        P('Kern der Planung ist die Beurteilung der Lage. Strukturhilfe – vier Kernfragen:'),
+        KF(
+          '<b>Gefahren:</b> Welche Gefahren bestehen für wen? (Menschen, Umwelt, Sachwerte, Einsatzkräfte)',
+          '<b>Eigene Kräfte/Mittel:</b> Was habe ich, was fehlt mir?',
+          '<b>Möglichkeiten:</b> Welche Handlungsoptionen gibt es? Vor-/Nachteile?',
+          '<b>Entschluss:</b> Für welche Option entscheide ich mich – und warum?'),
+      ],
+    },
+    {
+      id: 'l2', title: 'Führungsstufen & Führungsorganisation', duration: 35,
+      blocks: [
+        H2('stufen', 'Führungsstufen A–D'),
+        P('Mit wachsender Einsatzgröße wächst die Führungsorganisation. Die FwDV 100 kennt vier Führungsstufen:'),
+        TBL(['Stufe', 'Umfang', 'Führung durch'],[
+          ['A', 'Führung selbstständiger Trupps', 'Truppführer'],
+          ['B', 'Führung mit einer Einheit (Gruppe/Staffel)', 'Gruppen-/Staffelführer'],
+          ['C', 'Führung mit mehreren Einheiten (Zug)', 'Zugführer + Führungsassistent'],
+          ['D', 'Führung mit Einheiten verschiedener Fachdienste', 'Verbandsführer + Führungsstab'],
+        ]),
+        H2('gefahrenmatrix', 'Die Gefahrenmatrix (Merkschema)'),
+        P('Zur schnellen, vollständigen Gefahreneinschätzung dient das bekannte Merkschema „<b>4 A – 1 C – 4 E</b>":'),
+        MNE([{l:'A',w:'Atemgifte'},{l:'A',w:'Angst'},{l:'A',w:'Ausbreitung'},{l:'A',w:'Atomar'},{l:'C',w:'Chemisch'},{l:'E',w:'Erkrankung'},{l:'E',w:'Explosion'},{l:'E',w:'Einsturz'},{l:'E',w:'Elektrizität'}],
+          'Für jede dieser Gefahren prüft die Führungskraft: Wer ist bedroht? Und leitet die passenden Maßnahmen ab.'),
+        H2('stab', 'Der Führungsstab'),
+        P('Bei Großschadenslagen unterstützt ein <b>Führungsstab</b> die Einsatzleitung. Sachgebiete (S1–S6):'),
+        TBL(['SG', 'Aufgabe'],[
+          ['S1', 'Personal / Innerer Dienst'],
+          ['S2', 'Lage (Lagedarstellung, Dokumentation)'],
+          ['S3', 'Einsatz (Planung, Führung der Maßnahmen)'],
+          ['S4', 'Versorgung / Logistik'],
+          ['S5', 'Presse- & Medienarbeit'],
+          ['S6', 'Information & Kommunikation (IuK)'],
+        ]),
+        CO('tip', 'Führungsgrundsatz', 'Führen heißt entscheiden. Lieber eine klare, zügige Entscheidung mit 80 % Information als eine perfekte Entscheidung, die zu spät kommt. Aber: Entschluss laufend an der Lage überprüfen.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= M */
+{
+  id: 'm-vorbeugender-brandschutz', code: 'M', title: 'Vorbeugender Brandschutz & Objektkunde',
+  category: 'praevention', level: 3, icon: 'building', duration: 40,
+  summary: 'Baulicher, anlagentechnischer und organisatorischer Brandschutz: Rettungswege, Brandabschnitte, Brandmelde- und Löschanlagen.',
+  objectives: [
+    'Die drei Säulen des vorbeugenden Brandschutzes erklären',
+    'Anforderungen an Rettungswege beschreiben',
+    'Brandmelde- und Löschanlagen einordnen',
+    'Feuerwehrpläne und -zufahrten nutzen',
+  ],
+  tags: ['Brandschutz', 'Prävention', 'Baukunde'],
+  lessons: [
+    {
+      id: 'm1', title: 'Die drei Säulen & Rettungswege', duration: 20,
+      blocks: [
+        H2('saeulen', 'Drei Säulen des vorbeugenden Brandschutzes'),
+        UL(
+          '<b>Baulicher Brandschutz:</b> Brandabschnitte, feuerbeständige Wände/Decken, Rettungswege, Baustoffklassen.',
+          '<b>Anlagentechnischer Brandschutz:</b> Brandmeldeanlagen, Sprinkler, Rauch- und Wärmeabzug (RWA), Löschanlagen.',
+          '<b>Organisatorischer Brandschutz:</b> Brandschutzordnung, Flucht-/Rettungspläne, Unterweisungen, Brandschutzhelfer.'),
+        H2('rettungswege', 'Rettungswege'),
+        DEF('Erster & zweiter Rettungsweg', 'Aufenthaltsräume benötigen i. d. R. zwei voneinander unabhängige Rettungswege. Der erste ist meist der bauliche (Treppenraum), der zweite kann über Rettungsgeräte der Feuerwehr (Drehleiter) sichergestellt werden.'),
+        KF(
+          'Rettungswege müssen frei und benutzbar sein',
+          'Notausgänge nicht verstellen/verschließen',
+          'Feuerwehrzufahrten & Aufstellflächen freihalten',
+          'Fluchtwegkennzeichnung nach ASR A1.3 beachten'),
+        CO('warn', 'Freihalten von Zufahrten', 'Zugeparkte Feuerwehrzufahrten kosten wertvolle Minuten und Menschenleben. Sie sind rechtlich geschützt und dürfen nicht blockiert werden.'),
+      ],
+    },
+    {
+      id: 'm2', title: 'Anlagentechnik & Feuerwehrpläne', duration: 20,
+      blocks: [
+        H2('bma', 'Brandmeldeanlagen (BMA)'),
+        P('Eine BMA erkennt Brände frühzeitig (Rauch-, Wärme-, Flammenmelder) und alarmiert automatisch die Feuerwehr über die Leitstelle. Zentrales Element vor Ort:'),
+        UL(
+          '<b>Brandmelderzentrale (BMZ):</b> wertet Melder aus, steuert Alarmierung.',
+          '<b>Feuerwehr-Bedienfeld (FBF)</b> und <b>Feuerwehr-Anzeigetableau (FAT):</b> Bedienung/Anzeige für die Feuerwehr.',
+          '<b>Feuerwehr-Schlüsseldepot (FSD):</b> ermöglicht gewaltfreien Zutritt.'),
+        H2('loeschanlagen', 'Ortsfeste Löschanlagen'),
+        TBL(['Anlage', 'Prinzip'],[
+          ['Sprinkleranlage', 'selbsttätiges Auslösen einzelner Sprinkler bei Hitze'],
+          ['Gaslöschanlage', 'Sauerstoffverdrängung – z. B. Serverräume (kein Wasserschaden)'],
+          ['Schaumlöschanlage', 'Flüssigkeitsbrände in Industrie/Tanklagern'],
+          ['RWA', 'Rauch- und Wärmeabzug – hält Rettungswege raucharm'],
+        ]),
+        H2('plaene', 'Feuerwehrpläne'),
+        P('Feuerwehrpläne nach DIN 14095 geben der einrückenden Einheit einen schnellen Überblick über Objekt, Zufahrten, Gefahren, Löschwasser und Absperreinrichtungen. Sie liegen an definierten Stellen (z. B. FSD, BMZ) bereit.'),
+        CO('tip', 'Objektkenntnis', 'Wer sein Ausrückgebiet kennt – Sonderobjekte, Pflegeheime, Industrie, Löschwasserquellen – gewinnt im Ernstfall entscheidende Zeit. Objektbegehungen sind gelebter Brandschutz.'),
+      ],
+    },
+  ],
+},
+
+];
+
+/* Schnellzugriff-Index */
+export const MODULE_BY_ID = Object.fromEntries(MODULES.map(m => [m.id, m]));
+export const LESSON_COUNT = MODULES.reduce((n, m) => n + m.lessons.length, 0);
