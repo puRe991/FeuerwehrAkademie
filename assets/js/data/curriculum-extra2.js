@@ -48,6 +48,37 @@ export const EXTRA_LESSONS_2 = {
         CO('tip', 'Botschafter der Feuerwehr', 'Jede Einsatzkraft ist Aushängeschild ihrer Wehr – auch in Uniform in der Öffentlichkeit und in sozialen Medien. Respekt, Zurückhaltung und Hilfsbereitschaft stärken das Vertrauen der Bevölkerung.'),
       ],
     },
+    {
+      id: 'a6', title: 'Die Feuerwehr-Dienstvorschriften (FwDV 1–10)', duration: 18,
+      blocks: [
+        H2('was', 'Was sind FwDV?'),
+        P('Feuerwehr-Dienstvorschriften (FwDV) sind bundesweit einheitliche Richtlinien für Taktik, Ausbildung und Einsatz. Sie werden von der Projektgruppe des <b>AFKzV</b> erstellt und den Ländern zur Einführung empfohlen. Sie schaffen einen einheitlichen Standard, damit Einheiten überörtlich reibungslos zusammenarbeiten.'),
+        H2('liste', 'Übersicht FwDV 1 bis 10'),
+        TBL(['FwDV', 'Titel', 'Status'],[
+          ['1', 'Grundtätigkeiten – Lösch- und Hilfeleistungseinsatz', 'gültig'],
+          ['2', 'Ausbildung der Freiwilligen Feuerwehr', 'gültig'],
+          ['3', 'Einheiten im Lösch- und Hilfeleistungseinsatz', 'gültig (ersetzt 4 & 5)'],
+          ['4', 'Die Gruppe im Löscheinsatz', 'aufgegangen in FwDV 3'],
+          ['5', 'Der Zug im Löscheinsatz', 'aufgegangen in FwDV 3'],
+          ['6', 'Taktische Einheiten und Verbände', 'in Planung / teils in FwDV 3'],
+          ['7', 'Atemschutz', 'gültig'],
+          ['8', 'Tauchen (Tauchereinsatz)', 'gültig'],
+          ['9', 'Strahlenschutz (früher)', 'aufgegangen in FwDV 500'],
+          ['10', 'Die tragbaren Leitern', 'gültig'],
+        ]),
+        CO('info', 'Weitere wichtige FwDV', 'Über die Nummern 1–10 hinaus gelten u. a. FwDV 100 (Führung und Leitung im Einsatz), FwDV 500 (ABC-Einsatz) sowie die PDV/DV 800/810 (Fernmelde-/Sprechfunkdienst).'),
+        H2('abdeckung', 'Wo findest du das in der Akademie?'),
+        UL(
+          '<b>FwDV 1</b> (Grundtätigkeiten) → Module D (Geräte), S (Rettung), T (Wasser), U (Knoten)',
+          '<b>FwDV 2</b> (Ausbildung) → Modul N (Maschinist) und die Laufbahn in Modul A',
+          '<b>FwDV 3</b> (Einheiten) → Modul E (Löscheinsatz & Einsatzlehre)',
+          '<b>FwDV 7</b> (Atemschutz) → Modul F',
+          '<b>FwDV 8</b> (Tauchen) → Modul X (Wasserrettung)',
+          '<b>FwDV 10</b> (tragbare Leitern) → Modul D, Lektion „Tragbare Leitern"',
+          '<b>FwDV 100 / 500 / 810</b> → Module L / I / H'),
+        CO('tip', 'Landesrecht beachten', 'FwDV sind Empfehlungen; die Länder führen sie ein – teils mit Abweichungen oder in älteren Fassungen. Maßgeblich sind stets die in deinem Bundesland eingeführten Vorschriften.'),
+      ],
+    },
   ],
 
   /* ------------------------------------------------------------------- B */
@@ -831,6 +862,33 @@ export const EXTRA_LESSONS_2 = {
           ['Vernetzte PSA/Sensorik', 'Vitaldaten- und Positionsüberwachung im Trupp'],
         ]),
         CO('tip', 'Mensch bleibt entscheidend', 'Technik verstärkt die Feuerwehr, ersetzt aber weder Erfahrung noch Handwerk noch Menschlichkeit. Wer die Grundlagen beherrscht und neue Werkzeuge klug nutzt, ist auf der Höhe der Zeit – und bleibt handlungsfähig, wenn die Technik einmal schweigt.'),
+      ],
+    },
+  ],
+
+  /* --------------------------------------------------- X (Tauchen, FwDV 8) */
+  'x-wasserrettung': [
+    {
+      id: 'x3', title: 'Tauchen im Feuerwehreinsatz (FwDV 8)', duration: 18,
+      blocks: [
+        H2('was', 'Tauchen als Spezialaufgabe'),
+        P('Der <b>Tauchereinsatz</b> ist in der <b>FwDV 8</b> geregelt. Feuerwehrtauchen dient der Menschenrettung, der Suche und der technischen Hilfe unter Wasser. Es ist eine hoch spezialisierte, gefährliche Tätigkeit – nur ausgebildete und regelmäßig geübte <b>Feuerwehrtaucher</b> mit gültiger arbeitsmedizinischer Vorsorge (G 31) dürfen tauchen.'),
+        CO('warn', 'Kein Standard jeder Wehr', 'Nicht jede Feuerwehr hat eine Taucherstaffel. Die meisten Wehren fordern bei Wassernotlagen ausgebildete Taucher (Feuerwehr, DLRG, THW) nach und leisten selbst die Wasserrettung von Land/Boot aus (Rufen–Werfen–Fahren).'),
+        H2('trupp', 'Der Tauchtrupp'),
+        P('Getaucht wird niemals allein. Der Tauchtrupp besteht mindestens aus:'),
+        UL(
+          '<b>Taucher</b> – führt den Einsatz unter Wasser durch',
+          '<b>Signalmann (Leinenführer)</b> – hält über die Signalleine ständigen Kontakt',
+          '<b>Reservetaucher (Sicherungstaucher)</b> – einsatzbereit zur sofortigen Rettung',
+          '<b>Tauchereinsatzführer</b> – leitet und überwacht den Tauchgang'),
+        DEF('Signalleine & Leinenzugzeichen', 'Über die Signalleine verständigen sich Taucher und Signalmann mit vereinbarten Zugzeichen (z. B. „alles in Ordnung?", „auftauchen"). Bei Ausfall der Kommunikation wird der Tauchgang sofort abgebrochen.'),
+        H2('grundsaetze', 'Grundsätze & Grenzen'),
+        KF(
+          'Nur ausgebildete Feuerwehrtaucher, tauglich (G 31), regelmäßig geübt',
+          'Immer mit Reservetaucher und Tauchereinsatzführer',
+          'Tauchzeit, Tiefe und Luftvorrat streng überwachen',
+          'Gefahren: Strömung, Kälte, Sicht null, Hindernisse, Verhängen'),
+        CO('danger', 'Extreme Eigengefährdung', 'Tauchen unter Eis, in Strömung oder in verschmutztem/unübersichtlichem Wasser ist lebensgefährlich. Ohne Spezialausbildung, Ausrüstung und Absicherung wird nicht getaucht – die Wasserrettung von Land/Boot hat für die Regel-Feuerwehr Vorrang.'),
       ],
     },
   ],
