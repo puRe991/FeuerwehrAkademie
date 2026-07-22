@@ -30,18 +30,9 @@ export const LEVELS = {
   5: 'Verbandsführung',
 };
 
-/* Hilfsfunktionen zum kompakten Schreiben von Blöcken */
-const P  = (html) => ({ t: 'p', html });
-const H2 = (id, text) => ({ t: 'h2', id, text });
-const H3 = (text) => ({ t: 'h3', text });
-const UL = (...items) => ({ t: 'list', items });
-const OL = (...items) => ({ t: 'ol', items });
-const KF = (...items) => ({ t: 'keyfacts', items });
-const CO = (kind, title, text) => ({ t: 'callout', kind, title, text });
-const DEF= (term, text) => ({ t: 'def', term, text });
-const STEPS = (...items) => ({ t: 'steps', items });
-const MNE = (letters, text) => ({ t: 'mnemonic', letters, text });
-const TBL = (head, rows) => ({ t: 'table', head, rows });
+/* Hilfsfunktionen zum kompakten Schreiben von Blöcken (gemeinsam genutzt) */
+import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL } from './blocks.js';
+import { EXTRA_LESSONS } from './curriculum-extra.js';
 
 export const MODULES = [
 
@@ -1104,6 +1095,15 @@ export const MODULES = [
 },
 
 ];
+
+/* Zusatz-Lektionen aus curriculum-extra.js einhängen (Inhaltstiefe) */
+for (const m of MODULES) {
+  const extra = EXTRA_LESSONS[m.id];
+  if (extra && extra.length) {
+    m.lessons.push(...extra);
+    m.duration += extra.reduce((n, l) => n + (l.duration || 0), 0);
+  }
+}
 
 /* Schnellzugriff-Index */
 export const MODULE_BY_ID = Object.fromEntries(MODULES.map(m => [m.id, m]));

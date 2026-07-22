@@ -5,6 +5,7 @@
    correct: Array der Indizes der richtigen Optionen
    Jede Frage hat eine Erklärung (Lernwert auch bei richtiger Antwort).
    ========================================================================= */
+import { EXTRA_QUESTIONS } from './exams-extra.js';
 
 export const EXAMS = {
 
@@ -605,6 +606,11 @@ export const EXAMS = {
   },
 
 };
+
+/* Zusatz-Fragen aus exams-extra.js anhängen (Inhaltstiefe) */
+for (const [moduleId, extra] of Object.entries(EXTRA_QUESTIONS)) {
+  if (EXAMS[moduleId] && extra?.length) EXAMS[moduleId].questions.push(...extra);
+}
 
 /* Utility: Gesamtzahl Fragen */
 export const TOTAL_QUESTIONS = Object.values(EXAMS).reduce((n, e) => n + e.questions.length, 0);
