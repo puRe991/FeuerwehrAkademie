@@ -17,11 +17,12 @@ export function renderExam(moduleId) {
   const exam = EXAMS[moduleId];
   if (!m || !exam) return notFound();
 
+  // Auswertung anzeigen, sobald die Prüfung beendet wurde
+  if (session && session.moduleId === moduleId && session.reviewing) return examResult(m, exam);
   // Startbildschirm, wenn keine Session läuft oder anderes Modul
   if (!session || session.moduleId !== moduleId || session.finished) {
     return examIntro(m, exam);
   }
-  if (session.reviewing) return examResult(m, exam);
   return examQuestion(m, exam);
 }
 

@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-18-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-56-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-180-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![Karteikarten](https://img.shields.io/badge/Karteikarten-95-16607a) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-18-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-92-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-235-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![Karteikarten](https://img.shields.io/badge/Karteikarten-112-16607a) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -12,9 +12,9 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 
 | Bereich | Beschreibung |
 |---|---|
-| 📚 **Module A–Z** | 18 fachlich fundierte Ausbildungsmodule mit **56 Lektionen** – von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zu Maschinist, Baukunde und Führungslehre (FwDV 100) |
+| 📚 **Module A–Z** | 18 fachlich fundierte Ausbildungsmodule mit **92 Lektionen** (je 4–6 pro Modul) – von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zu Maschinist, Baukunde und Führungslehre (FwDV 100) |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | **180 Prüfungsfragen** mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
+| 📝 **Prüfungen** | **235 Prüfungsfragen** mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
 | 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 50+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk, verlinkt mit den Modulen |

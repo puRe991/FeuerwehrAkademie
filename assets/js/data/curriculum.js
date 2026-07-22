@@ -33,6 +33,7 @@ export const LEVELS = {
 /* Hilfsfunktionen zum kompakten Schreiben von Blöcken (gemeinsam genutzt) */
 import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL } from './blocks.js';
 import { EXTRA_LESSONS } from './curriculum-extra.js';
+import { EXTRA_LESSONS_2 } from './curriculum-extra2.js';
 
 export const MODULES = [
 
@@ -1096,12 +1097,14 @@ export const MODULES = [
 
 ];
 
-/* Zusatz-Lektionen aus curriculum-extra.js einhängen (Inhaltstiefe) */
-for (const m of MODULES) {
-  const extra = EXTRA_LESSONS[m.id];
-  if (extra && extra.length) {
-    m.lessons.push(...extra);
-    m.duration += extra.reduce((n, l) => n + (l.duration || 0), 0);
+/* Zusatz-Lektionen aus den Erweiterungsebenen einhängen (Inhaltstiefe) */
+for (const source of [EXTRA_LESSONS, EXTRA_LESSONS_2]) {
+  for (const m of MODULES) {
+    const extra = source[m.id];
+    if (extra && extra.length) {
+      m.lessons.push(...extra);
+      m.duration += extra.reduce((n, l) => n + (l.duration || 0), 0);
+    }
   }
 }
 

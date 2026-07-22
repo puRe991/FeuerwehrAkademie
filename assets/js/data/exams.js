@@ -6,6 +6,7 @@
    Jede Frage hat eine Erklärung (Lernwert auch bei richtiger Antwort).
    ========================================================================= */
 import { EXTRA_QUESTIONS } from './exams-extra.js';
+import { EXTRA_QUESTIONS_2 } from './exams-extra2.js';
 
 export const EXAMS = {
 
@@ -607,9 +608,11 @@ export const EXAMS = {
 
 };
 
-/* Zusatz-Fragen aus exams-extra.js anhängen (Inhaltstiefe) */
-for (const [moduleId, extra] of Object.entries(EXTRA_QUESTIONS)) {
-  if (EXAMS[moduleId] && extra?.length) EXAMS[moduleId].questions.push(...extra);
+/* Zusatz-Fragen aus den Erweiterungsebenen anhängen (Inhaltstiefe) */
+for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2]) {
+  for (const [moduleId, extra] of Object.entries(source)) {
+    if (EXAMS[moduleId] && extra?.length) EXAMS[moduleId].questions.push(...extra);
+  }
 }
 
 /* Utility: Gesamtzahl Fragen */
