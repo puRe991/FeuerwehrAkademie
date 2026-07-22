@@ -259,6 +259,30 @@ export const EXTRA_LESSONS_2 = {
         P('Umweltschutz ist Führungsaufgabe: Schadstoffausbreitung erkennen, Ausbreitung eindämmen, Fachkräfte hinzuziehen und die Einsatzstelle geordnet übergeben – der Schutz der Umwelt gehört zum Schutzziel „Schützen".'),
       ],
     },
+    {
+      id: 'e6', title: 'Kommandos & Ordnung im Einsatz (FwDV 3)', duration: 18,
+      blocks: [
+        H2('warum', 'Warum feste Kommandos?'),
+        P('Die FwDV 3 regelt nicht nur die Aufgaben der Funktionen, sondern auch eine <b>einheitliche Kommandosprache</b> und die Ordnung der Einheit. Feste Kommandos verhindern Missverständnisse – jeder weiß sofort, was zu tun ist, unabhängig von der Heimatwehr.'),
+        H2('ordnung', 'Antrete- und Sitzordnung'),
+        UL(
+          '<b>Antreteordnung:</b> feste Reihenfolge, in der die Mannschaft am Fahrzeug antritt – der Einheitsführer hat sofort den Überblick.',
+          '<b>Sitzordnung:</b> jeder Funktion ist ein fester Sitzplatz im Fahrzeug zugeordnet (Melder, Trupps, Maschinist).',
+          '<b>Aufsitzen / Absitzen:</b> geordnetes Ein- und Aussteigen auf Kommando – zur sicheren (verkehrsabgewandten) Seite.'),
+        H2('kommandos', 'Typische Einsatzkommandos'),
+        TBL(['Kommando', 'Bedeutung'],[
+          ['„…Trupp – zum Einsatz fertig!"', 'Trupp rüstet sich aus und meldet Bereitschaft'],
+          ['„Wasser marsch!"', 'Wasser wird auf die Leitung gegeben'],
+          ['„Wasser halt!"', 'Wasserabgabe stoppen'],
+          ['„Zurück, Marsch – zurück!"', 'geordneter Rückzug der Kräfte'],
+          ['„Zum Angriff – fertig!" / „Vor!"', 'Angriff vortragen'],
+        ]),
+        DEF('Aufbau eines Kommandos', 'Ein Kommando besteht meist aus Ankündigung (wer/was) und Ausführung (das eigentliche Signalwort). Die Ausführung wird betont und deutlich gegeben – erst auf das Ausführungswort wird gehandelt.'),
+        H2('befehl', 'Befehl vs. Kommando'),
+        P('Der <b>Einsatzbefehl</b> des Gruppenführers (Einheit–Auftrag–Mittel–Ziel–Weg) legt fest, <i>was</i> ein Trupp tun soll. <b>Kommandos</b> steuern die <i>Ausführung</i> von Grundtätigkeiten (z. B. „Wasser marsch"). Beide greifen ineinander.'),
+        CO('tip', 'Klarheit rettet Zeit', 'Klare, laute, eindeutige Kommandos – kurz und in der genormten Form. Rückfragen kosten im Einsatz wertvolle Sekunden. Wer die Kommandos beherrscht, arbeitet in jeder Einheit sofort mit.'),
+      ],
+    },
   ],
 
   /* ------------------------------------------------------------------- F */
@@ -400,6 +424,27 @@ export const EXTRA_LESSONS_2 = {
           'Besonderheiten (Sperrungen, Engstellen) melden',
           'Bei unklarer Lage Koordinaten/GPS durchgeben'),
         CO('info', 'Digitale Ortung', 'Moderne Leitstellen und Einsatz-Apps orten Anrufer und Einheiten per GPS. Trotzdem bleibt die klare, gesprochene Standortangabe wichtig – Technik kann ausfallen.'),
+      ],
+    },
+    {
+      id: 'h6', title: 'IuK im Einsatz (FwDV 800) & die Funkvorschriften', duration: 18,
+      blocks: [
+        H2('fwdv800', 'FwDV 800 – Informations- und Kommunikationstechnik'),
+        P('Während die Funkvorschrift die <i>Sprechregeln</i> festlegt, regelt die <b>FwDV 800</b> die <b>Planung, das Bereitstellen und das Betreiben der Informations- und Kommunikationstechnik (IuK)</b> im Einsatz. Sie sorgt dafür, dass Führung und Einheiten zuverlässig kommunizieren können – als Teil der Führungsmittel (vgl. FwDV 100).'),
+        H2('iuk', 'Was zur IuK gehört'),
+        UL(
+          '<b>Kommunikationsstruktur:</b> wer spricht mit wem, welche Kreise/Gruppen (Führungs- und Einsatzstellenfunk)',
+          '<b>Führungsmittel:</b> Funk, Telefon, IuK-Fachdienst, Einsatzleitsysteme',
+          '<b>IuK-Einheiten/-Fachpersonal</b> bauen bei größeren Lagen die Kommunikation auf und betreiben sie',
+          '<b>Dokumentation:</b> Einsatztagebuch, Nachrichtenvordrucke, Statusmeldungen'),
+        DEF('IuK als Führungsmittel', 'Ohne funktionierende Kommunikation keine Führung. Bei Großlagen wird die IuK bewusst geplant und durch Fachpersonal betrieben (Aufbau von Relais/Gruppen, Anbindung der Abschnitte, der Leitstelle und anderer Organisationen).'),
+        H2('vorschriften', 'Die Funkvorschriften: DV/PDV 810 & 800'),
+        TBL(['Vorschrift', 'Regelt'],[
+          ['FwDV/DV 800', 'IuK im Einsatz planen, bereitstellen, betreiben'],
+          ['PDV/DV 810', 'Sprech- und Datenfunkverkehr – gemeinsame Vorschrift von Polizei und Feuerwehr'],
+        ]),
+        P('Die <b>PDV/DV 810</b> ist eine <b>gemeinsame Vorschrift von Polizei und Feuerwehr (BOS)</b> und regelt den eigentlichen Sprech- und Datenfunkverkehr: Betriebsarten, Rufnamen, Nachrichtenaufbau, Buchstabieralphabet und den Digitalfunk. Sie ist die Grundlage der Lektionen zum Sprechfunk in diesem Modul.'),
+        CO('tip', 'Zusammenspiel', 'Merke: FwDV 100 sagt, <i>dass</i> Führung Kommunikation braucht; FwDV 800 organisiert die <i>Technik/IuK</i> dafür; die DV 810 legt fest, <i>wie</i> gefunkt wird. Alle drei greifen ineinander.'),
       ],
     },
   ],

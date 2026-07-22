@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-110-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-614-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-112-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-620-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -12,9 +12,9 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 
 | Bereich | Beschreibung |
 |---|---|
-| 📚 **Module A–Z** | **26 Ausbildungsmodule (A bis Z)** mit **110 Lektionen** – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Knoten, Vegetationsbrand, Naturgefahren, Wasserrettung, Motorsäge und Katastrophenschutz |
+| 📚 **Module A–Z** | **26 Ausbildungsmodule (A bis Z)** mit **112 Lektionen** – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Knoten, Vegetationsbrand, Naturgefahren, Wasserrettung, Motorsäge und Katastrophenschutz |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | **614 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
+| 📝 **Prüfungen** | **620 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
 | 📊 **Schaubilder** | Erklär-Grafiken direkt in den Lektionen (Verbrennungsdreieck, Führungsvorgang, Rettungskette, Pressluftatmer u. a.), theme-fähig |
 | 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
