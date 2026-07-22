@@ -820,6 +820,289 @@ export const MODULES = [
   ],
 },
 
+/* ======================================================================= N */
+{
+  id: 'n-maschinist', code: 'N', title: 'Maschinist (FwDV 2)',
+  category: 'technik', level: 3, icon: 'truck', duration: 55,
+  summary: 'Der Maschinist bedient Fahrzeug, Feuerlöschkreiselpumpe und Aggregate. Pumpenkunde, Wasserförderung und Verantwortung am Standort.',
+  objectives: [
+    'Aufgaben und Verantwortung des Maschinisten benennen',
+    'Aufbau und Funktion der Feuerlöschkreiselpumpe erklären',
+    'Ansaugvorgang, Kavitation und Betriebsdrücke beherrschen',
+    'Stromerzeuger und Aggregate sicher betreiben',
+  ],
+  tags: ['Maschinist', 'FwDV 2', 'Pumpe', 'Aggregate'],
+  lessons: [
+    {
+      id: 'n1', title: 'Aufgaben & Verantwortung', duration: 15,
+      blocks: [
+        H2('rolle', 'Wer ist der Maschinist?'),
+        P('Der Maschinist ist Fahrer des Feuerwehrfahrzeugs und bedient die eingebauten und tragbaren Aggregate – vor allem die <b>Feuerlöschkreiselpumpe</b>. Er ist eine Schlüsselfunktion der Gruppe: Ohne funktionierende Wasserförderung steht der Angriffstrupp ohne Wasser da.'),
+        KF(
+          'Führt das Fahrzeug sicher zur Einsatzstelle (Sonder- und Wegerechte)',
+          'Bedient Pumpe und Aggregate, überwacht Betriebswerte',
+          'Sichert die Einsatzstelle fahrzeugseitig (Verkehr, Beleuchtung)',
+          'Verantwortlich für Pflege, Prüfung und Einsatzbereitschaft'),
+        CO('warn', 'Sonder- & Wegerecht', 'Blaulicht + Martinshorn (§ 38 StVO) verpflichten andere zur „freien Bahn", entbinden aber nicht von der Sorgfaltspflicht. Der Maschinist muss defensiv und vorausschauend fahren – die schnellste Anfahrt nützt nichts, wenn die Gruppe verunglückt.'),
+        H2('voraussetzung', 'Voraussetzungen'),
+        P('Für die Funktion Maschinist gelten: gültige Fahrerlaubnis der passenden Klasse (oft C/C1 bzw. Feuerwehrführerschein), abgeschlossene Truppausbildung und der Lehrgang „Maschinisten für Löschfahrzeuge" nach FwDV 2.'),
+      ],
+    },
+    {
+      id: 'n2', title: 'Die Feuerlöschkreiselpumpe', duration: 25,
+      blocks: [
+        H2('prinzip', 'Funktionsprinzip'),
+        P('Die Feuerlöschkreiselpumpe (FP) erzeugt Druck durch ein schnell drehendes <b>Laufrad</b>: Das Wasser wird durch die Fliehkraft nach außen geschleudert, wodurch im Zentrum Unterdruck (Sog) und am Rand Überdruck entsteht. Da eine Kreiselpumpe nicht selbstständig ansaugt, braucht sie eine <b>Entlüftungseinrichtung</b>.'),
+        DEF('Bezeichnung FPN 10-2000', 'FP = Feuerlöschpumpe, N = Normaldruck, 10 = Nenndruck 10 bar, 2000 = Nennförderstrom 2000 l/min. Beim LF 20 verbaut.'),
+        H2('ansaugen', 'Ansaugvorgang aus offenem Gewässer'),
+        STEPS(
+          'Saugleitung kuppeln, Saugkorb mit Ventil und Halteleine sichern',
+          'Alle Abgänge und Entlüftung schließen',
+          'Entlüftungseinrichtung (Trokomat/Kolbenpumpe) betätigen',
+          'Wenn Wasser ansteht (Manometer): Pumpe auf Drehzahl bringen',
+          'Druckabgang langsam öffnen, Betriebsdruck einregeln'),
+        H2('kavitation', 'Kavitation vermeiden'),
+        CO('danger', 'Kavitation', 'Bei zu hoher Saughöhe, zu hoher Drehzahl oder verstopftem Saugkorb fällt der Druck lokal unter den Dampfdruck – es bilden sich Dampfblasen, die schlagartig implodieren. Folgen: Leistungseinbruch, ratterndes Geräusch, Materialschäden am Laufrad. Praktische Grenze der geodätischen Saughöhe: ca. 7,5 m.'),
+        TBL(['Betriebswert', 'Richtwert'],[
+          ['Nenndruck Normaldruckpumpe', '10 bar'],
+          ['Eingangsdruck Folgepumpe (Förderstrecke)', 'min. 1,5 bar halten'],
+          ['Druckverlust je 10 m Höhe', 'ca. 1 bar'],
+          ['Max. praktische Saughöhe', 'ca. 7,5 m'],
+        ]),
+      ],
+    },
+    {
+      id: 'n3', title: 'Aggregate & Stromerzeuger', duration: 15,
+      blocks: [
+        H2('strom', 'Tragbarer Stromerzeuger'),
+        P('Stromerzeuger versorgen Beleuchtung, Rettungsgeräte, Lüfter und Tauchpumpen. Der Maschinist überwacht Auslastung, Tankinhalt und die elektrische Sicherheit.'),
+        KF(
+          'Schutzmaßnahme meist „Schutztrennung mit Isolationsüberwachung"',
+          'Nicht überlasten – Nennleistung (kVA) beachten',
+          'Ausreichend Abstand/Belüftung (Abgase – CO-Gefahr!)',
+          'Kabeltrommeln vollständig abrollen (Wärmestau vermeiden)'),
+        CO('danger', 'Abgase', 'Verbrennungsmotoren niemals in geschlossenen Räumen ohne Abgasführung betreiben – Kohlenstoffmonoxid ist tödlich. Auch tragbare Pumpen (TS) und Lüfter mit Verbrennungsmotor betreffen das.'),
+        H2('ts', 'Tragkraftspritze (TS)'),
+        P('Die Tragkraftspritze ist eine tragbare Feuerlöschkreiselpumpe mit eigenem Motor (z. B. PFPN 10-1000). Sie ermöglicht die Wasserentnahme dort, wo das Fahrzeug nicht hinkommt – etwa am Löschteich.'),
+        H2('pflege', 'Pflege & Prüfung'),
+        P('Regelmäßige Prüfungen (Saugprobe/Trockensaugprobe, Dichtheit, Förderleistung) und Pflege sichern die Einsatzbereitschaft. Nach jedem Einsatz: durchspülen (besonders nach Schmutz-/Salzwasser), auf Frostschutz achten.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= O */
+{
+  id: 'o-baukunde', code: 'O', title: 'Objekt- & Baukunde',
+  category: 'praevention', level: 3, icon: 'building', duration: 40,
+  summary: 'Baustoffe, Bauteile und Gebäudeverhalten im Brandfall: Wie Konstruktionen versagen, wo Gefahren lauern und wie man Objekte taktisch liest.',
+  objectives: [
+    'Baustoff- und Feuerwiderstandsklassen einordnen',
+    'Typisches Brandverhalten von Bauteilen einschätzen',
+    'Einsturzgefahren erkennen',
+    'Gebäude taktisch erkunden (Zugänge, Rettungswege, Ausbreitungswege)',
+  ],
+  tags: ['Baukunde', 'Statik', 'Objektkunde', 'Einsturz'],
+  lessons: [
+    {
+      id: 'o1', title: 'Baustoffe & Feuerwiderstand', duration: 20,
+      blocks: [
+        H2('klassen', 'Baustoffklassen (Brennbarkeit)'),
+        P('Baustoffe werden nach ihrem Brandverhalten klassifiziert (früher DIN 4102: A/B, heute europäisch DIN EN 13501-1: A1 bis F).'),
+        TBL(['Klasse (DIN 4102)', 'Bedeutung', 'Beispiel'],[
+          ['A1 / A2', 'nicht brennbar', 'Beton, Stahl, Mauerwerk'],
+          ['B1', 'schwer entflammbar', 'Gipskarton, bestimmte Dämmstoffe'],
+          ['B2', 'normal entflammbar', 'Holz, viele Kunststoffe'],
+          ['B3', 'leicht entflammbar', 'Papier, ungeschützter Schaumstoff'],
+        ]),
+        H2('widerstand', 'Feuerwiderstandsklassen'),
+        DEF('Feuerwiderstand (F 30 – F 90)', 'Gibt an, wie viele Minuten ein Bauteil im Normbrand seine Funktion behält. F 30 = feuerhemmend (30 min), F 90 = feuerbeständig (90 min). Europäisch: R/E/I mit Minutenangabe (z. B. REI 90).'),
+        CO('info', 'Merkhilfe', 'F 30 „feuerhemmend", F 60 „hochfeuerhemmend", F 90 „feuerbeständig". Die Zahl ist die garantierte Standzeit im Prüfnormbrand – kein Versprechen für den realen Brand.'),
+      ],
+    },
+    {
+      id: 'o2', title: 'Bauteilverhalten & Einsturzgefahr', duration: 20,
+      blocks: [
+        H2('verhalten', 'Wie Baustoffe im Brand versagen'),
+        UL(
+          '<b>Stahl:</b> unbrennbar, verliert aber ab ~500 °C rapide an Festigkeit und „fließt" – ungeschützte Stahlkonstruktionen (Hallen!) können plötzlich einstürzen.',
+          '<b>Beton:</b> nicht brennbar, aber Betonabplatzungen durch Wasserdampf im Inneren; Bewehrungsstahl verliert bei Hitze Tragkraft.',
+          '<b>Holz:</b> brennt kontrolliert ab (Abbrandrate ~0,7 mm/min), verkohlte Schicht schützt den Kern – Holzträger versagen oft berechenbarer als Stahl.',
+          '<b>Mauerwerk:</b> relativ formstabil, kann aber durch einseitige Erwärmung reißen.'),
+        CO('danger', 'Trügerischer Stahl', 'Eine ungeschützte Stahlhalle kann ohne Vorwarnung schlagartig kollabieren, wenn die Träger ihre kritische Temperatur erreichen. Bei ausgedehnten Hallenbränden defensiv vorgehen und Einsturzbereiche meiden.'),
+        H2('anzeichen', 'Anzeichen drohenden Einsturzes'),
+        KF(
+          'Risse in Wänden/Decken, sich weitende Fugen',
+          'Durchbiegung von Trägern und Decken',
+          'Abfallender Putz, knackende/knirschende Geräusche',
+          'Ausbauchende Wände, klemmende Türen/Fenster',
+          'Lange Brandeinwirkung auf tragende Bauteile'),
+        H2('taktik', 'Gebäude taktisch lesen'),
+        P('Bei der Erkundung achtet die Führungskraft auf: Zugänge und Rettungswege, Ausbreitungswege (Schächte, Leitungen, Fassade), tragende vs. nichttragende Wände, Keller-/Dachlage und Sonderbauteile (z. B. Photovoltaik auf dem Dach → Elektrogefahr, auch bei Nacht/verdecktem Zustand).'),
+        CO('warn', 'Photovoltaik & Speicher', 'PV-Anlagen stehen bei Lichteinfall dauerhaft unter Gleichspannung und lassen sich nicht einfach „abschalten". Batteriespeicher können thermisch durchgehen. Bei der Erkundung immer nach PV/Speicher fragen.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= P */
+{
+  id: 'p-arbeitsschutz', code: 'P', title: 'Arbeits- & Unfallschutz (UVV/DGUV)',
+  category: 'grund', level: 1, icon: 'shield', duration: 35,
+  summary: 'Sicherheit im Feuerwehrdienst: Unfallverhütungsvorschriften, Gefährdungen, Hygiene (Einsatzstellenhygiene) und richtiges Verhalten.',
+  objectives: [
+    'Bedeutung der DGUV Vorschrift 49 für die Feuerwehr erklären',
+    'Grundsätze der Unfallverhütung im Dienst anwenden',
+    'Einsatzstellenhygiene und Kontaminationsschutz umsetzen',
+    'Gefährdungen erkennen und Schutzmaßnahmen ableiten',
+  ],
+  tags: ['UVV', 'DGUV', 'Arbeitsschutz', 'Hygiene'],
+  lessons: [
+    {
+      id: 'p1', title: 'Unfallverhütung im Feuerwehrdienst', duration: 18,
+      blocks: [
+        H2('grundlage', 'Rechtliche Grundlage'),
+        P('Feuerwehrangehörige sind über die Unfallkasse gesetzlich unfallversichert. Zentrale Vorschrift ist die <b>DGUV Vorschrift 49</b> „Feuerwehren" (früher GUV-V C53), ergänzt durch DGUV Regeln und Informationen. Sie regelt Bau, Ausrüstung, Betrieb und Verhalten.'),
+        KF(
+          'Nur ausgebildete Kräfte an Geräten einsetzen',
+          'PSA bestimmungsgemäß und vollständig tragen',
+          'Sicherungsposten und Absperrungen einrichten',
+          'Anweisungen der Führungskraft befolgen – aber offensichtliche Gefahren melden'),
+        H2('gefaehrdungen', 'Typische Gefährdungen'),
+        TBL(['Gefährdung', 'Schutzmaßnahme'],[
+          ['Verkehr an der Einsatzstelle', 'Warnkleidung, Absperrung, Sicherungsfahrzeug'],
+          ['Absturz', 'Absturzsicherung, Auffanggurt, hoch anschlagen'],
+          ['Atemgifte/Rauch', 'umluftunabhängiger Atemschutz'],
+          ['Elektrizität', 'Abstand halten, freischalten lassen'],
+          ['Lärm/Vibration', 'Gehörschutz, Arbeitsrotation'],
+          ['Infektion/Kontamination', 'Handschuhe, Hygiene, Einsatzstellenhygiene'],
+        ]),
+        CO('tip', 'Sicheres Auftreten', 'Sicherheit ist kein Zeitverlust, sondern Voraussetzung. „Eigenschutz geht vor" ist kein Widerspruch zur Menschenrettung, sondern ihre Bedingung – ein verletzter Retter kann niemanden retten.'),
+      ],
+    },
+    {
+      id: 'p2', title: 'Einsatzstellenhygiene', duration: 17,
+      blocks: [
+        H2('warum', 'Warum Hygiene lebenswichtig ist'),
+        P('Brandrauch enthält krebserzeugende Stoffe (z. B. polyzyklische aromatische Kohlenwasserstoffe, PAK). Sie lagern sich auf PSA, Haut und Geräten ab. Konsequente <b>Einsatzstellenhygiene</b> senkt das langfristige Krebsrisiko der Einsatzkräfte deutlich.'),
+        DEF('Schwarz-Weiß-Trennung', 'Kontaminierte („schwarze") Bereiche/Ausrüstung werden konsequent von sauberen („weißen") getrennt – von der Einsatzstelle über den Transport bis zur Fahrzeughalle. Ziel: keine Verschleppung von Schadstoffen in Mannschaftsraum, Wache und nach Hause.'),
+        STEPS(
+          'Kontaminierte PSA an der Einsatzstelle grob reinigen/ablegen',
+          'Getrennt (Sack/Behälter) transportieren, nicht im Mannschaftsraum',
+          'Hände/Gesicht/Hals reinigen, nicht mit kontaminierten Händen essen/trinken',
+          'PSA fachgerecht reinigen lassen, duschen nach dem Einsatz',
+          'Kontaminierte Kleidung nicht mit privater Wäsche mischen'),
+        CO('danger', 'Unsichtbare Gefahr', 'Ruß auf der Haut wird über die Haut aufgenommen – besonders an Hals, Handgelenken und Kopf. „Dreckige" PSA ist kein Ehrenabzeichen, sondern ein Gesundheitsrisiko.'),
+        H2('psychisch', 'Psychische Gesundheit'),
+        P('Belastende Einsätze können nachwirken. Angebote wie <b>PSNV</b> (Psychosoziale Notfallversorgung) und offene Nachbesprechungen gehören zum Arbeitsschutz. Belastungen ernst nehmen – für sich und für Kameradinnen und Kameraden.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= Q */
+{
+  id: 'q-jugend', code: 'Q', title: 'Jugend- & Nachwuchsarbeit',
+  category: 'grund', level: 1, icon: 'users', duration: 30,
+  summary: 'Die Jugendfeuerwehr als Zukunft der Wehr: Ziele, Aufsichtspflicht, altersgerechte Ausbildung und rechtliche Rahmenbedingungen.',
+  objectives: [
+    'Ziele und Bedeutung der Jugendfeuerwehr erklären',
+    'Aufsichtspflicht und rechtliche Grundlagen kennen',
+    'Grundsätze altersgerechter, sicherer Ausbildung anwenden',
+    'Kindeswohl und Prävention im Vereinsleben beachten',
+  ],
+  tags: ['Jugendfeuerwehr', 'Nachwuchs', 'Aufsichtspflicht', 'Pädagogik'],
+  lessons: [
+    {
+      id: 'q1', title: 'Auftrag & Rechtsrahmen', duration: 15,
+      blocks: [
+        H2('ziel', 'Was die Jugendfeuerwehr leistet'),
+        P('Die Jugendfeuerwehr (JF) verbindet <b>feuerwehrtechnische Grundausbildung</b> mit allgemeiner Jugendarbeit. Sie sichert den Nachwuchs, vermittelt Werte wie Teamgeist, Verantwortung und Hilfsbereitschaft und macht Kinder und Jugendliche fit für den späteren Einsatzdienst.'),
+        KF(
+          'Aufnahme meist ab 10 Jahren (landesabhängig, teils Kinderfeuerwehr ab 6)',
+          'Übergang in den aktiven Dienst i. d. R. ab 16/18 Jahren',
+          'Mischung aus Technik, Sport, Spiel und Gemeinschaft',
+          'Demokratische Mitbestimmung (Jugendsprecher, Gruppenstunden)'),
+        H2('recht', 'Rechtlicher Rahmen'),
+        DEF('Aufsichtspflicht', 'Betreuerinnen und Betreuer übernehmen für die Dauer der Veranstaltung die Aufsichtspflicht. Umfang richtet sich nach Alter, Reife und Gefährlichkeit der Tätigkeit. Grundsatz: so viel Freiheit wie möglich, so viel Aufsicht wie nötig.'),
+        UL(
+          '<b>Jugendschutzgesetz</b> und Jugendarbeitsschutz beachten',
+          '<b>Einverständniserklärungen</b> der Erziehungsberechtigten einholen',
+          'Kein Einsatz Minderjähriger im realen Gefahrenbereich',
+          'Qualifizierte Betreuer (JuLeiCa – Jugendleiter-Card empfohlen)'),
+      ],
+    },
+    {
+      id: 'q2', title: 'Sichere & altersgerechte Ausbildung', duration: 15,
+      blocks: [
+        H2('paedagogik', 'Altersgerecht ausbilden'),
+        P('Kinder und Jugendliche lernen anders als Erwachsene: kürzere Konzentrationsspannen, hoher Bewegungsdrang, starkes Bedürfnis nach Erfolgserlebnissen. Ausbildung sollte <b>handlungsorientiert, abwechslungsreich und altersgerecht</b> sein.'),
+        KF(
+          'Übungen in kleine, erlebbare Schritte gliedern',
+          'Sicherheit hat Vorrang – reduzierte Geräte, betreute Stationen',
+          'Erfolgserlebnisse schaffen, Wettbewerbe (Leistungsspange) motivieren',
+          'Vorbildfunktion der Betreuer – Sprache, Auftreten, PSA'),
+        H2('kindeswohl', 'Kindeswohl & Prävention'),
+        CO('warn', 'Schutzkonzept', 'Viele Feuerwehren haben ein Kinder- und Jugendschutzkonzept. Betreuer sollten geschult sein (Prävention sexualisierter Gewalt), erweitertes Führungszeugnis vorlegen und das „Vier-Augen-Prinzip" wahren. Kinderschutz ist Führungsaufgabe.'),
+        H2('gemeinschaft', 'Gemeinschaft & Bindung'),
+        P('Zeltlager, Ausflüge und gemeinsame Aktionen binden den Nachwuchs. Wer sich in der Jugendfeuerwehr wohlfühlt, bleibt der Feuerwehr oft ein Leben lang treu – Nachwuchsarbeit ist Investition in die Einsatzbereitschaft von morgen.'),
+      ],
+    },
+  ],
+},
+
+/* ======================================================================= R */
+{
+  id: 'r-digital', code: 'R', title: 'Digitale Einsatzunterstützung',
+  category: 'technik', level: 3, icon: 'eye', duration: 35,
+  summary: 'Moderne Technik im Einsatz: Wärmebildkamera und Drohnen (UAS). Physikalische Grundlagen, Einsatzmöglichkeiten und Grenzen.',
+  objectives: [
+    'Funktionsprinzip der Wärmebildkamera erklären',
+    'Einsatzmöglichkeiten und Fehlerquellen der WBK kennen',
+    'Einsatzfelder von Drohnen (UAS) benennen',
+    'Rechtliche und sicherheitstechnische Grenzen beachten',
+  ],
+  tags: ['Wärmebild', 'Drohne', 'UAS', 'Technik', 'Digitalisierung'],
+  lessons: [
+    {
+      id: 'r1', title: 'Wärmebildkamera (WBK)', duration: 18,
+      blocks: [
+        H2('physik', 'Wie eine Wärmebildkamera „sieht"'),
+        P('Jeder Körper über dem absoluten Nullpunkt strahlt <b>Infrarotstrahlung</b> ab. Die Wärmebildkamera macht diese für das Auge unsichtbare Strahlung sichtbar und stellt Temperaturunterschiede als Bild dar – auch bei völliger Dunkelheit und im Rauch.'),
+        H2('einsatz', 'Einsatzmöglichkeiten'),
+        KF(
+          'Personensuche im verrauchten Raum (Körperwärme)',
+          'Glutnester und Brandausbreitung in Wänden/Decken erkennen',
+          'Flüssigkeitsstände in Behältern abschätzen',
+          'Kontrolle nach dem Ablöschen (Nachlöscharbeiten)',
+          'Orientierung und Rückwegsicherung im Innenangriff'),
+        H2('grenzen', 'Grenzen & Fehlerquellen'),
+        CO('warn', 'Kein Röntgenblick', 'Die WBK sieht nur Oberflächentemperaturen – nicht durch Wände, Glas oder Wasser. Glas reflektiert IR (Spiegelbild!), heiße Umgebung „blendet", nasse Oberflächen verfälschen. Die Kamera ersetzt nie das systematische Absuchen und die eigene Sinne.'),
+        CO('danger', 'Verlass dich nicht blind', 'Ein Trupp darf sich nie allein auf die WBK verlassen: Bei Ausfall (Akku, Hitze) muss die Orientierung auch ohne Kamera funktionieren. Immer Wandkontakt und Rückweg sichern.'),
+      ],
+    },
+    {
+      id: 'r2', title: 'Drohnen (UAS) im Einsatz', duration: 17,
+      blocks: [
+        H2('was', 'Unbemannte Luftfahrtsysteme'),
+        P('Drohnen (fachlich UAS – Unmanned Aircraft Systems) liefern der Einsatzleitung schnell ein <b>Lagebild aus der Luft</b>. Mit Tageslicht- und Wärmebildkamera unterstützen sie die Erkundung erheblich.'),
+        H2('felder', 'Typische Einsatzfelder'),
+        UL(
+          '<b>Lageerkundung:</b> Überblick über ausgedehnte Schadenlagen, Dachflächen, unzugängliche Bereiche',
+          '<b>Vegetations-/Waldbrand:</b> Brandausbreitung und Glutnester aus der Luft',
+          '<b>Personensuche:</b> Vermisstensuche im Gelände (Wärmebild)',
+          '<b>Gefahrgut:</b> Erkundung aus sicherer Entfernung',
+          '<b>Dokumentation:</b> Lagekarten, Einsatznachbereitung'),
+        H2('recht', 'Rechtliche Grenzen'),
+        DEF('EU-Drohnenverordnung', 'Der Betrieb unterliegt EU-Recht (Kategorien Open/Specific/Certified), Registrierungs- und Kenntnisnachweispflichten. BOS haben teils Sonderregelungen, dennoch gelten Betriebsgrenzen, Flugverbotszonen und Fernpilot-Anforderungen.'),
+        CO('warn', 'Luftraum-Koordination', 'Bei Einsätzen mit Rettungshubschrauber ist die Luftraum-Koordination zwingend: Drohne und Hubschrauber dürfen sich nie gefährden. Der Drohnenbetrieb wird bei Bedarf sofort eingestellt.'),
+        H2('mehrwert', 'Mehrwert & Grenzen'),
+        P('Drohnen beschleunigen die Lagefeststellung und erhöhen die Sicherheit (Erkundung ohne Eigengefährdung). Sie ersetzen aber keine Erkundung am Boden und sind wetter- und akkuabhängig. Ausbildung und Übung der Fernpiloten sind entscheidend.'),
+      ],
+    },
+  ],
+},
+
 ];
 
 /* Schnellzugriff-Index */

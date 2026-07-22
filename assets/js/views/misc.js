@@ -4,6 +4,7 @@
 import { MODULES, CATEGORIES, LEVELS } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
 import { PLANSPIELE } from '../data/planspiele.js';
+import { GLOSSARY } from '../data/glossary.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
@@ -127,7 +128,12 @@ export function searchAll(query) {
       results.push({ type: 'Planspiel', title: p.title, sub: p.role, href: `#/planspiel/${p.id}`, icon: 'game' });
     }
   });
-  return results.slice(0, 12);
+  GLOSSARY.forEach(g => {
+    if (g.term.toLowerCase().includes(q)) {
+      results.push({ type: 'Glossar', title: g.term, sub: g.def.slice(0, 60) + '…', href: `#/glossar/${encodeURIComponent(g.term)}`, icon: 'search' });
+    }
+  });
+  return results.slice(0, 14);
 }
 
 export function renderSearch(query) {

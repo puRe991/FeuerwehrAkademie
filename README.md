@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-13-d81f26) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-90%2B-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-3-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-18-d81f26) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-130%2B-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![Karteikarten](https://img.shields.io/badge/Karteikarten-Leitner-16607a) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -12,10 +12,13 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 
 | Bereich | Beschreibung |
 |---|---|
-| 📚 **Module A–Z** | 13 fachlich fundierte Ausbildungsmodule von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zur Führungslehre (FwDV 100) |
+| 📚 **Module A–Z** | 18 fachlich fundierte Ausbildungsmodule von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zu Maschinist, Baukunde und Führungslehre (FwDV 100) |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | Über 90 Prüfungsfragen mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
-| 🎮 **Planspiele** | Verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
+| 📝 **Prüfungen** | Über 130 Prüfungsfragen mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
+| 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
+| 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
+| 📖 **Glossar** | 50+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk, verlinkt mit den Modulen |
+| 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
 | 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
 | 🌗 **Design** | Barrierefreies, responsives Design im Feuerwehr-Look mit Hell-/Dunkelmodus |
@@ -37,14 +40,27 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | K | Absturzsicherung | Einsatzdienst |
 | L | Führung & Leitung (FwDV 100) | Führung |
 | M | Vorbeugender Brandschutz | Prävention |
+| N | Maschinist (FwDV 2) | Technik & Geräte |
+| O | Objekt- & Baukunde | Prävention |
+| P | Arbeits- & Unfallschutz (UVV/DGUV) | Grundausbildung |
+| Q | Jugend- & Nachwuchsarbeit | Grundausbildung |
+| R | Digitale Einsatzunterstützung (Wärmebild & Drohne) | Technik & Geräte |
 
 ## 🎮 Planspiele für Führungskräfte
 
 - **Wohnungsbrand im Mehrfamilienhaus** – Menschenrettung, Innenangriff, Türprozedur
 - **Verkehrsunfall mit eingeklemmter Person** – patientengerechte technische Rettung
 - **Gefahrguteinsatz auf der Autobahn** – GAMS-Regel und FwDV 500 in Aktion
+- **Vegetations- & Waldbrand** – Ausbreitung, Riegelstellung, Wind & Sicherheit (LACES)
+- **Großschadenslage: Stabsarbeit** – Führungsstab, Abschnittsbildung, Priorisierung (Führungsstufe D)
 
 Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht.
+
+## 🃏 Weitere Lernwerkzeuge
+
+- **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt; gekonnte Karten kehren seltener zurück, schwierige öfter.
+- **Glossar:** Durchsuchbares Nachschlagewerk der wichtigsten Fachbegriffe und Abkürzungen, jeweils mit Modul-Verlinkung.
+- **Ausbilder-Ansicht:** Gesamtauswertung des Lernstands, druckbarer Ausbildungsnachweis (PDF via Druckdialog), Backup-Export/-Import als JSON und Nachweis-Export als CSV.
 
 ## 🚀 Start
 

@@ -16,6 +16,8 @@ import { renderExam, bindExam, resetExamSession } from './views/exam.js';
 import { renderPlanspielList, renderPlanspiel, bindPlanspiel, resetPlanspielSession } from './views/planspiel.js';
 import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark } from './views/profile.js';
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
+import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcards } from './views/tools.js';
+import { renderInstructor, bindInstructor } from './views/instructor.js';
 
 const app = qs('#app');
 
@@ -33,11 +35,14 @@ const NAV = [
   { href: '#/', label: 'Dashboard', icon: 'dashboard' },
   { href: '#/module', label: 'Module A–Z', icon: 'book', count: MODULES.length },
   { href: '#/lernpfad', label: 'Lernpfad', icon: 'path' },
+  { href: '#/karteikarten', label: 'Karteikarten', icon: 'refresh' },
+  { href: '#/glossar', label: 'Glossar', icon: 'search' },
   { section: 'Prüfen & Üben' },
   { href: '#/pruefungen', label: 'Prüfungen', icon: 'exam', count: Object.keys(EXAMS).length },
   { href: '#/planspiele', label: 'Planspiele', icon: 'game', count: PLANSPIELE.length },
   { section: 'Konto' },
   { href: '#/profil', label: 'Mein Profil', icon: 'award' },
+  { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
 ];
 
 function renderShell(activeHref) {
@@ -106,6 +111,11 @@ function routeView(parts) {
     case 'planspiele': return { html: renderPlanspielList() };
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
     case 'lernpfad': return { html: renderLernpfad() };
+    case 'glossar': return { html: renderGlossary(decodeURIComponent(a || '')), bind: bindGlossary };
+    case 'karteikarten': return a === 'lernen'
+      ? { html: renderDeck(), bind: bindFlashcards }
+      : { html: renderFlashHome(), bind: bindFlashcards };
+    case 'ausbilder': return { html: renderInstructor(), bind: bindInstructor };
     case 'profil': return { html: renderProfile(), bind: bindProfile };
     case 'suche': return { html: renderSearch(decodeURIComponent(a || '')) };
     case 'onboarding': return { html: renderOnboarding(), bind: bindOnboarding, bare: true };

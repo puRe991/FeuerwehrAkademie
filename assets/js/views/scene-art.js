@@ -105,6 +105,62 @@ export const SCENES = {
     <g opacity=".5"><path d="M250 220 q-16 -28 6 -44 q-18 -26 8 -44" stroke="#e6ead0" stroke-width="10" fill="none" stroke-linecap="round"/></g>
     <!-- Windpfeil -->
     <g transform="translate(500,60)" opacity=".8"><path d="M-40 0 L20 0 M4 -14 L20 0 L4 14" stroke="#2b3a4a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="-40" y="-12" font-size="12" fill="#2b3a4a" font-family="sans-serif">Wind</text></g>`, { mini }),
+
+  /* Vegetationsbrand / Waldbrand */
+  'ps-vegetationsbrand': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="url(#skyN)"/>
+    <ellipse cx="300" cy="330" rx="420" ry="150" fill="url(#glow)"/>
+    <!-- Hügelsilhouette -->
+    <path d="M0 240 Q150 180 300 220 T600 210 V340 H0 Z" fill="#2a231c"/>
+    <path d="M0 270 Q180 230 360 260 T600 250 V340 H0 Z" fill="#1d1712"/>
+    <!-- Baumreihe brennend -->
+    ${[80,150,220,300,370,440,510].map((x,i)=>{
+      const burn = x>250 && x<470;
+      return `<g transform="translate(${x},${210 - (i%3)*8})">
+        <rect x="-4" y="0" width="8" height="40" fill="#3a2a1c"/>
+        <path d="M0 -34 L-22 6 L22 6 Z" fill="${burn?'#4a2a14':'#1f3a24'}"/>
+        <path d="M0 -14 L-16 12 L16 12 Z" fill="${burn?'#5a3018':'#26492e'}"/>
+        ${burn?fireGlyph(0,10,0.7):''}
+      </g>`;
+    }).join('')}
+    <!-- Feuerfront -->
+    <path d="M240 300 Q300 270 360 300 Q420 275 470 300" fill="none" stroke="url(#fire)" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+    ${fireGlyph(300,300,1.6)}${fireGlyph(400,300,1.3)}
+    <!-- TLF im Vordergrund -->
+    <g transform="translate(40,250)">
+      <rect x="0" y="18" width="130" height="50" rx="8" fill="#c81f1f"/>
+      <ellipse cx="70" cy="26" rx="52" ry="12" fill="#a71818"/>
+      <rect x="10" y="26" width="60" height="22" rx="4" fill="#1b2530"/>
+      <circle cx="30" cy="72" r="13" fill="#10151c"/><circle cx="110" cy="72" r="13" fill="#10151c"/>
+      <rect x="56" y="6" width="26" height="10" rx="3" fill="#2b6cff"><animate attributeName="opacity" values="1;.3;1" dur="1s" repeatCount="indefinite"/></rect>
+    </g>`, { mini }),
+
+  /* Stabsarbeit / Großschadenslage — Lagekarte / Führungsraum */
+  'ps-stabsarbeit': ({ mini } = {}) => frame(`
+    <defs><linearGradient id="room" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2733"/><stop offset="1" stop-color="#12181f"/></linearGradient></defs>
+    <rect width="600" height="340" fill="url(#room)"/>
+    <!-- Lagekarte an der Wand -->
+    <g transform="translate(60,34)">
+      <rect x="0" y="0" width="300" height="200" rx="6" fill="#eef2f5"/>
+      <path d="M20 40 Q90 20 160 60 T290 50" fill="none" stroke="#6fa8dc" stroke-width="6"/>
+      <path d="M10 150 L120 120 L200 160 L290 130" fill="none" stroke="#b6c94e" stroke-width="4"/>
+      <rect x="120" y="70" width="70" height="50" fill="#d98a8a" opacity=".6"/>
+      <circle cx="90" cy="90" r="8" fill="#d81f26"/><circle cx="210" cy="120" r="8" fill="#1e5fa8"/><circle cx="150" cy="150" r="8" fill="#2e9e5b"/>
+      <!-- taktische Zeichen (Rechtecke) -->
+      <rect x="60" y="60" width="26" height="16" fill="#2b6cff" opacity=".85"/>
+      <rect x="180" y="95" width="26" height="16" fill="#d81f26" opacity=".85"/>
+    </g>
+    <!-- S-Sachgebiete Tafeln -->
+    ${['S1','S2','S3','S4','S6'].map((s,i)=>`<g transform="translate(${390+ (i%2)*100},${40+Math.floor(i/2)*54})">
+      <rect x="0" y="0" width="86" height="42" rx="6" fill="#243244" stroke="#33465c" stroke-width="1.5"/>
+      <text x="12" y="27" font-size="18" font-family="sans-serif" font-weight="700" fill="#8fb7dd">${s}</text>
+      <circle cx="68" cy="21" r="6" fill="#2e9e5b"/>
+    </g>`).join('')}
+    <!-- Tisch + Funk -->
+    <rect x="0" y="250" width="600" height="90" fill="#0d1319"/>
+    <rect x="40" y="258" width="520" height="14" rx="4" fill="#26323f"/>
+    ${[90,180,270,360,450].map(x=>`<g transform="translate(${x},228)"><rect x="0" y="0" width="42" height="26" rx="3" fill="#1a232e"/><rect x="6" y="5" width="30" height="10" rx="2" fill="#3a6ea5"/></g>`).join('')}
+    <text x="300" y="300" font-size="15" text-anchor="middle" fill="#5a6b7d" font-family="sans-serif">Führungsstab · Lageraum</text>`, { mini }),
 };
 
 export function sceneSVG(key, opts = {}) {

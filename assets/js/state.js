@@ -14,6 +14,7 @@ const DEFAULT_STATE = {
   planspielResults: {},// { [planspielId]: [ { rating, meters, path, date } ] }
   bookmarks: [],       // [moduleId]
   activity: [],        // [ { type, ref, date } ] (Verlauf)
+  flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
   streak: { count: 0, lastDay: null },
   xp: 0,
 };
@@ -115,6 +116,44 @@ export function savePlanspielResult(planspielId, result) {
     s.xp = (s.xp || 0) + 40;
   });
   touchStreak();
+}
+
+/* ---- Karteikarten (Leitner / Spaced Repetition) ---- */
+const LEITNER = { 1: 0, 2: 1, 3: 3, 4: 7, 5: 16 };
+
+export function reviewCard(cardId, correct) {
+  update(s => {
+    const cur = s.flashcards[cardId] || { box: 1, due: todayStr(), reviewed: null };
+    const nextBox = correct ? Math.min(5, cur.box + 1) : 1;
+    const dueDate = new Date(Date.now() + LEITNER[nextBox] * 864e5).toISOString().slice(0, 10);
+    s.flashcards[cardId] = { box: nextBox, due: dueDate, reviewed: new Date().toISOString() };
+    s.xp = (s.xp || 0) + (correct ? 4 : 1);
+  });
+  touchStreak();
+}
+
+/** Fällige Karten aus einer Kartenliste (heute oder überfällig, plus neue) */
+export function dueCards(allCards, moduleId = null) {
+  const today = todayStr();
+  const pool = moduleId ? allCards.filter(c => c.moduleId === moduleId) : allCards;
+  const due = [], fresh = [];
+  pool.forEach(c => {
+    const st = state.flashcards[c.id];
+    if (!st) fresh.push(c);
+    else if (st.due <= today) due.push(c);
+  });
+  return { due, fresh, all: pool };
+}
+
+export function flashcardStats(allCards) {
+  const today = todayStr();
+  let learned = 0, mastered = 0, dueToday = 0, seen = 0;
+  allCards.forEach(c => {
+    const st = state.flashcards[c.id];
+    if (st) { seen++; if (st.box >= 2) learned++; if (st.box >= 5) mastered++; if (st.due <= today) dueToday++; }
+    else dueToday++;
+  });
+  return { total: allCards.length, seen, learned, mastered, dueToday };
 }
 
 export function toggleBookmark(moduleId) {
