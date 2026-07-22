@@ -6,6 +6,7 @@
 import { MODULES, CATEGORIES, LEVELS, LESSON_COUNT } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
 import { PLANSPIELE } from '../data/planspiele.js';
+import { EXAM_SETS } from '../data/pruefungssets.js';
 import { FLASHCARDS } from '../data/flashcards.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam, level, flashcardStats, update } from '../state.js';
@@ -98,6 +99,27 @@ export function renderInstructor() {
             ${res ? `<b>${res.rating}/100</b>` : '<span class="subtle">–</span>'}
           </div>`;
         }).join('')}
+      </div>
+    </div>
+
+    <div class="card card--pad" style="margin-top:22px">
+      <h3 style="margin-bottom:12px">${icon('award').replace('<svg ','<svg style="width:20px;height:20px;vertical-align:-3px" ')} Abschlussprüfungen</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Abschlussprüfung</th><th>Niveau</th><th>Bestes Ergebnis</th><th>Status</th></tr></thead>
+          <tbody>
+            ${EXAM_SETS.map(set => {
+              const best = bestExam(set.id);
+              const passed = !!(best && best.passed);
+              return `<tr>
+                <td><b>${esc(set.title)}</b></td>
+                <td class="subtle">${esc(LEVELS[set.level] || '')}</td>
+                <td>${best ? best.score + '%' : '<span class="subtle">–</span>'}</td>
+                <td>${passed ? '<span class="badge badge--green">bestanden</span>' : best ? '<span class="badge badge--amber">nicht bestanden</span>' : '<span class="badge">offen</span>'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
       </div>
     </div>
 

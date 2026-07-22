@@ -14,7 +14,9 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 |---|---|
 | 📚 **Module A–Z** | 18 fachlich fundierte Ausbildungsmodule mit **92 Lektionen** (je 4–6 pro Modul) – von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zu Maschinist, Baukunde und Führungslehre (FwDV 100) |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | **235 Prüfungsfragen** mit sofortiger Auswertung, Erklärungen zu jeder Antwort und Leistungsnachweisen |
+| 📝 **Prüfungen** | **235 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
+| 🎓 **Abschlussprüfungen** | 6 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Großes Examen A–Z) mit gemischter Fragenauswahl |
+| 📊 **Schaubilder** | Erklär-Grafiken direkt in den Lektionen (Verbrennungsdreieck, Führungsvorgang, Rettungskette, Pressluftatmer u. a.), theme-fähig |
 | 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 50+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk, verlinkt mit den Modulen |
@@ -55,6 +57,19 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 - **Großschadenslage: Stabsarbeit** – Führungsstab, Abschnittsbildung, Priorisierung (Führungsstufe D)
 
 Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht.
+
+## 🎓 Abschlussprüfungen (modulübergreifend)
+
+Neben den Modulprüfungen bündeln **6 Gesamtprüfungen** ganze Ausbildungsabschnitte und ziehen die Fragen aus mehreren Modulen zusammen – bei jedem Start neu gemischt:
+
+- **Truppmann/-frau (MTA)** – Recht, Brennen & Löschen, Gerätekunde, Löscheinsatz, Erste Hilfe
+- **Truppführer/in** – Taktik, Führungsgrundlagen, Gefahren, technische Hilfe
+- **Atemschutzgeräteträger/in** – Atemschutz (FwDV 7) mit Brandlehre & Innenangriff
+- **Maschinist/in** – Pumpenkunde, Wasserförderung, Fahrzeug-/Gerätetechnik
+- **Gruppen-/Zugführung** – Führung (FwDV 100), Einsatztaktik, Objektkunde
+- **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 18 Module
+
+Modulprüfungen selbst gibt es in **drei Stufen**: *Grundlagen* (kurzer Basis-Check), *Aufbau* (ohne die schweren Fragen) und *Prüfung* (alle Fragen inkl. schwerer).
 
 ## 🃏 Weitere Lernwerkzeuge
 

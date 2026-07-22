@@ -2,6 +2,7 @@
    VIEW: Lektions-Reader — rendert Content-Blöcke, TOC, Fortschritt
    ========================================================================= */
 import { MODULE_BY_ID, CATEGORIES } from '../data/curriculum.js';
+import { diagram } from '../data/diagrams.js';
 import { icon } from '../data/icons.js';
 import { getState, completeLesson, logActivity } from '../state.js';
 import { esc, fmtDuration, toast, confetti } from '../utils.js';
@@ -31,6 +32,8 @@ function block(b) {
     case 'table':
       return `<div class="table-wrap"><table class="data"><thead><tr>${b.head.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
         <tbody>${b.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    case 'fig':
+      return `<figure class="lesson-fig">${diagram(b.key)}${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`;
     default: return '';
   }
 }

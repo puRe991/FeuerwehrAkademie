@@ -1,0 +1,106 @@
+/* =========================================================================
+   PRÜFUNGSSETS — modulübergreifende Abschlussprüfungen.
+   Ziehen Fragen aus mehreren Modulen zu einer Gesamtprüfung zusammen
+   (z. B. Truppmann-Gesamtprüfung). Die Fragenauswahl erfolgt beim Start.
+   ========================================================================= */
+import { EXAMS } from './exams.js';
+import { shuffle } from '../utils.js';
+
+export const EXAM_SETS = [
+  {
+    id: 'set-truppmann',
+    title: 'Truppmann/-frau (MTA) – Gesamtprüfung',
+    desc: 'Die zentrale Basisprüfung der Truppausbildung: Recht, Brennen & Löschen, Gerätekunde, Löscheinsatz und Erste Hilfe.',
+    icon: 'shield', color: '#d81f26', level: 2, passScore: 70, timeLimit: 1500,
+    sources: [
+      { moduleId: 'a-rechtsgrundlagen', count: 3 },
+      { moduleId: 'b-brennen-loeschen', count: 3 },
+      { moduleId: 'd-geraetekunde', count: 3 },
+      { moduleId: 'e-loescheinsatz', count: 2 },
+      { moduleId: 'j-erste-hilfe', count: 2 },
+      { moduleId: 'p-arbeitsschutz', count: 2 },
+    ],
+  },
+  {
+    id: 'set-truppfuehrer',
+    title: 'Truppführer/in – Abschlussprüfung',
+    desc: 'Führung im Trupp und vertiefte Einsatzlehre: Taktik, Führungsgrundlagen, Gefahren und technische Hilfe.',
+    icon: 'compass', color: '#16607a', level: 3, passScore: 70, timeLimit: 1500,
+    sources: [
+      { moduleId: 'a-rechtsgrundlagen', count: 2 },
+      { moduleId: 'e-loescheinsatz', count: 3 },
+      { moduleId: 'l-fuehrung-fwdv100', count: 2 },
+      { moduleId: 'i-gefahrgut', count: 2 },
+      { moduleId: 'f-atemschutz', count: 2 },
+      { moduleId: 'g-technische-hilfe', count: 2 },
+    ],
+  },
+  {
+    id: 'set-atemschutz',
+    title: 'Atemschutzgeräteträger/in – Prüfung',
+    desc: 'Umfassende Prüfung zum Atemschutz nach FwDV 7 mit Bezügen zu Brandlehre und Innenangriff.',
+    icon: 'mask', color: '#8e44ad', level: 3, passScore: 75, timeLimit: 1200,
+    sources: [
+      { moduleId: 'f-atemschutz', count: 6 },
+      { moduleId: 'b-brennen-loeschen', count: 2 },
+      { moduleId: 'e-loescheinsatz', count: 2 },
+    ],
+  },
+  {
+    id: 'set-maschinist',
+    title: 'Maschinist/in – Prüfung',
+    desc: 'Pumpenkunde, Wasserförderung, Fahrzeug- und Gerätetechnik nach FwDV 2.',
+    icon: 'truck', color: '#1e5fa8', level: 3, passScore: 75, timeLimit: 1200,
+    sources: [
+      { moduleId: 'n-maschinist', count: 5 },
+      { moduleId: 'c-fahrzeugkunde', count: 3 },
+      { moduleId: 'd-geraetekunde', count: 2 },
+    ],
+  },
+  {
+    id: 'set-gruppenfuehrer',
+    title: 'Gruppen-/Zugführung – Führungsprüfung',
+    desc: 'Führung und Leitung im Einsatz (FwDV 100), Einsatztaktik, Gefahren und Objektkunde.',
+    icon: 'flag', color: '#c0392b', level: 4, passScore: 75, timeLimit: 1500,
+    sources: [
+      { moduleId: 'l-fuehrung-fwdv100', count: 5 },
+      { moduleId: 'e-loescheinsatz', count: 3 },
+      { moduleId: 'i-gefahrgut', count: 2 },
+      { moduleId: 'o-baukunde', count: 2 },
+    ],
+  },
+  {
+    id: 'set-gesamt',
+    title: 'Großes Feuerwehr-Examen (A–Z)',
+    desc: 'Die Meisterprüfung: je eine Frage aus jedem der 18 Module – umfassendes Feuerwehrwissen von A bis Z.',
+    icon: 'award', color: '#f5a623', level: 5, passScore: 80, timeLimit: 2100,
+    sources: [
+      'a-rechtsgrundlagen', 'b-brennen-loeschen', 'c-fahrzeugkunde', 'd-geraetekunde',
+      'e-loescheinsatz', 'f-atemschutz', 'g-technische-hilfe', 'h-sprechfunk',
+      'i-gefahrgut', 'j-erste-hilfe', 'k-absturzsicherung', 'l-fuehrung-fwdv100',
+      'm-vorbeugender-brandschutz', 'n-maschinist', 'o-baukunde', 'p-arbeitsschutz',
+      'q-jugend', 'r-digital',
+    ].map(moduleId => ({ moduleId, count: 1 })),
+  },
+];
+
+export const EXAM_SET_BY_ID = Object.fromEntries(EXAM_SETS.map(s => [s.id, s]));
+
+/** Anzahl Fragen eines Sets (Soll) */
+export function setSize(set) {
+  return set.sources.reduce((n, s) => n + (s.count || 1), 0);
+}
+
+/** Fragen eines Sets zusammenstellen (frische, gemischte Auswahl) */
+export function buildSetQuestions(set) {
+  const picked = [];
+  for (const src of set.sources) {
+    const exam = EXAMS[src.moduleId];
+    if (!exam) continue;
+    let pool = exam.questions.slice();
+    if (src.difficulty) pool = pool.filter(q => q.difficulty <= src.difficulty);
+    if (pool.length < (src.count || 1)) pool = exam.questions.slice();
+    picked.push(...shuffle(pool).slice(0, src.count || 1).map(q => ({ ...q })));
+  }
+  return shuffle(picked);
+}

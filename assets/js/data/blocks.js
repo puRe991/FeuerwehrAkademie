@@ -14,3 +14,4 @@ export const DEF = (term, text) => ({ t: 'def', term, text });
 export const STEPS = (...items) => ({ t: 'steps', items });
 export const MNE = (letters, text) => ({ t: 'mnemonic', letters, text });
 export const TBL = (head, rows) => ({ t: 'table', head, rows });
+export const FIG = (key, caption) => ({ t: 'fig', key, caption });

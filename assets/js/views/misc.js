@@ -3,12 +3,21 @@
    ========================================================================= */
 import { MODULES, CATEGORIES, LEVELS } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
+import { EXAM_SETS, setSize } from '../data/pruefungssets.js';
 import { PLANSPIELE } from '../data/planspiele.js';
 import { GLOSSARY } from '../data/glossary.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
 import { recommendModule } from './dashboard.js';
+
+function shadeHex(hex, p) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = Math.max(0, Math.min(255, (n >> 16) + p));
+  const g = Math.max(0, Math.min(255, ((n >> 8) & 255) + p));
+  const b = Math.max(0, Math.min(255, (n & 255) + p));
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
 
 /* ---------- Adaptiver Lernpfad ---------- */
 export function renderLernpfad() {
@@ -85,8 +94,37 @@ export function renderPruefungen() {
   <div class="view fade-up">
     <div class="view__head">
       <h1>Prüfungen</h1>
-      <p class="muted">Weise dein Wissen nach. Jede bestandene Prüfung schaltet einen Leistungsnachweis frei.</p>
+      <p class="muted">Weise dein Wissen nach. Modulprüfungen gibt es in drei Stufen (Grundlagen · Aufbau · Komplett); modulübergreifende Abschlussprüfungen bündeln ganze Ausbildungsabschnitte.</p>
     </div>
+
+    <h2 style="margin-bottom:14px">${icon('award').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Abschlussprüfungen</h2>
+    <div class="module-grid" style="margin-bottom:34px">
+      ${EXAM_SETS.map(set => {
+        const best = bestExam(set.id);
+        const passed = !!(best && best.passed);
+        return `<article class="card card--interactive mcard">
+          <div class="mcard__banner" style="background:linear-gradient(135deg, ${set.color}, ${shadeHex(set.color,-28)});height:78px">
+            ${icon(set.icon, 'mcard__ico')}
+            <span class="mcard__code" style="opacity:.5">${LEVELS[set.level]?.[0] || ''}</span>
+          </div>
+          <div class="mcard__body">
+            <div class="between">
+              <span class="mcard__cat">${esc(LEVELS[set.level] || '')}</span>
+              ${passed ? `<span class="badge badge--green">${best.score}% ✔</span>` : best ? `<span class="badge badge--amber">${best.score}%</span>` : `<span class="badge">Neu</span>`}
+            </div>
+            <h3>${esc(set.title)}</h3>
+            <p class="mcard__desc">${esc(set.desc)}</p>
+            <div class="mcard__meta">
+              <span>${icon('exam').replace('<svg ','<svg style="width:14px;height:14px" ')} ${setSize(set)} Fragen</span>
+              <span>${icon('target').replace('<svg ','<svg style="width:14px;height:14px" ')} ${set.passScore}% Grenze</span>
+            </div>
+            <a class="btn ${passed ? 'btn--outline' : 'btn--primary'} btn--block mcard__foot" href="#/pruefung/${set.id}">${icon('play')} ${best ? 'Erneut prüfen' : 'Starten'}</a>
+          </div>
+        </article>`;
+      }).join('')}
+    </div>
+
+    <h2 style="margin-bottom:14px">${icon('book').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Modulprüfungen</h2>
     <div class="module-grid">
       ${modsWithExam.map(m => {
         const exam = EXAMS[m.id];

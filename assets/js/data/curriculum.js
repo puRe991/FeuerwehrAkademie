@@ -31,7 +31,7 @@ export const LEVELS = {
 };
 
 /* Hilfsfunktionen zum kompakten Schreiben von Blöcken (gemeinsam genutzt) */
-import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL } from './blocks.js';
+import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
 import { EXTRA_LESSONS } from './curriculum-extra.js';
 import { EXTRA_LESSONS_2 } from './curriculum-extra2.js';
 
@@ -100,6 +100,7 @@ export const MODULES = [
           '<b>Angriffstrupp (A-Trupp)</b> – Menschenrettung & Brandbekämpfung, erstes Rohr.',
           '<b>Wassertrupp (W-Trupp)</b> – stellt die Wasserversorgung her, dann Sicherheitstrupp.',
           '<b>Schlauchtrupp (S-Trupp)</b> – verlegt Schläuche, unterstützt die Trupps.'),
+        FIG('gruppe', 'Die Gruppe im Löscheinsatz (FwDV 3) – Gruppenführer, Melder, Maschinist und die drei Trupps.'),
         H2('dienstgrade', 'Dienstgrade & Funktionen'),
         P('Dienstgrade richten sich nach dem Landesrecht und zeigen Ausbildungsstand/Funktion an. Wichtig ist die Unterscheidung zwischen <b>Dienstgrad</b> (Rang) und <b>Funktion</b> (Aufgabe im Einsatz, z. B. Gruppenführer).'),
         CO('tip', 'Praxis', 'Im Einsatz zählt die Funktion, nicht der Dienstgrad. Wer die Funktion „Gruppenführer" wahrnimmt, führt – unabhängig vom Rang der Untergebenen.'),
@@ -130,6 +131,7 @@ export const MODULES = [
           '<b>Brennbarer Stoff</b> – fest, flüssig oder gasförmig',
           '<b>Sauerstoff</b> – i. d. R. aus der Luft (~21 %)',
           '<b>Zündtemperatur / Energie</b> – ausreichende Wärme zum Zünden'),
+        FIG('verbrennungsdreieck', 'Verbrennungsdreieck: Fehlt eine Seite, erlischt das Feuer – hier setzt jedes Löschverfahren an.'),
         CO('info', 'Erweiterung: Verbrennungsfünfeck', 'Modern ergänzt man das Dreieck um das <b>richtige Mengenverhältnis</b> und den <b>ungestörten Kettenreaktions­ablauf</b> (Radikalkettenreaktion). Fehlt einer dieser fünf Faktoren, erlischt das Feuer – genau hier setzt jedes Löschverfahren an.'),
         H2('begriffe', 'Wichtige Kenngrößen'),
         DEF('Flammpunkt', 'Niedrigste Temperatur, bei der eine brennbare Flüssigkeit so viel Dampf abgibt, dass sich über ihr ein zündfähiges Dampf-Luft-Gemisch bildet (z. B. Benzin ca. −20 °C, Diesel ca. +55 °C).'),
@@ -158,6 +160,7 @@ export const MODULES = [
           '<b>Ersticken (Schaum, CO₂, Sand):</b> Verdrängen/Trennen des Sauerstoffs vom Brennstoff.',
           '<b>Trennen/Nährstoffentzug:</b> Entfernen des brennbaren Stoffs (z. B. Gaszufuhr absperren).',
           '<b>Antikatalytischer Effekt (Pulver):</b> Unterbrechen der chemischen Kettenreaktion (Radikalfänger).'),
+        FIG('loeschwirkungen', 'Die vier Löschwirkungen – jedes Löschmittel greift an mindestens einer Seite des Verbrennungsdreiecks an.'),
         DEF('Wasser als Löschmittel', '1 Liter Wasser bindet beim Verdampfen ca. 2,26 MJ Energie und dehnt sich auf ~1700 Liter Wasserdampf aus. Daher die enorme Kühlwirkung – aber auch das Risiko der Wasserdampfbildung in Innenräumen.'),
       ],
     },
@@ -166,6 +169,7 @@ export const MODULES = [
       blocks: [
         H2('phasen', 'Der Brandverlauf'),
         P('Ein Zimmerbrand durchläuft typische Phasen: <b>Entstehungsbrand → Schwelbrand/Wachstum → Vollbrand → Abklingen</b>. Der kritische Übergang vom Wachstum zum Vollbrand ist der Flashover.'),
+        FIG('brandverlauf', 'Typischer Temperaturverlauf eines Zimmerbrands – der Flashover markiert den sprunghaften Übergang zum Vollbrand.'),
         H2('flashover', 'Flashover (Feuerübersprung)'),
         DEF('Flashover', 'Schlagartige Durchzündung aller brennbaren Oberflächen in einem Raum, sobald diese durch Wärmestrahlung ihre Zündtemperatur erreichen. Vorwarnzeichen: starke Rauchgasschichtung, Pyrolysegase, „Rollover" (Flammenzungen im Rauch).'),
         H2('backdraft', 'Backdraft (Rauchgasexplosion)'),
@@ -377,6 +381,7 @@ export const MODULES = [
           '<b>Atemanschluss (Vollmaske):</b> dichtet ab, schützt das Gesicht.',
           '<b>Warneinrichtung:</b> akustisches Signal bei ca. 50–55 bar Restdruck.',
           '<b>Trageeinrichtung</b> mit Bebänderung.'),
+        FIG('pressluftatmer', 'Luftweg im Pressluftatmer: von der Hochdruckflasche über den Druckminderer und Lungenautomaten zur Maske.'),
         DEF('Überdruck-System', 'In der Maske herrscht permanent leichter Überdruck. Vorteil: Bei einer Undichtigkeit strömt Luft nach außen – keine Schadstoffe nach innen. Preis: höherer Luftverbrauch.'),
         H2('einsatzkurz', 'Einsatzkurzprüfung'),
         P('Vor jedem Einsatz führt der Geräteträger die Einsatzkurzprüfung durch: Flaschendruck (voll ≥ 270 bar), Hochdruckdichtprüfung, Funktion der Warneinrichtung und Dichtsitz der Maske.'),
@@ -569,6 +574,7 @@ export const MODULES = [
         P('Für die ersteintreffende Einheit ohne Spezialausrüstung gilt die <b>GAMS-Regel</b> als Handlungsrahmen:'),
         MNE([{l:'G',w:'Gefahr erkennen'},{l:'A',w:'Absperren'},{l:'M',w:'Menschen retten'},{l:'S',w:'Spezialkräfte'}],
           'Gefahr erkennen → Absperren (Abstand!) → Menschenrettung nur mit Eigenschutz → Spezialkräfte (Gefahrgutzug, Fachberater) nachfordern.'),
+        FIG('gams', 'Die GAMS-Regel als Handlungsrahmen der ersteintreffenden Einheit bei Gefahrgutlagen.'),
         CO('warn', 'Abstand ist Schutz', 'Grundregel Abstand: bei unklarer Lage mind. 50 m, bei größeren Mengen/Explosionsgefahr deutlich mehr. Windrichtung beachten – immer von der windzugewandten Seite (Luv) annähern.'),
         H2('gruppen', 'Gefahrengruppen (FwDV 500)'),
         TBL(['Gruppe', 'Bedeutung', 'Schutz'],[
@@ -612,6 +618,7 @@ export const MODULES = [
           '<b>Erste Hilfe</b> durch Anwesende',
           '<b>Rettungsdienst</b> (Transport, notfallmedizinische Versorgung)',
           '<b>Krankenhaus</b> (definitive Versorgung)'),
+        FIG('rettungskette', 'Die Rettungskette: Nur wenn alle Glieder greifen, gelingt die Versorgung.'),
         H2('notruf', 'Notruf 112'),
         MNE([{l:'W',w:'Wo'},{l:'W',w:'Was'},{l:'W',w:'Wie viele'},{l:'W',w:'Welche'},{l:'W',w:'Warten'}],
           'Wo ist es passiert? Was ist geschehen? Wie viele Betroffene? Welche Verletzungen/Erkrankungen? Warten auf Rückfragen – nicht auflegen!'),
@@ -717,6 +724,7 @@ export const MODULES = [
           'Befehlsgebung – Umsetzung: klare Aufträge erteilen',
           'zurück zur Lagefeststellung: Wirkung kontrollieren, nachsteuern'),
         CO('info', 'Regelkreis', 'Lagefeststellung → Planung → Befehlsgebung → (Kontrolle) → Lagefeststellung … Führung ist nie „fertig", sondern passt sich der sich ändernden Lage laufend an.'),
+        FIG('fuehrungsvorgang', 'Der Führungsvorgang als Regelkreis – er wird durchlaufen, solange der Einsatz läuft.'),
         H2('beurteilung', 'Die Lagebeurteilung'),
         P('Kern der Planung ist die Beurteilung der Lage. Strukturhilfe – vier Kernfragen:'),
         KF(

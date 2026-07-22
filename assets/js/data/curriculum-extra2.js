@@ -4,7 +4,7 @@
    Modul einem vollständigen Lehrgang entspricht.
    Wird in curriculum.js an die Module angehängt.
    ========================================================================= */
-import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL } from './blocks.js';
+import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
 
 export const EXTRA_LESSONS_2 = {
 
@@ -62,6 +62,7 @@ export const EXTRA_LESSONS_2 = {
           ['Wärmeströmung (Konvektion)', 'heiße Gase steigen auf/strömen', 'Rauch verraucht obere Geschosse'],
           ['Wärmestrahlung', 'Energie überträgt sich ohne Medium', 'Brand springt über die Straße auf Nachbarhaus'],
         ]),
+        FIG('waermeuebertragung', 'Drei Arten der Wärmeübertragung – sie bestimmen die Ausbreitungswege eines Brandes.'),
         DEF('Wärmestrahlung', 'Elektromagnetische Übertragung von Wärme, wirkt geradlinig und ohne Trägermedium. Sie nimmt mit dem Quadrat der Entfernung ab – doppelter Abstand = ein Viertel der Strahlungsleistung. Deshalb schützt Abstand, und Riegelstellungen kühlen strahlungsbelastete Flächen.'),
         H2('flug', 'Flugfeuer & Funkenflug'),
         P('Bei Groß- und Dachstuhlbränden trägt der Aufwind brennende Teile (Flugfeuer) weit fort und entzündet entfernte Objekte. Der Einsatzleiter muss die windabgewandte Seite (Lee) beobachten und Brandwachen stellen.'),
@@ -79,6 +80,7 @@ export const EXTRA_LESSONS_2 = {
         H2('grundlagen', 'Wann es explosiv wird'),
         P('Eine Explosion ist eine sehr schnelle Verbrennung mit plötzlicher Druckwelle. Voraussetzung ist ein zündfähiges Gemisch aus brennbarem Stoff (Gas, Dampf oder Staub) und Luft innerhalb der Explosionsgrenzen plus Zündquelle.'),
         DEF('Explosionsgrenzen (UEG/OEG)', 'Nur zwischen unterer (UEG) und oberer Explosionsgrenze (OEG) ist ein Gemisch zündfähig. Darunter „zu mager", darüber „zu fett". Beim Lüften/Verdünnen kann ein zu fettes Gemisch den zündfähigen Bereich durchlaufen – Vorsicht!'),
+        FIG('explosionsgrenzen', 'Zündfähig ist ein Gemisch nur zwischen UEG und OEG – darunter zu mager, darüber zu fett.'),
         H2('gase', 'Gefahren durch Gase'),
         TBL(['Eigenschaft', 'Bedeutung im Einsatz'],[
           ['leichter als Luft (z. B. Erdgas)', 'sammelt sich oben, steigt auf'],
