@@ -34,6 +34,7 @@ export const LEVELS = {
 import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
 import { EXTRA_LESSONS } from './curriculum-extra.js';
 import { EXTRA_LESSONS_2 } from './curriculum-extra2.js';
+import { EXTRA_LESSONS_3 } from './curriculum-deep.js';
 import { MODULES_EXTRA } from './modules-extra.js';
 
 export const MODULES = [
@@ -1110,7 +1111,7 @@ export const MODULES = [
 MODULES.push(...MODULES_EXTRA);
 
 /* Zusatz-Lektionen aus den Erweiterungsebenen einhängen (Inhaltstiefe) */
-for (const source of [EXTRA_LESSONS, EXTRA_LESSONS_2]) {
+for (const source of [EXTRA_LESSONS, EXTRA_LESSONS_2, EXTRA_LESSONS_3]) {
   for (const m of MODULES) {
     const extra = source[m.id];
     if (extra && extra.length) {
