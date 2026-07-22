@@ -7,6 +7,7 @@
    ========================================================================= */
 import { EXTRA_QUESTIONS } from './exams-extra.js';
 import { EXTRA_QUESTIONS_2 } from './exams-extra2.js';
+import { EXTRA_QUESTIONS_3, NEW_MODULE_EXAMS } from './exams-extra3.js';
 
 export const EXAMS = {
 
@@ -608,8 +609,13 @@ export const EXAMS = {
 
 };
 
+/* Vollständige Prüfungen der neuen Module S–Z ergänzen */
+for (const [moduleId, ex] of Object.entries(NEW_MODULE_EXAMS)) {
+  if (!EXAMS[moduleId]) EXAMS[moduleId] = ex;
+}
+
 /* Zusatz-Fragen aus den Erweiterungsebenen anhängen (Inhaltstiefe) */
-for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2]) {
+for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3]) {
   for (const [moduleId, extra] of Object.entries(source)) {
     if (EXAMS[moduleId] && extra?.length) EXAMS[moduleId].questions.push(...extra);
   }

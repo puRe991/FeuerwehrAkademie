@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-18-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-92-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-235-1e5fa8) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![Karteikarten](https://img.shields.io/badge/Karteikarten-112-16607a) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-108-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-353-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -12,9 +12,9 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 
 | Bereich | Beschreibung |
 |---|---|
-| 📚 **Module A–Z** | 18 fachlich fundierte Ausbildungsmodule mit **92 Lektionen** (je 4–6 pro Modul) – von Rechtsgrundlagen über Brandlehre, Atemschutz und Gefahrgut bis zu Maschinist, Baukunde und Führungslehre (FwDV 100) |
+| 📚 **Module A–Z** | **26 Ausbildungsmodule (A bis Z)** mit **108 Lektionen** – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Knoten, Vegetationsbrand, Naturgefahren, Wasserrettung, Motorsäge und Katastrophenschutz |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | **235 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
+| 📝 **Prüfungen** | **353 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | 🎓 **Abschlussprüfungen** | 6 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Großes Examen A–Z) mit gemischter Fragenauswahl |
 | 📊 **Schaubilder** | Erklär-Grafiken direkt in den Lektionen (Verbrennungsdreieck, Führungsvorgang, Rettungskette, Pressluftatmer u. a.), theme-fähig |
 | 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
@@ -47,6 +47,14 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | P | Arbeits- & Unfallschutz (UVV/DGUV) | Grundausbildung |
 | Q | Jugend- & Nachwuchsarbeit | Grundausbildung |
 | R | Digitale Einsatzunterstützung (Wärmebild & Drohne) | Technik & Geräte |
+| S | Rettung & Selbstrettung | Einsatzdienst |
+| T | Löschwasserversorgung & Wasserförderung | Technik & Geräte |
+| U | Knoten, Stiche & Bunde | Technik & Geräte |
+| V | Vegetations- & Waldbrandbekämpfung | Einsatzdienst |
+| W | Unwetter, Hochwasser & Naturgefahren | Einsatzdienst |
+| X | Wasserrettung, Eis & Bootsdienst | Einsatzdienst |
+| Y | Motorkettensäge & technische Geräte | Technik & Geräte |
+| Z | Katastrophenschutz & überörtliche Hilfe | Führung |
 
 ## 🎮 Planspiele für Führungskräfte
 
@@ -67,7 +75,8 @@ Neben den Modulprüfungen bündeln **6 Gesamtprüfungen** ganze Ausbildungsabsch
 - **Atemschutzgeräteträger/in** – Atemschutz (FwDV 7) mit Brandlehre & Innenangriff
 - **Maschinist/in** – Pumpenkunde, Wasserförderung, Fahrzeug-/Gerätetechnik
 - **Gruppen-/Zugführung** – Führung (FwDV 100), Einsatztaktik, Objektkunde
-- **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 18 Module
+- **Einsatzdienst & Sonderlagen** – Rettung, Wasserversorgung, Vegetationsbrand, Unwetter, Wasserrettung
+- **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 26 Module
 
 Modulprüfungen selbst gibt es in **drei Stufen**: *Grundlagen* (kurzer Basis-Check), *Aufbau* (ohne die schweren Fragen) und *Prüfung* (alle Fragen inkl. schwerer).
 
