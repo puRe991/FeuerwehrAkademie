@@ -9,6 +9,8 @@
    Auswirkungen (effects), Feedback (kind: good|mid|bad) und Folgeknoten.
    ========================================================================= */
 
+import { PLANSPIELE_EXTRA } from './planspiele-extra.js';
+
 export const PLANSPIELE = [
 
 /* ----------------------------------------------------------------------- */
@@ -486,5 +488,8 @@ export const PLANSPIELE = [
 },
 
 ];
+
+/* Weitere Planspiele aus planspiele-extra.js anhängen */
+PLANSPIELE.push(...PLANSPIELE_EXTRA);
 
 export const PLANSPIEL_BY_ID = Object.fromEntries(PLANSPIELE.map(p => [p.id, p]));

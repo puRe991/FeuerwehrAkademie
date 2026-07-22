@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-665-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Planspiele](https://img.shields.io/badge/Planspiele-5-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-665-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -17,7 +17,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
 | 📊 **Schaubilder** | Erklär-Grafiken direkt in den Lektionen (Verbrennungsdreieck, Führungsvorgang, Rettungskette, Pressluftatmer u. a.), theme-fähig |
-| 🎮 **Planspiele** | 5 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
+| 🎮 **Planspiele** | 17 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 50+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk, verlinkt mit den Modulen |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
@@ -58,13 +58,15 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 
 ## 🎮 Planspiele für Führungskräfte
 
-- **Wohnungsbrand im Mehrfamilienhaus** – Menschenrettung, Innenangriff, Türprozedur
-- **Verkehrsunfall mit eingeklemmter Person** – patientengerechte technische Rettung
-- **Gefahrguteinsatz auf der Autobahn** – GAMS-Regel und FwDV 500 in Aktion
-- **Vegetations- & Waldbrand** – Ausbreitung, Riegelstellung, Wind & Sicherheit (LACES)
-- **Großschadenslage: Stabsarbeit** – Führungsstab, Abschnittsbildung, Priorisierung (Führungsstufe D)
+**17 verzweigte Einsatz-Simulationen** über die wichtigsten Einsatzarten – jede mit eigener Einsatzszene, Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht:
 
-Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht.
+**Brände:** Wohnungsbrand · Kellerbrand · Zimmerbrand im Pflegeheim · Industrie-/Hallenbrand · E-Fahrzeugbrand · Vegetations-/Waldbrand
+**Technische Hilfe:** Verkehrsunfall (eingeklemmte Person) · Bahnunfall (Gleisbereich) · Aufzug-Notbefreiung · Sturm (Baum auf Fahrbahn & Person)
+**Gefahren:** Gefahrguteinsatz Autobahn · Gasaustritt im Wohnhaus · CO-Alarm
+**Wasser & Natur:** Person im Wasser · Eisunfall · Hochwasser (vollgelaufener Keller)
+**Führung:** Großschadenslage/Stabsarbeit (Führungsstufe D)
+
+Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht mit allen getroffenen Entscheidungen.
 
 ## 🎓 Abschlussprüfungen (modulübergreifend)
 

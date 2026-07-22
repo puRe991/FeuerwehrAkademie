@@ -161,6 +161,118 @@ export const SCENES = {
     <rect x="40" y="258" width="520" height="14" rx="4" fill="#26323f"/>
     ${[90,180,270,360,450].map(x=>`<g transform="translate(${x},228)"><rect x="0" y="0" width="42" height="26" rx="3" fill="#1a232e"/><rect x="6" y="5" width="30" height="10" rx="2" fill="#3a6ea5"/></g>`).join('')}
     <text x="300" y="300" font-size="15" text-anchor="middle" fill="#5a6b7d" font-family="sans-serif">Führungsstab · Lageraum</text>`, { mini }),
+
+  /* ---- Wiederverwendbare generische Einsatzszenen ---- */
+
+  /* Verrauchter Innenraum (Keller/Zimmer/Türöffnung) */
+  'sc-interior': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="#14181f"/>
+    <rect x="0" y="0" width="600" height="200" fill="#20262f"/>
+    <ellipse cx="300" cy="300" rx="360" ry="150" fill="url(#glow)" opacity=".7"/>
+    <!-- Tür mit Lichtspalt -->
+    <rect x="70" y="70" width="120" height="230" rx="4" fill="#2b333d" stroke="#3a4550" stroke-width="3"/>
+    <rect x="176" y="80" width="10" height="210" fill="#ff8a2b" opacity=".8"/>
+    <circle cx="160" cy="190" r="5" fill="#cdd6e0"/>
+    <!-- Rauchschichtung -->
+    <g opacity=".5">${[110,150,190].map(y=>`<rect x="200" y="${y}" width="380" height="18" rx="9" fill="#4a5360"/>`).join('')}</g>
+    ${fireGlyph(470,300,1.5)}${fireGlyph(400,300,1.1)}
+    <rect x="0" y="300" width="600" height="40" fill="#0c1015"/>
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#7a8593" font-family="sans-serif">Innenangriff · verrauchter Raum</text>`, { mini }),
+
+  /* Hochhaus / Objekt mit vielen Menschen (Pflegeheim, Hochhaus) */
+  'sc-highrise': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="url(#skyN)"/>
+    <ellipse cx="300" cy="330" rx="380" ry="120" fill="url(#glow)"/>
+    <rect x="210" y="20" width="190" height="300" fill="#39424f" stroke="#222a34" stroke-width="2"/>
+    ${[0,1,2,3,4,5,6].map(r=>[0,1,2,3].map(c=>{const lit=(r===3&&c===2)||(r===4&&c===1);const help=(r===2&&c===3);return `<rect x="${222+c*44}" y="${34+r*40}" width="30" height="28" fill="${lit?'#ff8a2b':help?'#ffd98a':'#1d2630'}" stroke="#141a22" stroke-width="1.5"/>`;}).join('')).join('')}
+    ${fireGlyph(300,190,1.2)}
+    <rect x="0" y="300" width="600" height="40" fill="#1c232c"/>
+    <g transform="translate(430,250)"><rect x="0" y="18" width="140" height="52" rx="8" fill="#c81f1f"/><rect x="100" y="30" width="52" height="40" rx="6" fill="#a71818"/><circle cx="30" cy="74" r="13" fill="#10151c"/><circle cx="128" cy="74" r="13" fill="#10151c"/><rect x="56" y="6" width="26" height="10" rx="3" fill="#2b6cff"><animate attributeName="opacity" values="1;.3;1" dur="1s" repeatCount="indefinite"/></rect></g>
+    <text x="150" y="326" font-size="13" text-anchor="middle" fill="#8a95a2" font-family="sans-serif">Objekt mit vielen Personen</text>`, { mini }),
+
+  /* Fahrzeugbrand (PKW / E-Fahrzeug) */
+  'sc-vehicle': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="url(#skyN)"/>
+    <rect x="0" y="250" width="600" height="90" fill="#2b333d"/>
+    <rect x="0" y="292" width="600" height="6" fill="#e9c33a" stroke-dasharray="40 30"/>
+    <ellipse cx="300" cy="270" rx="260" ry="80" fill="url(#glow)"/>
+    <g transform="translate(230,190)">
+      <path d="M0 60 L14 20 Q22 8 40 8 L120 8 Q150 8 168 34 L176 60 Z" fill="#334" stroke="#222" stroke-width="2"/>
+      <rect x="34" y="16" width="60" height="26" rx="4" fill="#1a1f28"/><rect x="100" y="18" width="42" height="24" rx="4" fill="#1a1f28"/>
+      <circle cx="44" cy="66" r="17" fill="#12151a"/><circle cx="146" cy="66" r="17" fill="#12151a"/>
+    </g>
+    ${fireGlyph(320,250,1.8)}${fireGlyph(260,250,1.3)}
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#8a95a2" font-family="sans-serif">Fahrzeugbrand</text>`, { mini }),
+
+  /* Gasaustritt / Wohnhaus mit Warnung */
+  'sc-gas': ({ mini } = {}) => frame(`
+    <defs><linearGradient id="skyG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a95a2"/><stop offset="1" stop-color="#aeb7c2"/></linearGradient></defs>
+    <rect width="600" height="340" fill="url(#skyG2)"/>
+    <rect x="0" y="250" width="600" height="90" fill="#4a535d"/>
+    <rect x="180" y="90" width="240" height="200" fill="#d8dde3" stroke="#b9c0c8" stroke-width="2"/>
+    <path d="M170 90 L300 30 L430 90 Z" fill="#b25a4a"/>
+    ${[0,1].map(r=>[0,1,2].map(c=>`<rect x="${210+c*64}" y="${120+r*70}" width="40" height="46" fill="#7fa8cf" stroke="#5a7a9c" stroke-width="2"/>`).join('')).join('')}
+    <rect x="288" y="230" width="44" height="60" fill="#6a4a38"/>
+    <!-- Gaswolke -->
+    <g opacity=".5"><ellipse cx="300" cy="270" rx="90" ry="26" fill="#c8d848"/><ellipse cx="260" cy="255" rx="40" ry="16" fill="#d8e858"/></g>
+    <!-- Warnsymbol -->
+    <g transform="translate(470,180)"><path d="M0 0 L34 60 L-34 60 Z" fill="#f5c518" stroke="#111" stroke-width="3"/><text x="0" y="52" font-size="34" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="800">!</text></g>
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#dfe3e8" font-family="sans-serif">Gasaustritt · Explosionsgefahr</text>`, { mini }),
+
+  /* Wasser (Ertrinken / Hochwasser) */
+  'sc-water': ({ mini } = {}) => frame(`
+    <defs><linearGradient id="skyW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a8299"/><stop offset="1" stop-color="#9fb2c2"/></linearGradient>
+      <linearGradient id="watr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a6a8a"/><stop offset="1" stop-color="#22485f"/></linearGradient></defs>
+    <rect width="600" height="340" fill="url(#skyW)"/>
+    <rect x="0" y="150" width="600" height="190" fill="url(#watr)"/>
+    ${[170,210,250,290].map((y,i)=>`<path d="M0 ${y} q60 -10 120 0 t120 0 t120 0 t120 0 t120 0" fill="none" stroke="#ffffff22" stroke-width="3"/>`).join('')}
+    <!-- Ufer -->
+    <path d="M0 150 L180 150 L150 340 L0 340 Z" fill="#5a6b4a"/>
+    <!-- Person im Wasser -->
+    <circle cx="400" cy="180" r="14" fill="#e8b98a"/><path d="M386 196 q14 10 28 0" stroke="#c88" stroke-width="6" fill="none"/>
+    <g stroke="#fff" stroke-width="3" opacity=".7"><path d="M372 178 l-14 -8"/><path d="M428 178 l14 -8"/></g>
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#20303a" font-family="sans-serif">Person im Wasser</text>`, { mini }),
+
+  /* Sturm / Baum auf Straße */
+  'sc-storm': ({ mini } = {}) => frame(`
+    <defs><linearGradient id="skyS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4250"/><stop offset="1" stop-color="#5a6472"/></linearGradient></defs>
+    <rect width="600" height="340" fill="url(#skyS)"/>
+    <rect x="0" y="260" width="600" height="80" fill="#3a444f"/>
+    <rect x="0" y="298" width="600" height="5" fill="#d7dbe0" stroke-dasharray="34 26"/>
+    <!-- Regen -->
+    <g stroke="#c8d0da" stroke-width="1.5" opacity=".5">${Array.from({length:24}).map((_,i)=>`<line x1="${i*26}" y1="${(i*40)%120}" x2="${i*26-10}" y2="${(i*40)%120+22}"/>`).join('')}</g>
+    <!-- umgestürzter Baum -->
+    <g transform="translate(140,150) rotate(28)"><rect x="0" y="0" width="230" height="26" rx="10" fill="#5a3d28"/><circle cx="240" cy="12" r="46" fill="#2e5b3a"/><circle cx="210" cy="-18" r="30" fill="#357a48"/><circle cx="270" cy="-6" r="28" fill="#2b6339"/></g>
+    <g transform="translate(30,240)"><rect x="0" y="14" width="120" height="44" rx="7" fill="#c81f1f"/><circle cx="26" cy="60" r="12" fill="#10151c"/><circle cx="104" cy="60" r="12" fill="#10151c"/><rect x="48" y="4" width="24" height="10" rx="3" fill="#2b6cff"><animate attributeName="opacity" values="1;.3;1" dur="1s" repeatCount="indefinite"/></rect></g>
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#c8d0da" font-family="sans-serif">Sturm · Baum auf Fahrbahn</text>`, { mini }),
+
+  /* Bahnunfall / Gleisbereich */
+  'sc-rail': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="url(#skyN)"/>
+    <rect x="0" y="250" width="600" height="90" fill="#2a3038"/>
+    <!-- Schienen -->
+    <g stroke="#8a94a0" stroke-width="4"><line x1="60" y1="340" x2="250" y2="255"/><line x1="200" y1="340" x2="330" y2="255"/></g>
+    ${Array.from({length:8}).map((_,i)=>`<rect x="${70+i*30}" y="${330-i*10}" width="70" height="7" fill="#4a3a2c" transform="rotate(-24 ${70+i*30} ${330-i*10})"/>`).join('')}
+    <!-- Oberleitungsmast -->
+    <rect x="470" y="70" width="10" height="200" fill="#5a6572"/><rect x="380" y="80" width="110" height="8" fill="#5a6572"/>
+    <line x1="60" y1="120" x2="480" y2="86" stroke="#7a8593" stroke-width="2"/>
+    <!-- Zug -->
+    <g transform="translate(300,150)"><rect x="0" y="0" width="300" height="100" rx="10" fill="#c0392b"/><rect x="20" y="18" width="60" height="34" rx="4" fill="#1a2530"/><rect x="100" y="18" width="60" height="34" rx="4" fill="#1a2530"/><rect x="180" y="18" width="60" height="34" rx="4" fill="#1a2530"/></g>
+    <g transform="translate(500,60)"><path d="M-40 0 L18 0 M4 -12 L18 0 L4 12" stroke="#ffd24d" stroke-width="4" fill="none" stroke-linecap="round"/><text x="-42" y="-10" font-size="12" fill="#ffd24d" font-family="sans-serif">15 kV</text></g>
+    <text x="150" y="326" font-size="13" text-anchor="middle" fill="#8a95a2" font-family="sans-serif">Bahnunfall · Oberleitung</text>`, { mini }),
+
+  /* Industrie-/Hallenbrand */
+  'sc-industrial': ({ mini } = {}) => frame(`${SKY_NIGHT}
+    <rect width="600" height="340" fill="url(#skyN)"/>
+    <ellipse cx="300" cy="330" rx="420" ry="140" fill="url(#glow)"/>
+    <!-- Halle -->
+    <rect x="80" y="140" width="440" height="180" fill="#333c47" stroke="#222a34" stroke-width="2"/>
+    <path d="M80 140 L300 90 L520 140 Z" fill="#3f4a57"/>
+    ${[0,1,2,3,4].map(i=>`<rect x="${110+i*82}" y="180" width="54" height="80" fill="#1d2630" stroke="#141a22" stroke-width="2"/>`).join('')}
+    ${fireGlyph(300,270,2.2)}${fireGlyph(210,290,1.4)}${fireGlyph(390,290,1.4)}
+    <g opacity=".6"><path d="M260 120 q30 -40 70 -12 q40 -20 60 14" stroke="#5a6270" stroke-width="14" fill="none" stroke-linecap="round"/></g>
+    <rect x="0" y="300" width="600" height="40" fill="#1c232c"/>
+    <text x="300" y="326" font-size="13" text-anchor="middle" fill="#8a95a2" font-family="sans-serif">Hallenbrand · Einsturzgefahr</text>`, { mini }),
 };
 
 export function sceneSVG(key, opts = {}) {
