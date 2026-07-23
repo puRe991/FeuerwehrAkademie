@@ -145,6 +145,7 @@ export const EXTRA_LESSONS_3 = {
           'minus Reibungsverlust (steigt mit Länge & Förderstrom)',
           'minus/plus Höhenunterschied (ca. 1 bar je 10 m)',
           'Eingangsdruck an der Folgepumpe: min. 1,5 bar halten'),
+        FIG('wasserfoerderung', 'Wasserförderung über lange Wegstrecke: Verstärkerpumpen halten den Druck über die Distanz.'),
         DEF('Reibungsverlust', 'Druckverlust durch Reibung in der Schlauchleitung. Er steigt stark mit dem Förderstrom (doppelte Menge ≈ vierfacher Verlust) und mit der Länge. Größere Schläuche (B statt C) verringern ihn.'),
         H2('mittel', 'Mittel der Förderung'),
         UL(

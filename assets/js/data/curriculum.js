@@ -94,6 +94,7 @@ export const MODULES = [
           ['Zug', 'i. d. R. 1/21 = 22 (Verband)', 'Zugtrupp + 2 Gruppen'],
         ]),
         CO('info', 'Stärkeangabe lesen', 'Die Schreibweise „1/8/9" bedeutet: 1 Führer, 8 Mannschaft, 9 gesamt.'),
+        FIG('einheiten', 'Taktische Einheiten vom Trupp bis zum Zug – der rote Punkt ist der Führer.'),
         H2('gruppe', 'Die Gruppe im Löscheinsatz (FwDV 3)'),
         P('Eine Gruppe (1/8) besteht aus dem Gruppenführer und diesen Funktionen:'),
         UL(
@@ -153,6 +154,7 @@ export const MODULES = [
           ['D', 'Metalle (Magnesium, Aluminium, Natrium)', 'Metallbrandpulver (D-Pulver), trockener Sand'],
           ['F', 'Speiseöle/-fette in Frittier-/Küchengeräten', 'Fettbrand-Löscher (Verseifung), nie Wasser!'],
         ]),
+        FIG('brandklassen', 'Die Brandklassen A–F – das geeignete Löschmittel richtet sich nach der Klasse.'),
         CO('danger', 'Fettbrand niemals mit Wasser!', 'Wasser verdampft schlagartig im heißen Fett – es entsteht eine Fettexplosion (Dampfexplosion) mit meterhoher Stichflamme. Fettbrände nur ersticken (Deckel, F-Löscher).'),
         CO('warn', 'Klasse E entfällt', 'Eine eigene „Brandklasse E" (elektrische Anlagen) gibt es offiziell nicht mehr. Entscheidend ist die Eignung des Löschmittels und der Sicherheitsabstand bei Spannung.'),
         H2('wirkungen', 'Die vier Löschwirkungen'),
@@ -212,6 +214,7 @@ export const MODULES = [
           ['MTF', 'Mannschaftstransportfahrzeug', '1/8'],
         ]),
         CO('info', 'Zahlenzusatz', 'Beim LF 20 steht die „20" für die Pumpenleistung (Nennförderstrom 2000 l/min bei 10 bar), nicht für die Tankgröße. Historisch (LF 8/6) bezeichnete die zweite Zahl den Wassertank in hundert Litern.'),
+        FIG('fahrzeug', 'Grundkomponenten eines Löschgruppenfahrzeugs: Besatzung, Löschwassertank und Feuerlöschpumpe.'),
       ],
     },
     {
@@ -295,6 +298,7 @@ export const MODULES = [
           'Sprühstrahl: großer Wärmeschutz-„Schirm", effektive Rauchgaskühlung',
           'Mannschutzbrause: schützt den Trupp vor Wärmestrahlung',
           'Durchflussregelung: bedarfsgerechter Wassereinsatz, weniger Wasserschaden'),
+        FIG('strahlrohr', 'Hohlstrahlrohr: regelbar zwischen Vollstrahl (Wurfweite) und Sprühstrahl (Wärmeschutz).'),
         CO('tip', 'Türprozedur', 'Vor dem Öffnen einer Brandraumtür kurze Sprühstöße („Puls-Gun-Technik") zur Rauchgaskühlung abgeben – reduziert die Flashover-Gefahr deutlich.'),
       ],
     },
@@ -328,6 +332,7 @@ export const MODULES = [
           ['Schlauchtrupp', 'Schlauchleitung Verteiler → Angriffstrupp verlegen', 'unterstützt / 2. Rohr'],
         ]),
         CO('info', 'Faustregel Wasserversorgung', 'Der Wassertrupp arbeitet „von der Pumpe zum Verteiler". Der Angriffstrupp arbeitet „vom Verteiler zum Brand". Der Verteiler ist die Nahtstelle.'),
+        FIG('wasserweg', 'Der Wasserweg: von der Pumpe über den Verteiler zum Strahlrohr – verbunden mit Storz-Kupplungen.'),
         H2('sicherheit', 'Der Sicherheitstrupp'),
         DEF('Sicherheitstrupp', 'Bei einem Atemschutzeinsatz muss ein zweiter, ausgerüsteter Trupp bereitstehen, um einen in Not geratenen Trupp zu retten. Grundsatz: „Kein Innenangriff unter Atemschutz ohne Sicherheitstrupp."'),
       ],
@@ -561,6 +566,7 @@ export const MODULES = [
         CO('info', 'Gefahren der Einsatzstelle', 'Merkschema „4 A – 1 C – 4 E": Atemgifte, Angst, Ausbreitung, Atomare Gefahr | Chemische Gefahr | Erkrankung/Verletzung, Explosion, Einsturz, Elektrizität.'),
         H2('kennzeichnung', 'Kennzeichnung im Transport'),
         DEF('Orangefarbene Warntafel', 'An Gefahrgut-Transportern. Oben die <b>Gefahrnummer</b> (Kemler-Zahl), unten die <b>UN-Nummer</b> (Stoffnummer). Beispiel 33/1203 = leicht entzündlicher Stoff / Benzin.'),
+        FIG('warntafel', 'Orangefarbene Warntafel: oben die Gefahrnummer (Kemler), unten die UN-Stoffnummer.'),
         UL(
           '<b>Kemler-Zahl:</b> erste Ziffer = Hauptgefahr, weitere = Nebengefahren. Verdopplung = Verstärkung. Vorangestelltes „X" = darf nicht mit Wasser in Berührung kommen!',
           '<b>UN-Nummer:</b> identifiziert den konkreten Stoff (Nachschlagen in Hommel/ERICARD).',
@@ -631,6 +637,7 @@ export const MODULES = [
           'Atemwege freimachen (Kopf überstrecken, Kinn anheben)',
           'Atmung prüfen (max. 10 Sek.: sehen, hören, fühlen)',
           'Normale Atmung → stabile Seitenlage; keine normale Atmung → Reanimation'),
+        FIG('seitenlage', 'Stabile Seitenlage: hält die Atemwege einer bewusstlosen Person mit normaler Atmung frei.'),
       ],
     },
     {
@@ -643,6 +650,7 @@ export const MODULES = [
           'Drucktiefe: 5–6 cm beim Erwachsenen',
           'Frequenz: 100–120 pro Minute',
           'Brustkorb vollständig entlasten, Unterbrechungen minimieren'),
+        FIG('hlw', 'Herz-Lungen-Wiederbelebung im Verhältnis 30 : 2 (Kompressionen : Beatmungen).'),
         CO('tip', 'Nur-Drücken ist besser als Nichts', 'Wer sich eine Beatmung nicht zutraut, führt durchgehende Thoraxkompressionen durch. Entscheidend ist ununterbrochenes, kräftiges Drücken bis zum Eintreffen des Rettungsdienstes.'),
         H2('aed', 'Automatisierter Externer Defibrillator (AED)'),
         STEPS(
@@ -747,6 +755,7 @@ export const MODULES = [
           ['C', 'Führung mit mehreren Einheiten (Zug)', 'Zugführer + Führungsassistent'],
           ['D', 'Führung mit Einheiten verschiedener Fachdienste', 'Verbandsführer + Führungsstab'],
         ]),
+        FIG('fuehrungsstufen', 'Die vier Führungsstufen A–D wachsen mit der Einsatzgröße (FwDV 100).'),
         H2('gefahrenmatrix', 'Die Gefahrenmatrix (Merkschema)'),
         P('Zur schnellen, vollständigen Gefahreneinschätzung dient das bekannte Merkschema „<b>4 A – 1 C – 4 E</b>":'),
         MNE([{l:'A',w:'Atemgifte'},{l:'A',w:'Angst'},{l:'A',w:'Ausbreitung'},{l:'A',w:'Atomar'},{l:'C',w:'Chemisch'},{l:'E',w:'Erkrankung'},{l:'E',w:'Explosion'},{l:'E',w:'Einsturz'},{l:'E',w:'Elektrizität'}],

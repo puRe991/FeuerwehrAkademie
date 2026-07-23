@@ -16,7 +16,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
 | 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
-| 📊 **Schaubilder** | Erklär-Grafiken direkt in den Lektionen (Verbrennungsdreieck, Führungsvorgang, Rettungskette, Pressluftatmer u. a.), theme-fähig |
+| 📊 **Schaubilder** | 27 theme-fähige Erklär-Grafiken in den Lektionen (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen u. v. m.) |
 | 🎮 **Planspiele** | 17 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 50+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk, verlinkt mit den Modulen |

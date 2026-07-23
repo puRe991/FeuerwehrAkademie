@@ -599,6 +599,7 @@ export const EXTRA_LESSONS_2 = {
         H2('schlaganfall', 'Schlaganfall – der FAST-Test'),
         MNE([{l:'F',w:'Face'},{l:'A',w:'Arms'},{l:'S',w:'Speech'},{l:'T',w:'Time'}],
           'Face: hängt ein Mundwinkel? Arms: sinkt ein Arm ab? Speech: verwaschene Sprache? Time: sofort 112 – Zeit ist Hirn.'),
+        FIG('fast', 'Der FAST-Test erkennt einen Schlaganfall schnell – bei Auffälligkeit sofort den Notruf 112.'),
         H2('weitere', 'Weitere internistische Notfälle'),
         TBL(['Notfall', 'Erste Hilfe'],[
           ['Krampfanfall', 'Umgebung sichern, nichts in den Mund, danach betreuen'],

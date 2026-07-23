@@ -151,6 +151,7 @@ export const MODULES_EXTRA = [
         CO('tip', 'Üben, üben, üben', 'Knoten lernt man nur durch Wiederholung – bis sie unter Stress, mit Handschuhen und im Dunkeln sicher gelingen. Regelmäßiges Üben im Dienst zahlt sich im Ernstfall aus.'),
         H2('mastwurf', 'Der Mastwurf – der Allrounder'),
         P('Der Mastwurf ist der meistgenutzte Feuerwehrknoten: Er befestigt die Leine an Rundmaterial, dient zum Hochziehen von Geräten und lässt sich unter Last nachjustieren. Wichtig: sauber legen und mit einem Spierenstich/Halbschlag sichern.'),
+        FIG('mastwurf', 'Der Mastwurf – der Allrounder-Knoten, mit Halbschlag gesichert.'),
       ],
     },
     {
@@ -217,6 +218,7 @@ export const MODULES_EXTRA = [
         P('Die größte Gefahr für Einsatzkräfte bei Vegetationsbränden ist der plötzliche Einschluss durch eine Winddrehung oder ein schnelles Überlaufen der Front. Dagegen schützt das Merkschema <b>LACES</b>.'),
         MNE([{l:'L',w:'Lookout'},{l:'A',w:'Awareness'},{l:'C',w:'Communication'},{l:'E',w:'Escape routes'},{l:'S',w:'Safety zones'}],
           'Beobachter (Lookout), Lageaufmerksamkeit (Awareness/Anchor), Kommunikation, festgelegte Fluchtwege (Escape routes) und Sicherheitszonen (Safety zones) – vor Beginn der Arbeit festlegen.'),
+        FIG('laces', 'LACES – die fünf Sicherheitsgrundsätze bei Vegetationsbränden gegen den Einschluss.'),
         CO('danger', 'Winddrehung', 'Eine Winddrehung kann die Front in Sekunden auf die eigene Position lenken. Fluchtwege und Sicherheitszonen müssen immer bekannt und erreichbar sein; im Zweifel sofort zurückziehen.'),
         H2('wasser', 'Wasser im Gelände managen'),
         UL(
@@ -303,6 +305,7 @@ export const MODULES_EXTRA = [
         H2('reihenfolge', 'Rettungsreihenfolge'),
         MNE([{l:'R',w:'Rufen'},{l:'W',w:'Werfen'},{l:'F',w:'Fahren'},{l:'S',w:'Schwimmen'}],
           'Zuerst zurufen/anweisen, dann Rettungsmittel werfen (Wurfsack, Rettungsring), dann mit Boot/Gerät fahren, und nur als letztes und nur durch ausgebildete Rettungsschwimmer schwimmen.'),
+        FIG('rettungsreihenfolge', 'Rettungsreihenfolge am Wasser: Rufen – Werfen – Fahren – Schwimmen (nur als letztes Mittel).'),
         UL(
           '<b>Wurfsack / Rettungsleine:</b> vom sicheren Ufer aus',
           '<b>Rettungsring / Rettungsstange:</b> Reichweite verlängern',

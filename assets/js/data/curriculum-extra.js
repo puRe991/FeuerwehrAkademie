@@ -3,7 +3,7 @@
    Wird in curriculum.js an die jeweiligen Module angehängt.
    Format je Lektion identisch zu curriculum.js.
    ========================================================================= */
-import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL } from './blocks.js';
+import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
 
 export const EXTRA_LESSONS = {
 
@@ -103,6 +103,7 @@ export const EXTRA_LESSONS = {
           ['Hakenleiter', 'geschossweise', 'Spezialleiter (Einhängen)'],
         ]),
         CO('warn', 'Sicher anlegen', 'Anstellwinkel ca. 65–75°, Leiter mind. 1 m über die Austrittsstelle hinausragen lassen, gegen Wegrutschen/Umfallen sichern (Fußsicherung). Beim Besteigen: Leiter halten lassen, immer 3-Punkt-Kontakt.'),
+        FIG('leiterwinkel', 'Richtiger Anstellwinkel einer tragbaren Leiter: 65–75°, mit mindestens 1 m Überstand.'),
         H2('rettung', 'Weitere Rettungsgeräte'),
         UL(
           '<b>Sprungrettungsgerät (Sprungpolster):</b> nur als letztes Mittel, wenn kein anderer Rettungsweg möglich ist',
@@ -240,6 +241,7 @@ export const EXTRA_LESSONS = {
           ['Beta (β)', 'Meter in Luft, dünnes Metall/Plexiglas', 'Haut/Augen, auch Inkorporation'],
           ['Gamma (γ) / Neutronen', 'sehr durchdringend, dicke Abschirmung nötig', 'Ganzkörperbestrahlung'],
         ]),
+        FIG('strahlungsarten', 'Reichweite und Abschirmung: Alpha stoppt Papier, Beta Metall, Gamma erst dickes Blei/Beton.'),
         H2('schutz', 'Die vier A des Strahlenschutzes'),
         MNE([{l:'A',w:'Abstand'},{l:'A',w:'Aufenthaltszeit'},{l:'A',w:'Abschirmung'},{l:'A',w:'Aktivitätsbegrenzung'}],
           'Großer Abstand (Dosis sinkt mit dem Quadrat der Entfernung!), kurze Aufenthaltszeit, Abschirmung nutzen, Aufnahme/Kontamination vermeiden (Atemschutz, Schutzkleidung).'),
@@ -412,6 +414,7 @@ export const EXTRA_LESSONS = {
         ]),
         DEF('Brandabschnitt', 'Durch feuerbeständige Wände/Decken (Brandwände) abgetrennter Gebäudebereich, der die Ausbreitung auf eine bestimmte Zeit begrenzt. Öffnungen darin (Türen, Klappen) müssen im Brandfall selbsttätig schließen.'),
         CO('warn', 'Kamineffekt', 'In Treppenräumen und Schächten zieht heißer Rauch nach oben und verraucht in Minuten ganze Geschosse. Rauchfreihaltung von Rettungswegen (Türen zu, RWA nutzen) ist überlebenswichtig für eingeschlossene Personen.'),
+        FIG('kamineffekt', 'Kamineffekt: Im Treppenraum steigt heißer Rauch schnell nach oben – Türen schließen hält den Rettungsweg raucharm.'),
       ],
     },
   ],
