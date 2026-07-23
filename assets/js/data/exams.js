@@ -11,6 +11,7 @@ import { EXTRA_QUESTIONS_3, NEW_MODULE_EXAMS } from './exams-extra3.js';
 import { EXTRA_QUESTIONS_4 } from './exams-extra4.js';
 import { EXTRA_QUESTIONS_5 } from './exams-extra5.js';
 import { EXTRA_QUESTIONS_6 } from './exams-extra6.js';
+import { JUGEND_EXAMS } from './exams-jugend.js';
 
 export const EXAMS = {
 
@@ -615,6 +616,12 @@ export const EXAMS = {
 /* Vollständige Prüfungen der neuen Module S–Z ergänzen */
 for (const [moduleId, ex] of Object.entries(NEW_MODULE_EXAMS)) {
   if (!EXAMS[moduleId]) EXAMS[moduleId] = ex;
+}
+
+/* Jugendfeuerwehr-Fragenpools registrieren (keine eigenen Module – werden
+   von den JF-Prüfungssets in pruefungssets.js zusammengezogen). */
+for (const [poolId, ex] of Object.entries(JUGEND_EXAMS)) {
+  if (!EXAMS[poolId]) EXAMS[poolId] = ex;
 }
 
 /* Zusatz-Fragen aus den Erweiterungsebenen anhängen (Inhaltstiefe) */

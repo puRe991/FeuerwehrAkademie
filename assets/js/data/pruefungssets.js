@@ -99,6 +99,58 @@ export const EXAM_SETS = [
   },
 ];
 
+/* =========================================================================
+   JUGENDFEUERWEHR — Abzeichen-Vorbereitungen.
+   Geführte, altersgerechte Übungsprüfungen zu den Abzeichen der Deutschen
+   Jugendfeuerwehr. Als eigener Bereich in der Prüfungsübersicht markiert
+   (youth: true). `badge` liefert die Stufen-Beschriftung.
+   ========================================================================= */
+export const JUGEND_SETS = [
+  {
+    id: 'jf-set-flamme1', youth: true, badge: 'Jugendflamme · Stufe 1',
+    title: 'Jugendflamme Stufe 1',
+    desc: 'Der Einstieg: Notruf 112 richtig absetzen, erste Knoten, Schläuche kuppeln und sicheres Verhalten. Ideal für neue Mitglieder.',
+    icon: 'shield', color: '#2e9e5b', level: 1, passScore: 70, timeLimit: 600,
+    sources: [
+      { moduleId: 'jf-flamme1', count: 9 },
+    ],
+  },
+  {
+    id: 'jf-set-flamme2', youth: true, badge: 'Jugendflamme · Stufe 2',
+    title: 'Jugendflamme Stufe 2',
+    desc: 'Aufbaustufe: mehr Knoten, Gerätekunde (Verteiler, Strahlrohr), stabile Seitenlage und Fahrzeugwissen.',
+    icon: 'refresh', color: '#1e5fa8', level: 2, passScore: 70, timeLimit: 600,
+    sources: [
+      { moduleId: 'jf-flamme2', count: 8 },
+      { moduleId: 'jf-flamme1', count: 2 },
+    ],
+  },
+  {
+    id: 'jf-set-flamme3', youth: true, badge: 'Jugendflamme · Stufe 3',
+    title: 'Jugendflamme Stufe 3',
+    desc: 'Vertiefung für Ältere: Gruppe im Löscheinsatz, Erste Hilfe, Verantwortung übernehmen und ein Thema präsentieren.',
+    icon: 'flag', color: '#c0392b', level: 3, passScore: 75, timeLimit: 720,
+    sources: [
+      { moduleId: 'jf-flamme3', count: 8 },
+      { moduleId: 'jf-flamme2', count: 2 },
+    ],
+  },
+  {
+    id: 'jf-set-leistungsspange', youth: true, badge: 'Leistungsspange',
+    title: 'Leistungsspange – Wissensteil',
+    desc: 'Die höchste Auszeichnung der JF, als Gruppe erbracht. Übe hier den Fragenteil rund um Leistungsspange und Feuerwehr-Grundwissen.',
+    icon: 'award', color: '#f5a623', level: 4, passScore: 75, timeLimit: 720,
+    sources: [
+      { moduleId: 'jf-leistungsspange', count: 8 },
+      { moduleId: 'jf-flamme3', count: 2 },
+    ],
+  },
+];
+
+/* JF-Sets in die Gesamtliste aufnehmen, damit die Prüfungs-Engine sie
+   (über EXAM_SET_BY_ID) genauso auflöst wie die anderen Abschlussprüfungen. */
+EXAM_SETS.push(...JUGEND_SETS);
+
 export const EXAM_SET_BY_ID = Object.fromEntries(EXAM_SETS.map(s => [s.id, s]));
 
 /** Anzahl Fragen eines Sets (Soll) */
