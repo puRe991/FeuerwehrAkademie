@@ -21,7 +21,15 @@ function slug(s) {
 function buildCards() {
   const cards = [];
   const seen = new Set();
-  const push = (c) => { if (!seen.has(c.id)) { seen.add(c.id); cards.push(c); } };
+  // Kollisionen (z. B. gleicher Merkhilfen-Buchstabe in zwei Lektionen mit
+  // unterschiedlicher Bedeutung) NICHT verwerfen, sondern eindeutig machen –
+  // die Erst-ID bleibt stabil (Leitner-Fortschritt), Folge-IDs erhalten Suffix.
+  const push = (c) => {
+    let id = c.id, n = 2;
+    while (seen.has(id)) id = `${c.id}-${n++}`;
+    seen.add(id);
+    cards.push({ ...c, id });
+  };
 
   // 1) Aus Curriculum: Definitionen & Merkhilfen
   MODULES.forEach(m => {
@@ -40,7 +48,7 @@ function buildCards() {
           push({
             id: `mne-${m.id}-${slug(b.letters.map(x => x.l).join(''))}`,
             moduleId: m.id, moduleCode: m.code, cat: m.category,
-            front: `Wofür steht die Merkhilfe <b>${b.letters.map(x => x.l).join('-')}</b>? (${m.title})`,
+            front: `Wofür steht die Merkhilfe <b>${b.letters.map(x => x.l).join('-')}</b>? <span class="subtle">(${m.title} · ${stripHtml(l.title)})</span>`,
             back: letters,
           });
         }
