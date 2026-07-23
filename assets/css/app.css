@@ -89,6 +89,7 @@
 .i-blue { background: var(--info-bg); color: var(--info); }
 .i-green { background: var(--ok-bg); color: var(--ok); }
 .i-amber { background: var(--warn-bg); color: var(--warn); }
+.i-purple { background: #8e44ad1f; color: #8e44ad; }
 
 /* ---------- Module cards ---------- */
 .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: var(--gap); }
@@ -220,4 +221,53 @@
 @media (max-width: 560px) {
   .searchbar { display: none; }
   .hero__stats { gap: 18px; }
+}
+
+/* ---------- Icons in Buttons einheitlich skalieren ---------- */
+.btn svg { width: 1.15em; height: 1.15em; flex: none; }
+
+/* ---------- Einsatzkompass (Taschenkarten) ---------- */
+.ek-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.ek-card { overflow: hidden; max-width: 780px; margin: 0 auto; }
+.ek-head { display: flex; gap: 16px; align-items: center; padding: 22px 24px; color: #fff; }
+.ek-head__ico { flex: none; width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,.18); display: grid; place-items: center; }
+.ek-head__ico svg { width: 28px; height: 28px; }
+.ek-head__cat { font-size: .78rem; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; opacity: .92; display: inline-flex; align-items: center; gap: 5px; }
+.ek-head__title { margin: 3px 0 2px; font-size: 1.5rem; line-height: 1.15; color: #fff; }
+.ek-head__sub { margin: 0; font-size: .92rem; opacity: .92; }
+.ek-body { padding: 20px 24px 8px; }
+.ek-alarm { margin-bottom: 16px; }
+.ek-merker { display: grid; gap: 10px; margin-bottom: 18px; }
+.ek-merker__item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: var(--r-md); background: var(--surface-2); border-left: 4px solid; }
+.ek-merker__kurz { flex: none; color: #fff; font-weight: 800; font-size: .78rem; letter-spacing: .4px; padding: 4px 9px; border-radius: var(--r-full); white-space: nowrap; }
+.ek-merker__item b { display: block; font-size: .95rem; margin-bottom: 2px; }
+.ek-merker__item p { margin: 0; font-size: .88rem; color: var(--text-muted); }
+.ek-sections { display: grid; gap: 18px; margin-bottom: 16px; }
+.ek-section__t { font-size: 1.02rem; color: var(--ek, var(--fw-red)); border-bottom: 2px solid var(--border); padding-bottom: 6px; margin: 0 0 10px; }
+.ek-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ek-check { display: flex; gap: 11px; align-items: flex-start; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); transition: background var(--transition), border-color var(--transition); }
+.ek-check__box { flex: none; width: 20px; height: 20px; margin-top: 1px; accent-color: var(--ek, var(--fw-red)); cursor: pointer; }
+.ek-check label { font-size: .93rem; line-height: 1.45; cursor: pointer; }
+.ek-check.done { background: var(--ok-bg); border-color: transparent; }
+.ek-check.done label { text-decoration: line-through; color: var(--text-subtle); }
+.ek-refs { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.ek-foot { padding: 12px 24px 18px; border-top: 1px solid var(--border); gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 560px) {
+  .ek-head { flex-direction: column; text-align: center; }
+  .ek-merker__item { flex-direction: column; }
+}
+
+/* ---------- Druck: nur die Taschenkarte ---------- */
+@media print {
+  .sidebar, .topbar, .scrim, .no-print, .toast-wrap { display: none !important; }
+  .app, .main, #view, .view { display: block !important; margin: 0 !important; padding: 0 !important; }
+  .app { grid-template-columns: 1fr !important; }
+  body { background: #fff !important; }
+  .ek-card { box-shadow: none !important; border: 1px solid #999 !important; max-width: 100% !important; }
+  .ek-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ek-merker__kurz, .ek-head__ico, .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ek-check { break-inside: avoid; }
+  .ek-section { break-inside: avoid; }
+  .fade-up { animation: none !important; }
 }

@@ -18,6 +18,8 @@ import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark 
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
 import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcards } from './views/tools.js';
 import { renderInstructor, bindInstructor } from './views/instructor.js';
+import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsatzkarte } from './views/einsatzkompass.js';
+import { EINSATZKOMPASS } from './data/einsatzkompass.js';
 
 const app = qs('#app');
 
@@ -40,6 +42,8 @@ const NAV = [
   { section: 'Prüfen & Üben' },
   { href: '#/pruefungen', label: 'Prüfungen', icon: 'exam', count: Object.keys(EXAMS).length },
   { href: '#/planspiele', label: 'Planspiele', icon: 'game', count: PLANSPIELE.length },
+  { section: 'Im Einsatz' },
+  { href: '#/einsatzkompass', label: 'Einsatzkompass', icon: 'compass', count: EINSATZKOMPASS.length },
   { section: 'Konto' },
   { href: '#/profil', label: 'Mein Profil', icon: 'award' },
   { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
@@ -115,6 +119,10 @@ function routeView(parts) {
     case 'karteikarten': return a === 'lernen'
       ? { html: renderDeck(), bind: bindFlashcards }
       : { html: renderFlashHome(), bind: bindFlashcards };
+    case 'einsatzkompass':
+      if (a === 'suche') return { html: renderEinsatzkompass(decodeURIComponent(b || '')), bind: bindEinsatzkompass };
+      if (a) return { html: renderEinsatzkarte(a), bind: bindEinsatzkarte };
+      return { html: renderEinsatzkompass(), bind: bindEinsatzkompass };
     case 'ausbilder': return { html: renderInstructor(), bind: bindInstructor };
     case 'profil': return { html: renderProfile(), bind: bindProfile };
     case 'suche': return { html: renderSearch(decodeURIComponent(a || '')) };

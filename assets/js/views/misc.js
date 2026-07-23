@@ -6,6 +6,7 @@ import { EXAMS } from '../data/exams.js';
 import { EXAM_SETS, setSize } from '../data/pruefungssets.js';
 import { PLANSPIELE } from '../data/planspiele.js';
 import { GLOSSARY } from '../data/glossary.js';
+import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
@@ -183,7 +184,14 @@ export function searchAll(query) {
       results.push({ type: 'Glossar', title: g.term, sub: g.def.slice(0, 60) + '…', href: `#/glossar/${encodeURIComponent(g.term)}`, icon: 'search' });
     }
   });
-  return results.slice(0, 14);
+  EINSATZKOMPASS.forEach(k => {
+    if (k.title.toLowerCase().includes(q) || k.subtitle.toLowerCase().includes(q)
+      || k.alarm.some(a => a.toLowerCase().includes(q))
+      || (k.merker || []).some(m => (m.kurz + ' ' + m.titel).toLowerCase().includes(q))) {
+      results.push({ type: 'Einsatzkompass', title: k.title, sub: k.subtitle, href: `#/einsatzkompass/${k.id}`, icon: 'compass' });
+    }
+  });
+  return results.slice(0, 16);
 }
 
 export function renderSearch(query) {
