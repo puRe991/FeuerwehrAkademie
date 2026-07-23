@@ -452,6 +452,185 @@ export const DIAGRAMS = {
       <text x="300" y="88" font-size="10" fill="currentColor" opacity=".7" stroke="none">sichern</text>
     </g>`, '150px'),
 
+  /* THL-Einsatzstelle: innerer/äußerer Bereich */
+  thstelle: () => svg('0 0 460 190', `
+    <g font-family="sans-serif" text-anchor="middle">
+      <circle cx="230" cy="95" r="88" fill="${AMBER}" opacity=".08" stroke="${AMBER}" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <circle cx="230" cy="95" r="48" fill="${RED}" opacity=".1" stroke="${RED}" stroke-width="1.5"/>
+      <!-- Unfallfahrzeug -->
+      <g transform="translate(205,80)"><path d="M0 26 L8 8 Q12 2 24 2 L44 2 Q56 2 62 14 L64 26 Z" fill="#2c6fb0" stroke="none"/><circle cx="14" cy="28" r="7" fill="#12151a" stroke="none"/><circle cx="52" cy="28" r="7" fill="#12151a" stroke="none"/></g>
+      <text x="230" y="60" font-size="10" font-weight="700" fill="currentColor" stroke="none">innerer Bereich ~5 m</text>
+      <text x="230" y="30" font-size="10" font-weight="700" fill="currentColor" stroke="none">äußerer Bereich ~10 m (Gerät)</text>
+      <!-- Leitkegel -->
+      ${[120,180,280,340].map(x=>`<g transform="translate(${x},150)"><path d="M0 14 L6 -4 L12 14 Z" fill="#e8621f" stroke="none"/></g>`).join('')}
+      <text x="230" y="184" font-size="10" fill="currentColor" opacity=".7" stroke="none">Verkehrsabsicherung · Geräteablage im äußeren Bereich</text>
+    </g>`, '190px'),
+
+  /* Funk-Nachrichtenablauf */
+  funkablauf: () => svg('0 0 460 130', `
+    <g font-family="sans-serif" text-anchor="middle">
+      ${[
+        ['Anruf','„…von… kommen"',BLUE,70],['Antwort','„…kommen"',GREEN,190],['Nachricht','Spruch + „kommen"',AMBER,310],['Ende','„Ende"',RED,420],
+      ].map(([t,s,c,x],i)=>`
+        <rect x="${x-52}" y="34" width="104" height="46" rx="9" fill="${c}" opacity=".14" stroke="${c}" stroke-width="1.5"/>
+        <text x="${x}" y="55" font-size="12" font-weight="700" fill="currentColor" stroke="none">${t}</text>
+        <text x="${x}" y="71" font-size="9" fill="currentColor" opacity=".7" stroke="none">${s}</text>
+        ${i<3?`<path d="M${x+52} 57 L${[138,258,368][i]} 57" stroke="currentColor" stroke-width="2" opacity=".4" marker-end="url(#fa)"/>`:''}
+      `).join('')}
+      <defs><marker id="fa" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
+      <text x="230" y="112" font-size="11" fill="currentColor" opacity=".7" stroke="none">Ablauf einer Funknachricht – kurz, klar, mit „kommen"</text>
+    </g>`, '130px'),
+
+  /* Auffangsystem Absturzsicherung */
+  auffangsystem: () => svg('0 0 320 200', `
+    <g font-family="sans-serif">
+      <rect x="40" y="20" width="90" height="14" fill="currentColor" opacity=".3"/>
+      <circle cx="70" cy="27" r="8" fill="none" stroke="${RED}" stroke-width="3"/>
+      <text x="140" y="30" font-size="10" fill="currentColor" stroke="none">Anschlagpunkt (hoch)</text>
+      <line x1="70" y1="35" x2="70" y2="90" stroke="${BLUE}" stroke-width="3"/>
+      <rect x="60" y="90" width="20" height="24" rx="3" fill="${AMBER}" stroke="none"/>
+      <text x="150" y="106" font-size="10" fill="currentColor" stroke="none">Falldämpfer</text>
+      <line x1="70" y1="114" x2="70" y2="150" stroke="${BLUE}" stroke-width="3"/>
+      <!-- Person mit Gurt -->
+      <circle cx="70" cy="162" r="10" fill="#e8b98a" stroke="none"/>
+      <rect x="60" y="172" width="20" height="24" rx="4" fill="${GREEN}" stroke="none"/>
+      <text x="150" y="180" font-size="10" fill="currentColor" stroke="none">Auffanggurt (EN 361)</text>
+      <text x="160" y="55" font-size="10" fill="currentColor" stroke="none">Seil / Verbindungsmittel</text>
+      <text x="160" y="196" font-size="11" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">Auffangsystem</text>
+    </g>`, '200px'),
+
+  /* 3 Säulen des vorbeugenden Brandschutzes */
+  brandschutzsaeulen: () => svg('0 0 460 170', `
+    <g font-family="sans-serif" text-anchor="middle">
+      <rect x="40" y="24" width="380" height="20" rx="4" fill="${RED}" opacity=".85" stroke="none"/>
+      <text x="230" y="39" font-size="12" font-weight="700" fill="#fff" stroke="none">Schutz von Menschen, Umwelt, Sachwerten</text>
+      ${[
+        ['Baulicher','Wände, Rettungswege,\nBrandabschnitte',BLUE,110],
+        ['Anlagentechnischer','BMA, Sprinkler,\nRWA',AMBER,230],
+        ['Organisatorischer','Brandschutzordnung,\nUnterweisung',GREEN,350],
+      ].map(([t,d,c,x])=>`
+        <rect x="${x-52}" y="54" width="104" height="96" rx="8" fill="${c}" opacity=".14" stroke="${c}" stroke-width="1.6"/>
+        <text x="${x}" y="78" font-size="12" font-weight="700" fill="currentColor" stroke="none">${t}</text>
+        ${d.split('\n').map((ln,i)=>`<text x="${x}" y="${100+i*14}" font-size="9.5" fill="currentColor" opacity=".8" stroke="none">${ln}</text>`).join('')}
+      `).join('')}
+      <text x="230" y="166" font-size="10" fill="currentColor" opacity=".6" stroke="none">Die drei Säulen des vorbeugenden Brandschutzes</text>
+    </g>`, '170px'),
+
+  /* Feuerlöschkreiselpumpe */
+  kreiselpumpe: () => svg('0 0 400 190', `
+    <g font-family="sans-serif" text-anchor="middle">
+      <circle cx="200" cy="95" r="62" fill="${BLUE}" opacity=".1" stroke="${BLUE}" stroke-width="2"/>
+      <!-- Laufrad -->
+      <g transform="translate(200,95)">${[0,60,120,180,240,300].map(a=>`<path d="M0 0 Q${18*Math.cos(a*Math.PI/180)} ${18*Math.sin(a*Math.PI/180)} ${42*Math.cos((a+30)*Math.PI/180)} ${42*Math.sin((a+30)*Math.PI/180)}" fill="none" stroke="${BLUE}" stroke-width="4"/>`).join('')}<circle cx="0" cy="0" r="10" fill="${BLUE}" stroke="none"/></g>
+      <!-- Saugseite -->
+      <rect x="30" y="82" width="60" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+      <text x="60" y="76" font-size="10" fill="currentColor" stroke="none">Saugseite</text>
+      <text x="60" y="124" font-size="9" fill="currentColor" opacity=".7" stroke="none">Unterdruck</text>
+      <line x1="90" y1="95" x2="138" y2="95" stroke="${GREEN}" stroke-width="5" marker-end="url(#kp)"/>
+      <!-- Druckseite -->
+      <line x1="200" y1="33" x2="200" y2="8" stroke="${RED}" stroke-width="6" marker-end="url(#kp)"/>
+      <text x="200" y="176" font-size="11" font-weight="700" fill="currentColor" stroke="none">Feuerlöschkreiselpumpe – Fliehkraft erzeugt Druck</text>
+      <text x="250" y="30" font-size="10" fill="currentColor" stroke="none" text-anchor="start">Druckseite (Überdruck)</text>
+      <defs><marker id="kp" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
+    </g>`, '190px'),
+
+  /* STOP-Prinzip */
+  stopprinzip: () => svg('0 0 460 170', `
+    <g font-family="sans-serif">
+      ${[
+        ['S','Substitution','Gefahr vermeiden/ersetzen',GREEN,40,300],
+        ['T','Technisch','technische Schutzmaßnahmen',BLUE,72,250],
+        ['O','Organisatorisch','Regeln, Unterweisung',AMBER,104,200],
+        ['P','Persönlich','PSA (zuletzt)',RED,136,150],
+      ].map(([l,t,d,c,y,w])=>`
+        <rect x="${230-w/2}" y="${y}" width="${w}" height="28" rx="5" fill="${c}" opacity=".85" stroke="none"/>
+        <text x="${230-w/2+16}" y="${y+19}" font-size="14" font-weight="800" fill="#fff" stroke="none">${l}</text>
+        <text x="${230-w/2+34}" y="${y+13}" font-size="11" font-weight="700" fill="#fff" stroke="none">${t}</text>
+        <text x="${230-w/2+34}" y="${y+25}" font-size="8.5" fill="#ffffffcc" stroke="none">${d}</text>
+      `).join('')}
+      <text x="230" y="22" font-size="12" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">Rangfolge der Schutzmaßnahmen (STOP)</text>
+    </g>`, '170px'),
+
+  /* Vier-Stufen-Methode */
+  vierstufen: () => svg('0 0 460 120', `
+    <g font-family="sans-serif" text-anchor="middle">
+      ${[
+        ['1','Vorbereiten',GREEN,60],['2','Vormachen /\nErklären',BLUE,185],['3','Nachmachen',AMBER,310],['4','Üben &\nfestigen',RED,420],
+      ].map(([n,t,c,x],i)=>`
+        <circle cx="${x}" cy="44" r="24" fill="${c}" stroke="none"/>
+        <text x="${x}" y="51" font-size="18" font-weight="800" fill="#fff" stroke="none">${n}</text>
+        ${t.split('\n').map((ln,j)=>`<text x="${x}" y="${84+j*13}" font-size="10.5" font-weight="600" fill="currentColor" stroke="none">${ln}</text>`).join('')}
+        ${i<3?`<path d="M${x+24} 44 L${[143,268,378][i]} 44" stroke="currentColor" stroke-width="2" opacity=".4" marker-end="url(#v4)"/>`:''}
+      `).join('')}
+      <defs><marker id="v4" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
+    </g>`, '120px'),
+
+  /* Wärmebildkamera */
+  waermebild: () => svg('0 0 460 150', `
+    <defs><linearGradient id="heat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${BLUE}"/><stop offset="0.5" stop-color="${AMBER}"/><stop offset="1" stop-color="${RED}"/></linearGradient></defs>
+    <g font-family="sans-serif">
+      <rect x="20" y="30" width="200" height="90" rx="8" fill="#1a2230" stroke="currentColor" stroke-width="1.5"/>
+      <!-- heiße Figur -->
+      <g opacity=".9"><circle cx="90" cy="60" r="12" fill="url(#heat)"/><rect x="78" y="72" width="24" height="34" rx="8" fill="url(#heat)"/></g>
+      <!-- Glutnest -->
+      <circle cx="170" cy="95" r="14" fill="url(#heat)" opacity=".8"/>
+      <text x="120" y="135" font-size="10" fill="currentColor" stroke="none" text-anchor="middle">Wärmebild – heiß = hell</text>
+      <!-- Kamera -->
+      <g transform="translate(300,55)"><rect x="0" y="0" width="80" height="50" rx="8" fill="${RED}" stroke="none"/><circle cx="40" cy="25" r="16" fill="#1a2230" stroke="#fff" stroke-width="2"/><circle cx="40" cy="25" r="7" fill="url(#heat)"/></g>
+      <path d="M232 75 L296 75" stroke="currentColor" stroke-width="2" opacity=".4" stroke-dasharray="3 3"/>
+      <text x="340" y="125" font-size="11" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">WBK</text>
+      <text x="340" y="30" font-size="10" fill="currentColor" opacity=".7" stroke="none" text-anchor="middle">sieht Infrarot</text>
+    </g>`, '150px'),
+
+  /* Deichverteidigung / Sandsäcke */
+  deich: () => svg('0 0 460 160', `
+    <g font-family="sans-serif">
+      <!-- Wasserseite -->
+      <rect x="0" y="90" width="180" height="70" fill="${BLUE}" opacity=".35"/>
+      ${[100,115,130].map(y=>`<path d="M0 ${y} q30 -6 60 0 t60 0 t60 0" fill="none" stroke="#ffffff33" stroke-width="2"/>`).join('')}
+      <text x="70" y="80" font-size="10" fill="currentColor" stroke="none" text-anchor="middle">Wasserseite</text>
+      <!-- Deich/Sandsäcke -->
+      <g>${[0,1,2,3].map(r=>Array.from({length:6-r}).map((_,i)=>`<rect x="${200+r*11+i*30}" y="${140-r*18}" width="30" height="16" rx="4" fill="#c8a35a" stroke="#a8863a" stroke-width="1"/>`).join('')).join('')}</g>
+      <text x="300" y="40" font-size="10" fill="currentColor" stroke="none" text-anchor="middle">Sandsäcke im Läuferverband (2/3 gefüllt, versetzt)</text>
+      <text x="230" y="156" font-size="11" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">Deichverteidigung</text>
+    </g>`, '160px'),
+
+  /* Kickback Motorsäge */
+  kickback: () => svg('0 0 420 150', `
+    <g font-family="sans-serif">
+      <!-- Säge -->
+      <rect x="40" y="70" width="70" height="34" rx="8" fill="${RED}" stroke="none"/>
+      <rect x="20" y="60" width="30" height="20" rx="4" fill="#333" stroke="none"/>
+      <!-- Schiene -->
+      <rect x="108" y="80" width="180" height="14" rx="7" fill="#8a94a0" stroke="none"/>
+      <ellipse cx="288" cy="87" rx="14" ry="9" fill="#8a94a0" stroke="none"/>
+      <!-- Kickback-Pfeil -->
+      <path d="M300 78 Q320 40 120 40" fill="none" stroke="${AMBER}" stroke-width="3" marker-end="url(#kb)"/>
+      <defs><marker id="kb" markerWidth="9" markerHeight="9" refX="4" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8 z" fill="${AMBER}" stroke="none"/></marker></defs>
+      <circle cx="290" cy="80" r="18" fill="none" stroke="${RED}" stroke-width="2.5"/>
+      <text x="290" y="118" font-size="10" fill="currentColor" stroke="none" text-anchor="middle">obere Schienenspitze</text>
+      <text x="180" y="30" font-size="11" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">Rückschlag (Kickback) – nie mit der Spitze arbeiten</text>
+    </g>`, '150px'),
+
+  /* Gestuftes Hilfeleistungssystem */
+  hilfeleistung: () => svg('0 0 460 160', `
+    <g font-family="sans-serif" text-anchor="middle">
+      ${[
+        ['Gemeinde','örtliche Gefahrenabwehr',RED,60,240],
+        ['Kreis','überörtliche Hilfe',AMBER,150,200],
+        ['Land','Katastrophenschutz',BLUE,240,160],
+        ['Bund','Zivilschutz (BBK/THW)',PURPLE,330,120],
+      ].map(([t,d,c,y,w])=>`
+        <rect x="${230-w/2}" y="${y-18}" width="${w}" height="30" rx="6" fill="${c}" opacity=".85" stroke="none"/>
+        <text x="230" y="${y+1}" font-size="12" font-weight="800" fill="#fff" stroke="none">${t}</text>
+        <text x="${230+w/2+8}" y="${y+2}" font-size="9.5" fill="currentColor" opacity=".8" stroke="none" text-anchor="start">${d}</text>
+      `).join('')}
+      <path d="M120 44 L120 118" stroke="currentColor" stroke-width="2" opacity=".4" marker-end="url(#hl)"/>
+      <defs><marker id="hl" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
+      <text x="95" y="82" font-size="9" fill="currentColor" opacity=".6" stroke="none" transform="rotate(-90 95 82)">Eskalation</text>
+      <text x="230" y="154" font-size="10" fill="currentColor" opacity=".6" stroke="none">Jede Ebene unterstützt die darunterliegende</text>
+    </g>`, '160px'),
+
   /* GAMS-Regel */
   gams: () => svg('0 0 460 130', `
     <g font-family="sans-serif" text-anchor="middle">
@@ -468,6 +647,24 @@ export const DIAGRAMS = {
       `).join('')}
       <defs><marker id="gm" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
     </g>`, '130px'),
+
+  /* Vier Aufgaben der Feuerwehr — Retten geht vor */
+  feuerwehraufgaben: () => svg('0 0 460 150', `
+    <g font-family="sans-serif" text-anchor="middle">
+      ${[
+        ['Retten', 'Menschen & Tiere\naus Lebensgefahr', RED, 60],
+        ['Löschen', 'Brand\nbekämpfen', AMBER, 190],
+        ['Bergen', 'Sachwerte\nsichern', BLUE, 320],
+        ['Schützen', 'weitere Schäden\nabwenden', GREEN, 400],
+      ].map(([l, t, c, x], i) => `
+        <rect x="${x - 42}" y="24" width="84" height="34" rx="8" fill="${c}" stroke="none"/>
+        <text x="${x}" y="46" font-size="14" font-weight="800" fill="#fff" stroke="none">${l}</text>
+        ${t.split('\n').map((ln, j) => `<text x="${x}" y="${78 + j * 13}" font-size="10.5" font-weight="600" fill="currentColor" stroke="none">${ln}</text>`).join('')}
+        ${i < 3 ? `<path d="M${x + 44} 41 L${[146, 276, 356][i]} 41" stroke="currentColor" stroke-width="2" opacity=".4" marker-end="url(#fam)"/>` : ''}
+      `).join('')}
+      <text x="230" y="128" font-size="11.5" font-weight="700" fill="${RED}" stroke="none">Menschenrettung hat immer Vorrang</text>
+      <defs><marker id="fam" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="currentColor" stroke="none"/></marker></defs>
+    </g>`, '150px'),
 };
 
 export function diagram(key) {

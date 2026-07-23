@@ -428,6 +428,7 @@ export const EXTRA_LESSONS = {
         P('Vor Tätigkeiten und Übungen werden Gefährdungen systematisch ermittelt und Schutzmaßnahmen festgelegt. Grundprinzip ist die <b>Rangfolge der Schutzmaßnahmen (STOP)</b>:'),
         MNE([{l:'S',w:'Substitution'},{l:'T',w:'Technisch'},{l:'O',w:'Organisatorisch'},{l:'P',w:'Persönlich'}],
           'Erst Gefahr ersetzen/vermeiden, dann technische Schutzmaßnahmen, dann organisatorische (Regeln, Unterweisung), zuletzt persönliche Schutzausrüstung.'),
+        FIG('stopprinzip', 'STOP-Prinzip: Rangfolge der Schutzmaßnahmen von oben (wirksamste) nach unten – Substitution vor Technik vor Organisation vor PSA.'),
         H2('uebung', 'Sicher üben'),
         KF(
           'Übungsleiter plant Sicherheit mit (Sicherungsposten, Brandschutz, Erste Hilfe)',
@@ -449,6 +450,7 @@ export const EXTRA_LESSONS = {
         H2('methodik', 'Wie Menschen lernen'),
         P('Gute Ausbildung berücksichtigt, dass Wissen durch <b>Sehen, Hören und vor allem selbst Tun</b> haften bleibt. Der Merksatz: „Sag es mir – ich vergesse. Zeig es mir – ich erinnere mich. Lass es mich tun – ich verstehe."'),
         DEF('Vier-Stufen-Methode', 'Bewährtes Ausbildungsschema: 1. Vorbereiten (Interesse wecken), 2. Vormachen/Erklären, 3. Nachmachen lassen, 4. Üben und festigen. So wird aus Zeigen echtes Können.'),
+        FIG('vierstufen', 'Die Vier-Stufen-Methode der Ausbildung: Vorbereiten → Vormachen → Nachmachen → Üben.'),
         H2('stunde', 'Eine Gruppenstunde planen'),
         STEPS(
           'Lernziel festlegen (Was sollen alle danach können?)',

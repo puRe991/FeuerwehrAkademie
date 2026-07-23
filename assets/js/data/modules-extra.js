@@ -27,6 +27,7 @@ export const MODULES_EXTRA = [
         H2('grundsatz', 'Retten hat Vorrang'),
         P('Die Rettung von Menschen aus Lebensgefahr ist die vornehmste Aufgabe der Feuerwehr und hat absoluten Vorrang. „Retten" bedeutet, Menschen und Tiere aus einer lebensbedrohlichen Zwangslage zu befreien.'),
         DEF('Retten vs. Bergen', 'Lebende Menschen werden gerettet, tote Menschen und Sachwerte werden geborgen. Diese Unterscheidung ist mehr als Wortklauberei – sie bestimmt Priorität und Vorgehen.'),
+        FIG('feuerwehraufgaben', 'Die vier Aufgaben der Feuerwehr: Retten, Löschen, Bergen, Schützen – die Menschenrettung hat immer Vorrang.'),
         H2('griffe', 'Rettungsgriffe & Tragehilfen'),
         TBL(['Methode', 'Anwendung'],[
           ['Rautek-Rettungsgriff', 'schnelles Ziehen einer nicht gehfähigen Person aus dem Gefahrenbereich'],
@@ -278,6 +279,7 @@ export const MODULES_EXTRA = [
           'Im Läuferverband versetzt schichten, Fugen versetzen',
           'Sickerstellen mit Quellkade/Sandsackring beruhigen (nicht abdichten!)',
           'Deich laufend kontrollieren (Deichläufer), Auffälligkeiten melden'),
+        FIG('deich', 'Deichverteidigung: Sandsäcke im versetzten Läuferverband erhöhen die Deichkrone; Sickerstellen (Qualmwasser) werden beruhigt, nicht abgedichtet.'),
         CO('danger', 'Strömung unterschätzt', 'Schon 30 cm strömendes Wasser können einen Menschen umreißen, 60 cm ein Auto forttragen. Wassereinsätze nur mit Rettungsweste, Sicherung und ausgebildeten Kräften – Fließgewässer niemals unterschätzen.'),
       ],
     },
@@ -364,6 +366,7 @@ export const MODULES_EXTRA = [
           'Enganliegende Kleidung, nichts Loses'),
         H2('sicherheit', 'Sicherheitseinrichtungen & Gefahren'),
         DEF('Kettenbremse & Rückschlag (Kickback)', 'Berührt die obere Spitze der Schiene Material, kann die Säge blitzartig nach oben zum Bediener zurückschlagen (Kickback). Die Kettenbremse stoppt die Kette bei Rückschlag – dennoch: nie mit der Schienenspitze arbeiten.'),
+        FIG('kickback', 'Rückschlag (Kickback): Berührt der obere Quadrant der Schienenspitze das Holz, schlägt die Säge blitzartig zum Bediener zurück – diese Zone meiden.'),
         CO('danger', 'Spannung im Holz', 'Umgestürzte/verkeilte Bäume stehen unter Spannung: Beim Durchtrennen kann das Holz schlagartig zurückschnellen oder die Säge einklemmen. Spannungsverhältnisse vor dem Schnitt beurteilen (Druck-/Zugseite), sicheren Stand wählen, nie allein arbeiten.'),
       ],
     },
@@ -414,6 +417,7 @@ export const MODULES_EXTRA = [
           ['Bund', 'Zivilschutz, ergänzende Ausstattung (BBK/THW)'],
         ]),
         DEF('Gestuftes Hilfeleistungssystem', 'Reichen die örtlichen Kräfte nicht, wird überörtliche Hilfe angefordert: Nachbarschaftshilfe → Kreis → überörtliche Bereitschaften/Kontingente → Bund/Länder-übergreifend. Jede Ebene unterstützt die darunterliegende.'),
+        FIG('hilfeleistung', 'Gestuftes Hilfeleistungssystem: Von der Gemeinde über Kreis und Land bis zum Bund – jede Ebene unterstützt die darunterliegende.'),
         H2('mitwirkende', 'Mitwirkende Organisationen'),
         UL(
           '<b>Feuerwehren</b> – Brandschutz, technische Hilfe, ABC',

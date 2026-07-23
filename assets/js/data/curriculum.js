@@ -455,6 +455,7 @@ export const MODULES = [
           'Brandschutz sicherstellen (C-Rohr/Löscher bereitstellen)',
           'Fahrzeug gegen Wegrollen/Bewegung sichern, Zündung aus',
           'Batterie ggf. abklemmen (Minuspol zuerst)'),
+        FIG('thstelle', 'Ordnung des Raumes an der THL-Einsatzstelle: innerer Bereich (Rettung), äußerer Bereich (Geräteablage) und Absperrbereich gegen den Verkehr.'),
         H2('gefahren', 'Gefahren am Unfallfahrzeug'),
         UL(
           '<b>Nicht ausgelöste Airbags / Gurtstraffer:</b> Sicherheitsabstände einhalten (Front ~30 cm, Seite ~15 cm – herstellerabhängig).',
@@ -517,6 +518,7 @@ export const MODULES = [
           'Antwort der Gegenstelle: „…11/1 von …1/44 – kommen"',
           'Nachricht durchgeben, Ende mit „kommen"',
           'Empfang bestätigen: „verstanden" – Abschluss mit „Ende"'),
+        FIG('funkablauf', 'Ablauf eines Funkgesprächs: Anruf → Antwort → Nachricht → Bestätigung → Ende.'),
         DEF('Wichtige Sprechgruppen', '„kommen" = Ende der eigenen Durchsage, Antwort erwartet. „verstanden" = Nachricht empfangen. „Ende" = Gespräch beendet. „Frage" = es folgt eine Frage. „Wiederholen Sie" = Nachricht bitte erneut.'),
       ],
     },
@@ -692,6 +694,7 @@ export const MODULES = [
           '<b>Karabiner</b> mit Verschlusssicherung (EN 362)',
           '<b>Abseil-/Sicherungsgerät</b> und Auffanggerät',
           'Feuerwehrhaltegurt ist <b>keine</b> Absturzsicherung!'),
+        FIG('auffangsystem', 'Aufbau eines Auffangsystems: Anschlagpunkt → Verbindungsmittel mit Falldämpfer → Auffanggurt (EN 361).'),
         H2('anschlag', 'Anschlagpunkte'),
         KF(
           'Tragfähig und geprüft (im Zweifel höhere Sicherheit wählen)',
@@ -797,6 +800,7 @@ export const MODULES = [
           '<b>Baulicher Brandschutz:</b> Brandabschnitte, feuerbeständige Wände/Decken, Rettungswege, Baustoffklassen.',
           '<b>Anlagentechnischer Brandschutz:</b> Brandmeldeanlagen, Sprinkler, Rauch- und Wärmeabzug (RWA), Löschanlagen.',
           '<b>Organisatorischer Brandschutz:</b> Brandschutzordnung, Flucht-/Rettungspläne, Unterweisungen, Brandschutzhelfer.'),
+        FIG('brandschutzsaeulen', 'Die drei Säulen des vorbeugenden Brandschutzes: baulich, anlagentechnisch und organisatorisch.'),
         H2('rettungswege', 'Rettungswege'),
         DEF('Erster & zweiter Rettungsweg', 'Aufenthaltsräume benötigen i. d. R. zwei voneinander unabhängige Rettungswege. Der erste ist meist der bauliche (Treppenraum), der zweite kann über Rettungsgeräte der Feuerwehr (Drehleiter) sichergestellt werden.'),
         KF(
@@ -865,6 +869,7 @@ export const MODULES = [
         H2('prinzip', 'Funktionsprinzip'),
         P('Die Feuerlöschkreiselpumpe (FP) erzeugt Druck durch ein schnell drehendes <b>Laufrad</b>: Das Wasser wird durch die Fliehkraft nach außen geschleudert, wodurch im Zentrum Unterdruck (Sog) und am Rand Überdruck entsteht. Da eine Kreiselpumpe nicht selbstständig ansaugt, braucht sie eine <b>Entlüftungseinrichtung</b>.'),
         DEF('Bezeichnung FPN 10-2000', 'FP = Feuerlöschpumpe, N = Normaldruck, 10 = Nenndruck 10 bar, 2000 = Nennförderstrom 2000 l/min. Beim LF 20 verbaut.'),
+        FIG('kreiselpumpe', 'Feuerlöschkreiselpumpe: Das Laufrad schleudert das Wasser nach außen – Sog an der Saugseite, Druck an der Druckseite.'),
         H2('ansaugen', 'Ansaugvorgang aus offenem Gewässer'),
         STEPS(
           'Saugleitung kuppeln, Saugkorb mit Ventil und Halteleine sichern',
@@ -1080,6 +1085,7 @@ export const MODULES = [
       blocks: [
         H2('physik', 'Wie eine Wärmebildkamera „sieht"'),
         P('Jeder Körper über dem absoluten Nullpunkt strahlt <b>Infrarotstrahlung</b> ab. Die Wärmebildkamera macht diese für das Auge unsichtbare Strahlung sichtbar und stellt Temperaturunterschiede als Bild dar – auch bei völliger Dunkelheit und im Rauch.'),
+        FIG('waermebild', 'Wärmebildkamera: Infrarotstrahlung wird über den Sensor in ein Falschfarbenbild umgesetzt – warme Bereiche hell, kalte dunkel.'),
         H2('einsatz', 'Einsatzmöglichkeiten'),
         KF(
           'Personensuche im verrauchten Raum (Körperwärme)',
