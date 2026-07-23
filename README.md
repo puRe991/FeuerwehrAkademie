@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-665-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -16,6 +16,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
 | 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
+| 🧒 **Jugendfeuerwehr** | Eigener Bereich mit altersgerechten Übungsprüfungen zur Vorbereitung auf die **Jugendflamme (Stufe 1–3)** und die **Leistungsspange** – Notruf 112, Knoten, Gerätekunde, Erste Hilfe und Teamwissen |
 | 📊 **Schaubilder** | 39 theme-fähige Erklär-Grafiken in den Lektionen – in **jedem** Modul mindestens eines (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen, Kreiselpumpe, STOP-Prinzip, Auffangsystem, Deichverteidigung, Motorsägen-Rückschlag u. v. m.) |
 | 🎮 **Planspiele** | 17 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
@@ -81,6 +82,17 @@ Neben den Modulprüfungen bündeln **7 Gesamtprüfungen** ganze Ausbildungsabsch
 - **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 26 Module
 
 Modulprüfungen selbst gibt es in **drei Stufen**: *Grundlagen* (kurzer Basis-Check), *Aufbau* (ohne die schweren Fragen) und *Prüfung* (alle Fragen inkl. schwerer).
+
+## 🧒 Jugendfeuerwehr – Abzeichen
+
+Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übungsprüfungen sind bewusst einfach und altersgerecht gehalten und bereiten spielerisch auf die echten Abzeichen der Deutschen Jugendfeuerwehr vor:
+
+- **Jugendflamme Stufe 1** – Einstieg: Notruf 112 (fünf W-Fragen), erste Knoten, Schläuche kuppeln, sicheres Verhalten
+- **Jugendflamme Stufe 2** – Aufbau: mehr Knoten, Gerätekunde (Verteiler, Strahlrohr, Saugleitung), stabile Seitenlage, Fahrzeugwissen
+- **Jugendflamme Stufe 3** – Vertiefung: Gruppe im Löscheinsatz, Erste Hilfe, Verantwortung übernehmen, ein Thema präsentieren
+- **Leistungsspange (Wissensteil)** – die höchste Auszeichnung der JF, als Gruppe erbracht: Bestandteile, Teamgeist und Feuerwehr-Grundwissen
+
+> **Hinweis:** Die Übungsprüfungen ersetzen keine Abnahme vor Ort. Die genauen Anforderungen legen die jeweiligen Kreis- und Landesjugendfeuerwehren fest.
 
 ## 🃏 Weitere Lernwerkzeuge
 

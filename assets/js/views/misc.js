@@ -88,8 +88,35 @@ export function renderLernpfad() {
 }
 
 /* ---------- Prüfungsübersicht ---------- */
+function examSetCard(set) {
+  const best = bestExam(set.id);
+  const passed = !!(best && best.passed);
+  const tag = set.youth ? esc(set.badge || 'Jugendfeuerwehr') : esc(LEVELS[set.level] || '');
+  return `<article class="card card--interactive mcard">
+    <div class="mcard__banner" style="background:linear-gradient(135deg, ${set.color}, ${shadeHex(set.color,-28)});height:78px">
+      ${icon(set.icon, 'mcard__ico')}
+      <span class="mcard__code" style="opacity:.5">${set.youth ? '🧒' : (LEVELS[set.level]?.[0] || '')}</span>
+    </div>
+    <div class="mcard__body">
+      <div class="between">
+        <span class="mcard__cat">${tag}</span>
+        ${passed ? `<span class="badge badge--green">${best.score}% ✔</span>` : best ? `<span class="badge badge--amber">${best.score}%</span>` : `<span class="badge">Neu</span>`}
+      </div>
+      <h3>${esc(set.title)}</h3>
+      <p class="mcard__desc">${esc(set.desc)}</p>
+      <div class="mcard__meta">
+        <span>${icon('exam').replace('<svg ','<svg style="width:14px;height:14px" ')} ${setSize(set)} Fragen</span>
+        <span>${icon('target').replace('<svg ','<svg style="width:14px;height:14px" ')} ${set.passScore}% Grenze</span>
+      </div>
+      <a class="btn ${passed ? 'btn--outline' : 'btn--primary'} btn--block mcard__foot" href="#/pruefung/${set.id}">${icon('play')} ${best ? 'Erneut prüfen' : 'Starten'}</a>
+    </div>
+  </article>`;
+}
+
 export function renderPruefungen() {
   const modsWithExam = MODULES.filter(m => EXAMS[m.id]);
+  const proSets = EXAM_SETS.filter(s => !s.youth);
+  const youthSets = EXAM_SETS.filter(s => s.youth);
   return `
   <div class="view fade-up">
     <div class="view__head">
@@ -99,30 +126,15 @@ export function renderPruefungen() {
 
     <h2 style="margin-bottom:14px">${icon('award').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Abschlussprüfungen</h2>
     <div class="module-grid" style="margin-bottom:34px">
-      ${EXAM_SETS.map(set => {
-        const best = bestExam(set.id);
-        const passed = !!(best && best.passed);
-        return `<article class="card card--interactive mcard">
-          <div class="mcard__banner" style="background:linear-gradient(135deg, ${set.color}, ${shadeHex(set.color,-28)});height:78px">
-            ${icon(set.icon, 'mcard__ico')}
-            <span class="mcard__code" style="opacity:.5">${LEVELS[set.level]?.[0] || ''}</span>
-          </div>
-          <div class="mcard__body">
-            <div class="between">
-              <span class="mcard__cat">${esc(LEVELS[set.level] || '')}</span>
-              ${passed ? `<span class="badge badge--green">${best.score}% ✔</span>` : best ? `<span class="badge badge--amber">${best.score}%</span>` : `<span class="badge">Neu</span>`}
-            </div>
-            <h3>${esc(set.title)}</h3>
-            <p class="mcard__desc">${esc(set.desc)}</p>
-            <div class="mcard__meta">
-              <span>${icon('exam').replace('<svg ','<svg style="width:14px;height:14px" ')} ${setSize(set)} Fragen</span>
-              <span>${icon('target').replace('<svg ','<svg style="width:14px;height:14px" ')} ${set.passScore}% Grenze</span>
-            </div>
-            <a class="btn ${passed ? 'btn--outline' : 'btn--primary'} btn--block mcard__foot" href="#/pruefung/${set.id}">${icon('play')} ${best ? 'Erneut prüfen' : 'Starten'}</a>
-          </div>
-        </article>`;
-      }).join('')}
+      ${proSets.map(examSetCard).join('')}
     </div>
+
+    ${youthSets.length ? `
+    <h2 style="margin-bottom:6px">🧒 Jugendfeuerwehr – Abzeichen</h2>
+    <p class="muted" style="margin-bottom:14px;max-width:70ch">Altersgerechte Übungsprüfungen zur Vorbereitung auf die <b>Jugendflamme</b> (Stufe 1–3) und die <b>Leistungsspange</b>. Sie ersetzen keine Abnahme vor Ort – die genauen Anforderungen legt eure Kreis-/Landesjugendfeuerwehr fest.</p>
+    <div class="module-grid" style="margin-bottom:34px">
+      ${youthSets.map(examSetCard).join('')}
+    </div>` : ''}
 
     <h2 style="margin-bottom:14px">${icon('book').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Modulprüfungen</h2>
     <div class="module-grid">
