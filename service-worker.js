@@ -3,7 +3,9 @@
    Strategie: Cache-first für App-Assets, Network-first-Fallback.
    Für Feuerwehren im Einsatz wertvoll: Lerninhalte auch ohne Netz verfügbar.
    ========================================================================= */
-const CACHE = 'fwa-v18';
+/* Cache-Version an APP_VERSION koppeln (siehe assets/js/version.js).
+   Bei neuer App-Version hier ebenfalls erhöhen, damit Clients das Update laden. */
+const CACHE = 'fwa-v1.0.0';
 const ASSETS = [
   './',
   './index.html',
@@ -11,6 +13,7 @@ const ASSETS = [
   './assets/css/design-system.css',
   './assets/css/app.css',
   './assets/js/app.js',
+  './assets/js/version.js',
   './assets/js/state.js',
   './assets/js/utils.js',
   './assets/js/data/icons.js',

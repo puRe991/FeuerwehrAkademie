@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Version](https://img.shields.io/badge/Version-1.0.0-d81f26) ![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -162,6 +162,20 @@ Die Inhalte dienen der **Aus- und Fortbildung** und orientieren sich an den gelt
 ## 🤝 Erweitern
 
 Neue Module lassen sich einfach in `assets/js/data/curriculum.js` ergänzen (Block-Format ist dokumentiert), Prüfungen in `exams.js`, Planspiele in `planspiele.js`. Die Views passen sich automatisch an.
+
+## 🔖 Version
+
+Aktuelle Version: **1.0.0** · Stand: 23.07.2026
+
+Die Versionierung folgt [Semantic Versioning](https://semver.org) (`MAJOR.MINOR.PATCH`). Die zentrale Quelle ist [`assets/js/version.js`](assets/js/version.js); die Version wird in der App (Seitenleiste & Profil → *Über die App*) angezeigt.
+
+## © Copyright & Lizenz
+
+© 2026 Feuerwehr Online Akademie. Alle Rechte vorbehalten.
+
+Die Inhalte dienen der Aus- und Fortbildung. Eine Weitergabe, Vervielfältigung oder Veröffentlichung – auch auszugsweise – bedarf der Zustimmung des Urhebers, sofern keine gesonderte Lizenz vergeben wurde.
+
+> **Tipp:** Möchtest du das Projekt unter eine Open-Source-Lizenz stellen (z. B. MIT, Apache-2.0 oder CC BY-NC-SA für die Lerninhalte), lege eine `LICENSE`-Datei an und ersetze die Copyright-Angaben in `assets/js/version.js` durch deinen Namen bzw. deinen Verein.
 
 ---
 

@@ -39,6 +39,7 @@
 .userchip .meta { line-height: 1.2; min-width: 0; }
 .userchip .meta b { display: block; font-size: var(--fs-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .userchip .meta span { font-size: var(--fs-xs); color: var(--text-muted); }
+.sidebar__legal { margin: 10px 8px 0; font-size: var(--fs-xs); color: var(--text-muted); opacity: .8; line-height: 1.3; }
 
 /* ---------- Header ---------- */
 .main { display: flex; flex-direction: column; min-width: 0; }

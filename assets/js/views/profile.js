@@ -5,6 +5,7 @@ import { LEVELS, MODULES } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
 import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll } from '../state.js';
 import { esc, initials, toast, modal } from '../utils.js';
+import { APP_VERSION, BUILD_DATE, COPYRIGHT } from '../version.js';
 
 const ROLES = [
   'Feuerwehranwärter/in', 'Truppmann/-frau', 'Truppführer/in',
@@ -115,6 +116,12 @@ export function renderProfile() {
         <div class="card card--pad">
           <h3 style="margin-bottom:8px">Einstellungen</h3>
           <button class="btn btn--danger btn--block" id="resetData">${icon('refresh')} Fortschritt zurücksetzen</button>
+        </div>
+        <div class="card card--pad">
+          <h3 style="margin-bottom:8px">Über die App</h3>
+          <div class="between" style="padding:4px 0"><span class="muted">Version</span><b>${esc(APP_VERSION)}</b></div>
+          <div class="between" style="padding:4px 0"><span class="muted">Stand</span><b>${esc(BUILD_DATE)}</b></div>
+          <p class="subtle" style="margin:8px 0 0;font-size:.82rem">${esc(COPYRIGHT)}. Alle Rechte vorbehalten.</p>
         </div>
       </aside>
 

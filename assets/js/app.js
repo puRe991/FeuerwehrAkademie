@@ -8,6 +8,7 @@ import { PLANSPIELE } from './data/planspiele.js';
 import { icon } from './data/icons.js';
 import { getState, subscribe, setTheme, level } from './state.js';
 import { esc, initials, qs } from './utils.js';
+import { APP_VERSION, COPYRIGHT } from './version.js';
 
 import { renderDashboard } from './views/dashboard.js';
 import { renderModules, renderModuleDetail } from './views/modules.js';
@@ -68,6 +69,7 @@ function renderShell(activeHref) {
           <span class="avatar">${p ? initials(p.name) : '?'}</span>
           <span class="meta"><b>${p ? esc(p.name) : 'Gast'}</b><span>Level ${level()} · ${s.xp || 0} XP</span></span>
         </a>
+        <p class="sidebar__legal">${esc(COPYRIGHT)} · v${esc(APP_VERSION)}</p>
       </div>
     </aside>
 
