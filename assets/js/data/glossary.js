@@ -61,7 +61,7 @@ export const GLOSSARY = [
     def: 'Gefahrnummer auf der orangefarbenen Warntafel (oben). Erste Ziffer = Hauptgefahr; „X" = keine Berührung mit Wasser.' },
   { term: 'Kohlenstoffmonoxid (CO)', cat: 'gefahr', ref: 'f-atemschutz',
     def: 'Farb-, geruch- und geschmackloses Atemgift, das ein Vielfaches stärker als Sauerstoff an Hämoglobin bindet – tödlich.' },
-  { term: 'LACES', cat: 'gefahr', ref: 'r-digital',
+  { term: 'LACES', cat: 'gefahr', ref: 'v-vegetationsbrand',
     def: 'Sicherheitsprinzip bei Vegetationsbränden: Lookout, Awareness, Communication, Escape routes, Safety zones.' },
   { term: 'Löschwirkungen', cat: 'taktik', ref: 'b-brennen-loeschen',
     def: 'Abkühlen, Ersticken, Nährstoffentzug/Trennen, antikatalytischer Effekt – die vier Wege, ein Feuer zu löschen.' },
@@ -105,6 +105,78 @@ export const GLOSSARY = [
     def: 'Trupp, der die Wasserversorgung (Pumpe → Verteiler) herstellt und danach den Sicherheitstrupp stellt.' },
   { term: 'Zündtemperatur', cat: 'gefahr', ref: 'b-brennen-loeschen',
     def: 'Temperatur, bei der sich ein Stoff ohne äußere Zündquelle selbst entzündet.' },
+
+  /* --- Q · Jugend- & Nachwuchsarbeit --- */
+  { term: 'Jugendflamme', cat: 'ausbildung', ref: 'q-jugend',
+    def: 'Ausbildungs- und Leistungsabzeichen der Jugendfeuerwehr in drei Stufen – vermittelt Grundfertigkeiten spielerisch und prüfbar.' },
+  { term: 'Leistungsspange', cat: 'ausbildung', ref: 'q-jugend',
+    def: 'Höchste Auszeichnung der deutschen Jugendfeuerwehr – als Gruppe erbrachte Leistung aus Schnelligkeitsübung, Staffellauf, Kugelstoßen, Löschangriff und Fragen.' },
+  { term: 'Aufsichtspflicht', cat: 'ausbildung', ref: 'q-jugend',
+    def: 'Rechtliche Pflicht der Betreuer, Minderjährige vor Schaden zu bewahren – abgestuft nach Alter, Reife und Gefährlichkeit der Tätigkeit.' },
+
+  /* --- S · Rettung & Selbstrettung --- */
+  { term: 'Rautek-Rettungsgriff', cat: 'taktik', ref: 's-rettung',
+    def: 'Griff zum schnellen Ziehen einer nicht gehfähigen Person aus dem unmittelbaren Gefahrenbereich – Unterarm der Person quer vor dem Bauch fassen.' },
+  { term: 'Crashrettung (Sofortrettung)', cat: 'taktik', ref: 's-rettung',
+    def: 'Schnellstmögliche Rettung ohne patientenschonendes Vorgehen bei akuter Lebensgefahr (z. B. Brand, drohende Explosion) – Zeit vor Schonung.' },
+  { term: 'Selbstrettung', cat: 'taktik', ref: 's-rettung',
+    def: 'Sich selbst aus einer Gefahrenlage befreien (z. B. Notausstieg, Rückzug bei Atemschutznotfall) – Grundlage jeder Eigensicherung.' },
+
+  /* --- T · Löschwasserversorgung & Wasserförderung --- */
+  { term: 'Löschwasserförderung über lange Wegstrecke', cat: 'technik', ref: 't-wasserversorgung',
+    def: 'Wasserförderung über große Entfernungen mit mehreren in Reihe geschalteten Pumpen (Relaisbetrieb); Folgepumpen halten mind. 1,5 bar Eingangsdruck.' },
+  { term: 'Ringleitung / Stichleitung', cat: 'technik', ref: 't-wasserversorgung',
+    def: 'Hydrant an beidseitig gespeister Ringleitung liefert mehr Wasser als an einer einseitig gespeisten Endstrecke (Stichleitung).' },
+  { term: 'Unabhängige Löschwasserversorgung', cat: 'technik', ref: 't-wasserversorgung',
+    def: 'Vom Trinkwassernetz unabhängige Quellen: offene Gewässer, Löschwasserbrunnen, -teiche und -behälter.' },
+
+  /* --- U · Knoten, Stiche & Bunde --- */
+  { term: 'Mastwurf', cat: 'technik', ref: 'u-knoten',
+    def: 'Wichtigster Feuerwehrknoten zum Befestigen von Leine/Geräten an einem Anschlagpunkt; auch als „Doppelschlinge" gelegt und überwurfbar.' },
+  { term: 'Zimmermannsschlag (Zimmermannsstich)', cat: 'technik', ref: 'u-knoten',
+    def: 'Knoten zum Hochziehen und Halten langer Lasten (z. B. Balken); zieht sich unter Zug fest und ist danach leicht zu lösen.' },
+  { term: 'Feuerwehrleine (FwL)', cat: 'technik', ref: 'u-knoten',
+    def: 'Genormte, gekennzeichnete Leine (i. d. R. 30 m) mit Leinenbeutel – regelmäßig zu prüfen; dient zum Sichern, Halten und Hochziehen.' },
+
+  /* --- V · Vegetations- & Waldbrandbekämpfung --- */
+  { term: 'Wundstreifen (Feuerschneise)', cat: 'taktik', ref: 'v-vegetationsbrand',
+    def: 'Bis auf den Mineralboden vegetationsfrei geräumter Streifen, der einem Feuer den Brennstoff entzieht und die Ausbreitung stoppt.' },
+  { term: 'Direkter / indirekter Angriff', cat: 'taktik', ref: 'v-vegetationsbrand',
+    def: 'Direkt: Bekämpfung unmittelbar an der Flammenfront. Indirekt: Anlegen von Riegel-/Wundstreifen in Abstand zur Front (bei zu großer Hitze).' },
+  { term: 'Flankenangriff', cat: 'taktik', ref: 'v-vegetationsbrand',
+    def: 'Vorgehen entlang der Feuerflanken von hinten zur Spitze, um die Front einzuengen – sicherer als der Angriff gegen die Ausbreitungsrichtung.' },
+
+  /* --- W · Unwetter, Hochwasser & Naturgefahren --- */
+  { term: 'Deichverteidigung', cat: 'taktik', ref: 'w-naturgefahren',
+    def: 'Maßnahmen zum Schutz eines Deiches vor Überströmung und Aufweichen: Erhöhung mit Sandsäcken, Böschungsschutz, Beruhigen von Sickerstellen.' },
+  { term: 'Qualmwasser (Sickerstelle)', cat: 'gefahr', ref: 'w-naturgefahren',
+    def: 'Durch den Deichkörper drückendes Wasser; wird mit Quellkade/Sandsackring beruhigt, nicht abgedichtet – Abdichten erhöht die Bruchgefahr.' },
+  { term: 'Sandsackverbau (Läuferverband)', cat: 'technik', ref: 'w-naturgefahren',
+    def: 'Sandsäcke zu ⅔ gefüllt, versetzt und mit versetzten Fugen geschichtet – so entsteht ein stabiler, dichter Verbau.' },
+
+  /* --- X · Wasserrettung, Eis & Bootsdienst --- */
+  { term: 'Rettungsreihenfolge (Wasser)', cat: 'taktik', ref: 'x-wasserrettung',
+    def: 'Prioritätenfolge bei Wasserrettung: Rufen – Werfen – Fahren – Schwimmen; Schwimmen nur als letztes Mittel durch ausgebildete Kräfte.' },
+  { term: 'Rettungsweste', cat: 'technik', ref: 'x-wasserrettung',
+    def: 'Persönliche Schutzausrüstung bei Einsätzen am/im Wasser – Feststoff- oder aufblasbare Weste; ohne sie kein Einsatz am Fließgewässer.' },
+  { term: 'Eisrettung', cat: 'taktik', ref: 'x-wasserrettung',
+    def: 'Rettung eingebrochener Personen: nie ungesichert aufs Eis, Last verteilen (Bauchlage, Leiter, Steckleiterteil), immer mit Rückholsicherung.' },
+
+  /* --- Y · Motorkettensäge & technische Geräte --- */
+  { term: 'Rückschlag (Kickback)', cat: 'gefahr', ref: 'y-motorsaege',
+    def: 'Blitzartiges Zurückschlagen der Motorsäge zum Bediener, wenn der obere Bereich der Schienenspitze Material berührt – die Kettenbremse stoppt die Kette.' },
+  { term: 'Fallkerb & Bruchleiste', cat: 'technik', ref: 'y-motorsaege',
+    def: 'Beim Fällen bestimmt der Fallkerb die Fallrichtung; die stehen gelassene Bruchleiste wirkt als Scharnier und führt den Baum kontrolliert.' },
+  { term: 'Schnittschutzhose', cat: 'technik', ref: 'y-motorsaege',
+    def: 'PSA mit Fasereinlage, die bei Kettenkontakt die Kette blockiert (bremst) – Pflicht beim Arbeiten mit der Motorkettensäge.' },
+
+  /* --- Z · Katastrophenschutz & überörtliche Hilfe --- */
+  { term: 'Katastrophenschutz vs. Zivilschutz', cat: 'recht', ref: 'z-katastrophenschutz',
+    def: 'Katastrophenschutz ist Ländersache (Großschadens-/Naturlagen im Frieden); Zivilschutz ist Bundesaufgabe (Schutz der Bevölkerung im Verteidigungsfall).' },
+  { term: '(Hilfeleistungs-)Kontingent', cat: 'fuehrung', ref: 'z-katastrophenschutz',
+    def: 'Aus mehreren Einheiten zusammengestellter, überörtlich verlegbarer Kräfteverband eines Kreises/Landes zur Unterstützung anderer Gebiete.' },
+  { term: 'BBK / THW', cat: 'recht', ref: 'z-katastrophenschutz',
+    def: 'Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (Koordination, Ausstattung) und Technisches Hilfswerk (technische Großhilfe, Logistik).' },
 ].sort((a, b) => a.term.localeCompare(b.term, 'de'));
 
 export const GLOSSARY_CATS = {
@@ -115,4 +187,5 @@ export const GLOSSARY_CATS = {
   medizin: { label: 'Medizin',      color: '#2e9e5b' },
   fuehrung:{ label: 'Führung',      color: '#16607a' },
   atem:    { label: 'Atemschutz',   color: '#8e44ad' },
+  ausbildung:{ label: 'Ausbildung', color: '#d35400' },
 };
