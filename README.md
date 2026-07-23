@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
 
 ---
 
@@ -19,6 +19,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🧒 **Jugendfeuerwehr** | Eigener Bereich mit altersgerechten Übungsprüfungen zur Vorbereitung auf die **Jugendflamme (Stufe 1–3)** und die **Leistungsspange** – Notruf 112, Knoten, Gerätekunde, Erste Hilfe und Teamwissen |
 | 📊 **Schaubilder** | 39 theme-fähige Erklär-Grafiken in den Lektionen – in **jedem** Modul mindestens eines (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen, Kreiselpumpe, STOP-Prinzip, Auffangsystem, Deichverteidigung, Motorsägen-Rückschlag u. v. m.) |
 | 🎮 **Planspiele** | 17 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
+| 🧭 **Einsatzkompass** | 10 digitale Taschenkarten mit Führungs-Checklisten für seltene/Stress-Lagen (GAMS, 4A-1C-4E, MANV …) – abhakbar, mit roten Linien und **Druckfunktion** für die echte Taschenkarte |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
@@ -68,6 +69,24 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 **Führung:** Großschadenslage/Stabsarbeit (Führungsstufe D)
 
 Jede Entscheidung wirkt sich auf die Bewertungsdimensionen aus; am Ende gibt es einen ausführlichen Führungsbericht mit allen getroffenen Entscheidungen.
+
+## 🧭 Einsatzkompass – Taschenkarten für Führungskräfte
+
+Unter **Im Einsatz → Einsatzkompass** liegen **10 digitale Taschenkarten**: kompakte Führungs-Checklisten für Lagen, die selten vorkommen oder unter Stress – etwa bei einer Alarmierung aus dem Tiefschlaf – nicht lückenlos abrufbar sind. Die Idee ist angelehnt an den Wettbewerbsbeitrag *„Einsatzkompass"* der Freiwilligen Feuerwehr Biebertal: Die Führungskraft ist gut ausgebildet – die Karte stützt in der entscheidenden Minute das Gedächtnis.
+
+Jede Karte bündelt:
+
+- **Wann ziehe ich sie?** – typische Alarmstichworte und Einsatzanlässe
+- **Merkschemata** – Faustformeln wie **GAMS** (Gefahrgut), die **4-A-1-C-4-E-Regel** (Gefahren der Einsatzstelle) oder der **Führungsvorgang** der FwDV 100
+- **Abhakbare Checkliste** – nach Phasen gegliedert, mit Fortschrittsanzeige und Zurücksetzen
+- **Rote Linien** – kritische Sicherheitshinweise, die nie übergangen werden dürfen
+- **Muster für die erste Lagemeldung** und **Verlinkung in die passenden Module**
+
+Die Karten: *Führungsvorgang & erste Lagemeldung · Gefahrenmatrix (4A-1C-4E) · ABC-/Gefahrguteinsatz (GAMS) · Brand mit Menschenleben in Gefahr · Verkehrsunfall (eingeklemmte Person) · Türöffnung · Massenanfall von Verletzten (MANV) · Elektrische Gefahren (PV/HV/Freileitung) · Wasserförderung über lange Wegstrecke · Unwetterlage.*
+
+Jede Karte lässt sich per **Druckfunktion** als echte, physische Taschenkarte ausgeben – dank PWA auch offline an der Einsatzstelle nutzbar.
+
+> **Hinweis:** Der Einsatzkompass stützt das vorhandene Wissen, ersetzt aber weder Ausbildung noch den eigenen Lagecheck vor Ort.
 
 ## 🎓 Abschlussprüfungen (modulübergreifend)
 

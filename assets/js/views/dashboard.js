@@ -5,6 +5,7 @@
 import { MODULES, MODULE_BY_ID, CATEGORIES, LEVELS, LESSON_COUNT } from '../data/curriculum.js';
 import { EXAMS, TOTAL_QUESTIONS } from '../data/exams.js';
 import { PLANSPIELE } from '../data/planspiele.js';
+import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam, level, todayStr } from '../state.js';
 import { esc, fmtDateTime, fmtDuration } from '../utils.js';
@@ -125,6 +126,10 @@ export function renderDashboard() {
           <a href="#/planspiele" class="card card--pad card--interactive tile" style="text-decoration:none;color:inherit">
             <div class="tile__icon i-amber">${icon('game')}</div>
             <div><b>${PLANSPIELE.length}</b><span>Planspiele</span></div>
+          </a>
+          <a href="#/einsatzkompass" class="card card--pad card--interactive tile" style="text-decoration:none;color:inherit">
+            <div class="tile__icon i-purple">${icon('compass')}</div>
+            <div><b>${EINSATZKOMPASS.length}</b><span>Einsatzkompass</span></div>
           </a>
           <a href="#/lernpfad" class="card card--pad card--interactive tile" style="text-decoration:none;color:inherit">
             <div class="tile__icon i-green">${icon('path')}</div>
