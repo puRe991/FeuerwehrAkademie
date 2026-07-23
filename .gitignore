@@ -12,3 +12,6 @@ npm-debug.log*
 # Temporär
 *.log
 .cache/
+
+# Vom Windows-Starter bei Bedarf heruntergeladener portabler Server
+tools/

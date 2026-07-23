@@ -1,0 +1,14 @@
+# Windows-Startdateien: exakte Bytes (CRLF) in JEDEM Verteilweg behalten -
+# auch beim ZIP-Download von GitHub. Sonst koennen cmd.exe/PowerShell bei
+# reinen LF-Enden goto/Labels falsch verarbeiten.
+*.bat -text
+*.cmd -text
+*.ps1 -text
+
+# Web-Quelltext einheitlich mit LF
+*.js   text eol=lf
+*.mjs  text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md   text eol=lf

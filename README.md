@@ -103,6 +103,17 @@ npx serve .
 
 > **Hinweis:** ES-Module benötigen `http://` (nicht `file://`). Einfach über einen lokalen Server oder GitHub Pages öffnen.
 
+### 🪟 Windows: einfach doppelklicken
+
+Für Windows liegt ein Startprogramm bei: **`Feuerwehr-Akademie-starten.bat`** einfach doppelklicken. Es prüft der Reihe nach, was vorhanden ist, und startet die App automatisch im Browser:
+
+1. **Python** (falls installiert) – startet `http.server`
+2. **Node.js** (falls installiert) – startet einen kleinen eingebauten Server
+3. **Portabler Server (Caddy)** – wird bei Bedarf einmalig heruntergeladen
+4. **PowerShell-Server** (`server.ps1`, mitgeliefert) – benötigt *keinen* Download und funktioniert auch offline
+
+Es ist also **keine** manuelle Installation nötig. Zum Beenden das Server-Fenster schließen.
+
 ### Als GitHub Page veröffentlichen
 
 Der beigefügte Workflow (`.github/workflows/pages.yml`) veröffentlicht das Repository automatisch über GitHub Pages. In den Repo-Einstellungen unter **Pages → Source → GitHub Actions** aktivieren.
