@@ -23,6 +23,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🧭 **Einsatzkompass** | 10 digitale Taschenkarten mit Führungs-Checklisten für seltene/Stress-Lagen (GAMS, 4A-1C-4E, MANV …) – abhakbar, mit roten Linien und **Druckfunktion** für die echte Taschenkarte |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
+| 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
 | 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
