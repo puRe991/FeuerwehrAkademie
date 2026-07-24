@@ -5,6 +5,10 @@
 *.cmd -text
 *.ps1 -text
 
+# Bilder als Binärdateien behandeln (keine EOL-Normalisierung)
+*.webp binary
+*.png  binary
+
 # Web-Quelltext einheitlich mit LF
 *.js   text eol=lf
 *.mjs  text eol=lf

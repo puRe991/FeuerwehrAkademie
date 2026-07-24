@@ -94,7 +94,7 @@ function badgeTile(b, ctx, unlocked) {
   const goal = badgeGoal(b, ctx);
   const pct = Math.min(100, Math.round(cur / goal * 100));
   return `<article class="badge-tile ${unlocked ? 'is-earned' : 'is-locked'}" aria-label="${esc(b.name)} – ${unlocked ? 'freigeschaltet' : 'gesperrt'}">
-    <div class="badge-medal">${icon(unlocked ? b.icon : 'lock').replace('<svg ', '<svg style="width:26px;height:26px" ')}</div>
+    <div class="badge-medal">${icon(unlocked ? b.icon : 'lock')}</div>
     <b>${esc(b.name)}</b>
     <span class="subtle" style="font-size:.8rem;line-height:1.3">${esc(b.desc)}</span>
     ${unlocked

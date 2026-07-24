@@ -20,13 +20,14 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
   padding: 18px 14px; border-radius: var(--r-md); background: var(--surface);
   border: 1px solid var(--border);
 }
-.badge-tile.is-locked { opacity: .72; }
+.badge-tile.is-locked { opacity: .82; }
 .badge-medal {
-  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 4px;
-  background: linear-gradient(140deg, var(--fw-amber), var(--fw-red)); color: #fff;
-  box-shadow: 0 4px 14px rgba(216,31,38,.28);
+  width: 66px; height: 66px; display: grid; place-items: center; margin-bottom: 4px;
+  background: url('../img/badges/medal.webp') center / contain no-repeat;
+  color: #7a1410; filter: drop-shadow(0 3px 8px rgba(216,31,38,.28));
 }
-.badge-tile.is-locked .badge-medal { background: var(--surface-2); color: var(--text-subtle); box-shadow: none; }
+.badge-medal svg { width: 24px; height: 24px; margin-top: 1px; }
+.badge-tile.is-locked .badge-medal { filter: grayscale(1) opacity(.5); color: #55606e; }
 
 /* ---------- Knoten-Trainer ---------- */
 .knot-dot {
