@@ -7,7 +7,7 @@ import { EXAMS, TOTAL_QUESTIONS } from '../data/exams.js';
 import { PLANSPIELE } from '../data/planspiele.js';
 import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
 import { icon } from '../data/icons.js';
-import { getState, moduleProgress, isModulePassed, bestExam, level, todayStr } from '../state.js';
+import { getState, moduleProgress, isModulePassed, bestExam, level, todayStr, mistakeStats } from '../state.js';
 import { esc, fmtDateTime, fmtDuration } from '../utils.js';
 
 function greeting() {
@@ -70,6 +70,7 @@ export function renderDashboard() {
   const cat = CATEGORIES[rec.module.category];
   const lvl = level();
   const xpInLevel = (s.xp || 0) % 100;
+  const ms = mistakeStats();
 
   return `
   <div class="view fade-up">
@@ -112,6 +113,14 @@ export function renderDashboard() {
             ${EXAMS[rec.module.id] ? `<a class="btn btn--outline" href="#/pruefung/${rec.module.id}">${icon('exam')} Prüfung</a>` : ''}
           </div>
         </div>
+
+        ${ms.open ? `<a href="#/wiederholung" class="card card--pad card--interactive between wrap" style="text-decoration:none;color:inherit;gap:14px;border-left:4px solid var(--fw-red)">
+          <span class="flex gap-md" style="align-items:center;min-width:0">
+            <span style="width:44px;height:44px;border-radius:12px;background:var(--warn-bg,#f5a62322);color:var(--warn,#c98a00);display:grid;place-items:center;flex:none">${icon('refresh').replace('<svg ', '<svg style="width:24px;height:24px" ')}</span>
+            <span style="min-width:0"><b>Meine Schwachstellen wiederholen</b><span class="subtle" style="display:block">${ms.open} ${ms.open === 1 ? 'Frage wartet' : 'Fragen warten'} – aus Fehlern lernst du am meisten.</span></span>
+          </span>
+          <span class="btn btn--primary" style="pointer-events:none;flex:none">${ms.open} üben ${icon('arrowr')}</span>
+        </a>` : ''}
 
         <!-- Schnellzugriff Kacheln -->
         <div class="tiles">
@@ -162,12 +171,12 @@ function statRow(label, val) {
 
 function renderActivity(s) {
   if (!s.activity.length) return `<p class="subtle" style="font-size:.9rem">Noch keine Aktivität. Starte dein erstes Modul!</p>`;
-  const labels = { lesson: 'Lektion abgeschlossen', exam: 'Prüfung', planspiel: 'Planspiel', module: 'Modul geöffnet' };
+  const labels = { lesson: 'Lektion abgeschlossen', exam: 'Prüfung', planspiel: 'Planspiel', module: 'Modul geöffnet', review: 'Wiederholung' };
   return `<ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px">${
     s.activity.slice(0, 6).map(a => {
       const m = MODULE_BY_ID[a.meta?.moduleId] || MODULE_BY_ID[a.ref];
       const title = a.meta?.title || m?.title || a.ref;
-      const ic = a.type === 'exam' ? 'exam' : a.type === 'planspiel' ? 'game' : 'check';
+      const ic = a.type === 'exam' ? 'exam' : a.type === 'planspiel' ? 'game' : a.type === 'review' ? 'refresh' : 'check';
       return `<li class="flex gap-sm" style="align-items:center;font-size:.88rem">
         <span style="width:30px;height:30px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--fw-red)">${icon(ic).replace('<svg ','<svg style="width:16px;height:16px" ')}</span>
         <span style="flex:1;min-width:0"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(title)}</b><span class="subtle">${labels[a.type] || a.type} · ${fmtDateTime(a.date)}</span></span>

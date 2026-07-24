@@ -15,6 +15,7 @@ const DEFAULT_STATE = {
   bookmarks: [],       // [moduleId]
   activity: [],        // [ { type, ref, date } ] (Verlauf)
   flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
+  mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   streak: { count: 0, lastDay: null },
   xp: 0,
 };
@@ -154,6 +155,44 @@ export function flashcardStats(allCards) {
     else dueToday++;
   });
   return { total: allCards.length, seen, learned, mastered, dueToday };
+}
+
+/* ---- Fehler-/Wiederholungs-Center ---- */
+
+/**
+ * Ergebnis einer Prüfungsfrage festhalten. Eine Frage gilt als „offen"
+ * (wiederholungsbedürftig), solange sie zuletzt falsch beantwortet wurde.
+ * Eine richtige Antwort schließt die Frage (last='right').
+ */
+export function recordQuestionResult(questionId, correct) {
+  if (!questionId) return;
+  update(s => {
+    if (!s.mistakes) s.mistakes = {};
+    const cur = s.mistakes[questionId] || { wrong: 0, right: 0, last: null, ts: null };
+    if (correct) cur.right += 1; else cur.wrong += 1;
+    cur.last = correct ? 'right' : 'wrong';
+    cur.ts = new Date().toISOString();
+    // Nie falsch beantwortete, aber richtig gelöste Fragen müssen nicht dauerhaft mitgeführt werden.
+    if (correct && cur.wrong === 0) { delete s.mistakes[questionId]; return; }
+    s.mistakes[questionId] = cur;
+  });
+}
+
+/** IDs aller offenen (zuletzt falsch beantworteten) Fragen – neueste zuerst. */
+export function openMistakeIds() {
+  const m = state.mistakes || {};
+  return Object.keys(m)
+    .filter(id => m[id]?.last === 'wrong')
+    .sort((a, b) => String(m[b].ts).localeCompare(String(m[a].ts)));
+}
+
+/** Kennzahlen fürs Fehler-Center. */
+export function mistakeStats() {
+  const m = state.mistakes || {};
+  const ids = Object.keys(m);
+  const open = ids.filter(id => m[id]?.last === 'wrong');
+  const recovered = ids.filter(id => m[id]?.last === 'right').length;
+  return { open: open.length, recovered, seen: ids.length };
 }
 
 export function toggleBookmark(moduleId) {

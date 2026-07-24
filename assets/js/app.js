@@ -6,13 +6,14 @@ import { MODULES, LESSON_COUNT } from './data/curriculum.js';
 import { EXAMS, TOTAL_QUESTIONS } from './data/exams.js';
 import { PLANSPIELE } from './data/planspiele.js';
 import { icon } from './data/icons.js';
-import { getState, subscribe, setTheme, level } from './state.js';
+import { getState, subscribe, setTheme, level, mistakeStats } from './state.js';
 import { esc, initials, qs } from './utils.js';
 
 import { renderDashboard } from './views/dashboard.js';
 import { renderModules, renderModuleDetail } from './views/modules.js';
 import { renderLesson, bindLesson } from './views/lesson.js';
 import { renderExam, bindExam, resetExamSession } from './views/exam.js';
+import { renderWiederholung, bindWiederholung, resetReviewSession } from './views/wiederholung.js';
 import { renderPlanspielList, renderPlanspiel, bindPlanspiel, resetPlanspielSession } from './views/planspiel.js';
 import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark } from './views/profile.js';
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
@@ -41,6 +42,7 @@ const NAV = [
   { href: '#/glossar', label: 'Glossar', icon: 'search' },
   { section: 'Prüfen & Üben' },
   { href: '#/pruefungen', label: 'Prüfungen', icon: 'exam', count: Object.keys(EXAMS).length },
+  { href: '#/wiederholung', label: 'Wiederholung', icon: 'refresh', count: () => mistakeStats().open || null },
   { href: '#/planspiele', label: 'Planspiele', icon: 'game', count: PLANSPIELE.length },
   { section: 'Im Einsatz' },
   { href: '#/einsatzkompass', label: 'Einsatzkompass', icon: 'compass', count: EINSATZKOMPASS.length },
@@ -61,11 +63,13 @@ function renderShell(activeHref) {
         <span class="brand__txt"><b>Feuerwehr Akademie</b><span>Online · A bis Z</span></span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
-        ${NAV.map(item => item.section
-          ? `<div class="nav__section">${esc(item.section)}</div>`
-          : `<a class="nav__link ${isActive(activeHref, item.href) ? 'active' : ''}" href="${item.href}">
-               ${icon(item.icon)}<span>${esc(item.label)}</span>${item.count != null ? `<span class="count">${item.count}</span>` : ''}
-             </a>`).join('')}
+        ${NAV.map(item => {
+          if (item.section) return `<div class="nav__section">${esc(item.section)}</div>`;
+          const cnt = typeof item.count === 'function' ? item.count() : item.count;
+          return `<a class="nav__link ${isActive(activeHref, item.href) ? 'active' : ''}" href="${item.href}">
+               ${icon(item.icon)}<span>${esc(item.label)}</span>${cnt != null ? `<span class="count">${cnt}</span>` : ''}
+             </a>`;
+        }).join('')}
       </nav>
       <div class="sidebar__foot">
         <a class="userchip" href="#/profil" style="text-decoration:none;color:inherit">
@@ -112,6 +116,7 @@ function routeView(parts) {
     case 'lektion': return { html: renderLesson(a, b), bind: bindLesson };
     case 'pruefungen': return { html: renderPruefungen() };
     case 'pruefung': return { html: renderExam(a), bind: bindExam };
+    case 'wiederholung': return { html: renderWiederholung(), bind: bindWiederholung };
     case 'planspiele': return { html: renderPlanspielList() };
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
     case 'lernpfad': return { html: renderLernpfad() };
@@ -149,6 +154,7 @@ function render() {
   // Session-Reset bei Verlassen von Prüfung/Planspiel
   if (parts[0] !== 'pruefung') resetExamSession();
   if (parts[0] !== 'planspiel') resetPlanspielSession();
+  if (parts[0] !== 'wiederholung') resetReviewSession();
 
   if (route.bare) {
     app.innerHTML = `<div class="main" style="grid-column:1/-1">${route.html}</div>`;

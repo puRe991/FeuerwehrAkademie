@@ -633,3 +633,16 @@ for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3, EXT
 
 /* Utility: Gesamtzahl Fragen */
 export const TOTAL_QUESTIONS = Object.values(EXAMS).reduce((n, e) => n + e.questions.length, 0);
+
+/* Globaler Fragen-Index (id → Frage inkl. Herkunftsmodul).
+   Dient dem Fehler-/Wiederholungs-Center: aus einer gespeicherten Frage-ID
+   lässt sich die vollständige Frage (Optionen, Lösung, Erklärung) wiederfinden. */
+export const QUESTION_BY_ID = (() => {
+  const map = {};
+  for (const [moduleId, ex] of Object.entries(EXAMS)) {
+    for (const q of ex.questions) {
+      if (q.id && !map[q.id]) map[q.id] = { ...q, moduleId };
+    }
+  }
+  return map;
+})();

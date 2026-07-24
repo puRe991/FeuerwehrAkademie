@@ -7,7 +7,7 @@ import { MODULE_BY_ID } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
 import { icon } from '../data/icons.js';
-import { saveExamResult, logActivity, bestExam } from '../state.js';
+import { saveExamResult, logActivity, bestExam, recordQuestionResult } from '../state.js';
 import { esc, shuffle, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 
@@ -267,6 +267,8 @@ function recordAnswer(selected) {
   const q = session.questions[session.current];
   const correct = selected.length === q.correct.length && selected.every(i => q.correct.includes(i));
   session.answers[session.current] = { selected: selected.sort(), correct };
+  // Für das Fehler-/Wiederholungs-Center merken (nur echte Katalogfragen mit ID).
+  recordQuestionResult(q.id, correct);
 }
 
 export function resetExamSession() { session = null; }

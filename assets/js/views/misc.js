@@ -8,7 +8,7 @@ import { PLANSPIELE } from '../data/planspiele.js';
 import { GLOSSARY } from '../data/glossary.js';
 import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
 import { icon } from '../data/icons.js';
-import { getState, moduleProgress, isModulePassed, bestExam } from '../state.js';
+import { getState, moduleProgress, isModulePassed, bestExam, mistakeStats } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
 import { recommendModule } from './dashboard.js';
 
@@ -118,12 +118,21 @@ export function renderPruefungen() {
   const modsWithExam = MODULES.filter(m => EXAMS[m.id]);
   const proSets = EXAM_SETS.filter(s => !s.youth);
   const youthSets = EXAM_SETS.filter(s => s.youth);
+  const ms = mistakeStats();
   return `
   <div class="view fade-up">
     <div class="view__head">
       <h1>Prüfungen</h1>
       <p class="muted">Weise dein Wissen nach. Modulprüfungen gibt es in drei Stufen (Grundlagen · Aufbau · Komplett); modulübergreifende Abschlussprüfungen bündeln ganze Ausbildungsabschnitte.</p>
     </div>
+
+    ${ms.open ? `<a href="#/wiederholung" class="card card--pad card--interactive between wrap" style="text-decoration:none;color:inherit;gap:14px;margin-bottom:26px;border-left:4px solid var(--fw-red)">
+      <span class="flex gap-md" style="align-items:center;min-width:0">
+        <span style="width:44px;height:44px;border-radius:12px;background:var(--warn-bg,#f5a62322);color:var(--warn,#c98a00);display:grid;place-items:center;flex:none">${icon('refresh').replace('<svg ', '<svg style="width:24px;height:24px" ')}</span>
+        <span style="min-width:0"><b>Meine Schwachstellen wiederholen</b><span class="subtle" style="display:block">${ms.open} falsch beantwortete ${ms.open === 1 ? 'Frage' : 'Fragen'} gezielt üben.</span></span>
+      </span>
+      <span class="btn btn--primary" style="pointer-events:none;flex:none">${ms.open} üben ${icon('arrowr')}</span>
+    </a>` : ''}
 
     <h2 style="margin-bottom:14px">${icon('award').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Abschlussprüfungen</h2>
     <div class="module-grid" style="margin-bottom:34px">
