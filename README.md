@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
 
 ---
 
@@ -171,6 +171,24 @@ FeuerwehrAkademie/
 ```
 
 **Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt. Alle Daten bleiben lokal auf dem Gerät.
+
+## ✅ Qualitätssicherung (CI)
+
+Damit die Inhalte auch bei wachsendem Umfang verlässlich bleiben, prüft eine **automatisierte Inhalts-Validierung** bei jedem Push und Pull Request die Datenmodule:
+
+```
+node scripts/validate-content.mjs
+```
+
+Geprüft werden u. a.:
+
+- **Fragenbank:** jede Frage hat eine gültige, eindeutige ID, einen Fragetext und eine Erklärung; die `correct`-Indizes liegen im gültigen Bereich; Fragetypen (`single`/`multiple`/`truefalse`) sind stimmig (z. B. Wahr/Falsch mit genau zwei Optionen und einer Lösung) – **Fragen ohne richtige Antwort oder mit doppelten IDs fallen sofort auf**.
+- **Prüfungssets:** alle Quell-Verweise zeigen auf existierende Fragenpools, und die Sets lassen sich fehlerfrei zusammenstellen.
+- **Curriculum:** eindeutige Modul-IDs/-Codes, gültige Kategorien und Level, Lektionen mit Inhaltsblöcken.
+- **Querverweise:** Glossar-, Karteikarten- und Quellen-Bezüge verweisen nur auf **vorhandene Module**; jedes Modul hat Quellenangaben.
+- **Einsatzkompass & Planspiele:** eindeutige IDs, vollständige Pflichtfelder.
+
+Der GitHub-Actions-Workflow (`.github/workflows/content-check.yml`) führt zusätzlich einen Syntax-Check aller JS-Module aus. **Fehler lassen den Lauf scheitern; Warnungen** (z. B. eine Multiple-Choice-Frage, bei der alle Optionen richtig sind) werden nur informativ gemeldet.
 
 ## 🎯 Personalisierung & Datenschutz
 
