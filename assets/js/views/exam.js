@@ -7,7 +7,7 @@ import { MODULE_BY_ID } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
 import { icon } from '../data/icons.js';
-import { saveExamResult, logActivity, bestExam } from '../state.js';
+import { saveExamResult, logActivity, bestExam, recordQuestionResult } from '../state.js';
 import { esc, shuffle, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 
@@ -84,6 +84,12 @@ function examIntro(ctx) {
           <button class="btn btn--primary btn--lg" data-start="${ctx.id}" data-level="pruefung">${icon('play')} Abschlussprüfung starten</button>
           <p class="subtle" style="font-size:.82rem">Jeder Start stellt eine neue, gemischte Auswahl zusammen.</p>
         `}
+        <div class="callout" style="max-width:520px;margin:6px auto 0;text-align:left;background:var(--warn-bg,#f5a62322);border:none">
+          <div class="between wrap" style="gap:10px;align-items:center">
+            <span style="font-size:.9rem">${icon('clock').replace('<svg ', '<svg style="width:16px;height:16px;vertical-align:-3px" ')} <b>Ernstmodus:</b> mit Zeitlimit, ohne Auflösung, mit Prüfungszeugnis.</span>
+            <a class="btn btn--outline btn--sm" href="#/simulator/${ctx.id}">Prüfungssimulator ${icon('arrowr').replace('<svg ', '<svg style="width:14px;height:14px" ')}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>`;
@@ -124,7 +130,7 @@ function examQuestion() {
     <div class="exam-shell">
       <div class="exam-bar">
         <a class="iconbtn" href="${session.back}" title="Abbrechen">${icon('x')}</a>
-        <div class="progress"><i style="width:${pct}%"></i></div>
+        <div class="progress" role="progressbar" aria-label="Prüfungsfortschritt" aria-valuenow="${session.current}" aria-valuemin="0" aria-valuemax="${total}"><i style="width:${pct}%"></i></div>
         <span class="q-num" style="white-space:nowrap">${session.current + 1} / ${total}</span>
       </div>
 
@@ -135,7 +141,7 @@ function examQuestion() {
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
 
-        <div class="options" id="options">
+        <div class="options" id="options" role="group" aria-label="Antwortoptionen">
           ${q.options.map((opt, i) => {
             let cls = 'opt';
             if (answered) {
@@ -144,7 +150,7 @@ function examQuestion() {
               if (correct) cls += ' correct';
               else if (chosen) cls += ' wrong';
             }
-            return `<button class="${cls}" data-opt="${i}" ${answered ? 'disabled' : ''}>
+            return `<button class="${cls}" data-opt="${i}" ${answered ? 'disabled' : ''} aria-pressed="${answered && answered.selected.includes(i) ? 'true' : 'false'}">
               <span class="opt__key">${answered && q.correct.includes(i) ? '✓' : answered && answered.selected.includes(i) ? '✕' : String.fromCharCode(65 + i)}</span>
               <span>${esc(opt)}</span>
             </button>`;
@@ -233,7 +239,7 @@ export function bindExam(root, rerender) {
     root.querySelectorAll('#options .opt').forEach(btn => {
       btn.addEventListener('click', () => {
         const i = +btn.dataset.opt;
-        if (q.type === 'multiple') btn.classList.toggle('selected');
+        if (q.type === 'multiple') { const on = btn.classList.toggle('selected'); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
         else { recordAnswer([i]); rerender(); }
       });
     });
@@ -267,6 +273,8 @@ function recordAnswer(selected) {
   const q = session.questions[session.current];
   const correct = selected.length === q.correct.length && selected.every(i => q.correct.includes(i));
   session.answers[session.current] = { selected: selected.sort(), correct };
+  // Für das Fehler-/Wiederholungs-Center merken (nur echte Katalogfragen mit ID).
+  recordQuestionResult(q.id, correct);
 }
 
 export function resetExamSession() { session = null; }

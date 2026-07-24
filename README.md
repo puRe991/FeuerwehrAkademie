@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
 
 ---
 
@@ -15,15 +15,22 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 📚 **Module A–Z** | **26 Ausbildungsmodule (A bis Z)** mit **139 Lektionen** – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Knoten, Vegetationsbrand, Naturgefahren, Wasserrettung, Motorsäge und Katastrophenschutz |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
 | 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
+| ⏱️ **Prüfungssimulator** | **Ernstmodus** für jede Modul- und Abschlussprüfung: fester Countdown mit Zeitlimit (Auto-Abgabe bei Ablauf), **keine Auflösung während der Prüfung**, freie Navigation über ein Fragen-Raster mit Markierungen, danach Bestanden/Durchgefallen mit ausdruckbarem **Prüfungszeugnis** |
+| 🔁 **Wiederholung** | **Fehler-/Wiederholungs-Center** („Meine Schwachstellen"): sammelt automatisch alle in Prüfungen falsch beantworteten Fragen und lässt sie gezielt üben – eine richtig gelöste Frage verschwindet aus der Liste. Aus Fehlern lernt man am meisten. |
 | 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
 | 🧒 **Jugendfeuerwehr** | Eigener Bereich mit altersgerechten Übungsprüfungen zur Vorbereitung auf die **Jugendflamme (Stufe 1–3)** und die **Leistungsspange** – Notruf 112, Knoten, Gerätekunde, Erste Hilfe und Teamwissen |
 | 📊 **Schaubilder** | 39 theme-fähige Erklär-Grafiken in den Lektionen – in **jedem** Modul mindestens eines (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen, Kreiselpumpe, STOP-Prinzip, Auffangsystem, Deichverteidigung, Motorsägen-Rückschlag u. v. m.) |
 | 🎮 **Planspiele** | 17 verzweigte Einsatz-Simulationen für Führungskräfte mit Live-Bewertung (Menschenrettung · Eigensicherung · Taktik) und Führungsbericht |
 | 🧭 **Einsatzkompass** | 10 digitale Taschenkarten mit Führungs-Checklisten für seltene/Stress-Lagen (GAMS, 4A-1C-4E, MANV …) – abhakbar, mit roten Linien und **Druckfunktion** für die echte Taschenkarte |
+| 🪢 **Knoten-Trainer** | Schritt-für-Schritt-Anleitungen für die wichtigsten Feuerwehrknoten (Mastwurf gestochen/gelegt, Halbmastwurf, Zimmermannsstich, Schotenstich, Kreuzknoten) mit farbcodierten Schaubildern (rot = loses Ende, blau = festes Teil), Merksatz, Fortschritt und „geübt"-Markierung |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
+| 🔎 **Volltextsuche** | Durchsucht **alle** Inhalte auf einmal – Modultexte, komplette Lektionsinhalte, alle Prüfungsfragen, Glossar, Planspiele, Einsatzkompass und die FwDV-/Quellenangaben. Mehrwortsuche (UND), Relevanz-Ranking und hervorgehobene Textausschnitte |
 | 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
+| 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
+| ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
+| ♿ **Barrierefrei** | Tastaturbedienung, sichtbarer Fokus, Skip-Link, `aria-current`/`aria-pressed`/`aria-expanded`, `role="progressbar"`, `aria-live`-Toasts, dekorative Grafiken für Screenreader ausgeblendet und `prefers-reduced-motion` respektiert |
 | 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
 | 🌗 **Design** | Barrierefreies, responsives Design im Feuerwehr-Look mit Hell-/Dunkelmodus |
 
@@ -169,6 +176,24 @@ FeuerwehrAkademie/
 ```
 
 **Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt. Alle Daten bleiben lokal auf dem Gerät.
+
+## ✅ Qualitätssicherung (CI)
+
+Damit die Inhalte auch bei wachsendem Umfang verlässlich bleiben, prüft eine **automatisierte Inhalts-Validierung** bei jedem Push und Pull Request die Datenmodule:
+
+```
+node scripts/validate-content.mjs
+```
+
+Geprüft werden u. a.:
+
+- **Fragenbank:** jede Frage hat eine gültige, eindeutige ID, einen Fragetext und eine Erklärung; die `correct`-Indizes liegen im gültigen Bereich; Fragetypen (`single`/`multiple`/`truefalse`) sind stimmig (z. B. Wahr/Falsch mit genau zwei Optionen und einer Lösung) – **Fragen ohne richtige Antwort oder mit doppelten IDs fallen sofort auf**.
+- **Prüfungssets:** alle Quell-Verweise zeigen auf existierende Fragenpools, und die Sets lassen sich fehlerfrei zusammenstellen.
+- **Curriculum:** eindeutige Modul-IDs/-Codes, gültige Kategorien und Level, Lektionen mit Inhaltsblöcken.
+- **Querverweise:** Glossar-, Karteikarten- und Quellen-Bezüge verweisen nur auf **vorhandene Module**; jedes Modul hat Quellenangaben.
+- **Einsatzkompass & Planspiele:** eindeutige IDs, vollständige Pflichtfelder.
+
+Der GitHub-Actions-Workflow (`.github/workflows/content-check.yml`) führt zusätzlich einen Syntax-Check aller JS-Module aus. **Fehler lassen den Lauf scheitern; Warnungen** (z. B. eine Multiple-Choice-Frage, bei der alle Optionen richtig sind) werden nur informativ gemeldet.
 
 ## 🎯 Personalisierung & Datenschutz
 

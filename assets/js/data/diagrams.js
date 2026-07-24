@@ -7,7 +7,7 @@
 const RED = '#d81f26', BLUE = '#1e5fa8', AMBER = '#f5a623', GREEN = '#2e9e5b', PURPLE = '#8e44ad';
 
 function svg(vb, inner, h = 'auto') {
-  return `<svg viewBox="${vb}" style="width:100%;height:${h};max-width:560px;margin-inline:auto;display:block;color:var(--text)" fill="none" stroke="currentColor" role="img">${inner}</svg>`;
+  return `<svg viewBox="${vb}" style="width:100%;height:${h};max-width:560px;margin-inline:auto;display:block;color:var(--text)" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">${inner}</svg>`;
 }
 
 export const DIAGRAMS = {

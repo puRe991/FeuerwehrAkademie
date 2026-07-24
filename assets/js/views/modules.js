@@ -3,6 +3,7 @@
    ========================================================================= */
 import { MODULES, MODULE_BY_ID, CATEGORIES, LEVELS } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
+import { MODULE_SOURCES, SOURCE_DISCLAIMER } from '../data/module-sources.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
@@ -141,10 +142,36 @@ export function renderModuleDetail(id) {
           ${best ? `<div class="callout ${best.passed ? 'callout--ok' : 'callout--warn'}" style="margin:.5em 0"><b>Bestes Ergebnis: ${best.score}%</b> ${best.passed ? '– bestanden ✔' : '– noch nicht bestanden'}</div>` : ''}
           <a class="btn btn--outline btn--block" href="#/pruefung/${m.id}">Prüfung starten</a>
         </div>` : ''}
+        ${m.id === 'u-knoten' ? `<a class="card card--pad card--interactive between" href="#/knoten" style="text-decoration:none;color:inherit;gap:12px;border-left:4px solid var(--fw-red)">
+          <span class="flex gap-md" style="align-items:center;min-width:0">
+            <span style="width:44px;height:44px;border-radius:12px;background:var(--info-bg);color:var(--info);display:grid;place-items:center;flex:none">${icon('target').replace('<svg ','<svg style="width:24px;height:24px" ')}</span>
+            <span style="min-width:0"><b>Knoten-Trainer</b><span class="subtle" style="display:block">Schritt für Schritt mit Schaubildern</span></span>
+          </span>
+        </a>` : ''}
+        ${sourcesCard(m)}
         <div class="card card--pad">
           <div class="flex gap-sm wrap">${m.tags.map(t => `<span class="badge">#${esc(t)}</span>`).join('')}</div>
         </div>
       </aside>
+    </div>
+  </div>`;
+}
+
+/* Quellen- & Stand-Angaben je Modul (Fachbezug + Verbindlichkeitshinweis). */
+function sourcesCard(m) {
+  const src = MODULE_SOURCES[m.id];
+  if (!src) return '';
+  return `<div class="card card--pad">
+    <h3 style="margin-bottom:4px">${icon('book').replace('<svg ','<svg style="width:20px;height:20px;vertical-align:-3px" ')} Quellen &amp; Stand</h3>
+    <p class="subtle" style="font-size:.82rem;margin:0 0 10px">Inhaltlicher Stand: ${esc(src.stand)} · orientiert an folgenden Bezugsdokumenten:</p>
+    <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+      ${src.refs.map(r => `<li style="font-size:.88rem;line-height:1.35">
+        <b>${esc(r.ref)}</b><br><span class="muted">${esc(r.title)}</span>
+      </li>`).join('')}
+    </ul>
+    ${src.note ? `<p class="subtle" style="font-size:.82rem;margin:10px 0 0"><i>${esc(src.note)}</i></p>` : ''}
+    <div class="callout callout--warn" style="margin:12px 0 0;font-size:.82rem">
+      ${icon('bolt').replace('<svg ','<svg style="width:15px;height:15px;vertical-align:-2px" ')} ${esc(SOURCE_DISCLAIMER)}
     </div>
   </div>`;
 }
