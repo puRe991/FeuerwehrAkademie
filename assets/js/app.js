@@ -15,6 +15,8 @@ import { renderLesson, bindLesson } from './views/lesson.js';
 import { renderExam, bindExam, resetExamSession } from './views/exam.js';
 import { renderSimulator, bindSimulator, resetSimulatorSession } from './views/simulator.js';
 import { renderWiederholung, bindWiederholung, resetReviewSession } from './views/wiederholung.js';
+import { renderKnotenList, renderKnotenTrainer, bindKnoten, resetKnotenSession } from './views/knoten.js';
+import { KNOTEN } from './data/knoten.js';
 import { renderPlanspielList, renderPlanspiel, bindPlanspiel, resetPlanspielSession } from './views/planspiel.js';
 import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark } from './views/profile.js';
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
@@ -40,6 +42,7 @@ const NAV = [
   { href: '#/module', label: 'Module A–Z', icon: 'book', count: MODULES.length },
   { href: '#/lernpfad', label: 'Lernpfad', icon: 'path' },
   { href: '#/karteikarten', label: 'Karteikarten', icon: 'refresh' },
+  { href: '#/knoten', label: 'Knoten-Trainer', icon: 'target', count: KNOTEN.length },
   { href: '#/glossar', label: 'Glossar', icon: 'search' },
   { section: 'Prüfen & Üben' },
   { href: '#/pruefungen', label: 'Prüfungen', icon: 'exam', count: Object.keys(EXAMS).length },
@@ -119,6 +122,9 @@ function routeView(parts) {
     case 'pruefung': return { html: renderExam(a), bind: bindExam };
     case 'simulator': return { html: renderSimulator(a), bind: bindSimulator };
     case 'wiederholung': return { html: renderWiederholung(), bind: bindWiederholung };
+    case 'knoten': return a
+      ? { html: renderKnotenTrainer(a), bind: bindKnoten }
+      : { html: renderKnotenList(), bind: bindKnoten };
     case 'planspiele': return { html: renderPlanspielList() };
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
     case 'lernpfad': return { html: renderLernpfad() };
@@ -158,6 +164,7 @@ function render() {
   if (parts[0] !== 'simulator') resetSimulatorSession();
   if (parts[0] !== 'planspiel') resetPlanspielSession();
   if (parts[0] !== 'wiederholung') resetReviewSession();
+  if (parts[0] !== 'knoten') resetKnotenSession();
 
   if (route.bare) {
     app.innerHTML = `<div class="main" style="grid-column:1/-1">${route.html}</div>`;

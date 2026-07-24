@@ -142,6 +142,12 @@ export function renderModuleDetail(id) {
           ${best ? `<div class="callout ${best.passed ? 'callout--ok' : 'callout--warn'}" style="margin:.5em 0"><b>Bestes Ergebnis: ${best.score}%</b> ${best.passed ? '– bestanden ✔' : '– noch nicht bestanden'}</div>` : ''}
           <a class="btn btn--outline btn--block" href="#/pruefung/${m.id}">Prüfung starten</a>
         </div>` : ''}
+        ${m.id === 'u-knoten' ? `<a class="card card--pad card--interactive between" href="#/knoten" style="text-decoration:none;color:inherit;gap:12px;border-left:4px solid var(--fw-red)">
+          <span class="flex gap-md" style="align-items:center;min-width:0">
+            <span style="width:44px;height:44px;border-radius:12px;background:var(--info-bg);color:var(--info);display:grid;place-items:center;flex:none">${icon('target').replace('<svg ','<svg style="width:24px;height:24px" ')}</span>
+            <span style="min-width:0"><b>Knoten-Trainer</b><span class="subtle" style="display:block">Schritt für Schritt mit Schaubildern</span></span>
+          </span>
+        </a>` : ''}
         ${sourcesCard(m)}
         <div class="card card--pad">
           <div class="flex gap-sm wrap">${m.tags.map(t => `<span class="badge">#${esc(t)}</span>`).join('')}</div>

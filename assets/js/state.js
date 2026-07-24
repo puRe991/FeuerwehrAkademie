@@ -16,6 +16,7 @@ const DEFAULT_STATE = {
   activity: [],        // [ { type, ref, date } ] (Verlauf)
   flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
+  knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
   streak: { count: 0, lastDay: null },
   xp: 0,
 };
@@ -193,6 +194,19 @@ export function mistakeStats() {
   const open = ids.filter(id => m[id]?.last === 'wrong');
   const recovered = ids.filter(id => m[id]?.last === 'right').length;
   return { open: open.length, recovered, seen: ids.length };
+}
+
+/* ---- Knoten-Trainer ---- */
+export function isKnotLearned(id) { return (state.knotsLearned || []).includes(id); }
+
+export function toggleKnotLearned(id) {
+  update(s => {
+    if (!s.knotsLearned) s.knotsLearned = [];
+    const i = s.knotsLearned.indexOf(id);
+    if (i >= 0) s.knotsLearned.splice(i, 1);
+    else { s.knotsLearned.push(id); s.xp = (s.xp || 0) + 10; }
+  });
+  touchStreak();
 }
 
 export function toggleBookmark(moduleId) {
