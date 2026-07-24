@@ -90,11 +90,6 @@ export function renderLesson(moduleId, lessonId) {
           ${next ? `<a class="btn btn--primary" href="#/lektion/${m.id}/${next.id}">Nächste Lektion ${icon('arrowr')}</a>`
                  : `<a class="btn btn--primary" href="#/pruefung/${m.id}">Zur Prüfung ${icon('arrowr')}</a>`}
         </nav>
-
-        <p class="subtle" style="margin-top:18px;font-size:.85rem">
-          ${icon('chat').replace('<svg ', '<svg style="width:15px;height:15px;vertical-align:-2px;margin-right:2px" ')}
-          Fehler entdeckt oder eine Rückfrage zu dieser Lektion? <a href="#/feedback/${m.id}" style="font-weight:600">Feedback geben</a>
-        </p>
       </article>
 
       <aside class="reader__aside">
