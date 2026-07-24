@@ -29,6 +29,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
 | ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
+| 💬 **Feedback & Rückfragen** | Formular für Rückfragen, Fehlermeldungen und Verbesserungsvorschläge – wird als **vorausgefülltes GitHub-Issue** direkt an das Projekt-Repository übermittelt (mit Live-Vorschau, Modul-Bezug, Kategorien/Labels und Kopier-Fallback). Aus jeder Lektion heraus mit einem Klick erreichbar |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
 | ♿ **Barrierefrei** | Tastaturbedienung, sichtbarer Fokus, Skip-Link, `aria-current`/`aria-pressed`/`aria-expanded`, `role="progressbar"`, `aria-live`-Toasts, dekorative Grafiken für Screenreader ausgeblendet und `prefers-reduced-motion` respektiert |
 | 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
@@ -125,6 +126,7 @@ Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übun
 - **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt; gekonnte Karten kehren seltener zurück, schwierige öfter.
 - **Glossar:** Durchsuchbares Nachschlagewerk der wichtigsten Fachbegriffe und Abkürzungen, jeweils mit Modul-Verlinkung.
 - **Ausbilder-Ansicht:** Gesamtauswertung des Lernstands, druckbarer Ausbildungsnachweis (PDF via Druckdialog), Backup-Export/-Import als JSON und Nachweis-Export als CSV.
+- **Feedback & Rückfragen:** Unter *Konto → Feedback & Rückfragen* (oder direkt aus jeder Lektion) lassen sich Rückfragen, Fehlermeldungen und Verbesserungsvorschläge erfassen. Da die App komplett ohne eigenen Server läuft, wird die Rückmeldung als **vorausgefülltes GitHub-Issue** an das Projekt-Repository übermittelt: Kategorie (mit passenden Labels), Betreff, Modul-Bezug und optionale technische Angaben werden in einer Live-Vorschau angezeigt; ein Klick öffnet GitHub zum Absenden. Für alle ohne GitHub-Konto gibt es einen „Text kopieren"-Fallback. *Hinweis: Ein Issue ist öffentlich – keine sensiblen Daten eintragen.*
 
 ## 🚀 Start
 

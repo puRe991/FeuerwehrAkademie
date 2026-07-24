@@ -22,6 +22,7 @@ import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark 
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
 import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcards } from './views/tools.js';
 import { renderInstructor, bindInstructor } from './views/instructor.js';
+import { renderFeedback, bindFeedback } from './views/feedback.js';
 import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsatzkarte } from './views/einsatzkompass.js';
 import { EINSATZKOMPASS } from './data/einsatzkompass.js';
 
@@ -53,6 +54,7 @@ const NAV = [
   { section: 'Konto' },
   { href: '#/profil', label: 'Mein Profil', icon: 'award' },
   { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
+  { href: '#/feedback', label: 'Feedback & Rückfragen', icon: 'chat' },
 ];
 
 function renderShell(activeHref) {
@@ -139,6 +141,7 @@ function routeView(parts) {
       if (a) return { html: renderEinsatzkarte(a), bind: bindEinsatzkarte };
       return { html: renderEinsatzkompass(), bind: bindEinsatzkompass };
     case 'ausbilder': return { html: renderInstructor(), bind: bindInstructor };
+    case 'feedback': return { html: renderFeedback(decodeURIComponent(a || '')), bind: bindFeedback };
     case 'profil': return { html: renderProfile(), bind: bindProfile };
     case 'suche': return { html: renderSearch(decodeURIComponent(a || '')) };
     case 'onboarding': return { html: renderOnboarding(), bind: bindOnboarding, bare: true };
