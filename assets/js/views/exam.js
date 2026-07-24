@@ -84,6 +84,12 @@ function examIntro(ctx) {
           <button class="btn btn--primary btn--lg" data-start="${ctx.id}" data-level="pruefung">${icon('play')} Abschlussprüfung starten</button>
           <p class="subtle" style="font-size:.82rem">Jeder Start stellt eine neue, gemischte Auswahl zusammen.</p>
         `}
+        <div class="callout" style="max-width:520px;margin:6px auto 0;text-align:left;background:var(--warn-bg,#f5a62322);border:none">
+          <div class="between wrap" style="gap:10px;align-items:center">
+            <span style="font-size:.9rem">${icon('clock').replace('<svg ', '<svg style="width:16px;height:16px;vertical-align:-3px" ')} <b>Ernstmodus:</b> mit Zeitlimit, ohne Auflösung, mit Prüfungszeugnis.</span>
+            <a class="btn btn--outline btn--sm" href="#/simulator/${ctx.id}">Prüfungssimulator ${icon('arrowr').replace('<svg ', '<svg style="width:14px;height:14px" ')}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>`;

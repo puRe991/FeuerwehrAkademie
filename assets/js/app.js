@@ -13,6 +13,7 @@ import { renderDashboard } from './views/dashboard.js';
 import { renderModules, renderModuleDetail } from './views/modules.js';
 import { renderLesson, bindLesson } from './views/lesson.js';
 import { renderExam, bindExam, resetExamSession } from './views/exam.js';
+import { renderSimulator, bindSimulator, resetSimulatorSession } from './views/simulator.js';
 import { renderWiederholung, bindWiederholung, resetReviewSession } from './views/wiederholung.js';
 import { renderPlanspielList, renderPlanspiel, bindPlanspiel, resetPlanspielSession } from './views/planspiel.js';
 import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark } from './views/profile.js';
@@ -116,6 +117,7 @@ function routeView(parts) {
     case 'lektion': return { html: renderLesson(a, b), bind: bindLesson };
     case 'pruefungen': return { html: renderPruefungen() };
     case 'pruefung': return { html: renderExam(a), bind: bindExam };
+    case 'simulator': return { html: renderSimulator(a), bind: bindSimulator };
     case 'wiederholung': return { html: renderWiederholung(), bind: bindWiederholung };
     case 'planspiele': return { html: renderPlanspielList() };
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
@@ -153,6 +155,7 @@ function render() {
 
   // Session-Reset bei Verlassen von Prüfung/Planspiel
   if (parts[0] !== 'pruefung') resetExamSession();
+  if (parts[0] !== 'simulator') resetSimulatorSession();
   if (parts[0] !== 'planspiel') resetPlanspielSession();
   if (parts[0] !== 'wiederholung') resetReviewSession();
 

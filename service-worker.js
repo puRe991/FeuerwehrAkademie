@@ -3,7 +3,7 @@
    Strategie: Cache-first für App-Assets, Network-first-Fallback.
    Für Feuerwehren im Einsatz wertvoll: Lerninhalte auch ohne Netz verfügbar.
    ========================================================================= */
-const CACHE = 'fwa-v22';
+const CACHE = 'fwa-v23';
 const ASSETS = [
   './',
   './index.html',
@@ -40,6 +40,7 @@ const ASSETS = [
   './assets/js/views/modules.js',
   './assets/js/views/lesson.js',
   './assets/js/views/exam.js',
+  './assets/js/views/simulator.js',
   './assets/js/views/wiederholung.js',
   './assets/js/views/planspiel.js',
   './assets/js/views/scene-art.js',

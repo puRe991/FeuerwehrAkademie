@@ -142,6 +142,26 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 .exam-shell { max-width: 780px; margin-inline: auto; }
 .exam-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
 .exam-bar .progress { flex: 1; }
+
+/* ---------- Prüfungssimulator ---------- */
+.sim-clock {
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  font-variant-numeric: tabular-nums; font-weight: 800; font-size: 1.05rem;
+  padding: 5px 12px; border-radius: 999px; background: var(--surface-2); color: var(--text);
+}
+.sim-clock--warn { background: var(--warn-bg); color: var(--warn); animation: simPulse 1s ease-in-out infinite; }
+@keyframes simPulse { 50% { opacity: .55; } }
+.sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 7px; }
+.sim-cell {
+  aspect-ratio: 1; border-radius: 9px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-muted); font-weight: 700; cursor: pointer;
+  display: grid; place-items: center; font-size: .85rem; transition: transform .08s, background .15s;
+}
+.sim-cell:hover { transform: translateY(-1px); }
+.sim-cell--done { background: var(--info-bg); color: var(--info); border-color: transparent; }
+.sim-cell--current { outline: 2px solid var(--fw-red); outline-offset: 1px; color: var(--fw-red); }
+.sim-cell--flag { position: relative; }
+.sim-cell--flag::after { content: "★"; position: absolute; top: -5px; right: -3px; font-size: .7rem; color: var(--fw-amber); }
 .q-card { padding: clamp(20px,3vw,32px); }
 .q-num { font-size: var(--fs-sm); color: var(--text-muted); font-weight: 700; }
 .q-text { font-size: var(--fs-xl); font-weight: 700; margin: 8px 0 20px; }
