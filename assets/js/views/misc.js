@@ -7,6 +7,7 @@ import { EXAM_SETS, setSize } from '../data/pruefungssets.js';
 import { PLANSPIELE } from '../data/planspiele.js';
 import { GLOSSARY } from '../data/glossary.js';
 import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
+import { searchContent } from '../data/search-index.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam, mistakeStats } from '../state.js';
 import { esc, fmtDuration } from '../utils.js';
@@ -170,50 +171,34 @@ export function renderPruefungen() {
   </div>`;
 }
 
-/* ---------- Suche ---------- */
-export function searchAll(query) {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
-  const results = [];
-  MODULES.forEach(m => {
-    if (m.title.toLowerCase().includes(q) || m.summary.toLowerCase().includes(q) || m.tags.some(t => t.toLowerCase().includes(q)) || m.code.toLowerCase() === q) {
-      results.push({ type: 'Modul', title: m.title, sub: CATEGORIES[m.category].label, href: `#/modul/${m.id}`, icon: m.icon });
-    }
-    m.lessons.forEach(l => {
-      if (l.title.toLowerCase().includes(q)) results.push({ type: 'Lektion', title: l.title, sub: m.title, href: `#/lektion/${m.id}/${l.id}`, icon: 'book' });
-    });
-  });
-  PLANSPIELE.forEach(p => {
-    if (p.title.toLowerCase().includes(q) || p.role.toLowerCase().includes(q)) {
-      results.push({ type: 'Planspiel', title: p.title, sub: p.role, href: `#/planspiel/${p.id}`, icon: 'game' });
-    }
-  });
-  GLOSSARY.forEach(g => {
-    if (g.term.toLowerCase().includes(q)) {
-      results.push({ type: 'Glossar', title: g.term, sub: g.def.slice(0, 60) + '…', href: `#/glossar/${encodeURIComponent(g.term)}`, icon: 'search' });
-    }
-  });
-  EINSATZKOMPASS.forEach(k => {
-    if (k.title.toLowerCase().includes(q) || k.subtitle.toLowerCase().includes(q)
-      || k.alarm.some(a => a.toLowerCase().includes(q))
-      || (k.merker || []).some(m => (m.kurz + ' ' + m.titel).toLowerCase().includes(q))) {
-      results.push({ type: 'Einsatzkompass', title: k.title, sub: k.subtitle, href: `#/einsatzkompass/${k.id}`, icon: 'compass' });
-    }
-  });
-  return results.slice(0, 16);
-}
-
+/* ---------- Volltextsuche über alle Inhalte ---------- */
 export function renderSearch(query) {
-  const results = searchAll(query || '');
+  const q = (query || '').trim();
+  const { results, counts, total } = searchContent(q, 40);
+  const countChips = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([type, n]) => `<span class="badge">${esc(type)} ${n}</span>`).join(' ');
+
   return `
   <div class="view fade-up">
-    <div class="view__head"><h1>Suche</h1><p class="muted">${query ? `Ergebnisse für „${esc(query)}"` : 'Suche nach Modulen, Lektionen und Planspielen.'}</p></div>
-    ${!query ? `<div class="empty">${icon('search')}<p>Gib oben einen Suchbegriff ein.</p></div>`
-      : results.length ? `<div class="stack">${results.map(r => `<a class="card card--pad card--interactive flex gap-md" style="align-items:center;text-decoration:none;color:inherit" href="${r.href}">
+    <div class="view__head">
+      <h1>Suche</h1>
+      <p class="muted">${q
+        ? total ? `${total} Treffer für „${esc(q)}" in Modulen, Lektionen, Prüfungsfragen, Glossar, Planspielen, Einsatzkompass &amp; Vorschriften.`
+                : `Keine Treffer für „${esc(q)}".`
+        : 'Durchsucht den gesamten Inhalt: Module, Lektionstexte, Prüfungsfragen, Glossar, Planspiele, Einsatzkompass und FwDV-/Quellenangaben.'}</p>
+      ${q && total ? `<div class="flex gap-sm wrap" style="margin-top:6px">${countChips}</div>` : ''}
+    </div>
+    ${!q ? `<div class="empty">${icon('search')}<p>Gib oben einen Suchbegriff ein – z. B. „Rückzugssignal", „FwDV 500" oder „Backdraft".</p></div>`
+      : results.length ? `<div class="stack">${results.map(r => `<a class="card card--pad card--interactive flex gap-md" style="align-items:flex-start;text-decoration:none;color:inherit" href="${r.href}">
           <div style="width:42px;height:42px;border-radius:12px;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--fw-red)">${icon(r.icon).replace('<svg ','<svg style="width:22px;height:22px" ')}</div>
-          <div style="flex:1;min-width:0"><b>${esc(r.title)}</b><div class="subtle" style="font-size:.85rem">${esc(r.type)} · ${esc(r.sub)}</div></div>
-          ${icon('arrowr').replace('<svg ','<svg style="width:20px;height:20px;color:var(--text-subtle)" ')}
+          <div style="flex:1;min-width:0">
+            <div class="flex gap-sm" style="align-items:center;flex-wrap:wrap"><b>${esc(r.title)}</b><span class="badge">${esc(r.type)}</span></div>
+            <div class="subtle" style="font-size:.82rem;margin-top:1px">${esc(r.sub)}</div>
+            ${r.snippet ? `<div class="muted" style="font-size:.85rem;margin-top:5px;line-height:1.4">${r.snippet}</div>` : ''}
+          </div>
+          ${icon('arrowr').replace('<svg ','<svg style="width:20px;height:20px;color:var(--text-subtle);flex:none;margin-top:10px" ')}
         </a>`).join('')}</div>`
-      : `<div class="empty">${icon('search')}<p>Keine Ergebnisse für „${esc(query)}".</p></div>`}
+      : `<div class="empty">${icon('search')}<p>Keine Ergebnisse für „${esc(q)}". Versuch es mit einem anderen Begriff.</p></div>`}
   </div>`;
 }

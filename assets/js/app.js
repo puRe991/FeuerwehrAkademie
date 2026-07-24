@@ -84,7 +84,7 @@ function renderShell(activeHref) {
         <button class="iconbtn nav-toggle" id="navToggle" aria-label="Menü">${icon('menu')}</button>
         <form class="searchbar" id="searchForm" role="search">
           ${icon('search')}
-          <input type="search" id="searchInput" placeholder="Module, Lektionen, Planspiele suchen…" aria-label="Suche" autocomplete="off">
+          <input type="search" id="searchInput" placeholder="Alles durchsuchen: Lektionen, Fragen, Glossar, FwDV…" aria-label="Suche" autocomplete="off">
         </form>
         <div class="topbar__spacer"></div>
         ${s.streak.count > 0 ? `<span class="streak" title="Lern-Streak">🔥 ${s.streak.count}</span>` : ''}
