@@ -18,6 +18,9 @@ const DEFAULT_STATE = {
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
   dailyQuiz: { day: null, correct: false }, // Frage des Tages – zuletzt beantworteter Tag
+  badges: {},          // { [badgeId]: earnedAtISO } – einmal verdient, bleibt verdient
+  badgesSeeded: false, // erste stille Auswertung für Bestandsnutzer erfolgt?
+  stats: { answered: 0, correct: 0 }, // lebenslange Antwort-Zähler (für Abzeichen)
   streak: { count: 0, lastDay: null },
   xp: 0,
 };
@@ -169,6 +172,9 @@ export function flashcardStats(allCards) {
 export function recordQuestionResult(questionId, correct) {
   if (!questionId) return;
   update(s => {
+    if (!s.stats) s.stats = { answered: 0, correct: 0 };
+    s.stats.answered += 1;
+    if (correct) s.stats.correct += 1;
     if (!s.mistakes) s.mistakes = {};
     const cur = s.mistakes[questionId] || { wrong: 0, right: 0, last: null, ts: null };
     if (correct) cur.right += 1; else cur.wrong += 1;
@@ -207,6 +213,18 @@ export function answerDaily(correct) {
   });
   touchStreak();
 }
+
+/* ---- Abzeichen / Erfolge ---- */
+/** Neue Abzeichen dauerhaft vergeben (bereits verdiente bleiben unberührt). */
+export function grantBadges(ids) {
+  if (!ids || !ids.length) return;
+  update(s => {
+    if (!s.badges) s.badges = {};
+    const now = new Date().toISOString();
+    ids.forEach(id => { if (!s.badges[id]) s.badges[id] = now; });
+  });
+}
+export function markBadgesSeeded() { update(s => { s.badgesSeeded = true; }); }
 
 /* ---- Knoten-Trainer ---- */
 export function isKnotLearned(id) { return (state.knotsLearned || []).includes(id); }

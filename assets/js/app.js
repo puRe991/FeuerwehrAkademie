@@ -7,7 +7,7 @@ import { EXAMS, TOTAL_QUESTIONS } from './data/exams.js';
 import { PLANSPIELE } from './data/planspiele.js';
 import { icon } from './data/icons.js';
 import { getState, subscribe, setTheme, level, mistakeStats } from './state.js';
-import { esc, initials, qs } from './utils.js';
+import { esc, initials, qs, toast, confetti } from './utils.js';
 
 import { renderDashboard, bindDashboard } from './views/dashboard.js';
 import { renderModules, renderModuleDetail } from './views/modules.js';
@@ -17,6 +17,9 @@ import { renderSimulator, bindSimulator, resetSimulatorSession } from './views/s
 import { renderWiederholung, bindWiederholung, resetReviewSession } from './views/wiederholung.js';
 import { renderKnotenList, renderKnotenTrainer, bindKnoten, resetKnotenSession } from './views/knoten.js';
 import { KNOTEN } from './data/knoten.js';
+import { renderAchievements, syncBadges } from './views/achievements.js';
+import { renderStatistik } from './views/statistik.js';
+import { BADGE_BY_ID } from './data/badges.js';
 import { renderPlanspielList, renderPlanspiel, bindPlanspiel, resetPlanspielSession } from './views/planspiel.js';
 import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark } from './views/profile.js';
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
@@ -52,6 +55,8 @@ const NAV = [
   { href: '#/einsatzkompass', label: 'Einsatzkompass', icon: 'compass', count: EINSATZKOMPASS.length },
   { section: 'Konto' },
   { href: '#/profil', label: 'Mein Profil', icon: 'award' },
+  { href: '#/erfolge', label: 'Erfolge', icon: 'star' },
+  { href: '#/statistik', label: 'Statistik', icon: 'chart' },
   { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
 ];
 
@@ -138,6 +143,8 @@ function routeView(parts) {
       if (a === 'suche') return { html: renderEinsatzkompass(decodeURIComponent(b || '')), bind: bindEinsatzkompass };
       if (a) return { html: renderEinsatzkarte(a), bind: bindEinsatzkarte };
       return { html: renderEinsatzkompass(), bind: bindEinsatzkompass };
+    case 'erfolge': return { html: renderAchievements() };
+    case 'statistik': return { html: renderStatistik() };
     case 'ausbilder': return { html: renderInstructor(), bind: bindInstructor };
     case 'profil': return { html: renderProfile(), bind: bindProfile };
     case 'suche': return { html: renderSearch(decodeURIComponent(a || '')) };
@@ -158,6 +165,9 @@ function render() {
     location.hash = '#/onboarding';
     return;
   }
+
+  // Abzeichen VOR dem Rendern abgleichen, damit neue Erfolge sofort erscheinen
+  const freshBadges = s.profile ? syncBadges() : [];
 
   const route = routeView(parts);
 
@@ -191,6 +201,12 @@ function render() {
   const view = qs('#view');
   view.innerHTML = route.html;
   route.bind?.(view, render);
+
+  // Neu verdiente Abzeichen melden (Auswertung erfolgte vor dem Rendern)
+  if (freshBadges.length) {
+    confetti();
+    freshBadges.forEach(id => toast(`Abzeichen freigeschaltet: ${BADGE_BY_ID[id]?.name || ''}`, 'star'));
+  }
 
   // Nav auf Mobil schließen
   setNavOpen(false);
