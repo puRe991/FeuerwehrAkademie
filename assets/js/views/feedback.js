@@ -1,18 +1,30 @@
 /* =========================================================================
    VIEW: Feedback & Rückfragen
    Nimmt Rückfragen, Fehlermeldungen und Verbesserungsvorschläge auf und
-   sendet sie als vorausgefülltes GitHub-Issue an das Projekt-Repository.
-   Reine Client-Lösung (kein Server): Es wird ein „New Issue"-Link mit
-   Titel, Text und Labels erzeugt und geöffnet. Zusätzlich Kopier-Fallback,
-   falls Pop-ups blockiert sind.
+   sendet sie – vollständig innerhalb der App, ohne Weiterleitung – direkt
+   über die GitHub-API als Issue an das Projekt-Repository.
+
+   Voraussetzung: einmalig ein GitHub-Zugangstoken (Personal Access Token
+   mit Issue-Schreibrecht auf dem Repo) in den Einstellungen hinterlegen.
+   Das Token wird ausschließlich lokal im Gerät gespeichert (localStorage,
+   getrennter Schlüssel) und niemals in Profil-Exporten mitgeführt.
    ========================================================================= */
 import { MODULES, MODULE_BY_ID } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
 import { getState, level } from '../state.js';
-import { esc, toast } from '../utils.js';
+import { esc, toast, fmtDateTime } from '../utils.js';
 
 /* Ziel-Repository für die Rückmeldungen (GitHub). */
 export const FEEDBACK_REPO = 'puRe991/FeuerwehrAkademie';
+
+/* Getrennte localStorage-Schlüssel (nicht Teil des Profil-Exports). */
+const TOKEN_KEY = 'fwa:gh-token';
+const LOG_KEY   = 'fwa:feedback-log';
+
+const getToken = () => { try { return localStorage.getItem(TOKEN_KEY) || ''; } catch { return ''; } };
+const setToken = (t) => { try { t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY); } catch {} };
+const getLog   = () => { try { return JSON.parse(localStorage.getItem(LOG_KEY) || '[]'); } catch { return []; } };
+const setLog   = (l) => { try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 20))); } catch {} };
 
 /* Rückmeldungs-Arten – bestimmen Emoji, GitHub-Labels und Titel-Präfix. */
 const CATEGORIES = {
@@ -25,12 +37,13 @@ const CATEGORIES = {
 
 export function renderFeedback(prefillRef = '') {
   const preMod = MODULE_BY_ID[prefillRef];
+  const hasToken = !!getToken();
 
   return `
   <div class="view fade-up">
     <div class="view__head">
       <h1>Feedback & Rückfragen</h1>
-      <p class="muted">Eine Frage zum Inhalt, ein entdeckter Fehler oder ein Verbesserungsvorschlag? Schick uns deine Rückmeldung – sie wird als Ticket direkt an das Projekt auf GitHub übermittelt und dort transparent bearbeitet.</p>
+      <p class="muted">Eine Frage zum Inhalt, ein entdeckter Fehler oder ein Verbesserungsvorschlag? Deine Rückmeldung wird komplett aus der App heraus – ohne Umweg über eine Webseite – direkt als Ticket an das Projekt gesendet.</p>
     </div>
 
     <div class="grid" style="grid-template-columns:1.4fr 1fr;align-items:start;gap:22px" id="fbCols">
@@ -78,42 +91,49 @@ export function renderFeedback(prefillRef = '') {
             <span class="muted">Technische Angaben anhängen (App-Version, aktuelle Seite, Level) – hilft bei der Fehlersuche.</span>
           </label>
 
-          <div class="callout" style="border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface-2);font-size:.86rem" class="muted">
-            ${icon('github').replace('<svg ', '<svg style="width:18px;height:18px;vertical-align:-3px;margin-right:4px" ')}
-            <b>So wird gesendet:</b> Beim Absenden öffnet sich GitHub mit einem vorausgefüllten Ticket. Dort einmal auf <em>„Submit new issue"</em> klicken (GitHub-Konto nötig). <b>Alles im Ticket wird öffentlich sichtbar</b> – bitte keine Passwörter oder sensiblen Daten eintragen.
-          </div>
-
           <div class="flex gap-sm wrap" style="margin-top:4px">
-            <button class="btn btn--primary btn--lg" type="submit" id="fbSubmit">${icon('github')} An GitHub senden</button>
-            <button class="btn btn--outline" type="button" id="fbCopy">${icon('copy')} Text kopieren</button>
+            <button class="btn btn--primary btn--lg" type="submit" id="fbSubmit">${icon('play')} Rückmeldung absenden</button>
           </div>
+          <p class="subtle" style="font-size:.8rem;margin:0" id="fbHint"></p>
         </form>
       </section>
 
       <aside class="stack">
         <div class="card card--pad">
           <h3 style="margin-bottom:10px">${icon('eye').replace('<svg ', '<svg style="width:20px;height:20px;vertical-align:-3px" ')} Vorschau</h3>
-          <p class="subtle" style="font-size:.82rem;margin:0 0 8px">So sieht das Ticket aus, das an GitHub übermittelt wird:</p>
+          <p class="subtle" style="font-size:.82rem;margin:0 0 8px">So sieht das Ticket aus, das erstellt wird:</p>
           <div class="stack" style="--gap:6px">
             <b id="fbPrevTitle" style="font-size:.95rem;word-break:break-word">${CATEGORIES.frage.emoji} [Rückfrage] …</b>
-            <pre id="fbPrevBody" style="white-space:pre-wrap;word-break:break-word;font-size:.8rem;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;margin:0;max-height:340px;overflow:auto;font-family:var(--mono,monospace)"></pre>
+            <pre id="fbPrevBody" style="white-space:pre-wrap;word-break:break-word;font-size:.8rem;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;margin:0;max-height:300px;overflow:auto;font-family:var(--mono,monospace)"></pre>
           </div>
         </div>
+
         <div class="card card--pad">
-          <h3 style="margin-bottom:8px">${icon('chat').replace('<svg ', '<svg style="width:20px;height:20px;vertical-align:-3px" ')} Gut zu wissen</h3>
-          <ul class="muted" style="font-size:.86rem;margin:0;padding-left:18px;line-height:1.6">
-            <li>Deine Rückmeldung landet als Ticket im Repository <code>${esc(FEEDBACK_REPO)}</code>.</li>
-            <li>Je genauer (Modul, Lektion, Fragen-Nr.), desto schneller die Antwort.</li>
-            <li>Fachliche Vorschriften des eigenen Bundeslandes und der eigenen Feuerwehr haben immer Vorrang.</li>
-          </ul>
-          <a class="btn btn--outline btn--block" style="margin-top:12px" href="https://github.com/${esc(FEEDBACK_REPO)}/issues" target="_blank" rel="noopener">${icon('arrowr')} Offene Rückmeldungen ansehen</a>
+          <div class="between" style="margin-bottom:10px">
+            <h3 style="margin:0">${icon('github').replace('<svg ', '<svg style="width:20px;height:20px;vertical-align:-3px" ')} Verbindung</h3>
+            <span class="badge ${hasToken ? 'badge--green' : 'badge--amber'}" id="fbTokenState">${hasToken ? 'Verbunden ✔' : 'Nicht verbunden'}</span>
+          </div>
+          <p class="subtle" style="font-size:.82rem;margin:0 0 10px">Einmalig ein GitHub-Zugangstoken mit Schreibrecht für Issues auf <code>${esc(FEEDBACK_REPO)}</code>. Es bleibt nur auf diesem Gerät gespeichert.</p>
+          <div class="field" style="margin-bottom:10px">
+            <input class="input" id="fbToken" type="password" autocomplete="off" spellcheck="false"
+                   placeholder="${hasToken ? '•••••••••• (gespeichert)' : 'ghp_… oder github_pat_…'}">
+          </div>
+          <div class="flex gap-sm wrap">
+            <button class="btn btn--outline btn--sm" type="button" id="fbTokenSave">${icon('check')} Token speichern</button>
+            <button class="btn btn--ghost btn--sm" type="button" id="fbTokenClear" style="${hasToken ? '' : 'display:none'}">${icon('x')} Entfernen</button>
+          </div>
+        </div>
+
+        <div class="card card--pad" id="fbLogCard">
+          <h3 style="margin-bottom:10px">${icon('chat').replace('<svg ', '<svg style="width:20px;height:20px;vertical-align:-3px" ')} Zuletzt gesendet</h3>
+          <div id="fbLog"></div>
         </div>
       </aside>
     </div>
   </div>`;
 }
 
-/* ---------- Interaktion ---------- */
+/* ---------- Daten sammeln ---------- */
 function collect(root) {
   const cat = root.querySelector('#fbCategory').value;
   const c = CATEGORIES[cat] || CATEGORIES.frage;
@@ -149,12 +169,6 @@ function collect(root) {
   return { title, body: lines.join('\n'), labels: c.labels, valid: !!(subject && message) };
 }
 
-function issueUrl({ title, body, labels }) {
-  const params = new URLSearchParams({ title, body });
-  if (labels?.length) params.set('labels', labels.join(','));
-  return `https://github.com/${FEEDBACK_REPO}/issues/new?${params.toString()}`;
-}
-
 function updatePreview(root) {
   const data = collect(root);
   const t = root.querySelector('#fbPrevTitle');
@@ -164,6 +178,53 @@ function updatePreview(root) {
   return data;
 }
 
+function renderLog(root) {
+  const log = getLog();
+  const box = root.querySelector('#fbLog');
+  if (!box) return;
+  if (!log.length) {
+    box.innerHTML = `<p class="muted" style="font-size:.85rem;margin:0">Noch nichts gesendet. Deine abgeschickten Rückmeldungen erscheinen hier – inklusive Link zum Ticket.</p>`;
+    return;
+  }
+  box.innerHTML = `<div class="stack" style="--gap:8px">${log.map(e => `
+    <div class="between" style="gap:10px">
+      <span style="min-width:0">
+        <b style="display:block;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(e.title)}</b>
+        <span class="subtle" style="font-size:.78rem">${esc(fmtDateTime(e.date))}</span>
+      </span>
+      ${e.url ? `<a class="btn btn--ghost btn--sm" href="${esc(e.url)}" target="_blank" rel="noopener" style="flex:none">#${e.number} ${icon('arrowr').replace('<svg ', '<svg style="width:14px;height:14px" ')}</a>` : ''}
+    </div>`).join('')}</div>`;
+}
+
+/* ---------- GitHub-API: Issue direkt anlegen ---------- */
+async function createIssue(token, { title, body, labels }) {
+  const url = `https://api.github.com/repos/${FEEDBACK_REPO}/issues`;
+  const headers = {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json',
+  };
+
+  const post = (payload) => fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
+
+  let res = await post({ title, body, labels });
+  // Labels, die es im Repo (noch) nicht gibt, lösen 422 aus → ohne Labels erneut.
+  if (!res.ok && res.status === 422 && labels?.length) {
+    res = await post({ title, body });
+  }
+
+  if (res.ok) return res.json();
+
+  let msg = `HTTP ${res.status}`;
+  if (res.status === 401) msg = 'Token ungültig oder abgelaufen';
+  else if (res.status === 403) msg = 'Keine Berechtigung (Rate-Limit oder fehlendes Issue-Schreibrecht)';
+  else if (res.status === 404) msg = 'Repository nicht gefunden oder Token ohne Zugriff';
+  else { try { const j = await res.json(); if (j?.message) msg = j.message; } catch {} }
+  const err = new Error(msg); err.status = res.status; throw err;
+}
+
+/* ---------- Interaktion ---------- */
 export function bindFeedback(root) {
   const form = root.querySelector('#feedbackForm');
   if (!form) return;
@@ -187,33 +248,76 @@ export function bindFeedback(root) {
     elm?.addEventListener('change', sync);
   });
   sync();
+  renderLog(root);
 
-  // Absenden → GitHub-Issue öffnen
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = updatePreview(root);
-    if (!data.valid) { toast('Bitte Betreff und Nachricht ausfüllen', 'bolt'); return; }
-    const url = issueUrl(data);
-    const win = window.open(url, '_blank', 'noopener');
-    if (win) {
-      toast('GitHub wird geöffnet – dort auf „Submit new issue" klicken 🚒', 'star');
-    } else {
-      // Pop-up blockiert → Fallback anbieten
-      navigator.clipboard?.writeText(url).catch(() => {});
-      toast('Pop-up blockiert. Link wurde kopiert – im Browser einfügen.', 'bolt');
-    }
+  // Token verwalten
+  const stateBadge = root.querySelector('#fbTokenState');
+  const setBadge = (ok) => {
+    if (!stateBadge) return;
+    stateBadge.textContent = ok ? 'Verbunden ✔' : 'Nicht verbunden';
+    stateBadge.classList.toggle('badge--green', ok);
+    stateBadge.classList.toggle('badge--amber', !ok);
+  };
+  const clearBtn = root.querySelector('#fbTokenClear');
+  root.querySelector('#fbTokenSave')?.addEventListener('click', () => {
+    const field = root.querySelector('#fbToken');
+    const val = field.value.trim();
+    if (!val) { toast('Bitte ein Token einfügen', 'bolt'); return; }
+    setToken(val);
+    field.value = '';
+    field.placeholder = '•••••••••• (gespeichert)';
+    setBadge(true);
+    if (clearBtn) clearBtn.style.display = '';
+    toast('Token gespeichert – nur auf diesem Gerät', 'ok');
+  });
+  clearBtn?.addEventListener('click', () => {
+    setToken('');
+    setBadge(false);
+    clearBtn.style.display = 'none';
+    const field = root.querySelector('#fbToken');
+    if (field) field.placeholder = 'ghp_… oder github_pat_…';
+    toast('Token entfernt', 'ok');
   });
 
-  // Text kopieren (Fallback ohne GitHub-Konto)
-  root.querySelector('#fbCopy')?.addEventListener('click', async () => {
+  // Absenden → Issue direkt über die API anlegen
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
     const data = updatePreview(root);
+    const hint = root.querySelector('#fbHint');
     if (!data.valid) { toast('Bitte Betreff und Nachricht ausfüllen', 'bolt'); return; }
-    const text = `${data.title}\n\n${data.body}`;
+
+    const token = getToken();
+    if (!token) {
+      toast('Bitte zuerst ein GitHub-Token hinterlegen', 'bolt');
+      root.querySelector('#fbToken')?.focus();
+      if (hint) hint.textContent = 'Zum Senden wird einmalig ein GitHub-Token benötigt (rechts unter „Verbindung").';
+      return;
+    }
+
+    const btn = root.querySelector('#fbSubmit');
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `${icon('refresh')} Wird gesendet…`;
+    if (hint) hint.textContent = '';
+
     try {
-      await navigator.clipboard.writeText(text);
-      toast('Rückmeldung in die Zwischenablage kopiert', 'ok');
-    } catch {
-      toast('Kopieren nicht möglich – bitte Text manuell markieren', 'bolt');
+      const issue = await createIssue(token, data);
+      const log = getLog();
+      log.unshift({ title: data.title, number: issue.number, url: issue.html_url, date: new Date().toISOString() });
+      setLog(log);
+      renderLog(root);
+      // Formular zurücksetzen (Kategorie/Modul bleiben stehen)
+      root.querySelector('#fbSubject').value = '';
+      root.querySelector('#fbMessage').value = '';
+      root.querySelector('#fbName').value = '';
+      sync();
+      toast(`Gesendet! Ticket #${issue.number} wurde erstellt 🚒`, 'star');
+    } catch (err) {
+      toast(`Senden fehlgeschlagen: ${err.message}`, 'bolt');
+      if (hint) hint.textContent = `Fehler: ${err.message}. Bitte Token/Berechtigung prüfen und erneut versuchen.`;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = orig;
     }
   });
 }
