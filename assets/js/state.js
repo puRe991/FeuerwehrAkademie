@@ -17,6 +17,7 @@ const DEFAULT_STATE = {
   flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
+  dailyQuiz: { day: null, correct: false }, // Frage des Tages – zuletzt beantworteter Tag
   streak: { count: 0, lastDay: null },
   xp: 0,
 };
@@ -194,6 +195,17 @@ export function mistakeStats() {
   const open = ids.filter(id => m[id]?.last === 'wrong');
   const recovered = ids.filter(id => m[id]?.last === 'right').length;
   return { open: open.length, recovered, seen: ids.length };
+}
+
+/* ---- Frage des Tages ---- */
+export function dailyAnsweredToday() { return (state.dailyQuiz?.day) === todayStr(); }
+
+export function answerDaily(correct) {
+  update(s => {
+    s.dailyQuiz = { day: todayStr(), correct };
+    s.xp = (s.xp || 0) + (correct ? 8 : 3);
+  });
+  touchStreak();
 }
 
 /* ---- Knoten-Trainer ---- */

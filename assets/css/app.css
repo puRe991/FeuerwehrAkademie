@@ -2,6 +2,14 @@
    Feuerwehr Online Akademie — App-Layout & Komponenten
    ========================================================================= */
 
+/* ---------- Barrierefreiheit: Skip-Link ---------- */
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--fw-red); color: #fff; padding: 10px 16px; border-radius: 8px;
+  font-weight: 700; text-decoration: none; transition: top .15s;
+}
+.skip-link:focus { top: 12px; }
+
 /* ---------- Suchtreffer-Hervorhebung ---------- */
 mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 0 .12em; font-weight: 600; }
 

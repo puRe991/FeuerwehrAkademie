@@ -17,7 +17,7 @@ const INK  = '#1f2933';
 
 /* SVG-Rahmen mit hellem Panel. */
 function K(w, h, inner) {
-  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;max-width:340px;margin-inline:auto;display:block" role="img" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;max-width:340px;margin-inline:auto;display:block" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <rect width="${w}" height="${h}" rx="14" fill="${BG}"/>${inner}</svg>`;
 }
 /* Leinen-Segment mit heller „Umhüllung": später gezeichnete Leinen liegen

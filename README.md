@@ -28,7 +28,9 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
 | 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
+| ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
+| ♿ **Barrierefrei** | Tastaturbedienung, sichtbarer Fokus, Skip-Link, `aria-current`/`aria-pressed`/`aria-expanded`, `role="progressbar"`, `aria-live`-Toasts, dekorative Grafiken für Screenreader ausgeblendet und `prefers-reduced-motion` respektiert |
 | 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
 | 🌗 **Design** | Barrierefreies, responsives Design im Feuerwehr-Look mit Hell-/Dunkelmodus |
 

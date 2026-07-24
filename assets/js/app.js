@@ -9,7 +9,7 @@ import { icon } from './data/icons.js';
 import { getState, subscribe, setTheme, level, mistakeStats } from './state.js';
 import { esc, initials, qs } from './utils.js';
 
-import { renderDashboard } from './views/dashboard.js';
+import { renderDashboard, bindDashboard } from './views/dashboard.js';
 import { renderModules, renderModuleDetail } from './views/modules.js';
 import { renderLesson, bindLesson } from './views/lesson.js';
 import { renderExam, bindExam, resetExamSession } from './views/exam.js';
@@ -60,6 +60,7 @@ function renderShell(activeHref) {
   const p = s.profile;
   return `
   <div class="app" id="appShell">
+    <a class="skip-link" href="#view">Zum Inhalt springen</a>
     <div class="scrim" id="scrim"></div>
     <aside class="sidebar" id="sidebar">
       <a class="brand" href="#/" style="text-decoration:none;color:inherit">
@@ -70,7 +71,8 @@ function renderShell(activeHref) {
         ${NAV.map(item => {
           if (item.section) return `<div class="nav__section">${esc(item.section)}</div>`;
           const cnt = typeof item.count === 'function' ? item.count() : item.count;
-          return `<a class="nav__link ${isActive(activeHref, item.href) ? 'active' : ''}" href="${item.href}">
+          const active = isActive(activeHref, item.href);
+          return `<a class="nav__link ${active ? 'active' : ''}" href="${item.href}"${active ? ' aria-current="page"' : ''}>
                ${icon(item.icon)}<span>${esc(item.label)}</span>${cnt != null ? `<span class="count">${cnt}</span>` : ''}
              </a>`;
         }).join('')}
@@ -85,7 +87,7 @@ function renderShell(activeHref) {
 
     <div class="main">
       <header class="topbar">
-        <button class="iconbtn nav-toggle" id="navToggle" aria-label="Menü">${icon('menu')}</button>
+        <button class="iconbtn nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false" aria-controls="sidebar">${icon('menu')}</button>
         <form class="searchbar" id="searchForm" role="search">
           ${icon('search')}
           <input type="search" id="searchInput" placeholder="Alles durchsuchen: Lektionen, Fragen, Glossar, FwDV…" aria-label="Suche" autocomplete="off">
@@ -114,7 +116,7 @@ function parseHash() {
 function routeView(parts) {
   const [root, a, b] = parts;
   switch (root) {
-    case undefined: return { html: renderDashboard() };
+    case undefined: return { html: renderDashboard(), bind: bindDashboard };
     case 'module': return { html: renderModules(), bind: bindModules };
     case 'modul': return { html: renderModuleDetail(a), bind: bindModuleDetail };
     case 'lektion': return { html: renderLesson(a, b), bind: bindLesson };
@@ -180,7 +182,9 @@ function render() {
   } else {
     // aktiven Nav-Link aktualisieren
     document.querySelectorAll('.nav__link').forEach(el => {
-      el.classList.toggle('active', isActive(h, el.getAttribute('href')));
+      const on = isActive(h, el.getAttribute('href'));
+      el.classList.toggle('active', on);
+      if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
     });
   }
 
@@ -189,16 +193,20 @@ function render() {
   route.bind?.(view, render);
 
   // Nav auf Mobil schließen
-  qs('#appShell')?.classList.remove('nav-open');
+  setNavOpen(false);
   view.focus({ preventScroll: true });
   if (lastRoot !== parts.join('/')) window.scrollTo({ top: 0 });
   lastRoot = parts.join('/');
 }
 
 /* ------------- Shell-Interaktion ------------- */
+function setNavOpen(open) {
+  qs('#appShell')?.classList.toggle('nav-open', open);
+  qs('#navToggle')?.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
 function wireShell() {
-  qs('#navToggle')?.addEventListener('click', () => qs('#appShell').classList.toggle('nav-open'));
-  qs('#scrim')?.addEventListener('click', () => qs('#appShell').classList.remove('nav-open'));
+  qs('#navToggle')?.addEventListener('click', () => setNavOpen(!qs('#appShell').classList.contains('nav-open')));
+  qs('#scrim')?.addEventListener('click', () => setNavOpen(false));
 
   qs('#themeToggle')?.addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme');

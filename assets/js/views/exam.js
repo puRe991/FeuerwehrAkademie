@@ -130,7 +130,7 @@ function examQuestion() {
     <div class="exam-shell">
       <div class="exam-bar">
         <a class="iconbtn" href="${session.back}" title="Abbrechen">${icon('x')}</a>
-        <div class="progress"><i style="width:${pct}%"></i></div>
+        <div class="progress" role="progressbar" aria-label="Prüfungsfortschritt" aria-valuenow="${session.current}" aria-valuemin="0" aria-valuemax="${total}"><i style="width:${pct}%"></i></div>
         <span class="q-num" style="white-space:nowrap">${session.current + 1} / ${total}</span>
       </div>
 
@@ -141,7 +141,7 @@ function examQuestion() {
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
 
-        <div class="options" id="options">
+        <div class="options" id="options" role="group" aria-label="Antwortoptionen">
           ${q.options.map((opt, i) => {
             let cls = 'opt';
             if (answered) {
@@ -150,7 +150,7 @@ function examQuestion() {
               if (correct) cls += ' correct';
               else if (chosen) cls += ' wrong';
             }
-            return `<button class="${cls}" data-opt="${i}" ${answered ? 'disabled' : ''}>
+            return `<button class="${cls}" data-opt="${i}" ${answered ? 'disabled' : ''} aria-pressed="${answered && answered.selected.includes(i) ? 'true' : 'false'}">
               <span class="opt__key">${answered && q.correct.includes(i) ? '✓' : answered && answered.selected.includes(i) ? '✕' : String.fromCharCode(65 + i)}</span>
               <span>${esc(opt)}</span>
             </button>`;
@@ -239,7 +239,7 @@ export function bindExam(root, rerender) {
     root.querySelectorAll('#options .opt').forEach(btn => {
       btn.addEventListener('click', () => {
         const i = +btn.dataset.opt;
-        if (q.type === 'multiple') btn.classList.toggle('selected');
+        if (q.type === 'multiple') { const on = btn.classList.toggle('selected'); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
         else { recordAnswer([i]); rerender(); }
       });
     });

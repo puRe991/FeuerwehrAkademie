@@ -9,6 +9,7 @@ import { EINSATZKOMPASS } from '../data/einsatzkompass.js';
 import { icon } from '../data/icons.js';
 import { getState, moduleProgress, isModulePassed, bestExam, level, todayStr, mistakeStats } from '../state.js';
 import { esc, fmtDateTime, fmtDuration } from '../utils.js';
+import { renderDailyCard, bindDaily } from './tagesquiz.js';
 
 function greeting() {
   const h = new Date().getHours();
@@ -149,6 +150,7 @@ export function renderDashboard() {
 
       <!-- Seitenspalte -->
       <aside class="stack">
+        ${renderDailyCard()}
         <div class="card card--pad">
           <h3 style="margin-bottom:14px">${icon('chart').replace('<svg ','<svg style="width:20px;height:20px;vertical-align:-3px" ')} Dein Überblick</h3>
           ${statRow('Prüfungen absolviert', st.examsTaken)}
@@ -163,6 +165,11 @@ export function renderDashboard() {
       </aside>
     </div>
   </div>`;
+}
+
+/** Dashboard-Interaktionen (Frage des Tages). */
+export function bindDashboard(root, rerender) {
+  bindDaily(root, rerender);
 }
 
 function statRow(label, val) {

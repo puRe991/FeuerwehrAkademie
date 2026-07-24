@@ -101,8 +101,8 @@ function simQuestion() {
     <div class="exam-shell">
       <div class="exam-bar">
         <button class="iconbtn" id="simQuit" title="Prüfung abbrechen">${icon('x')}</button>
-        <div class="progress"><i style="width:${Math.round(session.current / total * 100)}%"></i></div>
-        <span class="sim-clock ${remaining < 60000 ? 'sim-clock--warn' : ''}" id="simClock" title="Verbleibende Zeit">${icon('clock').replace('<svg ', '<svg style="width:15px;height:15px;vertical-align:-2px" ')} ${fmtClock(remaining)}</span>
+        <div class="progress" role="progressbar" aria-label="Prüfungsfortschritt" aria-valuenow="${session.current}" aria-valuemin="0" aria-valuemax="${total}"><i style="width:${Math.round(session.current / total * 100)}%"></i></div>
+        <span class="sim-clock ${remaining < 60000 ? 'sim-clock--warn' : ''}" id="simClock" role="timer" aria-label="Verbleibende Zeit" title="Verbleibende Zeit">${icon('clock').replace('<svg ', '<svg style="width:15px;height:15px;vertical-align:-2px" ')} ${fmtClock(remaining)}</span>
       </div>
 
       <div class="card q-card">
@@ -112,8 +112,8 @@ function simQuestion() {
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
 
-        <div class="options" id="options">
-          ${q.options.map((opt, i) => `<button class="opt ${sel.includes(i) ? 'selected' : ''}" data-opt="${i}">
+        <div class="options" id="options" role="group" aria-label="Antwortoptionen">
+          ${q.options.map((opt, i) => `<button class="opt ${sel.includes(i) ? 'selected' : ''}" data-opt="${i}" aria-pressed="${sel.includes(i) ? 'true' : 'false'}">
             <span class="opt__key">${sel.includes(i) ? '✓' : String.fromCharCode(65 + i)}</span>
             <span>${esc(opt)}</span>
           </button>`).join('')}
