@@ -4,8 +4,8 @@
 import { MODULE_BY_ID, CATEGORIES } from '../data/curriculum.js';
 import { diagram } from '../data/diagrams.js';
 import { icon } from '../data/icons.js';
-import { getState, completeLesson, logActivity } from '../state.js';
-import { esc, fmtDuration, toast, confetti } from '../utils.js';
+import { getState, completeLesson, logActivity, getNote, setNote, deleteNote } from '../state.js';
+import { esc, fmtDuration, fmtDateTime, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 
 const CALLOUT_ICON = { info: 'eye', warn: 'bolt', danger: 'hazmat', ok: 'check', tip: 'star' };
@@ -50,6 +50,7 @@ export function renderLesson(moduleId, lessonId) {
   const prev = m.lessons[idx - 1];
   const next = m.lessons[idx + 1];
   const headings = l.blocks.filter(b => b.t === 'h2');
+  const note = getNote(moduleId, lessonId);
 
   logActivity('module', m.id, { moduleId: m.id, title: m.title });
 
@@ -108,6 +109,23 @@ export function renderLesson(moduleId, lessonId) {
             }).join('')}
           </nav>
         </div>
+
+        <div class="card card--pad note-card" style="margin-top:16px">
+          <div class="between" style="padding:0 0 10px">
+            <span class="nav__section" style="padding:0">${icon('note').replace('<svg ','<svg style="width:16px;height:16px;vertical-align:-3px" ')} Meine Notiz</span>
+            <a href="#/notizen" class="subtle" style="font-size:.78rem;text-decoration:none">Alle ansehen</a>
+          </div>
+          <textarea class="input note-input" id="lessonNote" rows="5"
+            placeholder="Eigene Merksätze, Fragen oder Praxiserfahrungen zu dieser Lektion …"
+            aria-label="Persönliche Notiz zu dieser Lektion">${esc(note?.text || '')}</textarea>
+          <div class="between wrap" style="margin-top:10px;gap:8px">
+            <span class="subtle" id="noteStatus" style="font-size:.78rem" aria-live="polite">${note ? 'Gespeichert · ' + fmtDateTime(note.ts) : 'Nur auf diesem Gerät gespeichert'}</span>
+            <span class="flex gap-sm">
+              <button class="btn btn--danger btn--sm" id="deleteNote" data-mod="${m.id}" data-les="${l.id}" ${note ? '' : 'hidden'}>Löschen</button>
+              <button class="btn btn--primary btn--sm" id="saveNote" data-mod="${m.id}" data-les="${l.id}">Speichern</button>
+            </span>
+          </div>
+        </div>
       </aside>
     </div>
   </div>`;
@@ -127,6 +145,35 @@ export function bindLesson(root, rerender) {
       rerender();
     });
   }
+  // Notiz speichern / löschen
+  const noteBox = root.querySelector('#lessonNote');
+  const saveBtn = root.querySelector('#saveNote');
+  const delBtn = root.querySelector('#deleteNote');
+  const status = root.querySelector('#noteStatus');
+  saveBtn?.addEventListener('click', () => {
+    const saved = setNote(saveBtn.dataset.mod, saveBtn.dataset.les, noteBox.value);
+    if (saved) {
+      status.textContent = 'Gespeichert · ' + fmtDateTime(new Date().toISOString());
+      delBtn?.removeAttribute('hidden');
+      toast('Notiz gespeichert', 'ok');
+    } else {
+      status.textContent = 'Nur auf diesem Gerät gespeichert';
+      delBtn?.setAttribute('hidden', '');
+      toast('Notiz entfernt', 'ok');
+    }
+  });
+  delBtn?.addEventListener('click', () => {
+    deleteNote(delBtn.dataset.mod, delBtn.dataset.les);
+    noteBox.value = '';
+    status.textContent = 'Nur auf diesem Gerät gespeichert';
+    delBtn.setAttribute('hidden', '');
+    toast('Notiz gelöscht', 'ok');
+  });
+  // Strg/Cmd+Enter speichert
+  noteBox?.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); saveBtn.click(); }
+  });
+
   // TOC Scrollspy
   const tocLinks = [...root.querySelectorAll('#lessonToc a[data-toc]')];
   if (tocLinks.length) {

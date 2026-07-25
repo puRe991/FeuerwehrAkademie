@@ -26,6 +26,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 🔎 **Volltextsuche** | Durchsucht **alle** Inhalte auf einmal – Modultexte, komplette Lektionsinhalte, alle Prüfungsfragen, Glossar, Planspiele, Einsatzkompass und die FwDV-/Quellenangaben. Mehrwortsuche (UND), Relevanz-Ranking und hervorgehobene Textausschnitte |
 | 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
+| 📝 **Notizen** | Persönliches Notizfeld in **jeder Lektion** für eigene Merksätze, Fragen und Praxiserfahrungen. Alle Notizen laufen im Bereich **Notizen** zusammen: durchsuchbar, nach Modul geordnet, mit Sprung zurück zur Lektion und **Druckfunktion**. Bleibt – wie alle Daten – ausschließlich lokal auf dem Gerät |
 | 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
 | ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
@@ -123,6 +124,7 @@ Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übun
 ## 🃏 Weitere Lernwerkzeuge
 
 - **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt; gekonnte Karten kehren seltener zurück, schwierige öfter.
+- **Notizen:** Jede Lektion hat ein eigenes Notizfeld (Speichern per Klick oder `Strg`/`Cmd`+`Enter`). Der Bereich **Notizen** bündelt alle Einträge, macht sie durchsuchbar, verlinkt zurück zur jeweiligen Lektion und lässt sie als Lernzettel ausdrucken. Die Notizen sind Teil der JSON-Sicherung und liegen ausschließlich lokal auf dem Gerät.
 - **Glossar:** Durchsuchbares Nachschlagewerk der wichtigsten Fachbegriffe und Abkürzungen, jeweils mit Modul-Verlinkung.
 - **Ausbilder-Ansicht:** Gesamtauswertung des Lernstands, druckbarer Ausbildungsnachweis (PDF via Druckdialog), Backup-Export/-Import als JSON und Nachweis-Export als CSV.
 

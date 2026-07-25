@@ -6,7 +6,7 @@ import { MODULES, LESSON_COUNT } from './data/curriculum.js';
 import { EXAMS, TOTAL_QUESTIONS } from './data/exams.js';
 import { PLANSPIELE } from './data/planspiele.js';
 import { icon } from './data/icons.js';
-import { getState, subscribe, setTheme, level, mistakeStats } from './state.js';
+import { getState, subscribe, setTheme, level, mistakeStats, notesCount } from './state.js';
 import { esc, initials, qs } from './utils.js';
 
 import { renderDashboard, bindDashboard } from './views/dashboard.js';
@@ -22,6 +22,7 @@ import { renderOnboarding, bindOnboarding, renderProfile, bindProfile, logoMark 
 import { renderLernpfad, renderPruefungen, renderSearch } from './views/misc.js';
 import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcards } from './views/tools.js';
 import { renderInstructor, bindInstructor } from './views/instructor.js';
+import { renderNotizen, bindNotizen } from './views/notizen.js';
 import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsatzkarte } from './views/einsatzkompass.js';
 import { EINSATZKOMPASS } from './data/einsatzkompass.js';
 
@@ -44,6 +45,7 @@ const NAV = [
   { href: '#/karteikarten', label: 'Karteikarten', icon: 'refresh' },
   { href: '#/knoten', label: 'Knoten-Trainer', icon: 'target', count: KNOTEN.length },
   { href: '#/glossar', label: 'Glossar', icon: 'search' },
+  { href: '#/notizen', label: 'Notizen', icon: 'note', count: () => notesCount() || null },
   { section: 'Prüfen & Üben' },
   { href: '#/pruefungen', label: 'Prüfungen', icon: 'exam', count: Object.keys(EXAMS).length },
   { href: '#/wiederholung', label: 'Wiederholung', icon: 'refresh', count: () => mistakeStats().open || null },
@@ -138,6 +140,7 @@ function routeView(parts) {
       if (a === 'suche') return { html: renderEinsatzkompass(decodeURIComponent(b || '')), bind: bindEinsatzkompass };
       if (a) return { html: renderEinsatzkarte(a), bind: bindEinsatzkarte };
       return { html: renderEinsatzkompass(), bind: bindEinsatzkompass };
+    case 'notizen': return { html: renderNotizen(decodeURIComponent(a || '')), bind: bindNotizen };
     case 'ausbilder': return { html: renderInstructor(), bind: bindInstructor };
     case 'profil': return { html: renderProfile(), bind: bindProfile };
     case 'suche': return { html: renderSearch(decodeURIComponent(a || '')) };

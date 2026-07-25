@@ -17,6 +17,7 @@ const DEFAULT_STATE = {
   flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
+  notes: {},           // { 'moduleId::lessonId': { text, ts } } persönliche Notizen
   dailyQuiz: { day: null, correct: false }, // Frage des Tages – zuletzt beantworteter Tag
   streak: { count: 0, lastDay: null },
   xp: 0,
@@ -220,6 +221,41 @@ export function toggleKnotLearned(id) {
   });
   touchStreak();
 }
+
+/* ---- Persönliche Notizen (je Lektion) ---- */
+function noteKey(moduleId, lessonId) { return `${moduleId}::${lessonId}`; }
+
+/** Notiz einer Lektion holen (oder null). */
+export function getNote(moduleId, lessonId) {
+  return (state.notes || {})[noteKey(moduleId, lessonId)] || null;
+}
+
+/** Notiz speichern; leerer Text löscht sie. Gibt true zurück, wenn gespeichert. */
+export function setNote(moduleId, lessonId, text) {
+  const t = String(text || '').trim();
+  update(s => {
+    if (!s.notes) s.notes = {};
+    const k = noteKey(moduleId, lessonId);
+    if (!t) { delete s.notes[k]; return; }
+    s.notes[k] = { text: t, ts: new Date().toISOString() };
+  });
+  return !!t;
+}
+
+export function deleteNote(moduleId, lessonId) {
+  update(s => { if (s.notes) delete s.notes[noteKey(moduleId, lessonId)]; });
+}
+
+/** Alle Notizen als Liste – neueste zuerst. */
+export function allNotes() {
+  const n = state.notes || {};
+  return Object.keys(n).map(k => {
+    const sep = k.indexOf('::');
+    return { moduleId: k.slice(0, sep), lessonId: k.slice(sep + 2), ...n[k] };
+  }).sort((a, b) => String(b.ts).localeCompare(String(a.ts)));
+}
+
+export function notesCount() { return Object.keys(state.notes || {}).length; }
 
 export function toggleBookmark(moduleId) {
   update(s => {
