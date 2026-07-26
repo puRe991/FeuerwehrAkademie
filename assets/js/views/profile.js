@@ -93,7 +93,7 @@ export function renderProfile() {
   <div class="view fade-up">
     <div class="view__head"><h1>Mein Profil</h1><p class="muted">Dein Ausbildungsstand, Nachweise und Einstellungen.</p></div>
 
-    <div class="grid" style="grid-template-columns:1fr 2fr;align-items:start" id="profCols">
+    <div class="grid col-2" style="grid-template-columns:1fr 2fr;align-items:start" id="profCols">
       <aside class="stack">
         <div class="card card--pad center">
           <div class="avatar" style="width:84px;height:84px;font-size:1.8rem;margin:0 auto">${initials(p.name)}</div>

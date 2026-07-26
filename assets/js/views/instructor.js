@@ -82,7 +82,7 @@ export function renderInstructor() {
       </div>
     </div>
 
-    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:start">
+    <div class="grid col-2" style="grid-template-columns:1fr 1fr;align-items:start">
       <div class="card card--pad">
         <h3 style="margin-bottom:12px">Karteikarten-Lernstand</h3>
         <div class="between" style="padding:6px 0;border-bottom:1px solid var(--border)"><span class="muted">Karten gesamt</span><b>${fc.total}</b></div>

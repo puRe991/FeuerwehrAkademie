@@ -124,7 +124,7 @@ export function renderModuleDetail(id) {
       </div>
     </section>
 
-    <div class="grid" style="grid-template-columns:1.7fr 1fr;align-items:start" id="modDetailCols">
+    <div class="grid col-2" style="grid-template-columns:1.7fr 1fr;align-items:start" id="modDetailCols">
       <section>
         <h2 style="margin-bottom:14px">Lektionen</h2>
         <div class="stack">

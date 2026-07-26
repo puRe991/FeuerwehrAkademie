@@ -41,8 +41,8 @@ export function renderGlossary(query = '') {
           const c = GLOSSARY_CATS[g.cat] || { label: g.cat, color: '#888' };
           const mod = MODULE_BY_ID[g.ref];
           return `<div class="card card--pad">
-            <div class="between" style="margin-bottom:6px">
-              <b style="font-size:1.02rem">${esc(g.term)}</b>
+            <div class="between wrap" style="margin-bottom:6px">
+              <b style="font-size:1.02rem;min-width:0;overflow-wrap:break-word">${esc(g.term)}</b>
               <span class="badge" style="background:${c.color}22;color:${c.color};border:none;flex:none">${esc(c.label)}</span>
             </div>
             <p class="muted" style="font-size:.92rem;margin:0 0 10px">${esc(g.def)}</p>
@@ -82,7 +82,7 @@ export function renderFlashHome() {
       <p class="muted">Nachhaltig lernen mit dem <b>Leitner-System</b> (Spaced Repetition): Karten, die du kannst, kommen seltener – schwierige öfter. ${FLASHCARDS.length} Karten aus allen Modulen.</p>
     </div>
 
-    <div class="grid" style="grid-template-columns:1.5fr 1fr;align-items:start" id="flashCols">
+    <div class="grid col-2" style="grid-template-columns:1.5fr 1fr;align-items:start" id="flashCols">
       <section class="stack">
         <div class="card card--pad">
           <div class="between wrap" style="gap:16px">

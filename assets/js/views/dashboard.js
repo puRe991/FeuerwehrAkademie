@@ -92,7 +92,7 @@ export function renderDashboard() {
       </div>
     </section>
 
-    <div class="grid" style="grid-template-columns:1.6fr 1fr;margin-top:22px;align-items:start" id="dashCols">
+    <div class="grid col-2" style="grid-template-columns:1.6fr 1fr;margin-top:22px;align-items:start" id="dashCols">
       <!-- Empfehlung -->
       <section class="stack">
         <div class="card card--pad">

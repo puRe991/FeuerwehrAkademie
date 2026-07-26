@@ -322,6 +322,51 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 }
 @media (max-width: 600px) { .install-fab { bottom: calc(74px + env(safe-area-inset-bottom)); } }
 
+/* =========================================================================
+   Mobile-Fixes — Layouts, die auf schmalen Geräten überliefen
+   ========================================================================= */
+
+/* Grid-Items dürfen unter ihre Inhaltsbreite schrumpfen (sonst kein Umbruch
+   und horizontaler Überlauf trotz Grid). */
+.grid > *, .col-2 > * { min-width: 0; }
+
+/* Tabellen scrollen horizontal statt die Seite zu sprengen. */
+.table-wrap { min-width: 0; }
+.prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; }
+
+/* Globales Sicherheitsnetz: lange Wörter (dt. Komposita, URLs) brechen
+   statt zu überlaufen – wirkt überall, wo Text in enge Spalten läuft. */
+body { overflow-wrap: break-word; }
+
+/* Lange, umbruchlose Inhalte (Fließtext) nicht überlaufen lassen. */
+.prose { overflow-wrap: break-word; word-break: break-word; }
+
+/* Lange deutsche Komposita in Überschriften umbrechen statt überlaufen
+   (lang="de" ⇒ saubere Silbentrennung). */
+h1, h2, h3, h4 { overflow-wrap: break-word; hyphens: auto; }
+
+@media (max-width: 720px) {
+  /* Zweispaltige Inhalts-Layouts werden einspaltig. !important schlägt die
+     Inline-grid-template-columns der Ansichten. */
+  .col-2 { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 560px) {
+  /* Große Display-Überschriften auf dem Handy etwas verkleinern, damit lange
+     deutsche Komposita in eine Zeile passen statt hässlich zu brechen. */
+  :root { --fs-3xl: 1.75rem; --fs-2xl: 1.45rem; }
+
+  /* Statistik-Trios (Prüfungs-/Simulator-Start) kompakter, damit sie passen.
+     minmax(0,1fr) erlaubt den Spalten zu schrumpfen (kein Überlauf). */
+  .stat-trio { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; max-width: 100% !important; }
+  .stat-trio .card { padding: 12px 6px !important; }
+  .stat-trio b { font-size: 1.2rem !important; }
+  .stat-trio .subtle { font-size: .72rem; }
+
+  /* Lange Button-Beschriftungen dürfen umbrechen statt zu überlaufen. */
+  .btn { white-space: normal; max-width: 100%; }
+}
+
 /* ---------- Icons in Buttons einheitlich skalieren ---------- */
 .btn svg { width: 1.15em; height: 1.15em; flex: none; }
 

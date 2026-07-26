@@ -36,7 +36,7 @@ export function renderLernpfad() {
       <p class="muted">Ein empfohlener Weg von den Grundlagen bis zur Führung – angepasst an dein Ausbildungsniveau (${esc(LEVELS[userLevel])}).</p>
     </div>
 
-    <div class="grid" style="grid-template-columns:2fr 1fr;align-items:start" id="pathCols">
+    <div class="grid col-2" style="grid-template-columns:2fr 1fr;align-items:start" id="pathCols">
       <section class="card card--pad">
         <div class="path">
           ${ordered.map(m => {
@@ -193,7 +193,7 @@ export function renderSearch(query) {
       : results.length ? `<div class="stack">${results.map(r => `<a class="card card--pad card--interactive flex gap-md" style="align-items:flex-start;text-decoration:none;color:inherit" href="${r.href}">
           <div style="width:42px;height:42px;border-radius:12px;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--fw-red)">${icon(r.icon).replace('<svg ','<svg style="width:22px;height:22px" ')}</div>
           <div style="flex:1;min-width:0">
-            <div class="flex gap-sm" style="align-items:center;flex-wrap:wrap"><b>${esc(r.title)}</b><span class="badge">${esc(r.type)}</span></div>
+            <div class="flex gap-sm" style="align-items:center;flex-wrap:wrap"><b style="min-width:0;overflow-wrap:anywhere">${esc(r.title)}</b><span class="badge">${esc(r.type)}</span></div>
             <div class="subtle" style="font-size:.82rem;margin-top:1px">${esc(r.sub)}</div>
             ${r.snippet ? `<div class="muted" style="font-size:.85rem;margin-top:5px;line-height:1.4">${r.snippet}</div>` : ''}
           </div>

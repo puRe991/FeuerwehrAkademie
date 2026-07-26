@@ -59,7 +59,7 @@ function examIntro(ctx) {
         <p class="muted">${ctx.kind === 'set'
           ? esc(ctx.set.desc)
           : 'Teste dein Wissen. Du erhältst nach jeder Frage eine Erklärung – so lernst du auch aus Fehlern.'}</p>
-        <div class="tiles" style="grid-template-columns:repeat(3,1fr);max-width:520px;margin:8px auto 0">
+        <div class="tiles stat-trio" style="grid-template-columns:repeat(3,1fr);max-width:520px;margin:8px auto 0">
           <div class="card card--pad center"><b style="font-size:1.6rem">${ctx.questionCount}</b><span class="subtle">Fragen</span></div>
           <div class="card card--pad center"><b style="font-size:1.6rem">${ctx.passScore}%</b><span class="subtle">zum Bestehen</span></div>
           <div class="card card--pad center"><b style="font-size:1.6rem">${Math.round(ctx.timeLimit / 60)}</b><span class="subtle">Min. Richtwert</span></div>
