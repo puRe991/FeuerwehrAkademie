@@ -55,6 +55,30 @@ const NAV = [
   { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
 ];
 
+/* Primäre Ziele für die mobile Tab-Leiste (Handy). „Menü" öffnet die volle Navigation. */
+const MOBILE_TABS = [
+  { href: '#/', label: 'Start', icon: 'dashboard' },
+  { href: '#/module', label: 'Module', icon: 'book' },
+  { href: '#/pruefungen', label: 'Prüfen', icon: 'exam' },
+  { href: '#/einsatzkompass', label: 'Einsatz', icon: 'compass' },
+  { menu: true, label: 'Menü', icon: 'menu' },
+];
+
+function renderTabbar(activeHref) {
+  return `
+  <nav class="tabbar" aria-label="Schnellnavigation">
+    ${MOBILE_TABS.map(t => {
+      if (t.menu) {
+        return `<button type="button" class="tabbar__link" id="tabMenu" aria-label="Menü öffnen" aria-controls="sidebar">
+             ${icon(t.icon)}<span>${esc(t.label)}</span></button>`;
+      }
+      const active = isActive(activeHref, t.href);
+      return `<a class="tabbar__link ${active ? 'active' : ''}" href="${t.href}"${active ? ' aria-current="page"' : ''}>
+           ${icon(t.icon)}<span>${esc(t.label)}</span></a>`;
+    }).join('')}
+  </nav>`;
+}
+
 function renderShell(activeHref) {
   const s = getState();
   const p = s.profile;
@@ -98,6 +122,7 @@ function renderShell(activeHref) {
       </header>
       <main id="view" tabindex="-1"></main>
     </div>
+    ${renderTabbar(activeHref)}
   </div>`;
 }
 
@@ -180,8 +205,8 @@ function render() {
     app.innerHTML = renderShell(h);
     wireShell();
   } else {
-    // aktiven Nav-Link aktualisieren
-    document.querySelectorAll('.nav__link').forEach(el => {
+    // aktiven Nav-Link aktualisieren (Sidebar + mobile Tab-Leiste)
+    document.querySelectorAll('.nav__link, .tabbar__link[href]').forEach(el => {
       const on = isActive(h, el.getAttribute('href'));
       el.classList.toggle('active', on);
       if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
@@ -206,6 +231,7 @@ function setNavOpen(open) {
 }
 function wireShell() {
   qs('#navToggle')?.addEventListener('click', () => setNavOpen(!qs('#appShell').classList.contains('nav-open')));
+  qs('#tabMenu')?.addEventListener('click', () => setNavOpen(!qs('#appShell').classList.contains('nav-open')));
   qs('#scrim')?.addEventListener('click', () => setNavOpen(false));
 
   qs('#themeToggle')?.addEventListener('click', () => {
@@ -277,6 +303,52 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js').catch(() => {});
   });
 }
+
+/* ------------- „App installieren" (Add to Home Screen) ------------- */
+/* Android/Chrome feuert beforeinstallprompt; wir bieten einen dezenten Button. */
+let deferredInstall = null;
+const INSTALL_DISMISS_KEY = 'fwa-install-dismissed';
+
+function isStandalone() {
+  return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+}
+
+function showInstallBanner() {
+  if (!deferredInstall || isStandalone()) return;
+  if (localStorage.getItem(INSTALL_DISMISS_KEY)) return;
+  if (document.getElementById('installFab')) return;
+
+  const bar = document.createElement('div');
+  bar.id = 'installFab';
+  bar.className = 'install-fab';
+  bar.innerHTML = `
+    <span class="install-fab__txt">${icon('download')} App auf dem Handy installieren</span>
+    <button type="button" class="install-fab__go">Installieren</button>
+    <button type="button" class="install-fab__x" aria-label="Hinweis schließen">✕</button>`;
+  document.body.appendChild(bar);
+
+  bar.querySelector('.install-fab__go').addEventListener('click', async () => {
+    if (!deferredInstall) return;
+    deferredInstall.prompt();
+    try { await deferredInstall.userChoice; } catch {}
+    deferredInstall = null;
+    bar.remove();
+  });
+  bar.querySelector('.install-fab__x').addEventListener('click', () => {
+    localStorage.setItem(INSTALL_DISMISS_KEY, '1');
+    bar.remove();
+  });
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstall = e;
+  showInstallBanner();
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstall = null;
+  document.getElementById('installFab')?.remove();
+});
 
 /* Konsolen-Gruß */
 console.log('%c🚒 Feuerwehr Online Akademie', 'font-size:16px;font-weight:bold;color:#d81f26',

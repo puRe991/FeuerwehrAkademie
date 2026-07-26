@@ -251,17 +251,76 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 .scrim { display: none; }
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
-  .sidebar { position: fixed; left: 0; top: 0; width: var(--nav-w); transform: translateX(-100%); transition: transform var(--transition); box-shadow: var(--shadow-3); }
+  .sidebar {
+    position: fixed; left: 0; top: 0; width: var(--nav-w); transform: translateX(-100%);
+    transition: transform var(--transition); box-shadow: var(--shadow-3);
+    padding-top: env(safe-area-inset-top);
+  }
   .app.nav-open .sidebar { transform: none; }
   .app.nav-open .scrim { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 39; }
   .nav-toggle { display: grid; }
   .reader { grid-template-columns: 1fr; }
   .reader__aside { display: none; }
+  /* Statusleiste/Notch im Standalone-Modus respektieren */
+  .topbar {
+    padding-top: env(safe-area-inset-top);
+    padding-left: max(clamp(16px,4vw,32px), env(safe-area-inset-left));
+    padding-right: max(clamp(16px,4vw,32px), env(safe-area-inset-right));
+    height: calc(var(--header-h) + env(safe-area-inset-top));
+  }
 }
 @media (max-width: 560px) {
   .searchbar { display: none; }
   .hero__stats { gap: 18px; }
 }
+
+/* ---------- Bottom-Tab-Leiste (Handy) ---------- */
+.tabbar { display: none; }
+@media (max-width: 600px) {
+  .tabbar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+    background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tabbar__link {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 54px; padding: 7px 4px 5px; background: none; border: 0; cursor: pointer;
+    color: var(--text-subtle); font: inherit; font-size: .66rem; font-weight: 700;
+    letter-spacing: .01em; text-decoration: none; transition: color var(--transition);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tabbar__link svg { width: 23px; height: 23px; }
+  .tabbar__link.active { color: var(--fw-red); }
+  .tabbar__link:active { background: var(--surface-2); }
+  /* Platz schaffen, damit Inhalt nicht unter der Tab-Leiste verschwindet */
+  .view { padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+  .toast-wrap { bottom: calc(80px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------- Install-Banner (Add to Home Screen) ---------- */
+.install-fab {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 80;
+  display: flex; align-items: center; gap: 10px;
+  max-width: calc(100vw - 24px);
+  background: var(--fw-anthracite); color: #fff;
+  padding: 9px 10px 9px 18px; border-radius: var(--r-full);
+  box-shadow: var(--shadow-3); font-size: var(--fs-sm); font-weight: 600;
+  animation: pop .3s both;
+}
+.install-fab__txt { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.install-fab__txt svg { width: 18px; height: 18px; flex: none; }
+.install-fab__go {
+  flex: none; background: var(--fw-red); color: #fff; border: 0; font: inherit; font-weight: 700;
+  padding: 8px 16px; border-radius: var(--r-full); cursor: pointer;
+}
+.install-fab__x {
+  flex: none; background: rgba(255,255,255,.15); color: #fff; border: 0;
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: .85rem; line-height: 1;
+}
+@media (max-width: 600px) { .install-fab { bottom: calc(74px + env(safe-area-inset-bottom)); } }
 
 /* ---------- Icons in Buttons einheitlich skalieren ---------- */
 .btn svg { width: 1.15em; height: 1.15em; flex: none; }
