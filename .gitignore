@@ -23,3 +23,7 @@ scratchpad/
 www/
 
 # Quell-Assets bereits eingecheckt; generierte SDK bleibt lokal
+
+# APK/AAB-Build-Artefakte im Repo-Root nicht einchecken
+*.apk
+*.aab
