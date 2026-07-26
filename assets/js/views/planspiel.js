@@ -10,7 +10,21 @@ import { esc, fmtDuration, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 import { sceneSVG } from './scene-art.js';
 
-let play = null; // { id, nodeId, meters, path:[{nodeId,decisionIdx,kind}], finished }
+let play = null; // { id, nodeId, meters, path:[{nodeId,decisionIdx,kind}], finished, _deadline }
+let psTimer = null; // Handle des laufenden Entscheidungs-Countdowns
+
+// Standard-Bedenkzeit pro Entscheidungspunkt (Sekunden); pro Node via node.limit übersteuerbar.
+const DECISION_SECONDS = 60;
+function nodeLimit(node) { return node && node.limit ? node.limit : DECISION_SECONDS; }
+function armDeadline(p) {
+  const node = p.nodes[play.nodeId];
+  play._deadline = Date.now() + nodeLimit(node) * 1000;
+}
+function fmtClock(ms) {
+  const s = Math.max(0, Math.ceil(ms / 1000));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+function stopTimer() { if (psTimer) { clearInterval(psTimer); psTimer = null; } }
 
 const METERS = {
   rettung:    { label: 'Menschenrettung', color: '#2e9e5b', icon: 'heart' },
@@ -112,7 +126,15 @@ function scene(p) {
 
       <div class="ps-scene">
         ${sceneSVG(node.art || p.nodes[p.start]?.art || p.id, {})}
-        ${node.time ? `<div class="ps-clock">${icon('clock').replace('<svg ','<svg style="width:15px;height:15px" ')} ${esc(node.time)}</div>` : ''}
+        ${(() => {
+          const remaining = Math.max(0, (play._deadline || Date.now()) - Date.now());
+          const warn = remaining <= 10000 ? ' ps-clock--warn' : '';
+          return `<div class="ps-clock${warn}" id="psClock" role="timer" aria-label="Verbleibende Entscheidungszeit" title="Verbleibende Entscheidungszeit">
+            ${icon('clock').replace('<svg ', '<svg style="width:15px;height:15px" ')}
+            <span id="psClockTime">${fmtClock(remaining)}</span>
+            ${node.time ? `<span class="ps-clock__mission">Einsatzzeit ${esc(node.time)}</span>` : ''}
+          </div>`;
+        })()}
       </div>
 
       ${lastFeedback ? `<div class="ps-feedback ${lastFeedback.kind === 'good' ? 'good' : lastFeedback.kind === 'bad' ? 'bad' : 'mid'} pop">
@@ -207,10 +229,15 @@ function shade(hex, p) {
 
 /* --------------- Steuerung --------------- */
 export function startPlay(id) {
-  play = { id, nodeId: PLANSPIEL_BY_ID[id].start, meters: { rettung: 50, sicherheit: 50, taktik: 50 }, path: [], finished: false, _feedback: null };
+  const p = PLANSPIEL_BY_ID[id];
+  play = { id, nodeId: p.start, meters: { rettung: 50, sicherheit: 50, taktik: 50 }, path: [], finished: false, _feedback: null, _deadline: 0 };
+  armDeadline(p);
 }
 
 export function bindPlanspiel(root, rerender) {
+  // Alten Countdown immer stoppen, bevor eine Ansicht neu verdrahtet wird.
+  stopTimer();
+
   const start = root.querySelector('#startPlay');
   if (start) start.addEventListener('click', () => { startPlay(start.dataset.id); rerender(); });
 
@@ -220,6 +247,20 @@ export function bindPlanspiel(root, rerender) {
   if (!play || play.finished) return;
   const p = PLANSPIEL_BY_ID[play.id];
   const node = p.nodes[play.nodeId];
+
+  // Live-Countdown der Bedenkzeit für den aktuellen Entscheidungspunkt.
+  const timeEl = root.querySelector('#psClockTime');
+  const clockEl = root.querySelector('#psClock');
+  if (timeEl && play._deadline) {
+    const tick = () => {
+      const remaining = Math.max(0, play._deadline - Date.now());
+      timeEl.textContent = fmtClock(remaining);
+      if (clockEl) clockEl.classList.toggle('ps-clock--warn', remaining <= 10000);
+      if (remaining <= 0) stopTimer(); // sanft: bleibt bei 0:00 stehen, kein Auto-Fail
+    };
+    tick();
+    psTimer = setInterval(tick, 250);
+  }
 
   root.querySelectorAll('.ps-decision').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -232,6 +273,7 @@ export function bindPlanspiel(root, rerender) {
       play.path.push({ nodeId: play.nodeId, decisionIdx: idx, kind: dec.kind });
       play._feedback = { kind: dec.kind, text: dec.feedback };
       const nextNode = p.nodes[dec.next];
+      stopTimer();
       if (!nextNode || nextNode.terminal) {
         play.finished = true;
         const rating = overallRating();
@@ -241,6 +283,7 @@ export function bindPlanspiel(root, rerender) {
         else toast(`Einsatz beendet: ${rating}/100. +40 XP`, 'bolt');
       } else {
         play.nodeId = dec.next;
+        armDeadline(p); // Bedenkzeit für den nächsten Entscheidungspunkt neu starten
       }
       rerender();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -248,4 +291,4 @@ export function bindPlanspiel(root, rerender) {
   });
 }
 
-export function resetPlanspielSession() { play = null; }
+export function resetPlanspielSession() { stopTimer(); play = null; }

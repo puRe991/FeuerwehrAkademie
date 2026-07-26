@@ -211,7 +211,9 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 .planspiel-stage { max-width: 860px; margin-inline: auto; }
 .ps-scene { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-2); margin-bottom: 20px; position: relative; }
 .ps-scene svg { display: block; width: 100%; height: auto; }
-.ps-clock { position: absolute; top: 14px; right: 14px; background: rgba(12,16,22,.82); color: #fff; padding: 6px 14px; border-radius: var(--r-full); font-weight: 800; font-family: var(--font-mono); display: flex; gap: 8px; align-items: center; }
+.ps-clock { position: absolute; top: 14px; right: 14px; background: rgba(12,16,22,.82); color: #fff; padding: 6px 14px; border-radius: var(--r-full); font-weight: 800; font-family: var(--font-mono); display: flex; gap: 8px; align-items: center; font-variant-numeric: tabular-nums; }
+.ps-clock__mission { font-family: var(--font-sans, inherit); font-weight: 600; font-size: .72rem; opacity: .72; padding-left: 8px; margin-left: 2px; border-left: 1px solid rgba(255,255,255,.28); }
+.ps-clock--warn { background: var(--fw-red); animation: simPulse 1s ease-in-out infinite; }
 .ps-situation { font-size: var(--fs-lg); line-height: 1.5; }
 .ps-decisions { display: grid; gap: 12px; margin-top: 20px; }
 .ps-decision { text-align: left; padding: 16px 20px; border-radius: var(--r-md); border: 2px solid var(--border); background: var(--surface); cursor: pointer; font: inherit; transition: all var(--transition); display: flex; gap: 14px; align-items: center; }
