@@ -17,7 +17,13 @@ title Feuerwehr Online Akademie
 cd /d "%~dp0"
 
 set "PORT=8000"
-set "URL=http://localhost:%PORT%/"
+REM  Bewusst 127.0.0.1 (IPv4) statt "localhost": Manche Server (z. B.
+REM  Pythons http.server) binden nur auf IPv6 (::). Loest "localhost" dann
+REM  auf 127.0.0.1 auf, wird die Verbindung abgelehnt und die Seite laedt
+REM  nicht - der Start wirkt "haengend". Ein fester IPv4-Bind + passende URL
+REM  vermeiden diese Zweideutigkeit vollstaendig.
+set "HOST=127.0.0.1"
+set "URL=http://%HOST%:%PORT%/"
 
 echo.
 echo   ============================================================
@@ -49,21 +55,21 @@ goto :download
 echo   [OK]  Python-Starter (py) gefunden. Starte lokalen Server...
 echo.
 call :openbrowser
-py -3 -m http.server %PORT%
+py -3 -m http.server %PORT% --bind %HOST%
 goto :ende
 
 :python_plain
 echo   [OK]  Python gefunden. Starte lokalen Server...
 echo.
 call :openbrowser
-python -m http.server %PORT%
+python -m http.server %PORT% --bind %HOST%
 goto :ende
 
 :node
 echo   [OK]  Node.js gefunden. Starte lokalen Server...
 echo.
 call :openbrowser
-node -e "const h=require('http'),f=require('fs'),pa=require('path');const port=%PORT%,root=process.cwd();const m={'.html':'text/html','.htm':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.map':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.ico':'image/x-icon','.woff2':'font/woff2','.txt':'text/plain'};h.createServer(function(q,s){var u=decodeURIComponent(q.url.split('?')[0]);if(u==='/')u='/index.html';var fp=pa.join(root,u);f.readFile(fp,function(e,d){if(e){s.statusCode=404;s.end('404');return;}var ct=m[pa.extname(fp).toLowerCase()]||'application/octet-stream';var isText=ct.indexOf('image')<0&&ct.indexOf('font')<0;s.setHeader('Content-Type',isText?ct+'; charset=utf-8':ct);s.setHeader('Cache-Control','no-cache');s.end(d);});}).listen(port,function(){console.log('Feuerwehr Akademie laeuft: %URL%');});"
+node -e "const h=require('http'),f=require('fs'),pa=require('path');const port=%PORT%,root=process.cwd();const m={'.html':'text/html','.htm':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.map':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.ico':'image/x-icon','.woff2':'font/woff2','.txt':'text/plain'};h.createServer(function(q,s){var u=decodeURIComponent(q.url.split('?')[0]);if(u==='/')u='/index.html';var fp=pa.join(root,u);f.readFile(fp,function(e,d){if(e){s.statusCode=404;s.end('404');return;}var ct=m[pa.extname(fp).toLowerCase()]||'application/octet-stream';var isText=ct.indexOf('image')<0&&ct.indexOf('font')<0;s.setHeader('Content-Type',isText?ct+'; charset=utf-8':ct);s.setHeader('Cache-Control','no-cache');s.end(d);});}).listen(port,'%HOST%',function(){console.log('Feuerwehr Akademie laeuft: %URL%');});"
 goto :ende
 
 :download
@@ -83,7 +89,7 @@ if not exist "%CADDY%" goto :psfallback
 echo   [OK]  Portabler Server bereit. Starte...
 echo.
 call :openbrowser
-"%CADDY%" file-server --root "%~dp0." --listen :%PORT%
+"%CADDY%" file-server --root "%~dp0." --listen %HOST%:%PORT%
 goto :ende
 
 :psfallback
@@ -120,7 +126,7 @@ REM   nicht nach, der Start wirkte "haengend". Dieser Helfer wartet im
 REM   Hintergrund (bis 30s), bis der Port antwortet, und oeffnet erst dann
 REM   den Standardbrowser.
 :openbrowser
-start "" /min powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "for($i=0;$i -lt 60;$i++){try{$c=New-Object Net.Sockets.TcpClient;$c.Connect('localhost',%PORT%);$c.Close();Start-Process '%URL%';break}catch{Start-Sleep -Milliseconds 500}}"
+start "" /min powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "for($i=0;$i -lt 60;$i++){try{$c=New-Object Net.Sockets.TcpClient;$c.Connect('%HOST%',%PORT%);$c.Close();Start-Process '%URL%';break}catch{Start-Sleep -Milliseconds 500}}"
 goto :eof
 
 :ende

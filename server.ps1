@@ -40,20 +40,30 @@ $mime = @{
   '.txt'         = 'text/plain; charset=utf-8'
 }
 
+# Bewusst 127.0.0.1 (IPv4): passt zur URL, die die Batch-Datei oeffnet, und
+# vermeidet die localhost-Zweideutigkeit (IPv4 vs. IPv6). Falls http.sys den
+# IP-Prefix ausnahmsweise ablehnt, wird auf den localhost-Prefix zurueckgefallen
+# (der antwortet ebenfalls auf 127.0.0.1-Anfragen).
 $listener = New-Object System.Net.HttpListener
-$listener.Prefixes.Add("http://localhost:$port/")
+$listener.Prefixes.Add("http://127.0.0.1:$port/")
 try {
   $listener.Start()
 } catch {
-  Write-Host ""
-  Write-Host "  [FEHLER] Konnte Port $port nicht oeffnen."
-  Write-Host "           Vermutlich laeuft dort bereits ein Server."
-  Write-Host ""
-  exit 1
+  try {
+    $listener = New-Object System.Net.HttpListener
+    $listener.Prefixes.Add("http://localhost:$port/")
+    $listener.Start()
+  } catch {
+    Write-Host ""
+    Write-Host "  [FEHLER] Konnte Port $port nicht oeffnen."
+    Write-Host "           Vermutlich laeuft dort bereits ein Server."
+    Write-Host ""
+    exit 1
+  }
 }
 
 Write-Host ""
-Write-Host "  Feuerwehr Online Akademie laeuft:  http://localhost:$port/"
+Write-Host "  Feuerwehr Online Akademie laeuft:  http://127.0.0.1:$port/"
 Write-Host "  Zum Beenden dieses Fenster schliessen oder Strg+C druecken."
 Write-Host ""
 
