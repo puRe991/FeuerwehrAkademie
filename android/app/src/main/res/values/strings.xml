@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Feuerwehr Akademie</string>
+    <string name="title_activity_main">Feuerwehr Akademie</string>
+    <string name="package_name">de.feuerwehrakademie.app</string>
+    <string name="custom_url_scheme">de.feuerwehrakademie.app</string>
+</resources>

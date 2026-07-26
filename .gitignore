@@ -18,3 +18,8 @@ tools/
 
 # Scratchpad / temporäre Artefakte
 scratchpad/
+
+# Capacitor Build-Artefakt (aus Repo-Root generiert)
+www/
+
+# Quell-Assets bereits eingecheckt; generierte SDK bleibt lokal

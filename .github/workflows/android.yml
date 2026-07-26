@@ -1,0 +1,71 @@
+name: Android APK bauen
+
+# Baut aus der PWA über Capacitor eine installierbare Android-App (Debug-APK).
+# Das Ergebnis liegt als Artefakt der Workflow-Ausführung zum Download bereit
+# (Actions → Lauf öffnen → Abschnitt "Artifacts" → feuerwehr-akademie-debug-apk).
+
+on:
+  push:
+    branches:
+      - "claude/mobile-android-version-x043bk"
+      - "claude/feuerwehr-online-akademie-81jy2m"
+      - "main"
+    paths:
+      - "assets/**"
+      - "index.html"
+      - "manifest.webmanifest"
+      - "service-worker.js"
+      - "android/**"
+      - "capacitor.config.json"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/build-web.mjs"
+      - ".github/workflows/android.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: JDK 17 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Web-Assets zusammenstellen und Capacitor synchronisieren
+        run: npm run sync
+
+      - name: Debug-APK bauen
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+
+      - name: APK umbenennen
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk feuerwehr-akademie-debug.apk
+
+      - name: APK als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: feuerwehr-akademie-debug-apk
+          path: feuerwehr-akademie-debug.apk
+          if-no-files-found: error

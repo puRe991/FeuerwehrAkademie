@@ -156,6 +156,34 @@ Es ist also **keine** manuelle Installation nötig. Zum Beenden das Server-Fenst
 
 Der beigefügte Workflow (`.github/workflows/pages.yml`) veröffentlicht das Repository automatisch über GitHub Pages. In den Repo-Einstellungen unter **Pages → Source → GitHub Actions** aktivieren.
 
+## 📱 Mobile App (Android)
+
+Die Akademie ist als **Handy-App** nutzbar – auf zwei Wegen:
+
+**1. Als PWA installieren (kein Store nötig, sofort verfügbar)**
+Die Seite im Handy-Browser öffnen und über das Menü **„Zum Startbildschirm hinzufügen"** wählen (auf Android erscheint automatisch ein Installations-Hinweis). Die App startet dann im Vollbild, funktioniert offline und bringt eine native **Tab-Leiste am unteren Rand** mit (Start · Module · Prüfen · Einsatz · Menü).
+
+**2. Als echte Android-App (`.apk`) über Capacitor**
+Die bestehende Web-App wird per [Capacitor](https://capacitorjs.com/) in ein natives Android-Projekt (`android/`) verpackt. Eine installierbare **Debug-APK** wird bei jedem Push automatisch gebaut:
+
+- Workflow: `.github/workflows/android.yml`
+- Ergebnis herunterladen: **Actions → Lauf öffnen → Artifacts → `feuerwehr-akademie-debug-apk`**
+- Die entpackte `.apk` auf dem Android-Gerät installieren (dazu ggf. „Installation aus unbekannten Quellen" erlauben).
+
+Lokal bauen (benötigt Node.js, JDK 17 und das Android SDK):
+
+```bash
+npm install                 # Capacitor-Abhängigkeiten
+npm run sync                # www/ zusammenstellen + Capacitor synchronisieren
+npm run apk:debug           # Debug-APK bauen → android/app/build/outputs/apk/debug/
+# App-Icons/Splash neu erzeugen (aus assets-src/):
+npm run assets
+```
+
+- **App-ID:** `de.feuerwehrakademie.app` · **min SDK:** 22 (Android 5.1) · **target SDK:** 34
+- Für den Play Store später: `assembleRelease` mit eigenem Signing-Key (Keystore) statt Debug-Build.
+- iOS lässt sich mit demselben Setup ergänzen (`npx cap add ios`).
+
 ## 🏗️ Architektur
 
 ```
@@ -163,19 +191,26 @@ FeuerwehrAkademie/
 ├── index.html                 App-Shell
 ├── manifest.webmanifest       PWA-Manifest
 ├── service-worker.js          Offline-Cache
+├── capacitor.config.json      Capacitor-Konfiguration (Android-App)
+├── package.json               Build-Skripte & Capacitor-Abhängigkeiten
+├── scripts/
+│   ├── validate-content.mjs   Inhalts-Validierung (CI)
+│   └── build-web.mjs          Stellt www/ für Capacitor zusammen
+├── assets-src/                Quell-Icons/Splash für die App
+├── android/                   Natives Android-Projekt (Capacitor)
 └── assets/
     ├── css/
     │   ├── design-system.css  Design-Tokens, Komponenten, Themes
-    │   └── app.css            App-Layout & spezifische Komponenten
+    │   └── app.css            App-Layout, Mobile-Tab-Leiste, Safe-Areas
     └── js/
-        ├── app.js             Router & App-Shell (Hash-Routing)
+        ├── app.js             Router, App-Shell, Tab-Leiste, Install-Prompt
         ├── state.js           Persistenter Store (localStorage, Pub/Sub)
         ├── utils.js           DOM-Helfer, Toasts, Modals, Konfetti
         ├── data/              Inhalte (Curriculum, Prüfungen, Planspiele, Icons)
         └── views/             Ansichten (Dashboard, Module, Lektion, Prüfung, Planspiel …)
 ```
 
-**Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt. Alle Daten bleiben lokal auf dem Gerät.
+**Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt für die Web-App. Alle Daten bleiben lokal auf dem Gerät. Für die native Android-App verpackt Capacitor die unveränderte Web-App – **derselbe Code** läuft im Browser, als PWA und als App.
 
 ## ✅ Qualitätssicherung (CI)
 
