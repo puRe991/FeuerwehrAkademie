@@ -25,6 +25,14 @@ REM  vermeiden diese Zweideutigkeit vollstaendig.
 set "HOST=127.0.0.1"
 set "URL=http://%HOST%:%PORT%/"
 
+REM  Python-Server mit ERZWUNGENEN MIME-Typen. "python -m http.server" liest
+REM  den MIME-Typ fuer .js unter Windows aus der Registry - dort steht er
+REM  oft auf "text/plain". Browser verweigern dann die Ausfuehrung der
+REM  ES-Module (type="module"), die App bleibt beim Laden haengen. Diese
+REM  Handler-Variante setzt die richtigen Typen fest und ist damit
+REM  unabhaengig von der Windows-Registry.
+set "PYCODE=import http.server,socketserver; H=http.server.SimpleHTTPRequestHandler; H.extensions_map.update({'.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.map':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.woff2':'font/woff2'}); socketserver.TCPServer.allow_reuse_address=True; print('Feuerwehr Akademie laeuft: %URL%'); socketserver.TCPServer(('%HOST%',%PORT%),H).serve_forever()"
+
 echo.
 echo   ============================================================
 echo      FEUERWEHR ONLINE AKADEMIE   -   Start
@@ -55,14 +63,14 @@ goto :download
 echo   [OK]  Python-Starter (py) gefunden. Starte lokalen Server...
 echo.
 call :openbrowser
-py -3 -m http.server %PORT% --bind %HOST%
+py -3 -c "%PYCODE%"
 goto :ende
 
 :python_plain
 echo   [OK]  Python gefunden. Starte lokalen Server...
 echo.
 call :openbrowser
-python -m http.server %PORT% --bind %HOST%
+python -c "%PYCODE%"
 goto :ende
 
 :node
