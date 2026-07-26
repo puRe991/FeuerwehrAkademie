@@ -146,11 +146,16 @@ export function bindInstructor(root, rerender) {
 
   root.querySelector('#exportCsv')?.addEventListener('click', () => {
     const rows = collectRows();
-    const head = ['Modul-Code', 'Titel', 'Kategorie', 'Lektionen erledigt', 'Lektionen gesamt', 'Fortschritt %', 'Prüfung beste %', 'Bestanden', 'Prüfungsdatum'];
-    const lines = [head.join(';')].concat(rows.map(r => [
-      r.code, `"${r.title}"`, `"${r.category}"`, r.lessonsDone, r.lessonsTotal, r.pct,
+    const head = ['Typ', 'Code', 'Titel', 'Kategorie', 'Lektionen erledigt', 'Lektionen gesamt', 'Fortschritt %', 'Prüfung beste %', 'Bestanden', 'Prüfungsdatum'];
+    const moduleLines = rows.map(r => [
+      'Modul', r.code, `"${r.title}"`, `"${r.category}"`, r.lessonsDone, r.lessonsTotal, r.pct,
       r.examBest ?? '', r.passed ? 'ja' : 'nein', r.examDate ? fmtDate(r.examDate) : '',
-    ].join(';')));
+    ].join(';'));
+    const setLines = EXAM_SETS.map(set => ({ set, best: bestExam(set.id) })).filter(x => x.best).map(x => [
+      'Abschlussprüfung', x.set.id, `"${x.set.title}"`, '"Abschlussprüfung"', '', '', '',
+      x.best.score, x.best.passed ? 'ja' : 'nein', x.best.date ? fmtDate(x.best.date) : '',
+    ].join(';'));
+    const lines = [head.join(';')].concat(moduleLines, setLines);
     downloadFile(`fw-akademie-nachweis-${dateStamp()}.csv`, '﻿' + lines.join('\r\n'), 'text/csv');
     toast('CSV exportiert', 'ok');
   });
@@ -231,6 +236,22 @@ function printReport() {
       </tr>`).join('')}
       </tbody>
     </table>
+    ${(() => {
+      const setRows = EXAM_SETS.map(set => ({ title: set.title, best: bestExam(set.id) })).filter(x => x.best);
+      if (!setRows.length) return '';
+      return `<h2 style="color:#d81f26;font-size:1.1rem;margin:26px 0 0">Abschlussprüfungen</h2>
+    <table>
+      <thead><tr><th>Abschlussprüfung</th><th>Bestes Ergebnis</th><th>Status</th><th>Datum</th></tr></thead>
+      <tbody>
+      ${setRows.map(r => `<tr>
+        <td><b>${esc(r.title)}</b></td>
+        <td>${r.best.score}%</td>
+        <td>${r.best.passed ? '<span class="ok">bestanden</span>' : '<span class="no">nicht bestanden</span>'}</td>
+        <td>${r.best.date ? fmtDate(r.best.date) : '–'}</td>
+      </tr>`).join('')}
+      </tbody>
+    </table>`;
+    })()}
     <footer>
       Erstellt am ${new Date().toLocaleString('de-DE')} · Feuerwehr Online Akademie ·
       Dieser Nachweis dokumentiert den Lernfortschritt in der Online-Akademie und ersetzt keine offizielle Lehrgangsbescheinigung.

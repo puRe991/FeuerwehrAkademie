@@ -2,6 +2,7 @@
    VIEW: Onboarding & Profil — Personalisierung
    ========================================================================= */
 import { LEVELS, MODULES } from '../data/curriculum.js';
+import { EXAM_SETS } from '../data/pruefungssets.js';
 import { icon } from '../data/icons.js';
 import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll } from '../state.js';
 import { esc, initials, toast, modal } from '../utils.js';
@@ -87,7 +88,14 @@ export function renderProfile() {
     m, prog: moduleProgress(m.id, m.lessons.length), passed: isModulePassed(m.id), best: bestExam(m.id),
   }));
   const totalPassed = stats.filter(x => x.passed).length;
-  const certificates = stats.filter(x => x.best?.passed);
+
+  // Leistungsnachweise: bestandene Modulprüfungen UND bestandene Abschlussprüfungen (Sets).
+  const setStats = EXAM_SETS.map(set => ({ set, best: bestExam(set.id) }));
+  const setsPassed = setStats.filter(x => x.best?.passed);
+  const certificates = [
+    ...stats.filter(x => x.best?.passed).map(x => ({ title: x.m.title, score: x.best.score, kind: 'Modulprüfung' })),
+    ...setsPassed.map(x => ({ title: x.set.title, score: x.best.score, kind: 'Abschlussprüfung' })),
+  ];
 
   return `
   <div class="view fade-up">
@@ -108,7 +116,8 @@ export function renderProfile() {
           <button class="btn btn--outline btn--block" id="editProfile" style="margin-top:16px">Profil bearbeiten</button>
         </div>
         <div class="card card--pad">
-          <div class="between" style="padding:6px 0"><span class="muted">Bestandene Prüfungen</span><b>${totalPassed}/${MODULES.length}</b></div>
+          <div class="between" style="padding:6px 0"><span class="muted">Bestandene Modulprüfungen</span><b>${totalPassed}/${MODULES.length}</b></div>
+          <div class="between" style="padding:6px 0"><span class="muted">Bestandene Abschlussprüfungen</span><b>${setsPassed.length}/${EXAM_SETS.length}</b></div>
           <div class="between" style="padding:6px 0"><span class="muted">Tage-Streak</span><b>${s.streak.count} 🔥</b></div>
           <div class="between" style="padding:6px 0"><span class="muted">Planspiele</span><b>${Object.values(s.planspielResults).reduce((n,a)=>n+a.length,0)}</b></div>
         </div>
@@ -125,10 +134,10 @@ export function renderProfile() {
             ${certificates.map(c => `<div class="card card--pad" style="border:2px dashed var(--ok);background:var(--ok-bg)">
               <div class="flex gap-sm" style="align-items:center">
                 ${icon('shield').replace('<svg ','<svg style="width:30px;height:30px;color:var(--ok);flex:none" ')}
-                <div style="min-width:0"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(c.m.title)}</b><span class="subtle" style="font-size:.82rem">${c.best.score}% · bestanden</span></div>
+                <div style="min-width:0"><b style="display:block;overflow-wrap:anywhere">${esc(c.title)}</b><span class="subtle" style="font-size:.82rem">${c.kind} · ${c.score}% · bestanden</span></div>
               </div>
             </div>`).join('')}
-          </div>` : `<p class="muted" style="margin:0">Noch keine Nachweise. Bestehe eine Modulprüfung, um deinen ersten Leistungsnachweis zu erhalten.</p>`}
+          </div>` : `<p class="muted" style="margin:0">Noch keine Nachweise. Bestehe eine Modul- oder Abschlussprüfung, um deinen ersten Leistungsnachweis zu erhalten.</p>`}
         </div>
 
         <div class="card card--pad">
