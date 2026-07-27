@@ -57,6 +57,19 @@ function examIntro(ctx) {
           ${icon(ctx.kind === 'set' ? 'award' : 'exam').replace('<svg ', '<svg style="width:38px;height:38px" ')}
         </div>
         <h1>${ctx.kind === 'set' ? esc(ctx.title) : 'Prüfung: ' + esc(ctx.title)}</h1>
+        ${(() => {
+          // Modus-Kennzeichnung: Modulprüfungen sind ein Übungsmodus,
+          // Abschlussprüfungen sind an echten Lehrgangsprüfungen kalibriert,
+          // Jugend-Abzeichen werden real praktisch abgenommen.
+          const isYouth = ctx.kind === 'set' && ctx.set.youth;
+          const label = ctx.kind === 'module'
+            ? 'Übungsmodus · lernen mit Erklärungen'
+            : isYouth ? 'Vorbereitung · reale Abnahme erfolgt praktisch'
+            : 'Prüfungsmodus · an echter Lehrgangsprüfung kalibriert';
+          const bg = ctx.kind === 'module' ? 'var(--info-bg);color:var(--info)'
+            : isYouth ? '#2e9e5b22;color:#2e9e5b' : '#f5a62322;color:#c98a00';
+          return `<span class="badge" style="background:${bg};border:none;font-weight:600">${esc(label)}</span>`;
+        })()}
         <p class="muted">${ctx.kind === 'set'
           ? esc(ctx.set.desc)
           : 'Teste dein Wissen. Du erhältst nach jeder Frage eine Erklärung – so lernst du auch aus Fehlern.'}</p>
@@ -66,6 +79,10 @@ function examIntro(ctx) {
           <div class="card card--pad center"><b style="font-size:1.6rem">${Math.round(ctx.timeLimit / 60)}</b><span class="subtle">Min. Richtwert</span></div>
         </div>
         ${best ? `<div class="callout ${best.passed ? 'callout--ok' : 'callout--warn'}" style="text-align:left;max-width:520px;margin:8px auto 0"><b>Bisher bestes Ergebnis: ${best.score}%</b> ${best.passed ? '– bestanden ✔' : ''}</div>` : ''}
+
+        ${(ctx.kind === 'set' && ctx.set.realNote) ? `<div class="callout" style="max-width:520px;margin:8px auto 0;text-align:left;background:var(--surface-2);border-left:4px solid ${ctx.set.youth ? '#2e9e5b' : '#c98a00'}">
+          <span style="font-size:.88rem">${icon('target').replace('<svg ', '<svg style="width:15px;height:15px;vertical-align:-2px" ')} <b>Realitätscheck:</b> ${esc(ctx.set.realNote)}</span>
+        </div>` : ''}
 
         ${ctx.kind === 'module' ? `
           <div class="subtle" style="font-size:.85rem;margin-top:6px">Wähle deine Stufe:</div>

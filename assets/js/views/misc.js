@@ -124,7 +124,7 @@ export function renderPruefungen() {
   <div class="view fade-up">
     <div class="view__head">
       <h1>Prüfungen</h1>
-      <p class="muted">Weise dein Wissen nach. Modulprüfungen gibt es in drei Stufen (Grundlagen · Aufbau · Komplett); modulübergreifende Abschlussprüfungen bündeln ganze Ausbildungsabschnitte.</p>
+      <p class="muted">Zwei Modi: Die <b>Modulprüfungen</b> sind der <b>Übungsmodus</b> zum Lernen (drei Stufen: Grundlagen · Aufbau · Komplett, mit Erklärung nach jeder Frage). Die <b>Abschlussprüfungen</b> sind der <b>Prüfungsmodus</b> – Fragenzahl, Zeit und Bestehensgrenze sind an echte Lehrgangsprüfungen angelehnt (Truppmann/MTA, Atemschutz, Maschinist, Gruppen-/Zugführer). Bedenke: Eine echte Prüfung ist stets <b>schriftlich + praktisch</b>.</p>
     </div>
 
     ${ms.open ? `<a href="#/wiederholung" class="card card--pad card--interactive between wrap" style="text-decoration:none;color:inherit;gap:14px;margin-bottom:26px;border-left:4px solid var(--fw-red)">
@@ -135,7 +135,8 @@ export function renderPruefungen() {
       <span class="btn btn--primary" style="pointer-events:none;flex:none">${ms.open} üben ${icon('arrowr')}</span>
     </a>` : ''}
 
-    <h2 style="margin-bottom:14px">${icon('award').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Abschlussprüfungen</h2>
+    <h2 style="margin-bottom:6px">${icon('award').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Abschlussprüfungen <span class="badge" style="background:#f5a62322;color:#c98a00;border:none;font-weight:600;vertical-align:middle">Prüfungsmodus</span></h2>
+    <p class="muted" style="margin-bottom:14px;max-width:74ch">An echten Lehrgangsprüfungen kalibriert (Fragenzahl, Zeit, Bestehensgrenze). Beim Start jeder Prüfung erklärt ein <b>Realitätscheck</b>, welcher echten Prüfung sie entspricht.</p>
     <div class="module-grid" style="margin-bottom:34px">
       ${proSets.map(examSetCard).join('')}
     </div>
@@ -147,7 +148,8 @@ export function renderPruefungen() {
       ${youthSets.map(examSetCard).join('')}
     </div>` : ''}
 
-    <h2 style="margin-bottom:14px">${icon('book').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Modulprüfungen</h2>
+    <h2 style="margin-bottom:6px">${icon('book').replace('<svg ','<svg style="width:22px;height:22px;vertical-align:-4px" ')} Modulprüfungen <span class="badge" style="background:var(--info-bg);color:var(--info);border:none;font-weight:600;vertical-align:middle">Übungsmodus</span></h2>
+    <p class="muted" style="margin-bottom:14px;max-width:74ch">Zum Lernen und Vertiefen je Thema – mit Erklärung nach jeder Frage. Bestehensgrenze und Richtzeit sind wie in echten schriftlichen Prüfungen gehalten (50 %, Führung 60 %; rund 75 s pro Frage).</p>
     <div class="module-grid">
       ${modsWithExam.map(m => {
         const exam = EXAMS[m.id];
