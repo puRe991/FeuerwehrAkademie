@@ -48,34 +48,40 @@ Land/Landesfeuerwehrschule etwas.
 
 ---
 
-## 3. Unsere Prüfungen im Ist-Zustand
+## 3. Unsere Prüfungen – Ist-Zustand nach der Kalibrierung
 
-### 3.1 Modulprüfungen (A–Z) – 30 Stück, 698 Fragen
+> **Status: umgesetzt.** Die folgenden Werte sind der **neue** Stand nach Angleichung an die
+> echten Prüfungen (vorher in Klammern). Umgesetzt in `assets/js/data/exams.js`,
+> `assets/js/data/pruefungssets.js` und den Prüfungs-Views.
 
-| Kennwert | Unsere Werte | Echte Referenz |
+### 3.1 Modulprüfungen (A–Z) = **Übungsmodus**
+
+| Kennwert | Neu (vorher) | Echte Referenz |
 |---|---|---|
-| Fragen je Prüfung | 19–34 | 20–50 (aber je **Lehrgang**, nicht je Thema) |
-| Zeitlimit | 7–12 min | – |
-| **Zeit pro Frage** | **15–29 s** | **~90–180 s** ⚠️ |
-| Bestehensgrenze | **70–75 %** | **50 %** ⚠️ |
+| Fragen je Prüfung | 19–34 (unverändert) | 20–50 (aber je **Lehrgang**, nicht je Thema) |
+| Zeitlimit | **24–42 min** (vorher 7–12) | – |
+| **Zeit pro Frage** | **~75 s** (vorher 15–29 s) | ~90–180 s ✅ |
+| Bestehensgrenze | **50 %**, Führung **60 %** (vorher 70–75 %) | 50 % / Führung 60 % ✅ |
 
-### 3.2 Prüfungssets (Abschlussprüfungen) – das echte Gegenstück
+Zentral gesetzt in `exams.js` (`REALITAET_SEK_PRO_FRAGE = 75`), damit alle Module konsistent bleiben.
 
-| Set | Fragen | Zeit | s/Frage | Pass | Realistisch? |
+### 3.2 Prüfungssets (Abschlussprüfungen) = **Prüfungsmodus**
+
+| Set | Fragen (vorher) | Zeit (vorher) | s/Frage | Pass (vorher) | An echter Prüfung |
 |---|---|---|---|---|---|
-| Truppmann (MTA) | 15 | 25 min | 100 s | 70 % | Zeit ✅ · Pass etwas streng |
-| Truppführer | 13 | 25 min | 115 s | 70 % | ✅ |
-| Atemschutz | 10 | 20 min | 120 s | 75 % | Zeit ✅ · Pass etwas streng |
-| Maschinist | 10 | 20 min | 120 s | 75 % | Zeit ✅ · Pass etwas streng |
-| Gruppen-/Zugführung | 12 | 25 min | 125 s | 75 % | ✅ (real: 20 Fr./60 min) |
-| Einsatzdienst & Sonderlagen | 14 | 25 min | 107 s | 70 % | kein reales 1:1-Pendant |
-| Großes Examen (A–Z) | 26 | 45 min | 104 s | 80 % | Meta-Prüfung, kein reales Pendant |
-| Jugendflamme 1/2/3 | 9–10 | 10–12 min | 60–72 s | 70–75 % | real **praktisch**, nicht MC |
-| Leistungsspange (Wissen) | 10 | 12 min | 72 s | 75 % | real **Team-Wettbewerb** |
+| Truppmann (MTA) | **50** (15) | **60** (25) min | 72 s | **50 %** (70) | MTA-Basis: ~50 Fr./≥ 50 % ✅ |
+| Truppführer | **15** (13) | **20** (25) min | 80 s | **50 %** (70) | MTA-Abschluss: 15 Fr./≥ 50 % ✅ |
+| Atemschutz | **20** (10) | **25** (20) min | 75 s | **50 %** (75) | AGT (FwDV 7): ~20 Fr. ✅ |
+| Maschinist | **20** (10) | **25** (20) min | 75 s | **50 %** (75) | Maschinist (FwDV 2): ~20 Fr. ✅ |
+| Gruppen-/Zugführung | **20** (12) | **60** (25) min | 180 s | **60 %** (75) | F-III/IV: **20 Fr./60 min** ✅ |
+| Einsatzdienst & Sonderlagen | 14 | **20** (25) min | 86 s | **50 %** (70) | kein reales 1:1-Pendant |
+| Großes Examen (A–Z) | 26 | **33** (45) min | 76 s | **60 %** (80) | Meta-Prüfung, kein reales Pendant |
+| Jugendflamme 1/2/3 | 9–10 | **15** (10–12) min | 90–100 s | **60 %** (70–75) | real **praktisch** – Vorbereitung |
+| Leistungsspange (Wissen) | 10 | **15** (12) min | 90 s | **60 %** (75) | real **Team-Wettbewerb** – Vorbereitung |
 
-**Fazit:** Die **Prüfungssets sind nah an der Realität** (Zeit stimmt, Struktur stimmt). Die
-**Modulprüfungen** sind als Lern-Drill sinnvoll, aber **nicht als echte Prüfung vergleichbar**
-(zu wenig Zeit, zu hohe Hürde, falsche Granularität).
+**Fazit:** Beide Modi sind jetzt **realitätsnah** und klar getrennt. Jede Abschlussprüfung zeigt
+im Intro einen **„Realitätscheck"** (`realNote`), welcher echten Prüfung sie entspricht und dass
+die reale Prüfung **schriftlich + praktisch** ist.
 
 ---
 
@@ -121,30 +127,24 @@ Land/Landesfeuerwehrschule etwas.
 
 ---
 
-## 5. Konkrete Empfehlungen (damit es „echt" wirkt)
+## 5. Empfehlungen – Umsetzungsstand ✅
 
-**Wichtig:** Das Folgende sind **Vorschläge** – noch nichts davon ist im Code geändert.
+Alle Empfehlungen sind **umgesetzt**:
 
-1. **Zeit der Modulprüfungen realistischer machen.** 15–29 s/Frage sind unrealistisch hart.
-   Richtwert **60–90 s/Frage** → z. B. bei 30 Fragen ~30–45 min statt 10 min. Alternativ die
-   Modulprüfungen offen als **„Übungsmodus ohne echtes Zeitlimit"** kennzeichnen (dann ist die
-   knappe Zeit kein Problem, weil kein Echtheitsanspruch besteht).
-2. **Zwei getrennte Modi klar benennen:**
-   - **Übungsmodus** = Modulprüfungen (A–Z), Lern-Drill, Zeit locker.
-   - **Prüfungsmodus** = Prüfungssets, an echten Lehrgängen kalibriert.
-3. **Bestehensgrenzen an die Realität angleichen** (optional, wenn „realitätsnah" das Ziel ist):
-   Truppmann/AGT/Maschinist real **50 %**, Führung **~60 %**. Unsere 70–80 % sind bewusst
-   strenger – das ist als „Premium-Anspruch" vertretbar, sollte aber transparent sein.
-4. **Prüfungssets an echte Fragenzahlen annähern:** Gruppen-/Zugführung real **20 Fragen /
-   60 min** – unser Set zieht nur 12. Truppmann-Basis real **50 Fragen** – unser Set 15.
-   Wer maximale Echtheit will, erhöht die gezogene Fragenzahl der Sets.
-5. **Jugendflamme/Leistungsspange ehrlich einordnen:** Real sind das **praktische Stationen bzw.
-   ein Mannschaftswettbewerb**, kein Multiple-Choice-Test. Unser MC-Quiz ist eine sinnvolle
-   **Wissens-Vorbereitung**, sollte aber nicht als „die Prüfung" verkauft werden.
-6. **Praxis sichtbar machen:** Jede echte Prüfung hat einen **praktischen Teil** (Knoten,
-   Gerät, Pumpe, Funk). Der Knoten-Trainer, die Planspiele und der Einsatzkompass decken das
-   teilweise ab – ein Hinweis „echte Prüfung = schriftlich **+ praktisch**" erhöht die
-   Glaubwürdigkeit.
+1. **Zeit der Modulprüfungen realistisch** ✅ — zentral **~75 s/Frage** (statt 15–29 s), gesetzt
+   in `exams.js`. Die Modulprüfungen sind zudem klar als **Übungsmodus** gekennzeichnet.
+2. **Zwei getrennte Modi klar benannt** ✅ — **Übungsmodus** (Modulprüfungen) und
+   **Prüfungsmodus** (Abschlussprüfungen) als Badges in Übersicht und Prüfungs-Intro.
+3. **Bestehensgrenzen an die Realität angeglichen** ✅ — Modul-/Basisprüfungen **50 %**,
+   Führung **60 %** (`REALITAET_FUEHRUNG`), Sets entsprechend (Truppmann/AGT/Maschinist 50 %,
+   Gruppenführer 60 %).
+4. **Prüfungssets an echte Fragenzahlen angenähert** ✅ — Truppmann **50 Fragen / 60 min**,
+   Gruppen-/Zugführung **20 Fragen / 60 min**, AGT/Maschinist **20 Fragen**.
+5. **Jugendflamme/Leistungsspange ehrlich eingeordnet** ✅ — als **Wissens-Vorbereitung**
+   gekennzeichnet; jede JF-Prüfung erklärt per `realNote`, dass die echte Abnahme
+   **praktisch/als Wettbewerb** erfolgt.
+6. **Praxis sichtbar gemacht** ✅ — Hinweis **„echte Prüfung = schriftlich + praktisch"** in der
+   Prüfungsübersicht und im „Realitätscheck" jeder Abschlussprüfung.
 
 ---
 

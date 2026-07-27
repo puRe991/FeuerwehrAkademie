@@ -11,25 +11,29 @@ export const EXAM_SETS = [
     id: 'set-truppmann',
     title: 'Truppmann/-frau (MTA) – Gesamtprüfung',
     desc: 'Die zentrale Basisprüfung der Truppausbildung: Recht, Brennen & Löschen, Gerätekunde, Löscheinsatz und Erste Hilfe.',
-    icon: 'shield', color: '#d81f26', level: 2, passScore: 70, timeLimit: 1500,
+    // Real: MTA-Basismodul ~50 Fragen, ≥ 50 % (1 Punkt/Frage). Zeit ~72 s/Frage.
+    realNote: 'Kalibriert an der MTA-Basisprüfung (real ~50 Fragen, ≥ 50 %). Die echte Prüfung ist schriftlich + praktisch (mind. 4 Einzelaufgaben inkl. Funk).',
+    icon: 'shield', color: '#d81f26', level: 2, passScore: 50, timeLimit: 3600,
     sources: [
-      { moduleId: 'a-rechtsgrundlagen', count: 3 },
-      { moduleId: 'b-brennen-loeschen', count: 3 },
-      { moduleId: 'd-geraetekunde', count: 3 },
-      { moduleId: 'e-loescheinsatz', count: 2 },
-      { moduleId: 'j-erste-hilfe', count: 2 },
-      { moduleId: 'p-arbeitsschutz', count: 2 },
+      { moduleId: 'a-rechtsgrundlagen', count: 10 },
+      { moduleId: 'b-brennen-loeschen', count: 10 },
+      { moduleId: 'd-geraetekunde', count: 10 },
+      { moduleId: 'e-loescheinsatz', count: 8 },
+      { moduleId: 'j-erste-hilfe', count: 7 },
+      { moduleId: 'p-arbeitsschutz', count: 5 },
     ],
   },
   {
     id: 'set-truppfuehrer',
     title: 'Truppführer/in – Abschlussprüfung',
     desc: 'Führung im Trupp und vertiefte Einsatzlehre: Taktik, Führungsgrundlagen, Gefahren und technische Hilfe.',
-    icon: 'compass', color: '#16607a', level: 3, passScore: 70, timeLimit: 1500,
+    // Real: MTA-Abschluss 15 Fragen (Mehrfachantworten möglich), ≥ 50 %.
+    realNote: 'Kalibriert am MTA-Abschluss (real 15 Fragen, ≥ 50 %). Die echte Prüfung ist schriftlich + praktisch (Trupp- und Gruppenaufgabe).',
+    icon: 'compass', color: '#16607a', level: 3, passScore: 50, timeLimit: 1200,
     sources: [
       { moduleId: 'a-rechtsgrundlagen', count: 2 },
-      { moduleId: 'e-loescheinsatz', count: 3 },
-      { moduleId: 'l-fuehrung-fwdv100', count: 2 },
+      { moduleId: 'e-loescheinsatz', count: 4 },
+      { moduleId: 'l-fuehrung-fwdv100', count: 3 },
       { moduleId: 'i-gefahrgut', count: 2 },
       { moduleId: 'f-atemschutz', count: 2 },
       { moduleId: 'g-technische-hilfe', count: 2 },
@@ -39,41 +43,49 @@ export const EXAM_SETS = [
     id: 'set-atemschutz',
     title: 'Atemschutzgeräteträger/in – Prüfung',
     desc: 'Umfassende Prüfung zum Atemschutz nach FwDV 7 mit Bezügen zu Brandlehre und Innenangriff.',
-    icon: 'mask', color: '#8e44ad', level: 3, passScore: 75, timeLimit: 1200,
+    // Real: AGT-Fragenkatalog (Module à 30), schriftlicher Test ~20–30 MC-Fragen, i. d. R. ≥ 50 %.
+    realNote: 'Kalibriert an der AGT-Prüfung (FwDV 7, ~20 Fragen, ≥ 50 %). Die echte Prüfung ist schriftlich + praktische Belastungs-/Gewöhnungsübung.',
+    icon: 'mask', color: '#8e44ad', level: 3, passScore: 50, timeLimit: 1500,
     sources: [
-      { moduleId: 'f-atemschutz', count: 6 },
-      { moduleId: 'b-brennen-loeschen', count: 2 },
-      { moduleId: 'e-loescheinsatz', count: 2 },
+      { moduleId: 'f-atemschutz', count: 12 },
+      { moduleId: 'b-brennen-loeschen', count: 4 },
+      { moduleId: 'e-loescheinsatz', count: 4 },
     ],
   },
   {
     id: 'set-maschinist',
     title: 'Maschinist/in – Prüfung',
     desc: 'Pumpenkunde, Wasserförderung, Fahrzeug- und Gerätetechnik nach FwDV 2.',
-    icon: 'truck', color: '#1e5fa8', level: 3, passScore: 75, timeLimit: 1200,
+    // Real: Maschinisten-Lehrgang, schriftliche Lernzielkontrolle ~20–30 MC-Fragen, ≥ 50 %.
+    realNote: 'Kalibriert an der Maschinisten-Prüfung (FwDV 2, ~20 Fragen, ≥ 50 %). Die echte Prüfung ist schriftlich + praktische Pumpen-/Gerätebedienung.',
+    icon: 'truck', color: '#1e5fa8', level: 3, passScore: 50, timeLimit: 1500,
     sources: [
-      { moduleId: 'n-maschinist', count: 5 },
-      { moduleId: 'c-fahrzeugkunde', count: 3 },
-      { moduleId: 'd-geraetekunde', count: 2 },
+      { moduleId: 'n-maschinist', count: 12 },
+      { moduleId: 'c-fahrzeugkunde', count: 5 },
+      { moduleId: 'd-geraetekunde', count: 3 },
     ],
   },
   {
     id: 'set-gruppenfuehrer',
     title: 'Gruppen-/Zugführung – Führungsprüfung',
     desc: 'Führung und Leitung im Einsatz (FwDV 100), Einsatztaktik, Gefahren und Objektkunde.',
-    icon: 'flag', color: '#c0392b', level: 4, passScore: 75, timeLimit: 1500,
+    // Real: Gruppen-/Zugführer (F-III/IV) 20 Fachfragen / 60 min, ~60 %, 3 Prüfungsteile.
+    realNote: 'Kalibriert am Gruppen-/Zugführer-Lehrgang (real 20 Fragen / 60 min, ~60 %). Die echte Prüfung hat schriftliche, mündliche und praktische Teile.',
+    icon: 'flag', color: '#c0392b', level: 4, passScore: 60, timeLimit: 3600,
     sources: [
-      { moduleId: 'l-fuehrung-fwdv100', count: 5 },
-      { moduleId: 'e-loescheinsatz', count: 3 },
-      { moduleId: 'i-gefahrgut', count: 2 },
-      { moduleId: 'o-baukunde', count: 2 },
+      { moduleId: 'l-fuehrung-fwdv100', count: 8 },
+      { moduleId: 'e-loescheinsatz', count: 5 },
+      { moduleId: 'i-gefahrgut', count: 4 },
+      { moduleId: 'o-baukunde', count: 3 },
     ],
   },
   {
     id: 'set-einsatzdienst',
     title: 'Einsatzdienst & Sonderlagen',
     desc: 'Praxisnahe Gesamtprüfung zu Einsatzarten: Rettung, Wasserversorgung, Vegetationsbrand, Unwetter/Hochwasser und Wasserrettung.',
-    icon: 'water', color: '#2e9e5b', level: 3, passScore: 70, timeLimit: 1500,
+    // Kein reales 1:1-Pendant – bündelt mehrere Einsatzarten/Fortbildungen der App.
+    realNote: 'App-Gesamtprüfung ohne direktes reales 1:1-Pendant – sie bündelt mehrere Einsatzarten (Rettung, Wasser, Vegetation, Unwetter). Bestehensgrenze wie im Truppdienst (50 %).',
+    icon: 'water', color: '#2e9e5b', level: 3, passScore: 50, timeLimit: 1200,
     sources: [
       { moduleId: 's-rettung', count: 3 },
       { moduleId: 't-wasserversorgung', count: 3 },
@@ -86,7 +98,9 @@ export const EXAM_SETS = [
     id: 'set-gesamt',
     title: 'Großes Feuerwehr-Examen (A–Z)',
     desc: 'Die Meisterprüfung: je eine Frage aus jedem der 26 Module – umfassendes Feuerwehrwissen von A bis Z.',
-    icon: 'award', color: '#f5a623', level: 5, passScore: 80, timeLimit: 2700,
+    // Meta-Examen der Akademie – kein reales Pendant; Capstone-Anspruch (60 %).
+    realNote: 'Meta-Examen der Akademie ohne reales Pendant – ein Gesamtüberblick A–Z. Etwas höhere Hürde (60 %) als Anspruch der „Meisterprüfung".',
+    icon: 'award', color: '#f5a623', level: 5, passScore: 60, timeLimit: 1980,
     sources: [
       'a-rechtsgrundlagen', 'b-brennen-loeschen', 'c-fahrzeugkunde', 'd-geraetekunde',
       'e-loescheinsatz', 'f-atemschutz', 'g-technische-hilfe', 'h-sprechfunk',
@@ -110,7 +124,9 @@ export const JUGEND_SETS = [
     id: 'jf-set-flamme1', youth: true, badge: 'Jugendflamme · Stufe 1',
     title: 'Jugendflamme Stufe 1',
     desc: 'Der Einstieg: Notruf 112 richtig absetzen, erste Knoten, Schläuche kuppeln und sicheres Verhalten. Ideal für neue Mitglieder.',
-    icon: 'shield', color: '#2e9e5b', level: 1, passScore: 70, timeLimit: 600,
+    // Real: praktische Abnahme an Stationen (Notruf, 3 Knoten, einfache Aufgaben) – kein MC-Test.
+    realNote: 'Wissens-Vorbereitung. Die echte Jugendflamme Stufe 1 wird praktisch an Stationen abgenommen (Notruf 112, drei Knoten, einfache feuerwehrtechnische Aufgaben) – es gibt keinen Multiple-Choice-Test und keine Prozent-Grenze.',
+    icon: 'shield', color: '#2e9e5b', level: 1, passScore: 60, timeLimit: 900,
     sources: [
       { moduleId: 'jf-flamme1', count: 9 },
     ],
@@ -119,7 +135,9 @@ export const JUGEND_SETS = [
     id: 'jf-set-flamme2', youth: true, badge: 'Jugendflamme · Stufe 2',
     title: 'Jugendflamme Stufe 2',
     desc: 'Aufbaustufe: mehr Knoten, Gerätekunde (Verteiler, Strahlrohr), stabile Seitenlage und Fahrzeugwissen.',
-    icon: 'refresh', color: '#1e5fa8', level: 2, passScore: 70, timeLimit: 600,
+    // Real: praktische Aufgaben (Fahrzeug-/Gerätekunde, Technik, Sport & Spiel) – kein MC-Test.
+    realNote: 'Wissens-Vorbereitung. Die echte Jugendflamme Stufe 2 wird praktisch abgenommen (Fahrzeug-/Gerätekunde, Technik, Sport & Spiel) und vom Kreisjugendfeuerwehrwart bewertet – kein Multiple-Choice-Test.',
+    icon: 'refresh', color: '#1e5fa8', level: 2, passScore: 60, timeLimit: 900,
     sources: [
       { moduleId: 'jf-flamme2', count: 8 },
       { moduleId: 'jf-flamme1', count: 2 },
@@ -129,7 +147,9 @@ export const JUGEND_SETS = [
     id: 'jf-set-flamme3', youth: true, badge: 'Jugendflamme · Stufe 3',
     title: 'Jugendflamme Stufe 3',
     desc: 'Vertiefung für Ältere: Gruppe im Löscheinsatz, Erste Hilfe, Verantwortung übernehmen und ein Thema präsentieren.',
-    icon: 'flag', color: '#c0392b', level: 3, passScore: 75, timeLimit: 720,
+    // Real: setzt Leistungsspange + Stufe 2 + gültigen EH-Nachweis voraus; praktisch abgenommen.
+    realNote: 'Wissens-Vorbereitung. Die echte Jugendflamme Stufe 3 setzt Leistungsspange, Stufe 2 und einen gültigen Erste-Hilfe-Nachweis voraus und wird praktisch von der DJF abgenommen – kein Multiple-Choice-Test.',
+    icon: 'flag', color: '#c0392b', level: 3, passScore: 60, timeLimit: 900,
     sources: [
       { moduleId: 'jf-flamme3', count: 8 },
       { moduleId: 'jf-flamme2', count: 2 },
@@ -139,7 +159,9 @@ export const JUGEND_SETS = [
     id: 'jf-set-leistungsspange', youth: true, badge: 'Leistungsspange',
     title: 'Leistungsspange – Wissensteil',
     desc: 'Die höchste Auszeichnung der JF, als Gruppe erbracht. Übe hier den Fragenteil rund um Leistungsspange und Feuerwehr-Grundwissen.',
-    icon: 'award', color: '#f5a623', level: 4, passScore: 75, timeLimit: 720,
+    // Real: Mannschaftswettbewerb mit fünf Disziplinen – nur eine davon ist das Fragenbeantworten.
+    realNote: 'Wissens-Vorbereitung. Die echte Leistungsspange ist ein Mannschafts-Wettbewerb mit fünf Disziplinen (u. a. Löschangriff, Staffellauf, Kugelstoßen, Knoten, Fragen beantworten) – dies übt nur den Fragen-/Wissensteil, keine Einzel-Prozent-Prüfung.',
+    icon: 'award', color: '#f5a623', level: 4, passScore: 60, timeLimit: 900,
     sources: [
       { moduleId: 'jf-leistungsspange', count: 8 },
       { moduleId: 'jf-flamme3', count: 2 },

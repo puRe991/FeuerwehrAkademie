@@ -632,6 +632,29 @@ for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3, EXT
 }
 
 /* =========================================================================
+   Realitätsnahe Kalibrierung der Modulprüfungen (Übungsmodus)
+   -------------------------------------------------------------------------
+   Abgeglichen mit echten Feuerwehr-Prüfungen (siehe docs/pruefungen-
+   echtheit-vergleich.md): schriftliche Lehrgangsprüfungen sind meist bei
+   50 % bestanden (Führungslehrgänge ~60 %), die Richtzeit liegt bei rund
+   75 s pro Frage. Wir setzen Zeitlimit und Bestehensgrenze deshalb zentral –
+   so sind alle Modulprüfungen (A–Z) konsistent an der Realität ausgerichtet
+   und die Werte müssen nicht in jeder Datei einzeln gepflegt werden.
+   Die Jugend-Fragenbänke (jf-*) bleiben unberührt; ihre Werte legen die
+   JF-Prüfungssets in pruefungssets.js fest.
+   Grundlage: Truppmann/AGT/Maschinist real ≥ 50 %, Führung (F-III/IV) ~60 %.
+   ========================================================================= */
+const REALITAET_SEK_PRO_FRAGE = 75;      // Richtzeit je Frage (echte Prüfungen: 90–180 s)
+const REALITAET_FUEHRUNG = new Set(['l-fuehrung-fwdv100']); // Bestehensgrenze wie Gruppenführer real
+for (const [moduleId, ex] of Object.entries(EXAMS)) {
+  if (moduleId.startsWith('jf-')) continue;
+  const n = dedupeQuestions(ex.questions).length;               // effektive Fragenzahl (ohne Doppelfragen)
+  ex.timeLimit = Math.max(300, Math.round(n * REALITAET_SEK_PRO_FRAGE / 30) * 30); // auf 30 s gerundet
+  ex.passScore = REALITAET_FUEHRUNG.has(moduleId) ? 60 : 50;
+  ex.mode = 'uebung';                                            // Modulprüfungen = Übungsmodus
+}
+
+/* =========================================================================
    Duplikat-Schutz für Prüfungen
    Manche Fragen existieren – über die Erweiterungsebenen gewachsen – inhaltlich
    doppelt (gleicher Fragetext, andere ID). Damit in einer Prüfung nie dieselbe
