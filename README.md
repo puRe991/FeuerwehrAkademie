@@ -31,7 +31,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
 | 🏆 **Gamification** | XP, Level, Tages-Streak und Konfetti-Momente halten die Motivation hoch |
 | ♿ **Barrierefrei** | Tastaturbedienung, sichtbarer Fokus, Skip-Link, `aria-current`/`aria-pressed`/`aria-expanded`, `role="progressbar"`, `aria-live`-Toasts, dekorative Grafiken für Screenreader ausgeblendet und `prefers-reduced-motion` respektiert |
-| 📱 **PWA & Offline** | Installierbar, funktioniert ohne Netz – wertvoll für den Einsatzalltag |
+| 📱 **PWA & Offline** | Installierbar auf **iPhone/iPad** (Safari → „Zum Home-Bildschirm"), Android und Desktop – eigenes App-Icon, Startbild, Safe-Area für Notch/Home-Indikator und volle Offline-Nutzung im Einsatzalltag |
 | 🌗 **Design** | Barrierefreies, responsives Design im Feuerwehr-Look mit Hell-/Dunkelmodus |
 
 ## 📖 Ausbildungsmodule
@@ -151,6 +151,23 @@ Für Windows liegt ein Startprogramm bei: **`Feuerwehr-Akademie-starten.bat`** e
 4. **PowerShell-Server** (`server.ps1`, mitgeliefert) – benötigt *keinen* Download und funktioniert auch offline
 
 Es ist also **keine** manuelle Installation nötig. Zum Beenden das Server-Fenster schließen.
+
+### 🍎 Auf dem iPhone/iPad installieren
+
+Die App ist als **iOS-Version** vorbereitet und läuft nach der Installation wie eine
+echte App – im Vollbild, mit eigenem Icon und offline verfügbar:
+
+1. Die Seite in **Safari** öffnen (die Installation gibt es nur in Safari, nicht in Chrome/Firefox für iOS).
+2. Auf **Teilen** (das Quadrat mit Pfeil nach oben) tippen.
+3. **„Zum Home-Bildschirm"** wählen und bestätigen.
+
+Beim ersten Öffnen in Safari erscheint dazu ein kurzer Hinweis. Danach startet die
+Akademie über das rote Flammen-Icon, zeigt ein passendes Startbild statt eines weißen
+Blitzes und weicht Notch/Statusleiste und Home-Indikator sauber aus (Safe-Area).
+
+> **Hinweis:** Die App-Icons und iPhone-Startbilder liegen als fertige PNGs unter
+> `assets/icons/`. Neu erzeugt werden sie nur bei Bedarf mit
+> `python3 scripts/generate-icons.py` (benötigt `pip install cairosvg`).
 
 ### Als GitHub Page veröffentlichen
 

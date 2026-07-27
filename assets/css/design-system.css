@@ -96,6 +96,9 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* iOS/Standalone: kein graues Antipp-Blinken, kein Gummiband-Überscrollen */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
 }
 h1,h2,h3,h4 { line-height: 1.2; font-weight: 700; letter-spacing: -.01em; margin: 0 0 .5em; }
 h1 { font-size: var(--fs-3xl); }

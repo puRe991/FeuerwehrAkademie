@@ -24,6 +24,7 @@ import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcar
 import { renderInstructor, bindInstructor } from './views/instructor.js';
 import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsatzkarte } from './views/einsatzkompass.js';
 import { EINSATZKOMPASS } from './data/einsatzkompass.js';
+import { initIOSInstallHint } from './ios-install.js';
 
 const app = qs('#app');
 
@@ -277,6 +278,9 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js').catch(() => {});
   });
 }
+
+/* ------------- iOS: Hinweis „Zum Home-Bildschirm" ------------- */
+initIOSInstallHint();
 
 /* Konsolen-Gruß */
 console.log('%c🚒 Feuerwehr Online Akademie', 'font-size:16px;font-weight:bold;color:#d81f26',
