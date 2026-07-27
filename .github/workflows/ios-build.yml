@@ -12,6 +12,20 @@ name: iOS Dev-Build (Simulator)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - claude/ios-version-prep-ku8o7k
+    paths:
+      - assets/**
+      - ios/**
+      - index.html
+      - manifest.webmanifest
+      - service-worker.js
+      - package.json
+      - package-lock.json
+      - capacitor.config.json
+      - scripts/build-web.mjs
+      - .github/workflows/ios-build.yml
 
 permissions:
   contents: read
