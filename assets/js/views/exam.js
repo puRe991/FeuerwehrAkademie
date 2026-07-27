@@ -4,7 +4,7 @@
    Wiederholung, Leistungsnachweis.
    ========================================================================= */
 import { MODULE_BY_ID } from '../data/curriculum.js';
-import { EXAMS } from '../data/exams.js';
+import { EXAMS, dedupeQuestions } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
 import { icon } from '../data/icons.js';
 import { saveExamResult, logActivity, bestExam, recordQuestionResult } from '../state.js';
@@ -25,7 +25,8 @@ function resolveExam(id) {
   if (m && e) return {
     kind: 'module', id, title: m.title, back: `#/modul/${id}`,
     passScore: e.passScore, timeLimit: e.timeLimit, module: m, exam: e,
-    questionCount: e.questions.length,
+    // Doppelfragen (gleicher Text, andere ID) nicht mitzählen.
+    questionCount: dedupeQuestions(e.questions).length,
   };
   return null;
 }
@@ -105,7 +106,8 @@ export function startExam(id, level = 'pruefung') {
     const lvl = LEVELS[level] || LEVELS.pruefung;
     pool = ctx.exam.questions.filter(lvl.filter);
     if (pool.length < 4) pool = ctx.exam.questions.slice();
-    pool = shuffle(pool);
+    // Doppelfragen entfernen, damit keine Frage in der Prüfung zweimal kommt.
+    pool = dedupeQuestions(shuffle(pool));
     if (lvl.limit) pool = pool.slice(0, Math.min(pool.length, lvl.limit));
   }
   const questions = shuffle(pool).map(q => {

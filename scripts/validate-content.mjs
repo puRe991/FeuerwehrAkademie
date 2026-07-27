@@ -45,6 +45,8 @@ const VALID_TYPES = new Set(['single', 'multiple', 'truefalse']);
 
 /* --------------------------- 1) Fragenbank --------------------------- */
 const seenQids = new Map(); // id -> poolId
+const seenQtext = new Map(); // normalisierter Fragetext -> "poolId/id"
+const normQ = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9äöüß]+/g, ' ').trim();
 let questionCount = 0;
 
 for (const [poolId, exam] of Object.entries(EXAMS)) {
@@ -61,6 +63,14 @@ for (const [poolId, exam] of Object.entries(EXAMS)) {
     else seenQids.set(q.id, poolId);
 
     if (!isStr(q.q)) err(`${where}: leerer Fragetext`);
+    else {
+      // Inhaltliche Duplikate (gleicher Fragetext, andere ID) aufspüren – die
+      // Prüfungs-Engine filtert solche Fragen zur Laufzeit heraus, damit keine
+      // Frage doppelt gestellt wird; hier machen wir sie zur Bereinigung sichtbar.
+      const key = normQ(q.q);
+      if (seenQtext.has(key)) warn(`Doppelter Fragetext: "${q.id}" gleicht "${seenQtext.get(key)}" – „${q.q}"`);
+      else seenQtext.set(key, `${poolId}/${q.id}`);
+    }
     if (!isStr(q.exp)) err(`${where}: fehlende Erklärung (exp)`);
     if (!VALID_TYPES.has(q.type)) err(`${where}: unbekannter type "${q.type}"`);
     if (!isInt(q.difficulty) || q.difficulty < 1 || q.difficulty > 3)

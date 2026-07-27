@@ -3,7 +3,7 @@
    Ziehen Fragen aus mehreren Modulen zu einer Gesamtprüfung zusammen
    (z. B. Truppmann-Gesamtprüfung). Die Fragenauswahl erfolgt beim Start.
    ========================================================================= */
-import { EXAMS } from './exams.js';
+import { EXAMS, questionKey } from './exams.js';
 import { shuffle } from '../utils.js';
 
 export const EXAM_SETS = [
@@ -158,16 +158,51 @@ export function setSize(set) {
   return set.sources.reduce((n, s) => n + (s.count || 1), 0);
 }
 
-/** Fragen eines Sets zusammenstellen (frische, gemischte Auswahl) */
+/** Fragen eines Sets zusammenstellen (frische, gemischte Auswahl).
+ *  Es wird garantiert, dass keine Frage doppelt vorkommt: weder dieselbe ID
+ *  noch derselbe Fragetext (Duplikate über die Erweiterungsebenen). Bevorzugt
+ *  werden nach ID und Text eindeutige Fragen; nur falls ein Pool nicht genug
+ *  textlich eindeutige Fragen hergibt, wird die Sollzahl über ID-eindeutige
+ *  Fragen aufgefüllt – dieselbe Frage kommt dabei nie zweimal. */
 export function buildSetQuestions(set) {
   const picked = [];
+  const seenIds = new Set();
+  const seenText = new Set();
   for (const src of set.sources) {
     const exam = EXAMS[src.moduleId];
     if (!exam) continue;
+    const need = src.count || 1;
     let pool = exam.questions.slice();
     if (src.difficulty) pool = pool.filter(q => q.difficulty <= src.difficulty);
-    if (pool.length < (src.count || 1)) pool = exam.questions.slice();
-    picked.push(...shuffle(pool).slice(0, src.count || 1).map(q => ({ ...q })));
+    if (pool.length < need) pool = exam.questions.slice();
+    pool = shuffle(pool);
+
+    // 1. Wahl: Fragen, die (per ID und Text) noch nicht vorkamen – die
+    //    „seen"-Mengen werden dabei laufend fortgeschrieben, damit auch
+    //    innerhalb derselben Quelle keine zwei textgleichen Fragen landen.
+    const chosen = [];
+    const take = (q) => {
+      chosen.push(q);
+      if (q.id) seenIds.add(q.id);
+      const key = questionKey(q);
+      if (key) seenText.add(key);
+    };
+    for (const q of pool) {
+      if (chosen.length >= need) break;
+      if (seenIds.has(q.id) || seenText.has(questionKey(q))) continue;
+      take(q);
+    }
+    // Auffüllen, falls zu wenige textlich eindeutige Fragen übrig sind –
+    // dabei niemals dieselbe ID wiederholen.
+    if (chosen.length < need) {
+      for (const q of pool) {
+        if (chosen.length >= need) break;
+        if (seenIds.has(q.id)) continue;
+        take(q);
+      }
+    }
+
+    for (const q of chosen) picked.push({ ...q });
   }
   return shuffle(picked);
 }

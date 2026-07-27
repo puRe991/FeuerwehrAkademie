@@ -631,6 +631,41 @@ for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3, EXT
   }
 }
 
+/* =========================================================================
+   Duplikat-Schutz für Prüfungen
+   Manche Fragen existieren – über die Erweiterungsebenen gewachsen – inhaltlich
+   doppelt (gleicher Fragetext, andere ID). Damit in einer Prüfung nie dieselbe
+   Frage zweimal gestellt wird, bieten wir einen Normalschlüssel und eine
+   Dedupe-Funktion an, die die Prüfungs-Engine beim Zusammenstellen nutzt.
+   ========================================================================= */
+
+/** Normalisierter Schlüssel eines Fragetexts (für Duplikaterkennung:
+ *  gleiche Frage trotz unterschiedlicher ID/Formatierung). */
+export function questionKey(q) {
+  return String(q?.q || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9äöüß]+/g, ' ')
+    .trim();
+}
+
+/** Entfernt Doppelfragen aus einer Liste – identisch nach ID ODER nach
+ *  normalisiertem Fragetext. Das jeweils erste Vorkommen bleibt erhalten.
+ *  So ist garantiert, dass eine Prüfung keine Frage doppelt enthält. */
+export function dedupeQuestions(list) {
+  const seenIds = new Set();
+  const seenText = new Set();
+  const out = [];
+  for (const q of list || []) {
+    const key = questionKey(q);
+    if (q?.id && seenIds.has(q.id)) continue;
+    if (key && seenText.has(key)) continue;
+    if (q?.id) seenIds.add(q.id);
+    if (key) seenText.add(key);
+    out.push(q);
+  }
+  return out;
+}
+
 /* Utility: Gesamtzahl Fragen */
 export const TOTAL_QUESTIONS = Object.values(EXAMS).reduce((n, e) => n + e.questions.length, 0);
 
