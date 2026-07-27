@@ -1,0 +1,74 @@
+name: iOS Dev-Build (Simulator)
+
+# Baut die native iOS-App in der Cloud auf einem macOS-Runner – ohne dass ein
+# eigener Mac nötig ist. Ergebnis ist eine unsignierte Simulator-App (App.app),
+# die als Artefakt zum Herunterladen bereitsteht und im iOS-Simulator läuft.
+#
+# Manuell auslösen: Tab „Actions" → „iOS Dev-Build (Simulator)" → „Run workflow"
+# (den gewünschten Branch auswählen).
+#
+# Hinweis: Eine auf einem echten iPhone installierbare, signierte .ipa braucht
+# zusätzlich ein Apple-Developer-Zertifikat (als GitHub-Secrets) – siehe README.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: iOS-App bauen (Simulator, ohne Signing)
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Web-Assets bündeln und ins iOS-Projekt synchronisieren
+        # führt „npm run build" (→ www/) und „npx cap sync ios" aus;
+        # cap sync kopiert die Assets und ruft auf macOS automatisch „pod install" auf
+        run: npm run ios:sync
+
+      - name: App für den iOS-Simulator bauen (ohne Signing)
+        working-directory: ios/App
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            clean build
+
+      - name: Simulator-App (App.app) einpacken
+        working-directory: ios/App
+        run: |
+          APP_DIR="build/Build/Products/Debug-iphonesimulator"
+          if [ ! -d "$APP_DIR/App.app" ]; then
+            echo "::error::App.app wurde nicht gefunden unter $APP_DIR"
+            ls -R "$APP_DIR" || true
+            exit 1
+          fi
+          ( cd "$APP_DIR" && zip -qry "$GITHUB_WORKSPACE/FeuerwehrAkademie-Simulator.zip" App.app )
+          echo "Fertig: FeuerwehrAkademie-Simulator.zip"
+
+      - name: Build-Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: FeuerwehrAkademie-iOS-Simulator
+          path: FeuerwehrAkademie-Simulator.zip
+          if-no-files-found: error
+          retention-days: 14

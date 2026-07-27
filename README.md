@@ -191,6 +191,29 @@ npm run ios:open        # = npx cap open ios
 Falls der Ordner `ios/` fehlt (frischer Klon ohne Plattform), wird er mit
 `npm run ios:add` neu erzeugt.
 
+#### Ohne eigenen Mac: iOS-Build in der Cloud (GitHub Actions)
+
+Wer keinen Mac hat, kann die App auf einem **macOS-Runner** bauen lassen. Der
+Workflow `.github/workflows/ios-build.yml` erzeugt eine **unsignierte
+Simulator-App**:
+
+1. Auf GitHub → Tab **Actions** → **„iOS Dev-Build (Simulator)"** →
+   **„Run workflow"** (gewünschten Branch wählen).
+2. Nach dem Lauf unter **Artifacts** die Datei
+   `FeuerwehrAkademie-iOS-Simulator.zip` herunterladen.
+3. Entpacken und auf einem Mac im Simulator starten:
+   ```bash
+   xcrun simctl boot "iPhone 15"      # einen Simulator starten
+   xcrun simctl install booted App.app
+   xcrun simctl launch booted de.feuerwehrakademie.app
+   ```
+
+Der Cloud-Build braucht **keine** Zertifikate, läuft aber nur im **Simulator**.
+Für eine auf einem echten iPhone installierbare, **signierte `.ipa`** sind ein
+Apple-Developer-Account und Signing-Zertifikate nötig – diese als
+GitHub-Secrets hinterlegen und den Workflow um einen Archive-/Export-Schritt
+(`xcodebuild archive` + `exportArchive`) erweitern.
+
 **Was ist wie eingerichtet?**
 
 | Datei / Ordner | Zweck |
