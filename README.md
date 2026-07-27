@@ -194,25 +194,44 @@ Falls der Ordner `ios/` fehlt (frischer Klon ohne Plattform), wird er mit
 #### Ohne eigenen Mac: iOS-Build in der Cloud (GitHub Actions)
 
 Wer keinen Mac hat, kann die App auf einem **macOS-Runner** bauen lassen. Der
-Workflow `.github/workflows/ios-build.yml` erzeugt eine **unsignierte
-Simulator-App**:
+Workflow `.github/workflows/ios-build.yml` erzeugt bei jedem Push auf den
+Dev-Branch (oder manuell über **Actions → „iOS Dev-Build" → Run workflow**)
+zwei Artefakte:
 
-1. Auf GitHub → Tab **Actions** → **„iOS Dev-Build (Simulator)"** →
-   **„Run workflow"** (gewünschten Branch wählen).
-2. Nach dem Lauf unter **Artifacts** die Datei
-   `FeuerwehrAkademie-iOS-Simulator.zip` herunterladen.
-3. Entpacken und auf einem Mac im Simulator starten:
-   ```bash
-   xcrun simctl boot "iPhone 15"      # einen Simulator starten
-   xcrun simctl install booted App.app
-   xcrun simctl launch booted de.feuerwehrakademie.app
-   ```
+| Artefakt | Zweck |
+|---|---|
+| `FeuerwehrAkademie-iPhone-unsigned-ipa` | **unsignierte `.ipa` (arm64)** zum Sideloaden auf ein echtes iPhone |
+| `FeuerwehrAkademie-iOS-Simulator` | Simulator-`App.app` für den iOS-Simulator auf einem Mac |
 
-Der Cloud-Build braucht **keine** Zertifikate, läuft aber nur im **Simulator**.
-Für eine auf einem echten iPhone installierbare, **signierte `.ipa`** sind ein
-Apple-Developer-Account und Signing-Zertifikate nötig – diese als
-GitHub-Secrets hinterlegen und den Workflow um einen Archive-/Export-Schritt
-(`xcodebuild archive` + `exportArchive`) erweitern.
+**Aufs echte iPhone – ohne Mac, ohne bezahlten Account (Sideloadly):**
+
+1. Artefakt `FeuerwehrAkademie-iPhone-unsigned-ipa` herunterladen und entpacken
+   → `FeuerwehrAkademie-unsigned.ipa`.
+2. [**Sideloadly**](https://sideloadly.io/) (Windows/Mac) installieren, iPhone
+   per USB anstecken.
+3. Die `.ipa` in Sideloadly ziehen, mit der **eigenen (kostenlosen) Apple-ID**
+   anmelden und „Start" drücken. Sideloadly signiert lokal mit deiner Apple-ID
+   und installiert die App.
+4. Am iPhone unter **Einstellungen → Allgemein → VPN & Geräteverwaltung** das
+   Entwickler-Profil vertrauen, dann startet die App.
+
+> Mit kostenloser Apple-ID hält die Installation **7 Tage**, danach einfach neu
+> sideloaden (Alternative: **AltStore** erneuert automatisch). Der Cloud-Build
+> selbst braucht **keine** Zertifikate.
+
+**Im Simulator (Mac):** Artefakt `FeuerwehrAkademie-iOS-Simulator` entpacken und
+`App.app` starten:
+```bash
+xcrun simctl boot "iPhone 15"
+xcrun simctl install booted App.app
+xcrun simctl launch booted de.feuerwehrakademie.app
+```
+
+**Signierte `.ipa` / TestFlight:** Für eine ohne Sideloadly installierbare,
+signierte `.ipa` oder TestFlight-Verteilung sind ein Apple-Developer-Account
+(99 €/Jahr) und Signing-Zertifikate als GitHub-Secrets nötig; der Workflow wird
+dann um `xcodebuild archive` + `exportArchive` bzw. einen Upload-Schritt
+erweitert.
 
 **Was ist wie eingerichtet?**
 
