@@ -1,0 +1,22 @@
+{
+  "name": "feuerwehr-akademie",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Feuerwehr Online Akademie – native iOS-App (Capacitor-Wrapper der PWA)",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "icons": "python3 scripts/generate-icons.py",
+    "ios:add": "npm run build && npx cap add ios",
+    "ios:sync": "npm run build && npx cap sync ios",
+    "ios:open": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/ios": "^6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0"
+  }
+}

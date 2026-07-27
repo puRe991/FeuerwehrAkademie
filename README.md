@@ -169,6 +169,45 @@ Blitzes und weicht Notch/Statusleiste und Home-Indikator sauber aus (Safe-Area).
 > `assets/icons/`. Neu erzeugt werden sie nur bei Bedarf mit
 > `python3 scripts/generate-icons.py` (benötigt `pip install cairosvg`).
 
+### 📦 Native iOS-App bauen (Capacitor)
+
+Für eine echte, im App Store verteilbare App ist die PWA zusätzlich mit
+**[Capacitor](https://capacitorjs.com/)** umhüllt. Das native Xcode-Projekt liegt
+unter `ios/`. Der eigentliche App-Build (`.ipa`) benötigt zwingend **macOS mit
+Xcode** – das Aufsetzen selbst ist aber plattformunabhängig.
+
+```bash
+# 1. Tooling installieren (einmalig)
+npm install
+
+# 2. Web-Assets bündeln und ins native Projekt kopieren
+npm run ios:sync        # = npm run build (→ www/) + npx cap sync ios
+
+# 3. Auf einem Mac: Xcode-Projekt öffnen, signieren, bauen
+npm run ios:open        # = npx cap open ios
+#   danach in Xcode das Signing-Team wählen und auf Gerät/Simulator starten
+```
+
+Falls der Ordner `ios/` fehlt (frischer Klon ohne Plattform), wird er mit
+`npm run ios:add` neu erzeugt.
+
+**Was ist wie eingerichtet?**
+
+| Datei / Ordner | Zweck |
+|---|---|
+| `capacitor.config.json` | App-ID (`de.feuerwehrakademie.app`), Name, `webDir: www` |
+| `scripts/build-web.mjs` | bündelt die statische App nach `www/` (via `npm run build`) |
+| `ios/` | natives Xcode-Projekt inkl. App-Icon (1024²) & Startbildschirm (2732²) |
+| `package.json` | npm-Skripte: `build`, `ios:sync`, `ios:open`, `ios:add`, `validate` |
+
+> Die App-ID `de.feuerwehrakademie.app` in `capacitor.config.json` vor der ersten
+> Veröffentlichung auf die eigene, im Apple-Developer-Account registrierte Bundle-ID
+> anpassen. `www/`, `node_modules/`, CocoaPods und Xcode-Build-Artefakte sind bewusst
+> **nicht** versioniert – sie entstehen beim Bauen neu.
+>
+> Wichtig: Die reine Web-Nutzung bleibt unverändert **build-frei** – Capacitor ist nur
+> für den optionalen App-Store-Weg nötig.
+
 ### Als GitHub Page veröffentlichen
 
 Der beigefügte Workflow (`.github/workflows/pages.yml`) veröffentlicht das Repository automatisch über GitHub Pages. In den Repo-Einstellungen unter **Pages → Source → GitHub Actions** aktivieren.

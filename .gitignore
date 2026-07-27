@@ -15,3 +15,15 @@ npm-debug.log*
 
 # Vom Windows-Starter bei Bedarf heruntergeladener portabler Server
 tools/
+
+# Capacitor / nativer iOS-Build
+# www/ ist reines Build-Ergebnis (aus scripts/build-web.mjs) und wird nicht versioniert
+www/
+# Von Capacitor kopierte Web-Assets im Xcode-Projekt (werden bei jedem Sync neu erzeugt)
+ios/App/App/public/
+# CocoaPods-Abhängigkeiten
+ios/App/Pods/
+# Xcode-Nutzerdaten & Build-Artefakte
+**/xcuserdata/
+**/DerivedData/
+**/xcshareddata/IDEWorkspaceChecks.plist

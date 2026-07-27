@@ -118,3 +118,19 @@ for dw, dh, dpr in DEVICES:
 
 print("\n<!-- <head>-Tags für die Startbilder: -->")
 print("\n".join(links))
+
+# ---- Native iOS-App-Assets (Capacitor/Xcode) --------------------------
+# Nur wenn das native Projekt schon erzeugt wurde (npx cap add ios).
+APPICON = os.path.join(ROOT, "ios", "App", "App", "Assets.xcassets",
+                       "AppIcon.appiconset")
+SPLASHSET = os.path.join(ROOT, "ios", "App", "App", "Assets.xcassets",
+                         "Splash.imageset")
+if os.path.isdir(APPICON) and os.path.isdir(SPLASHSET):
+    print("\nNative iOS-App-Assets (Capacitor):")
+    # App-Store-Icon: 1024×1024, volle Fläche, keine Transparenz (Apple maskiert)
+    render(icon_svg(rounded=False), os.path.join(APPICON, "AppIcon-512@2x.png"), 1024, 1024)
+    # Universeller Startbildschirm 2732×2732 (Capacitor nutzt eine Datei für 1x/2x/3x)
+    for fn in ("splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"):
+        render(splash_svg(2732, 2732), os.path.join(SPLASHSET, fn), 2732, 2732)
+else:
+    print("\n(Native iOS-Assets übersprungen – erst nach 'npx cap add ios' vorhanden.)")
