@@ -71,9 +71,12 @@ Baukunde (O), Jugend (Q), Digitale Einsatzunterstützung (R), Vegetationsbrand
 
 ### 3.1 Neue authentische Fragenbank
 
-Neue Datei **`assets/js/data/exams-hlfs.js`** mit einer **kuratierten Auswahl
-authentischer HLFS-Fragen** (Single-Choice, 3 Optionen) über **alle
-grundausbildungsrelevanten Themen**. Jede Frage:
+Neue Dateien **`assets/js/data/exams-hlfs.js`** und
+**`assets/js/data/exams-hlfs2.js`** mit einer **kuratierten Auswahl von rund
+300 authentischen HLFS-Fragen** (Single-Choice, 3 Optionen) über **alle
+grundausbildungsrelevanten Themen** – bild-/abbildungsabhängige und ohne
+Lösungsschlüssel nicht eindeutig belegbare Fragen wurden bewusst ausgelassen.
+Jede Frage:
 
 - übernimmt **Fragetext und Antwortoptionen** aus dem HLFS-Katalog,
 - ist mit **fachlich ergänzter Lösung** und **Erklärung** versehen,
@@ -119,23 +122,29 @@ Modulen zieht.
 
 ## 5. Ausbaupotenzial (nächste Schritte, optional)
 
-Der Katalog bietet 679 Fragen – aktuell ist eine **qualitätsgesicherte Auswahl**
-integriert. Sinnvolle Erweiterungen:
+Der Katalog bietet 679 Fragen – aktuell ist eine **qualitätsgesicherte Auswahl
+von rund 300 Fragen** integriert (solide Abdeckung je Ausbildungseinheit).
+Bewusst nicht übernommen wurden **bild-/abbildungsabhängige** Fragen
+(„folgendes Bildzeichen…", Gefahrzettel-Symbole) und einzelne Fragen, deren
+Lösung ohne offiziellen Schlüssel nicht eindeutig belegbar ist. Sinnvolle
+weitere Schritte:
 
-1. **Themenabdeckung vertiefen** – weitere Fragen je Ausbildungseinheit
-   ergänzen (v. a. Brennen/Löschen und Löscheinsatz mit den meisten Fragen).
-2. **Rettungsgeräte/tragbare Leitern** – eigener Themenschwerpunkt „FwDV 10"
-   in Modul D, da der Katalog hier sehr detailliert ist (45 Fragen).
-3. **Karteikarten** – markante Merkwerte (Anstellwinkel 65–75°, 30:2, GAMS,
+1. **Rechenaufgaben** – Schaum-/Wasserförderungs-Rechenfragen (Verschäumung,
+   l/min-Faustwerte) gezielt als eigener, gut erklärter Aufgabentyp ergänzen.
+2. **Karteikarten** – markante Merkwerte (Anstellwinkel 65–75°, 30:2, GAMS,
    4A-1C-4E, Restdruckwarnung 50–60 bar) zusätzlich als `flashcards` aufnehmen.
-4. **Zweite Lösungsdurchsicht** – die fachlich ergänzten Lösungen vor größeren
-   Erweiterungen durch eine Ausbilderin/einen Ausbilder gegenlesen lassen.
+3. **Bildfragen nachrüsten** – die ausgelassenen Bildzeichen-Fragen mit eigenen
+   SVG-Schaubildern (wie in `diagrams.js`) neu aufbauen.
+4. **Lösungsdurchsicht** – die fachlich ergänzten Lösungen durch eine
+   Ausbilderin/einen Ausbilder gegenlesen lassen (verbindlich bleiben die
+   Vorschriften und der HLFS-Lösungsschlüssel).
 
 ---
 
 ## 6. Betroffene Dateien
 
-- `assets/js/data/exams-hlfs.js` – **neu**: authentische HLFS-Fragenbank.
+- `assets/js/data/exams-hlfs.js` – **neu**: authentische HLFS-Fragenbank (1. Stufe).
+- `assets/js/data/exams-hlfs2.js` – **neu**: Erweiterung der HLFS-Fragenbank (2. Stufe).
 - `assets/js/data/exams.js` – Import + Merge der HLFS-Fragen.
 - `assets/js/data/pruefungssets.js` – neues Set „Hessische Feuerwehrleistungsübung".
 - `docs/fragenkatalog-hlfs-hessen.md` – dieses Dokument.
