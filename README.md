@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-986-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-8-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-996-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-9-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
 
 ---
 
@@ -98,7 +98,7 @@ Jede Karte lässt sich per **Druckfunktion** als echte, physische Taschenkarte a
 
 ## 🎓 Abschlussprüfungen (modulübergreifend)
 
-Neben den Modulprüfungen bündeln **8 Gesamtprüfungen** ganze Ausbildungsabschnitte und ziehen die Fragen aus mehreren Modulen zusammen – bei jedem Start neu gemischt:
+Neben den Modulprüfungen bündeln **9 Gesamtprüfungen** ganze Ausbildungsabschnitte und ziehen die Fragen aus mehreren Modulen zusammen – bei jedem Start neu gemischt:
 
 - **Truppmann/-frau (MTA)** – Recht, Brennen & Löschen, Gerätekunde, Löscheinsatz, Erste Hilfe
 - **Truppführer/in** – Taktik, Führungsgrundlagen, Gefahren, technische Hilfe
@@ -108,6 +108,7 @@ Neben den Modulprüfungen bündeln **8 Gesamtprüfungen** ganze Ausbildungsabsch
 - **Einsatzdienst & Sonderlagen** – Rettung, Wasserversorgung, Vegetationsbrand, Unwetter, Wasserrettung
 - **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 26 Module
 - **Hessische Feuerwehrleistungsübung** – Wissensteil im Stil der Leistungsübung (Kreis-/Bezirksebene), aufgebaut nach dem offiziellen [HLFS-Fragenkatalog](docs/fragenkatalog-hlfs-hessen.md) (Stand 10/2021)
+- **Rechenaufgaben – Schaum & Wasserlieferung** – reiner Rechen-Trainer (Verschäumungszahl, Zumischung, l/min-Faustwerte der Strahlrohre) mit vollständigem Rechenweg je Frage
 
 Modulprüfungen selbst gibt es in **drei Stufen**: *Grundlagen* (kurzer Basis-Check), *Aufbau* (ohne die schweren Fragen) und *Prüfung* (alle Fragen inkl. schwerer).
 

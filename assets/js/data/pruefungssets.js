@@ -135,6 +135,17 @@ export const EXAM_SETS = [
       { moduleId: 'z-katastrophenschutz', count: 2 },
     ],
   },
+  {
+    id: 'set-hlfs-rechnen',
+    title: 'Rechenaufgaben – Schaum & Wasserlieferung',
+    desc: 'Reiner Rechen-Trainer: Schaumherstellung (Verschäumungszahl, Zumischung) und Wasserlieferung der Strahlrohre (l/min-Faustwerte). Jede Frage mit vollständigem Rechenweg.',
+    realNote: 'Berechnungsfragen aus dem HLFS-Fragenkatalog (Stand 10/2021). Zum Üben lohnt sich das Auswendiglernen der Faustwerte (BM/CM/DM-Strahlrohr) und der Zumischer-/Verschäumungslogik – die Erklärung zeigt jeweils den kompletten Rechenweg.',
+    icon: 'water', color: '#1e5fa8', level: 3, passScore: 50, timeLimit: 1200,
+    sources: [
+      { moduleId: 'b-brennen-loeschen', count: 4, topics: ['Berechnung'] },
+      { moduleId: 'd-geraetekunde', count: 6, topics: ['Berechnung'] },
+    ],
+  },
 ];
 
 /* =========================================================================
@@ -220,6 +231,12 @@ export function buildSetQuestions(set) {
     const need = src.count || 1;
     let pool = exam.questions.slice();
     if (src.difficulty) pool = pool.filter(q => q.difficulty <= src.difficulty);
+    // Optionaler Themen-Filter: nur Fragen bestimmter Topics (z. B. 'Berechnung').
+    // Greift nur, wenn dadurch genug Fragen übrig bleiben – sonst voller Pool.
+    if (Array.isArray(src.topics) && src.topics.length) {
+      const filtered = pool.filter(q => src.topics.includes(q.topic));
+      if (filtered.length >= need) pool = filtered;
+    }
     if (pool.length < need) pool = exam.questions.slice();
     pool = shuffle(pool);
 
