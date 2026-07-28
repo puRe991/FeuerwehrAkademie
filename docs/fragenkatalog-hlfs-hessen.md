@@ -129,12 +129,14 @@ Bewusst nicht übernommen wurden **bild-/abbildungsabhängige** Fragen
 Lösung ohne offiziellen Schlüssel nicht eindeutig belegbar ist. Sinnvolle
 weitere Schritte:
 
-1. **Rechenaufgaben** – Schaum-/Wasserförderungs-Rechenfragen (Verschäumung,
+1. **Bildfragen** ✅ **umgesetzt** – Bildzeichen-Fragen (Feuerlöscher-Brand­klassen
+   nach EN 3, Gefahrzettel und orangefarbene Warntafel nach ADR) sind mit eigenen
+   Inline-SVG-Piktogrammen (`exam-figures.js`) neu aufgebaut. Die Frage-Views zeigen
+   das Bild über das optionale Frage-Feld `fig`.
+2. **Rechenaufgaben** – Schaum-/Wasserförderungs-Rechenfragen (Verschäumung,
    l/min-Faustwerte) gezielt als eigener, gut erklärter Aufgabentyp ergänzen.
-2. **Karteikarten** – markante Merkwerte (Anstellwinkel 65–75°, 30:2, GAMS,
+3. **Karteikarten** – markante Merkwerte (Anstellwinkel 65–75°, 30:2, GAMS,
    4A-1C-4E, Restdruckwarnung 50–60 bar) zusätzlich als `flashcards` aufnehmen.
-3. **Bildfragen nachrüsten** – die ausgelassenen Bildzeichen-Fragen mit eigenen
-   SVG-Schaubildern (wie in `diagrams.js`) neu aufbauen.
 4. **Lösungsdurchsicht** – die fachlich ergänzten Lösungen durch eine
    Ausbilderin/einen Ausbilder gegenlesen lassen (verbindlich bleiben die
    Vorschriften und der HLFS-Lösungsschlüssel).
@@ -145,6 +147,9 @@ weitere Schritte:
 
 - `assets/js/data/exams-hlfs.js` – **neu**: authentische HLFS-Fragenbank (1. Stufe).
 - `assets/js/data/exams-hlfs2.js` – **neu**: Erweiterung der HLFS-Fragenbank (2. Stufe).
+- `assets/js/data/exams-hlfs3.js` – **neu**: Bildfragen (Brandklassen, Gefahrzettel, Warntafel).
+- `assets/js/data/exam-figures.js` – **neu**: Inline-SVG-Piktogramme für die Bildfragen.
+- `assets/js/views/{exam,simulator,wiederholung,tagesquiz}.js` – rendern das `fig`-Bild.
 - `assets/js/data/exams.js` – Import + Merge der HLFS-Fragen.
 - `assets/js/data/pruefungssets.js` – neues Set „Hessische Feuerwehrleistungsübung".
 - `docs/fragenkatalog-hlfs-hessen.md` – dieses Dokument.

@@ -6,6 +6,7 @@
    Didaktisch der wirksamste Einzelhebel: gelernt wird genau am Fehler.
    ========================================================================= */
 import { QUESTION_BY_ID } from '../data/exams.js';
+import { figureHTML } from '../data/exam-figures.js';
 import { MODULE_BY_ID } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
 import {
@@ -152,6 +153,7 @@ function reviewQuestion() {
           <span class="badge badge--red">${esc(o.code)} · ${esc(q.topic || '')}</span>
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
+        ${figureHTML(q)}
 
         <div class="options" id="options" role="group" aria-label="Antwortoptionen">
           ${q.options.map((opt, i) => {

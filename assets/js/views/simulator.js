@@ -7,6 +7,7 @@
 import { MODULE_BY_ID } from '../data/curriculum.js';
 import { EXAMS } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
+import { figureHTML } from '../data/exam-figures.js';
 import { icon } from '../data/icons.js';
 import { saveExamResult, logActivity, recordQuestionResult, bestExam } from '../state.js';
 import { esc, shuffle, toast, confetti } from '../utils.js';
@@ -111,6 +112,7 @@ function simQuestion() {
           <button class="btn btn--sm ${session.flags[session.current] ? 'btn--primary' : 'btn--outline'}" id="simFlag">${icon('star').replace('<svg ', `<svg style="width:14px;height:14px;vertical-align:-2px" fill="${session.flags[session.current] ? 'currentColor' : 'none'}" `)} Markieren</button>
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
+        ${figureHTML(q)}
 
         <div class="options" id="options" role="group" aria-label="Antwortoptionen">
           ${q.options.map((opt, i) => `<button class="opt ${sel.includes(i) ? 'selected' : ''}" data-opt="${i}" aria-pressed="${sel.includes(i) ? 'true' : 'false'}">
@@ -219,6 +221,7 @@ function simResult() {
         <div class="stack">
           ${wrong.map(x => `<div class="callout callout--warn" style="margin:0">
             <b>${esc(x.q.q)}</b>
+            ${figureHTML(x.q)}
             <p style="margin:.4em 0 0">Deine Antwort: <b>${x.sel.length ? x.sel.map(s => esc(x.q.options[s])).join(', ') : '—'}</b><br>
             Richtig: <b>${x.q.correct.map(c => esc(x.q.options[c])).join(', ')}</b>. ${esc(x.q.exp)}</p>
           </div>`).join('')}
