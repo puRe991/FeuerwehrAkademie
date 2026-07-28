@@ -111,6 +111,41 @@ export const EXAM_SETS = [
       'z-katastrophenschutz',
     ].map(moduleId => ({ moduleId, count: 1 })),
   },
+  {
+    id: 'set-hlfs-leistungsuebung',
+    title: 'Hessische Feuerwehrleistungsübung',
+    desc: 'Modulübergreifende Wissensprüfung im Stil der Hessischen Feuerwehrleistungsübung (Kreis-/Bezirksebene) – von ABC-Gefahrstoffen über Löscheinsatz und Gerätekunde bis Rechtsgrundlagen.',
+    // Real: HLFS-Fragenkatalog (Stand 10/2021, 679 Fragen, Single-Choice mit 3 Antworten).
+    realNote: 'Aufgebaut nach dem offiziellen Fragenkatalog der Hessischen Landesfeuerwehrschule (HLFS, Stand Oktober 2021); die Auswahl zieht u. a. authentische HLFS-Fragen (Kennung „HLFS 2021"). Die echte Leistungsübung ist ein Mannschafts-Bewerb – der schriftliche Fragenteil ist nur eine von mehreren, überwiegend praktischen Stationen. Übernommene Fragetexte stammen aus dem HLFS-Katalog, die Lösungen wurden fachlich ergänzt.',
+    icon: 'award', color: '#0b8043', level: 2, passScore: 50, timeLimit: 1950,
+    sources: [
+      { moduleId: 'i-gefahrgut', count: 2 },
+      { moduleId: 'f-atemschutz', count: 2 },
+      { moduleId: 'b-brennen-loeschen', count: 3 },
+      { moduleId: 'c-fahrzeugkunde', count: 2 },
+      { moduleId: 'e-loescheinsatz', count: 3 },
+      { moduleId: 'a-rechtsgrundlagen', count: 2 },
+      { moduleId: 'j-erste-hilfe', count: 2 },
+      { moduleId: 'h-sprechfunk', count: 1 },
+      { moduleId: 'g-technische-hilfe', count: 1 },
+      { moduleId: 'd-geraetekunde', count: 3 },
+      { moduleId: 't-wasserversorgung', count: 1 },
+      { moduleId: 'p-arbeitsschutz', count: 1 },
+      { moduleId: 'k-absturzsicherung', count: 1 },
+      { moduleId: 'z-katastrophenschutz', count: 2 },
+    ],
+  },
+  {
+    id: 'set-hlfs-rechnen',
+    title: 'Rechenaufgaben – Schaum & Wasserlieferung',
+    desc: 'Reiner Rechen-Trainer: Schaumherstellung (Verschäumungszahl, Zumischung) und Wasserlieferung der Strahlrohre (l/min-Faustwerte). Jede Frage mit vollständigem Rechenweg.',
+    realNote: 'Berechnungsfragen aus dem HLFS-Fragenkatalog (Stand 10/2021). Zum Üben lohnt sich das Auswendiglernen der Faustwerte (BM/CM/DM-Strahlrohr) und der Zumischer-/Verschäumungslogik – die Erklärung zeigt jeweils den kompletten Rechenweg.',
+    icon: 'water', color: '#1e5fa8', level: 3, passScore: 50, timeLimit: 1200,
+    sources: [
+      { moduleId: 'b-brennen-loeschen', count: 4, topics: ['Berechnung'] },
+      { moduleId: 'd-geraetekunde', count: 6, topics: ['Berechnung'] },
+    ],
+  },
 ];
 
 /* =========================================================================
@@ -196,6 +231,12 @@ export function buildSetQuestions(set) {
     const need = src.count || 1;
     let pool = exam.questions.slice();
     if (src.difficulty) pool = pool.filter(q => q.difficulty <= src.difficulty);
+    // Optionaler Themen-Filter: nur Fragen bestimmter Topics (z. B. 'Berechnung').
+    // Greift nur, wenn dadurch genug Fragen übrig bleiben – sonst voller Pool.
+    if (Array.isArray(src.topics) && src.topics.length) {
+      const filtered = pool.filter(q => src.topics.includes(q.topic));
+      if (filtered.length >= need) pool = filtered;
+    }
     if (pool.length < need) pool = exam.questions.slice();
     pool = shuffle(pool);
 

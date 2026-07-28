@@ -4,6 +4,7 @@
    pro Tag genau ein Versuch. Füttert Streak, XP und das Fehler-Center.
    ========================================================================= */
 import { QUESTION_BY_ID } from '../data/exams.js';
+import { figureHTML } from '../data/exam-figures.js';
 import { MODULE_BY_ID } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
 import { getState, todayStr, answerDaily, dailyAnsweredToday, recordQuestionResult } from '../state.js';
@@ -62,6 +63,7 @@ export function renderDailyCard() {
       <span class="q-num">${isMulti ? 'Mehrfachauswahl' : q.type === 'truefalse' ? 'Wahr/Falsch' : 'Eine Antwort'}${mod ? ' · Modul ' + mod.code : ''}</span>
       <h3 style="margin:.2em 0 0">${esc(q.q)}</h3>
     </div>
+    ${figureHTML(q)}
     <div class="options" id="dailyOptions" role="group" aria-label="Antwortoptionen zur Frage des Tages">
       ${q.options.map((opt, i) => `<button class="opt daily-opt" data-opt="${i}" aria-pressed="false">
         <span class="opt__key">${String.fromCharCode(65 + i)}</span><span>${esc(opt)}</span>

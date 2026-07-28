@@ -6,6 +6,7 @@
 import { MODULE_BY_ID } from '../data/curriculum.js';
 import { EXAMS, dedupeQuestions } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
+import { figureHTML } from '../data/exam-figures.js';
 import { icon } from '../data/icons.js';
 import { saveExamResult, logActivity, bestExam, recordQuestionResult } from '../state.js';
 import { esc, shuffle, toast, confetti } from '../utils.js';
@@ -159,6 +160,7 @@ function examQuestion() {
           <span class="badge">${'★'.repeat(q.difficulty)}${'☆'.repeat(3 - q.difficulty)} ${esc(q.topic)}</span>
         </div>
         <h2 class="q-text">${esc(q.q)}</h2>
+        ${figureHTML(q)}
 
         <div class="options" id="options" role="group" aria-label="Antwortoptionen">
           ${q.options.map((opt, i) => {
@@ -236,6 +238,7 @@ function examResult() {
         <div class="stack">
           ${wrongList.map(x => `<div class="callout callout--warn" style="margin:0">
             <b>${esc(x.q.q)}</b>
+            ${figureHTML(x.q)}
             <p style="margin:.4em 0 0">Richtig wäre: <b>${x.q.correct.map(c => esc(x.q.options[c])).join(', ')}</b>. ${esc(x.q.exp)}</p>
           </div>`).join('')}
         </div>

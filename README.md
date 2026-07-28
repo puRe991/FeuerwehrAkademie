@@ -4,7 +4,7 @@
 
 Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den **Feuerwehr-Dienstvorschriften (FwDV)** und der **Modularen Truppausbildung (MTA)**. Kein Build-Schritt, keine Anmeldung, keine Server nötig – reine ES-Module, überall lauffähig.
 
-![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-698-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-7-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
+![Module](https://img.shields.io/badge/Module-26%20(A–Z)-d81f26) ![Lektionen](https://img.shields.io/badge/Lektionen-139-c0392b) ![Fragen](https://img.shields.io/badge/Pr%C3%BCfungsfragen-996-1e5fa8) ![Abschlussprüfungen](https://img.shields.io/badge/Abschlusspr%C3%BCfungen-9-16607a) ![Jugendfeuerwehr](https://img.shields.io/badge/Jugendfeuerwehr-Abzeichen-2e9e5b) ![Schaubilder](https://img.shields.io/badge/Schaubilder-39-8e44ad) ![Planspiele](https://img.shields.io/badge/Planspiele-17-f5a623) ![Einsatzkompass](https://img.shields.io/badge/Einsatzkompass-10%20Taschenkarten-8e44ad) ![Wiederholung](https://img.shields.io/badge/Wiederholung-Fehler--Center-d81f26) ![PWA](https://img.shields.io/badge/PWA-offlinef%C3%A4hig-2e9e5b) [![Inhalts-Prüfung](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml/badge.svg)](https://github.com/puRe991/FeuerwehrAkademie/actions/workflows/content-check.yml)
 
 ---
 
@@ -17,7 +17,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | ⏱️ **Prüfungssimulator** | **Ernstmodus** für jede Modul- und Abschlussprüfung: fester Countdown mit Zeitlimit (Auto-Abgabe bei Ablauf), **keine Auflösung während der Prüfung**, freie Navigation über ein Fragen-Raster mit Markierungen, danach Bestanden/Durchgefallen mit ausdruckbarem **Prüfungszeugnis** |
 | 🔁 **Wiederholung** | **Fehler-/Wiederholungs-Center** („Meine Schwachstellen"): sammelt automatisch alle in Prüfungen falsch beantworteten Fragen und lässt sie gezielt üben – eine richtig gelöste Frage verschwindet aus der Liste. Aus Fehlern lernt man am meisten. |
-| 🎓 **Abschlussprüfungen** | 7 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z) mit gemischter Fragenauswahl |
+| 🎓 **Abschlussprüfungen** | 8 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z, Hessische Feuerwehrleistungsübung) mit gemischter Fragenauswahl |
 | ✅ **Realitätsnah kalibriert** | Zwei klar getrennte Modi: **Modulprüfungen = Übungsmodus** (Lernen mit Erklärungen), **Abschlussprüfungen = Prüfungsmodus** – Fragenzahl, Zeit und Bestehensgrenze sind an **echte Lehrgangsprüfungen** angelehnt (z. B. Gruppen-/Zugführer 20 Fragen / 60 min / 60 %, Truppmann-MTA ~50 Fragen / ≥ 50 %). Jede Prüfung zeigt einen **Realitätscheck**, welcher echten Prüfung sie entspricht. Details & Quellen: [`docs/pruefungen-echtheit-vergleich.md`](docs/pruefungen-echtheit-vergleich.md) |
 | 🧒 **Jugendfeuerwehr** | Eigener Bereich mit altersgerechten Übungsprüfungen zur Vorbereitung auf die **Jugendflamme (Stufe 1–3)** und die **Leistungsspange** – Notruf 112, Knoten, Gerätekunde, Erste Hilfe und Teamwissen |
 | 📊 **Schaubilder** | 39 theme-fähige Erklär-Grafiken in den Lektionen – in **jedem** Modul mindestens eines (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen, Kreiselpumpe, STOP-Prinzip, Auffangsystem, Deichverteidigung, Motorsägen-Rückschlag u. v. m.) |
@@ -98,7 +98,7 @@ Jede Karte lässt sich per **Druckfunktion** als echte, physische Taschenkarte a
 
 ## 🎓 Abschlussprüfungen (modulübergreifend)
 
-Neben den Modulprüfungen bündeln **7 Gesamtprüfungen** ganze Ausbildungsabschnitte und ziehen die Fragen aus mehreren Modulen zusammen – bei jedem Start neu gemischt:
+Neben den Modulprüfungen bündeln **9 Gesamtprüfungen** ganze Ausbildungsabschnitte und ziehen die Fragen aus mehreren Modulen zusammen – bei jedem Start neu gemischt:
 
 - **Truppmann/-frau (MTA)** – Recht, Brennen & Löschen, Gerätekunde, Löscheinsatz, Erste Hilfe
 - **Truppführer/in** – Taktik, Führungsgrundlagen, Gefahren, technische Hilfe
@@ -107,6 +107,8 @@ Neben den Modulprüfungen bündeln **7 Gesamtprüfungen** ganze Ausbildungsabsch
 - **Gruppen-/Zugführung** – Führung (FwDV 100), Einsatztaktik, Objektkunde
 - **Einsatzdienst & Sonderlagen** – Rettung, Wasserversorgung, Vegetationsbrand, Unwetter, Wasserrettung
 - **Großes Feuerwehr-Examen (A–Z)** – je eine Frage aus jedem der 26 Module
+- **Hessische Feuerwehrleistungsübung** – Wissensteil im Stil der Leistungsübung (Kreis-/Bezirksebene), aufgebaut nach dem offiziellen [HLFS-Fragenkatalog](docs/fragenkatalog-hlfs-hessen.md) (Stand 10/2021)
+- **Rechenaufgaben – Schaum & Wasserlieferung** – reiner Rechen-Trainer (Verschäumungszahl, Zumischung, l/min-Faustwerte der Strahlrohre) mit vollständigem Rechenweg je Frage
 
 Modulprüfungen selbst gibt es in **drei Stufen**: *Grundlagen* (kurzer Basis-Check), *Aufbau* (ohne die schweren Fragen) und *Prüfung* (alle Fragen inkl. schwerer).
 
@@ -123,7 +125,7 @@ Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übun
 
 ## 🃏 Weitere Lernwerkzeuge
 
-- **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt; gekonnte Karten kehren seltener zurück, schwierige öfter.
+- **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt und um **kuratierte HLFS-Merkkarten** (Faustwerte & Merkregeln: Strahlrohr-l/min, Verschäumungszahlen, 4A-1C-4E, GAMS, 30:2 u. a.) ergänzt; gekonnte Karten kehren seltener zurück, schwierige öfter.
 - **Glossar:** Durchsuchbares Nachschlagewerk der wichtigsten Fachbegriffe und Abkürzungen, jeweils mit Modul-Verlinkung.
 - **Ausbilder-Ansicht:** Gesamtauswertung des Lernstands, druckbarer Ausbildungsnachweis (PDF via Druckdialog), Backup-Export/-Import als JSON und Nachweis-Export als CSV.
 
