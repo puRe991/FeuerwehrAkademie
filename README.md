@@ -125,7 +125,7 @@ Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übun
 
 ## 🃏 Weitere Lernwerkzeuge
 
-- **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt; gekonnte Karten kehren seltener zurück, schwierige öfter.
+- **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt und um **kuratierte HLFS-Merkkarten** (Faustwerte & Merkregeln: Strahlrohr-l/min, Verschäumungszahlen, 4A-1C-4E, GAMS, 30:2 u. a.) ergänzt; gekonnte Karten kehren seltener zurück, schwierige öfter.
 - **Glossar:** Durchsuchbares Nachschlagewerk der wichtigsten Fachbegriffe und Abkürzungen, jeweils mit Modul-Verlinkung.
 - **Ausbilder-Ansicht:** Gesamtauswertung des Lernstands, druckbarer Ausbildungsnachweis (PDF via Druckdialog), Backup-Export/-Import als JSON und Nachweis-Export als CSV.
 

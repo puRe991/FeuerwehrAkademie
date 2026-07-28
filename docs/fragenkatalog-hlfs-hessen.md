@@ -137,8 +137,9 @@ weitere Schritte:
    (Verschäumungszahl, Zumischung, l/min-Faustwerte) als eigener Aufgabentyp
    (`topic:'Berechnung'`, `calc:true`) mit vollständigem Rechenweg in der
    Erklärung. Eigenes Übungsset „Rechenaufgaben" (`set-hlfs-rechnen`).
-3. **Karteikarten** – markante Merkwerte (Anstellwinkel 65–75°, 30:2, GAMS,
-   4A-1C-4E, Restdruckwarnung 50–60 bar) zusätzlich als `flashcards` aufnehmen.
+3. **Karteikarten** ✅ **umgesetzt** – 25 kuratierte HLFS-Merkkarten (Anstellwinkel
+   65–75°, 30:2, GAMS, 4A-1C-4E, Restdruckwarnung 50–60 bar, Strahlrohr-Faustwerte,
+   Schlauch-Maße u. a.) in `flashcards-hlfs.js`, eingespielt über `flashcards.js`.
 4. **Lösungsdurchsicht** – die fachlich ergänzten Lösungen durch eine
    Ausbilderin/einen Ausbilder gegenlesen lassen (verbindlich bleiben die
    Vorschriften und der HLFS-Lösungsschlüssel).
@@ -151,6 +152,7 @@ weitere Schritte:
 - `assets/js/data/exams-hlfs2.js` – **neu**: Erweiterung der HLFS-Fragenbank (2. Stufe).
 - `assets/js/data/exams-hlfs3.js` – **neu**: Bildfragen (Brandklassen, Gefahrzettel, Warntafel).
 - `assets/js/data/exams-hlfs4.js` – **neu**: Rechenaufgaben (Schaum & Wasserlieferung).
+- `assets/js/data/flashcards-hlfs.js` – **neu**: 25 HLFS-Merkkarten (eingespielt über `flashcards.js`).
 - `assets/js/data/exam-figures.js` – **neu**: Inline-SVG-Piktogramme für die Bildfragen.
 - `assets/js/views/{exam,simulator,wiederholung,tagesquiz}.js` – rendern das `fig`-Bild.
 - `assets/js/data/exams.js` – Import + Merge der HLFS-Fragen.

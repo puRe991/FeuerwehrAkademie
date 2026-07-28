@@ -4,8 +4,9 @@
    Ergänzt um kuratierte Kern-Karten. Karten-IDs sind stabil (deterministisch),
    damit der Lernfortschritt (Leitner-Box) erhalten bleibt.
    ========================================================================= */
-import { MODULES } from './curriculum.js';
+import { MODULES, MODULE_BY_ID } from './curriculum.js';
 import { GLOSSARY } from './glossary.js';
+import { HLFS_CARDS } from './flashcards-hlfs.js';
 
 /* HTML grob zu Text (für Kartenrückseiten aus Curriculum-Blöcken) */
 function stripHtml(html = '') {
@@ -63,6 +64,16 @@ function buildCards() {
       moduleId: g.ref, moduleCode: '', cat: g.cat,
       front: `Was bedeutet: <b>${g.term}</b>?`,
       back: g.def,
+    });
+  });
+
+  // 3) Kuratierte HLFS-Merkkarten (moduleCode/cat aus dem Modul ableiten)
+  HLFS_CARDS.forEach(c => {
+    const m = MODULE_BY_ID[c.moduleId];
+    push({
+      id: c.id,
+      moduleId: c.moduleId, moduleCode: m?.code || '', cat: m?.category || 'grund',
+      front: c.front, back: c.back,
     });
   });
 
