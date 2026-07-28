@@ -11,6 +11,7 @@ import { EXTRA_QUESTIONS_3, NEW_MODULE_EXAMS } from './exams-extra3.js';
 import { EXTRA_QUESTIONS_4 } from './exams-extra4.js';
 import { EXTRA_QUESTIONS_5 } from './exams-extra5.js';
 import { EXTRA_QUESTIONS_6 } from './exams-extra6.js';
+import { HLFS_QUESTIONS } from './exams-hlfs.js';
 import { JUGEND_EXAMS } from './exams-jugend.js';
 
 export const EXAMS = {
@@ -625,7 +626,7 @@ for (const [poolId, ex] of Object.entries(JUGEND_EXAMS)) {
 }
 
 /* Zusatz-Fragen aus den Erweiterungsebenen anhängen (Inhaltstiefe) */
-for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3, EXTRA_QUESTIONS_4, EXTRA_QUESTIONS_5, EXTRA_QUESTIONS_6]) {
+for (const source of [EXTRA_QUESTIONS, EXTRA_QUESTIONS_2, EXTRA_QUESTIONS_3, EXTRA_QUESTIONS_4, EXTRA_QUESTIONS_5, EXTRA_QUESTIONS_6, HLFS_QUESTIONS]) {
   for (const [moduleId, extra] of Object.entries(source)) {
     if (EXAMS[moduleId] && extra?.length) EXAMS[moduleId].questions.push(...extra);
   }
