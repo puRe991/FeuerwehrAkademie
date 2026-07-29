@@ -24,6 +24,8 @@ import { renderGlossary, bindGlossary, renderFlashHome, renderDeck, bindFlashcar
 import { renderInstructor, bindInstructor } from './views/instructor.js';
 import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsatzkarte } from './views/einsatzkompass.js';
 import { EINSATZKOMPASS } from './data/einsatzkompass.js';
+import { renderLernvideoList, renderLernvideoDetail, bindLernvideos } from './views/lernvideos.js';
+import { LERNVIDEOS } from './data/lernvideos.js';
 
 const app = qs('#app');
 
@@ -40,6 +42,7 @@ const NAV = [
   { section: 'Lernen' },
   { href: '#/', label: 'Dashboard', icon: 'dashboard' },
   { href: '#/module', label: 'Module A–Z', icon: 'book', count: MODULES.length },
+  { href: '#/lernvideos', label: 'Lernvideos', icon: 'play', count: LERNVIDEOS.length },
   { href: '#/lernpfad', label: 'Lernpfad', icon: 'path' },
   { href: '#/karteikarten', label: 'Karteikarten', icon: 'refresh' },
   { href: '#/knoten', label: 'Knoten-Trainer', icon: 'target', count: KNOTEN.length },
@@ -129,6 +132,8 @@ function routeView(parts) {
       : { html: renderKnotenList(), bind: bindKnoten };
     case 'planspiele': return { html: renderPlanspielList() };
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
+    case 'lernvideos': return { html: renderLernvideoList(a || 'all'), bind: bindLernvideos };
+    case 'lernvideo': return { html: renderLernvideoDetail(a), bind: bindLernvideos };
     case 'lernpfad': return { html: renderLernpfad() };
     case 'glossar': return { html: renderGlossary(decodeURIComponent(a || '')), bind: bindGlossary };
     case 'karteikarten': return a === 'lernen'

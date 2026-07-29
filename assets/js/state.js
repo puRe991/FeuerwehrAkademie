@@ -17,6 +17,7 @@ const DEFAULT_STATE = {
   flashcards: {},      // { [cardId]: { box, due, reviewed } } Leitner
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
+  videosWatched: [],   // [videoId] in Lernvideos als „gesehen" markiert
   dailyQuiz: { day: null, correct: false }, // Frage des Tages – zuletzt beantworteter Tag
   streak: { count: 0, lastDay: null },
   xp: 0,
@@ -217,6 +218,19 @@ export function toggleKnotLearned(id) {
     const i = s.knotsLearned.indexOf(id);
     if (i >= 0) s.knotsLearned.splice(i, 1);
     else { s.knotsLearned.push(id); s.xp = (s.xp || 0) + 10; }
+  });
+  touchStreak();
+}
+
+/* ---- Lernvideos ---- */
+export function isVideoWatched(id) { return (state.videosWatched || []).includes(id); }
+
+export function toggleVideoWatched(id) {
+  update(s => {
+    if (!s.videosWatched) s.videosWatched = [];
+    const i = s.videosWatched.indexOf(id);
+    if (i >= 0) s.videosWatched.splice(i, 1);
+    else { s.videosWatched.push(id); s.xp = (s.xp || 0) + 15; }
   });
   touchStreak();
 }

@@ -298,6 +298,67 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
   .ek-merker__item { flex-direction: column; }
 }
 
+/* ---------- Lernvideos ---------- */
+.video-thumb {
+  position: relative; display: grid; place-items: center;
+  aspect-ratio: 16 / 9; overflow: hidden;
+  background: linear-gradient(135deg, var(--c, #d81f26), color-mix(in srgb, var(--c, #d81f26) 55%, #12161c));
+  color: #fff;
+}
+.video-thumb__img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.video-thumb__badge {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  width: 30px; height: 30px; display: grid; place-items: center;
+  border-radius: var(--r-full); background: rgba(16,21,28,.42);
+  backdrop-filter: blur(4px);
+}
+.video-thumb__badge svg { width: 16px; height: 16px; }
+.video-thumb__play {
+  position: relative; z-index: 2;
+  width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: var(--r-full); background: rgba(16,21,28,.5);
+  backdrop-filter: blur(4px); transition: transform var(--transition), background var(--transition);
+}
+.video-thumb__play svg { width: 22px; height: 22px; margin-left: 3px; fill: #fff; stroke: none; }
+.card--interactive:hover .video-thumb__play { transform: scale(1.08); background: var(--fw-red); }
+.video-thumb__dur {
+  position: absolute; right: 10px; bottom: 10px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: var(--r-full);
+  background: rgba(16,21,28,.6); color: #fff; font-size: .78rem; font-weight: 600;
+}
+.video-thumb__dur svg { width: 13px; height: 13px; }
+
+/* Detail-Player mit Click-to-Load-Facade */
+.video-player { position: relative; aspect-ratio: 16 / 9; background: #0b0e12; }
+.video-player__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-player__facade {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: grid; place-items: center; gap: 10px; cursor: pointer;
+  border: 0; color: #fff; padding: 0; overflow: hidden;
+  background: linear-gradient(135deg, var(--c, #d81f26), color-mix(in srgb, var(--c, #d81f26) 55%, #12161c));
+}
+.video-player__facade--empty { cursor: default; }
+.video-player__facade .video-thumb__img { z-index: 0; opacity: .82; }
+.video-player__play {
+  position: relative; z-index: 2;
+  width: 74px; height: 74px; display: grid; place-items: center;
+  border-radius: var(--r-full); background: rgba(16,21,28,.55);
+  transition: transform var(--transition), background var(--transition);
+}
+.video-player__play svg { width: 30px; height: 30px; margin-left: 4px; fill: #fff; stroke: none; }
+.video-player__facade:hover .video-player__play { transform: scale(1.06); background: var(--fw-red); }
+.video-player__hint {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: var(--r-full);
+  background: rgba(16,21,28,.5); font-size: .82rem; font-weight: 600;
+}
+.video-player__hint svg { width: 14px; height: 14px; }
+
 /* ---------- Druck: nur die Taschenkarte ---------- */
 @media print {
   .sidebar, .topbar, .scrim, .no-print, .toast-wrap { display: none !important; }
