@@ -156,6 +156,15 @@ let lastRoot = null;
 function render() {
   applyTheme();
   const s = getState();
+
+  // In-Page-Anker (z. B. #glo-A im Glossar, Überschriften im Inhaltsverzeichnis, #view)
+  // sind KEINE Routen: der Browser scrollt nativ zum Ziel-Element. Würde der Router hier
+  // neu rendern, griffe der Default-Fall (Dashboard) und die aktuelle Ansicht ginge verloren.
+  // Nur überspringen, wenn bereits eine Ansicht existiert; beim Kaltstart (Deep-Link auf
+  // einen Anker) normal weiterrendern, damit keine leere Seite entsteht.
+  const raw = location.hash;
+  if (raw && !raw.startsWith('#/') && raw !== '#' && qs('#appShell')) return;
+
   const { h, parts } = parseHash();
 
   // Erststart → Onboarding erzwingen
