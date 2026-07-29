@@ -15,6 +15,7 @@ import { PLANSPIELE } from './planspiele.js';
 import { EINSATZKOMPASS } from './einsatzkompass.js';
 import { EXAM_SETS } from './pruefungssets.js';
 import { MODULE_SOURCES } from './module-sources.js';
+import { LERNVIDEOS, VIDEO_CATEGORIES } from './lernvideos.js';
 
 /* HTML entfernen + Whitespace normalisieren. */
 function plain(s = '') {
@@ -91,6 +92,12 @@ function buildIndex() {
     docs.push(doc('Abschlussprüfung', s.title, 'Modulübergreifend', `#/pruefung/${s.id}`, 'award', s.desc || ''));
   });
 
+  // 8) Lernvideos (Titel, Kategorie, Beschreibung)
+  LERNVIDEOS.forEach(v => {
+    const cat = VIDEO_CATEGORIES[v.category];
+    docs.push(doc('Lernvideo', v.title, `${cat?.label || 'Lernvideo'} · Video`, `#/lernvideo/${v.id}`, 'play', v.desc || ''));
+  });
+
   INDEX = docs;
   return docs;
 }
@@ -120,7 +127,7 @@ function snippet(bodyRaw, terms) {
 
 /* Relevanz-Gewichtung je Ergebnistyp (Tie-Breaker). */
 const TYPE_WEIGHT = {
-  Modul: 2, Lektion: 1.6, Glossar: 1.5, Einsatzkompass: 1.2,
+  Modul: 2, Lektion: 1.6, Glossar: 1.5, Lernvideo: 1.3, Einsatzkompass: 1.2,
   Abschlussprüfung: 1, Planspiel: 1, Prüfungsfrage: 0.4,
 };
 
