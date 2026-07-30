@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Feuerwehr Online Akademie – Pressemappe</title>
+<style>
+  :root{
+    --red:#d81f26; --red-2:#b0181e; --amber:#f5a623; --ink:#141a22; --ink-2:#1e2732;
+    --slate:#556070; --slate-2:#7a8698; --line:#e4e8ee; --paper:#ffffff; --wash:#f6f8fb;
+    --blue:#1e5fa8; --green:#2e9e5b; --purple:#8e44ad;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{font-family:"Inter",-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{font-size:10.2pt; line-height:1.5;}
+
+  @page{ size:A4; margin:0; }
+  .page{
+    position:relative; width:210mm; min-height:297mm;
+    padding:20mm 18mm 18mm; background:var(--paper);
+    page-break-after:always; overflow:hidden;
+  }
+  .page:last-child{ page-break-after:auto; }
+
+  h1,h2,h3,h4{ line-height:1.15; letter-spacing:-.01em; }
+  p{ margin:0 0 8pt; }
+  strong{ font-weight:700; }
+  .muted{ color:var(--slate); }
+  .small{ font-size:8.6pt; }
+  .tiny{ font-size:7.6pt; }
+  .accent{ color:var(--red); }
+
+  /* ---------- running header/footer ---------- */
+  .runhead{ position:absolute; top:9mm; left:18mm; right:18mm; display:flex; justify-content:space-between;
+    align-items:center; font-size:7.6pt; letter-spacing:.14em; text-transform:uppercase; color:var(--slate-2); font-weight:700;}
+  .runhead .dot{ color:var(--red); }
+  .runfoot{ position:absolute; bottom:10mm; left:18mm; right:18mm; display:flex; justify-content:space-between;
+    align-items:center; font-size:7.6pt; color:var(--slate-2); border-top:1px solid var(--line); padding-top:5pt;}
+
+  .kicker{ display:inline-block; font-size:8pt; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--red); margin-bottom:8pt; }
+  .kicker.amber{ color:#b57200; }
+
+  .lead{ font-size:11.4pt; line-height:1.55; color:var(--ink-2); }
+  .rule{ height:3px; width:54px; background:var(--red); border-radius:3px; margin:10pt 0 14pt; }
+
+  /* ---------- COVER ---------- */
+  .cover{ background:radial-gradient(120% 80% at 78% 12%, #2a333f 0%, var(--ink) 46%, #0d1219 100%);
+    color:#fff; display:flex; flex-direction:column; }
+  .cover .brandrow{ display:flex; align-items:center; gap:14px; }
+  .flame{ width:56px; height:56px; border-radius:16px; background:var(--red); display:grid; place-items:center; box-shadow:0 10px 30px rgba(216,31,38,.45); }
+  .cover .brandname{ font-weight:800; font-size:15pt; line-height:1.05; }
+  .cover .brandsub{ font-size:8pt; letter-spacing:.26em; text-transform:uppercase; color:var(--amber); font-weight:800; margin-top:2px;}
+  .cover .presslabel{ margin-top:52pt; font-size:9pt; letter-spacing:.36em; text-transform:uppercase; color:#9fb0c4; font-weight:700; }
+  .cover h1{ font-size:40pt; font-weight:800; margin-top:8pt; letter-spacing:-.02em; }
+  .cover .tag{ font-size:14pt; color:#c9d4e2; margin-top:12pt; max-width:150mm; line-height:1.4; }
+  .cover .azbar{ margin-top:16pt; font-size:9.4pt; letter-spacing:.42em; color:var(--amber); font-weight:800; }
+
+  .factstrip{ margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .fact{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:12pt 12pt; }
+  .fact b{ font-size:21pt; font-weight:800; display:block; letter-spacing:-.02em; }
+  .fact span{ font-size:8pt; color:#a9b6c6; letter-spacing:.06em; text-transform:uppercase; font-weight:600; }
+  .cover .meta{ margin-top:16pt; display:flex; justify-content:space-between; font-size:8.4pt; color:#8a99ab; border-top:1px solid rgba(255,255,255,.12); padding-top:10pt; }
+
+  /* ---------- generic components ---------- */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14pt; }
+  .shot{ width:100%; border:1px solid var(--line); border-radius:10px; display:block; box-shadow:0 6px 20px rgba(20,26,34,.10); }
+  .shotcap{ font-size:7.8pt; color:var(--slate-2); margin-top:5pt; }
+  .figure{ margin:0; }
+
+  .statgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:9pt; margin:12pt 0; }
+  .stat{ border:1px solid var(--line); border-radius:11px; padding:11pt 12pt; background:var(--wash); }
+  .stat b{ font-size:19pt; font-weight:800; color:var(--red); display:block; letter-spacing:-.02em; }
+  .stat span{ font-size:8.2pt; color:var(--slate); font-weight:600; }
+
+  .feat{ break-inside:avoid; margin-bottom:12pt; }
+  .feat h3{ font-size:12pt; display:flex; align-items:center; gap:8px; }
+  .chip{ display:inline-block; font-size:7.4pt; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+    padding:2.5pt 7pt; border-radius:20px; background:#fdecec; color:var(--red); }
+  .chip.blue{ background:#e8f0fa; color:var(--blue); }
+  .chip.green{ background:#e7f5ec; color:var(--green); }
+  .chip.amber{ background:#fdf1dd; color:#b57200; }
+  .chip.purple{ background:#f3e9fa; color:var(--purple); }
+
+  .card{ border:1px solid var(--line); border-radius:12px; padding:12pt 14pt; }
+  .card.wash{ background:var(--wash); }
+  .card.ink{ background:var(--ink); color:#e7edf5; border:none; }
+  .card.ink h3{ color:#fff; }
+
+  ul.clean{ list-style:none; }
+  ul.clean li{ position:relative; padding-left:16pt; margin-bottom:5pt; }
+  ul.clean li::before{ content:""; position:absolute; left:0; top:5.5pt; width:7px; height:7px; border-radius:2px; background:var(--red); }
+  ul.check li::before{ content:"✓"; background:none; color:var(--green); font-weight:800; top:0; left:0; width:auto; height:auto; }
+
+  table.mods{ width:100%; border-collapse:collapse; font-size:8.8pt; }
+  table.mods th{ text-align:left; font-size:7.4pt; letter-spacing:.1em; text-transform:uppercase; color:var(--slate-2);
+    border-bottom:2px solid var(--line); padding:4pt 6pt; }
+  table.mods td{ padding:4pt 6pt; border-bottom:1px solid var(--line); vertical-align:top; }
+  .code{ display:inline-grid; place-items:center; width:17pt; height:17pt; border-radius:6px; background:var(--red); color:#fff; font-weight:800; font-size:8.4pt; }
+  .catpill{ font-size:7.2pt; padding:1.5pt 6pt; border-radius:20px; background:var(--wash); border:1px solid var(--line); color:var(--slate); white-space:nowrap; }
+
+  .quote{ border-left:4px solid var(--red); padding:6pt 0 6pt 14pt; font-size:12.5pt; line-height:1.5; font-weight:600; color:var(--ink-2); font-style:italic; }
+  .sectiontitle{ font-size:17pt; font-weight:800; letter-spacing:-.01em; }
+  .divider{ height:1px; background:var(--line); margin:14pt 0; }
+
+  .twocol{ column-count:2; column-gap:16pt; }
+  .twocol p{ break-inside:avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div class="brandrow">
+    <div class="flame">
+      <svg viewBox="0 0 48 48" width="34" height="34"><path d="M24 9C24 18 15 20 15 28a9 9 0 0 0 18 0c0-4-3-7-4-10-1 3-3 4-3 1 0-4 0-8-2-11Z" fill="#fff"/><circle cx="24" cy="29" r="4" fill="#f5a623"/></svg>
+    </div>
+    <div>
+      <div class="brandname">Feuerwehr<br>Online Akademie</div>
+      <div class="brandsub">Online · A bis Z</div>
+    </div>
+  </div>
+
+  <div class="presslabel">Pressemappe · Presseinformation</div>
+  <h1>Die Feuerwehr­ausbildung.<br>Digital. Komplett.<br>Kostenlos.</h1>
+  <p class="tag">Eine moderne, offline­fähige Lernplattform für die gesamte Feuerwehr-Aus- und Fortbildung – von den Rechtsgrundlagen bis zur Verbandsführung. Fachlich orientiert an den Feuerwehr-Dienstvorschriften (FwDV).</p>
+  <div class="azbar">A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z</div>
+
+  <div class="factstrip">
+    <div class="fact"><b>26</b><span>Module A–Z</span></div>
+    <div class="fact"><b>139</b><span>Lektionen</span></div>
+    <div class="fact"><b>996</b><span>Prüfungsfragen</span></div>
+    <div class="fact"><b>17</b><span>Planspiele</span></div>
+  </div>
+  <div class="meta">
+    <span>Stand: Juli 2026 · Progressive Web App (PWA)</span>
+    <span>github.com/puRe991/FeuerwehrAkademie</span>
+  </div>
+</section>
+
+<!-- ============ PRESSEINFORMATION ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Presseinformation</span></div>
+
+  <div class="kicker">Presseinformation</div>
+  <h1 style="font-size:23pt; font-weight:800; max-width:165mm;">Feuerwehrausbildung von A bis Z – die komplette Lernplattform, die im Browser läuft und ohne Internet funktioniert</h1>
+  <div class="rule"></div>
+
+  <p class="lead"><strong>Lernen, prüfen und führen auf einem Niveau, das bislang kostenpflichtigen Angeboten vorbehalten war:</strong> Die Feuerwehr Online Akademie bündelt die gesamte Aus- und Fortbildung der Feuerwehr in einer einzigen, personalisierten Web-App – von der Grundausbildung bis zur Führungskraft. Ohne Anmeldung, ohne Server, ohne Kosten.</p>
+
+  <div class="twocol" style="margin-top:10pt;">
+    <p>Die Plattform umfasst <strong>26 Ausbildungsmodule (A–Z) mit 139 Lektionen</strong> – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Vegetationsbrand, Naturgefahren, Wasserrettung und Katastrophenschutz. Jede Lektion verbindet fachlich fundierten Text mit anschaulichen <strong>Schaubildern</strong>, Merkhilfen und Quellenangaben.</p>
+
+    <p>Das Herzstück für die Prüfungsvorbereitung ist eine <strong>Fragenbank mit 996 Prüfungsfragen</strong>, aus der sich 30 Prüfungen speisen – darunter neun modul­übergreifende Abschlussprüfungen (Truppmann/MTA, Truppführer, Atemschutzgeräteträger, Maschinist, Gruppen-/Zugführung u. a.). Ein <strong>Prüfungssimulator</strong> bildet mit Countdown, freier Fragen-Navigation und ausdruckbarem Zeugnis den Ernstfall nach; ein <strong>Fehler-Center</strong> sammelt automatisch alle falsch beantworteten Fragen zum gezielten Üben.</p>
+
+    <p>Für angehende und aktive Führungskräfte bietet die Akademie <strong>17 verzweigte Planspiele</strong> mit Live-Bewertung sowie einen <strong>Einsatzkompass</strong> mit zehn druckbaren Taschenkarten für Stress- und Sonderlagen. Ergänzt wird das Angebot durch Knoten-Trainer, Karteikarten mit Spaced-Repetition, Lernvideos, ein Glossar mit über 90 Fachbegriffen und eine modulübergreifende Volltextsuche.</p>
+
+    <p>Technisch ist die Anwendung eine <strong>Progressive Web App</strong>: Sie ist installierbar und funktioniert vollständig <strong>offline</strong> – ein echter Mehrwert für Gerätehäuser und Standorte mit schwachem Netz. <strong>Sämtliche Lerndaten bleiben lokal</strong> auf dem Gerät gespeichert; es gibt kein Tracking, keine Anmeldung und keinen Server. Die Oberfläche ist barrierefrei gestaltet, responsiv und in Hell- sowie Dunkelmodus nutzbar.</p>
+
+    <p>Die Inhalte orientieren sich an den geltenden Feuerwehr-Dienstvorschriften und der Modularen Truppausbildung (MTA). Sie dienen der Aus- und Fortbildung und ersetzen ausdrücklich <strong>nicht</strong> die praktische Ausbildung am Standort – maßgeblich bleiben stets die Vorschriften des jeweiligen Bundeslandes und die Anordnungen der zuständigen Führungskraft.</p>
+  </div>
+
+  <div class="card ink" style="margin-top:6pt;">
+    <div class="kicker amber" style="color:var(--amber)">O-Ton</div>
+    <p class="quote" style="color:#eaf0f7; border-color:var(--amber);">„Die beste Ausbildung darf nicht am Zugang scheitern. Deshalb ist alles frei verfügbar, läuft auf jedem Gerät und funktioniert selbst dann, wenn im Gerätehaus das Netz fehlt.“</p>
+  </div>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 2</span></div>
+</section>
+
+<!-- ============ ZAHLEN + DASHBOARD ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Überblick</span></div>
+
+  <div class="kicker">Das Wichtigste in Zahlen</div>
+  <h2 class="sectiontitle">Ein Blick, der alles zeigt</h2>
+  <p class="muted" style="margin-top:4pt;">Das Dashboard bündelt Fortschritt, Empfehlung und die „Frage des Tages“ – personalisiert nach Ausbildungsniveau.</p>
+
+  <div class="statgrid">
+    <div class="stat"><b>26</b><span>Ausbildungsmodule (A–Z)</span></div>
+    <div class="stat"><b>139</b><span>Lektionen mit Schaubildern</span></div>
+    <div class="stat"><b>996</b><span>Prüfungsfragen</span></div>
+    <div class="stat"><b>30</b><span>Prüfungen &amp; 9 Abschlussprüfungen</span></div>
+    <div class="stat"><b>17</b><span>Planspiele für Führungskräfte</span></div>
+    <div class="stat"><b>10</b><span>Einsatzkompass-Taschenkarten</span></div>
+    <div class="stat"><b>92</b><span>Glossar-Fachbegriffe</span></div>
+    <div class="stat"><b>15</b><span>Lernvideos</span></div>
+    <div class="stat"><b>0 €</b><span>Kosten · keine Anmeldung</span></div>
+  </div>
+
+  <figure class="figure" style="margin-top:8pt;">
+    <img class="shot" src="shots/dashboard.png" alt="Dashboard der Feuerwehr Online Akademie">
+    <figcaption class="shotcap">Startbildschirm (Dashboard): Fortschritt, adaptive Lernempfehlung, Streak &amp; XP sowie die tägliche „Frage des Tages“.</figcaption>
+  </figure>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 3</span></div>
+</section>
+
+<!-- ============ FEATURE: LERNEN ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Funktionen · Lernen</span></div>
+
+  <div class="kicker">Lernen</div>
+  <h2 class="sectiontitle">Vom ersten Truppmann bis zur Verbandsführung</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <figure class="figure">
+      <img class="shot" src="shots/module.png" alt="Modulübersicht A–Z">
+      <figcaption class="shotcap">Module A–Z: 26 Ausbildungsbereiche, gegliedert nach Kategorien und Ausbildungsniveau.</figcaption>
+    </figure>
+    <figure class="figure">
+      <img class="shot" src="shots/lektion.png" alt="Lektion mit Schaubild Verbrennungsdreieck">
+      <figcaption class="shotcap">Lektion mit interaktivem Schaubild (Verbrennungsdreieck) – jedes Modul enthält mindestens eine Erklär-Grafik.</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:12pt;">
+    <div class="feat">
+      <h3><span class="chip">Module</span> Strukturierte Lektionen</h3>
+      <ul class="clean">
+        <li><strong>139 Lektionen</strong> mit Fachtext, Merksätzen und Definitionen</li>
+        <li>Interaktive <strong>Schaubilder</strong> (Brandklassen, Wasserweg, Führungsstufen …)</li>
+        <li>Jedes Modul weist seine <strong>Bezugsquellen</strong> (FwDV, DIN/EN, DGUV) aus</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <h3><span class="chip blue">Personalisiert</span> Adaptiver Lernpfad</h3>
+      <ul class="clean">
+        <li>Empfehlung passend zum <strong>Ausbildungsniveau</strong> und Fortschritt</li>
+        <li>Fortschritts-Tracking pro Modul und Lektion</li>
+        <li><strong>Gamification:</strong> XP, Level und Tages-Streak halten die Motivation hoch</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:6pt;">
+    <div class="feat">
+      <h3><span class="chip green">Karteikarten</span> Spaced Repetition</h3>
+      <p class="small muted">Nach dem Leitner-System automatisch aus dem Curriculum erzeugt: Gekonnte Karten kehren seltener zurück, schwierige öfter.</p>
+    </div>
+    <div class="feat">
+      <h3><span class="chip amber">Lernvideos</span> &amp; Volltextsuche</h3>
+      <p class="small muted">15 kuratierte Lernvideos plus eine Suche über <em>alle</em> Inhalte – Lektionen, Fragen, Glossar, Planspiele und Quellen.</p>
+    </div>
+  </div>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 4</span></div>
+</section>
+
+<!-- ============ FEATURE: PRÜFEN ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Funktionen · Prüfen</span></div>
+
+  <div class="kicker">Prüfen &amp; Üben</div>
+  <h2 class="sectiontitle">Realitätsnah kalibrierte Prüfungen</h2>
+  <div class="rule"></div>
+
+  <figure class="figure">
+    <img class="shot" src="shots/pruefungen.png" alt="Prüfungsübersicht">
+    <figcaption class="shotcap">Prüfungsbereich: Modulprüfungen in drei Stufen, neun modulübergreifende Abschlussprüfungen sowie ein eigener Jugendfeuerwehr-Bereich.</figcaption>
+  </figure>
+
+  <div class="grid2" style="margin-top:12pt;">
+    <div class="feat">
+      <h3><span class="chip">Simulator</span> Ernstmodus</h3>
+      <ul class="clean">
+        <li>Fester <strong>Countdown</strong> mit Auto-Abgabe bei Zeitablauf</li>
+        <li>Keine Auflösung während der Prüfung, freie Navigation per Fragen-Raster</li>
+        <li>Danach Bestanden/Durchgefallen mit ausdruckbarem <strong>Prüfungszeugnis</strong></li>
+      </ul>
+    </div>
+    <div class="feat">
+      <h3><span class="chip green">Fehler-Center</span> Aus Fehlern lernen</h3>
+      <ul class="clean">
+        <li>Sammelt automatisch alle falsch beantworteten Fragen</li>
+        <li>Gezieltes Nachüben – richtig gelöst verschwindet die Frage</li>
+        <li>Speist Streak, XP und die tägliche Frage des Tages</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card wash" style="margin-top:6pt;">
+    <h3 style="font-size:11pt;">Realitätscheck statt Ratespiel</h3>
+    <p class="small muted" style="margin-top:4pt; margin-bottom:0;">Zwei klar getrennte Modi: <strong>Modulprüfungen</strong> sind Übungsmodus (Lernen mit Erklärungen), <strong>Abschlussprüfungen</strong> sind Prüfungsmodus. Fragenzahl, Zeit und Bestehensgrenze sind an echte Lehrgangsprüfungen angelehnt (z. B. Gruppen-/Zugführung 20 Fragen / 60 min / 60 %). Jede Prüfung zeigt an, welcher echten Prüfung sie entspricht – inklusive Quellenvergleich. Ein eigener Bereich bereitet auf die Abzeichen der Jugendfeuerwehr vor (Jugendflamme 1–3, Leistungsspange).</p>
+  </div>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 5</span></div>
+</section>
+
+<!-- ============ FEATURE: FÜHREN ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Funktionen · Führen</span></div>
+
+  <div class="kicker">Führen &amp; Im Einsatz</div>
+  <h2 class="sectiontitle">Werkzeuge für Führungskräfte</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <figure class="figure">
+      <img class="shot" src="shots/planspiele.png" alt="Planspiele für Führungskräfte">
+      <figcaption class="shotcap">17 verzweigte Einsatz-Simulationen mit eigener Szenengrafik und Live-Bewertung (Menschenrettung · Eigensicherung · Taktik).</figcaption>
+    </figure>
+    <figure class="figure">
+      <img class="shot" src="shots/einsatzkompass.png" alt="Einsatzkompass Taschenkarten">
+      <figcaption class="shotcap">Einsatzkompass: 10 druckbare Taschenkarten mit Führungs-Checklisten (GAMS, 4A-1C-4E, MANV …).</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:12pt;">
+    <div class="feat">
+      <h3><span class="chip purple">Planspiele</span> Entscheiden unter Druck</h3>
+      <ul class="clean">
+        <li>Verzweigte Szenarien nach dem <strong>Führungsvorgang der FwDV 100</strong></li>
+        <li>Jede Entscheidung wirkt auf drei Bewertungsdimensionen</li>
+        <li>Am Ende ein ausführlicher <strong>Führungsbericht</strong></li>
+      </ul>
+    </div>
+    <div class="feat">
+      <h3><span class="chip">Einsatzkompass</span> Stütze in der Minute</h3>
+      <ul class="clean">
+        <li>Checklisten für seltene / Stress-Lagen, abhakbar</li>
+        <li><strong>Rote Linien</strong> als kritische Sicherheitshinweise</li>
+        <li>Als echte Taschenkarte druckbar – offline an der Einsatzstelle</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure class="figure" style="margin-top:6pt;">
+    <img class="shot" src="shots/knoten.png" alt="Knoten-Trainer">
+    <figcaption class="shotcap">Knoten-Trainer: Schritt-für-Schritt-Anleitungen mit farbcodierten Schaubildern (rot = loses Ende, blau = festes Teil).</figcaption>
+  </figure>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 6</span></div>
+</section>
+
+<!-- ============ AUSBILDER + DARK ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Für Ausbilder · Design</span></div>
+
+  <div class="kicker">Für Ausbilder &amp; Design</div>
+  <h2 class="sectiontitle">Auswertung, Nachweise – und ein Look, der sitzt</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <figure class="figure">
+      <img class="shot" src="shots/ausbilder.png" alt="Ausbilder-Ansicht">
+      <figcaption class="shotcap">Ausbilder-Ansicht: Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export.</figcaption>
+    </figure>
+    <figure class="figure">
+      <img class="shot" src="shots/dashboard-dark.png" alt="Dashboard im Dunkelmodus">
+      <figcaption class="shotcap">Vollständiger Hell-/Dunkelmodus im Feuerwehr-Look – augenschonend im Gerätehaus und unterwegs.</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2" style="margin-top:12pt;">
+    <div class="feat">
+      <h3><span class="chip blue">Ausbilder</span> Nachweise auf Knopfdruck</h3>
+      <ul class="clean">
+        <li>Gesamtauswertung des Lernstands</li>
+        <li>Druckbarer <strong>Ausbildungsnachweis</strong> (PDF via Druckdialog)</li>
+        <li>Backup als JSON, Nachweis-Export als CSV</li>
+      </ul>
+    </div>
+    <div class="feat">
+      <h3><span class="chip green">Barrierefrei</span> Für alle nutzbar</h3>
+      <ul class="clean">
+        <li>Tastaturbedienung, sichtbarer Fokus, Skip-Link</li>
+        <li>ARIA-Rollen, Live-Regionen, <code>prefers-reduced-motion</code></li>
+        <li>Responsiv vom Smartphone bis zum Beamer</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 7</span></div>
+</section>
+
+<!-- ============ MODULE A–Z ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Curriculum</span></div>
+
+  <div class="kicker">Curriculum</div>
+  <h2 class="sectiontitle">Die 26 Ausbildungsmodule</h2>
+  <p class="muted" style="margin-top:4pt; margin-bottom:8pt;">Von der Grundausbildung bis zur Führung – jedes Modul mit eigenen Lektionen, Prüfungen, Schaubildern und Quellen.</p>
+
+  <table class="mods">
+    <thead><tr><th style="width:26pt;">Code</th><th>Modul</th><th style="width:44mm;">Kategorie</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">A</span></td><td>Rechtsgrundlagen &amp; Organisation</td><td><span class="catpill">Grundausbildung</span></td></tr>
+      <tr><td><span class="code">B</span></td><td>Brennen &amp; Löschen (Verbrennungslehre)</td><td><span class="catpill">Grundausbildung</span></td></tr>
+      <tr><td><span class="code">C</span></td><td>Fahrzeugkunde</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">D</span></td><td>PSA &amp; Gerätekunde</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">E</span></td><td>Löscheinsatz &amp; Einsatzlehre (FwDV 3)</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">F</span></td><td>Atemschutz (FwDV 7)</td><td><span class="catpill">Atemschutz</span></td></tr>
+      <tr><td><span class="code">G</span></td><td>Technische Hilfeleistung</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">H</span></td><td>Sprechfunk &amp; Digitalfunk</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">I</span></td><td>ABC-Gefahrstoffe (FwDV 500)</td><td><span class="catpill">Gefahrenabwehr</span></td></tr>
+      <tr><td><span class="code">J</span></td><td>Erste Hilfe &amp; Sofortmaßnahmen</td><td><span class="catpill">Medizin</span></td></tr>
+      <tr><td><span class="code">K</span></td><td>Absturzsicherung</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">L</span></td><td>Führung &amp; Leitung (FwDV 100)</td><td><span class="catpill">Führung</span></td></tr>
+      <tr><td><span class="code">M</span></td><td>Vorbeugender Brandschutz</td><td><span class="catpill">Prävention</span></td></tr>
+      <tr><td><span class="code">N</span></td><td>Maschinist (FwDV 2)</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">O</span></td><td>Objekt- &amp; Baukunde</td><td><span class="catpill">Prävention</span></td></tr>
+      <tr><td><span class="code">P</span></td><td>Arbeits- &amp; Unfallschutz (UVV/DGUV)</td><td><span class="catpill">Grundausbildung</span></td></tr>
+      <tr><td><span class="code">Q</span></td><td>Jugend- &amp; Nachwuchsarbeit</td><td><span class="catpill">Grundausbildung</span></td></tr>
+      <tr><td><span class="code">R</span></td><td>Digitale Einsatzunterstützung (Wärmebild &amp; Drohne)</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">S</span></td><td>Rettung &amp; Selbstrettung</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">T</span></td><td>Löschwasserversorgung &amp; Wasserförderung</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">U</span></td><td>Knoten, Stiche &amp; Bunde</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">V</span></td><td>Vegetations- &amp; Waldbrandbekämpfung</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">W</span></td><td>Unwetter, Hochwasser &amp; Naturgefahren</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">X</span></td><td>Wasserrettung, Eis &amp; Bootsdienst</td><td><span class="catpill">Einsatzdienst</span></td></tr>
+      <tr><td><span class="code">Y</span></td><td>Motorkettensäge &amp; technische Geräte</td><td><span class="catpill">Technik &amp; Geräte</span></td></tr>
+      <tr><td><span class="code">Z</span></td><td>Katastrophenschutz &amp; überörtliche Hilfe</td><td><span class="catpill">Führung</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 8</span></div>
+</section>
+
+<!-- ============ TECHNIK, ZIELGRUPPEN, KONTAKT ============ -->
+<section class="page">
+  <div class="runhead"><span><span class="dot">●</span> Feuerwehr Online Akademie</span><span>Technik · Kontakt</span></div>
+
+  <div class="kicker">Technik, Datenschutz &amp; Zielgruppen</div>
+  <h2 class="sectiontitle">Offen, offlinefähig, ohne Datenspur</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <div class="card wash">
+      <h3 style="font-size:11pt;">🔒 Datenschutz by Design</h3>
+      <ul class="clean check" style="margin-top:6pt;">
+        <li>Alle Lern- und Profildaten bleiben <strong>lokal im Browser</strong></li>
+        <li>Kein Server, keine Anmeldung, kein Tracking</li>
+        <li>Datenhoheit vollständig bei der Nutzerin / dem Nutzer</li>
+      </ul>
+    </div>
+    <div class="card wash">
+      <h3 style="font-size:11pt;">⚙️ Technik</h3>
+      <ul class="clean check" style="margin-top:6pt;">
+        <li><strong>Progressive Web App</strong> – installierbar &amp; offlinefähig</li>
+        <li>Vanilla JavaScript, kein Framework, kein Build-Schritt</li>
+        <li>Läuft auf jedem Gerät; als GitHub Page veröffentlichbar</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:12pt; margin-top:14pt;">Für wen ist die Akademie gedacht?</h3>
+  <div class="grid2" style="margin-top:6pt;">
+    <ul class="clean">
+      <li><strong>Einsteiger &amp; Truppmann-Anwärter:</strong> strukturierte Grundausbildung von A bis Z</li>
+      <li><strong>Aktive Einsatzkräfte:</strong> Auffrischung, Fortbildung &amp; Prüfungsvorbereitung</li>
+      <li><strong>Führungskräfte:</strong> Planspiele, Einsatzkompass, FwDV 100</li>
+    </ul>
+    <ul class="clean">
+      <li><strong>Ausbilderinnen &amp; Ausbilder:</strong> Auswertung, Nachweise, Material für den Unterricht</li>
+      <li><strong>Jugendfeuerwehr:</strong> Vorbereitung auf Jugendflamme &amp; Leistungsspange</li>
+      <li><strong>Feuerwehren &amp; Kreise:</strong> als frei nutzbares Standard-Lernangebot</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid2">
+    <div>
+      <h3 style="font-size:12pt;">Kurzprofil</h3>
+      <p class="small muted" style="margin-top:4pt;">Die <strong>Feuerwehr Online Akademie</strong> ist eine frei verfügbare, nicht-kommerzielle Lernplattform für die Feuerwehr-Aus- und Fortbildung. Fachlich orientiert an den Feuerwehr-Dienstvorschriften (FwDV) und der Modularen Truppausbildung (MTA). Die Inhalte ersetzen keine praktische Ausbildung; maßgeblich sind die Vorschriften des jeweiligen Bundeslandes.</p>
+    </div>
+    <div>
+      <h3 style="font-size:12pt;">Kontakt &amp; Projekt</h3>
+      <p class="small" style="margin-top:4pt;">
+        <strong>Projekt:</strong> Feuerwehr Online Akademie<br>
+        <strong>Web / Quellcode:</strong> github.com/puRe991/FeuerwehrAkademie<br>
+        <strong>Presseanfragen:</strong> tierbedarf.clever@gmail.com<br>
+        <strong>Stand:</strong> Juli 2026
+      </p>
+      <p class="tiny muted" style="margin-top:8pt;">Bildnachweis: Alle Screenshots © Feuerwehr Online Akademie. Zur redaktionellen Verwendung im Zusammenhang mit der Berichterstattung über das Projekt freigegeben.</p>
+    </div>
+  </div>
+
+  <div class="runfoot"><span>Feuerwehr Online Akademie — Pressemappe</span><span>Seite 9</span></div>
+</section>
+
+</body>
+</html>
