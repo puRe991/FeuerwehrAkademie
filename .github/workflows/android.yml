@@ -1,0 +1,67 @@
+name: Android APK
+
+# Baut aus der PWA eine eigenständige Android-App (Capacitor) und stellt die
+# APK als Download bereit.
+#   • Manuell startbar (Actions-Tab → "Run workflow")
+#   • Bei einem Versions-Tag (v1.0.0 …) wird die APK zusätzlich als Release veröffentlicht
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Abhängigkeiten installieren & Web-Assets bündeln
+        run: |
+          npm ci
+          npm run build:web
+
+      - name: JDK 17 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android-Projekt erzeugen & synchronisieren
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: APK bauen (Debug – direkt installierbar)
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: APK benennen
+        run: |
+          mkdir -p dist
+          cp android/app/build/outputs/apk/debug/app-debug.apk dist/FeuerwehrAkademie.apk
+
+      - name: APK als Download-Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: FeuerwehrAkademie-APK
+          path: dist/FeuerwehrAkademie.apk
+          if-no-files-found: error
+
+      - name: APK an Release anhängen (nur bei Versions-Tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/FeuerwehrAkademie.apk

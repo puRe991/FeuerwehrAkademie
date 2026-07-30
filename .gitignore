@@ -15,3 +15,9 @@ npm-debug.log*
 
 # Vom Windows-Starter bei Bedarf heruntergeladener portabler Server
 tools/
+
+# Capacitor / Android-Build (wird von CI aus den Web-Assets erzeugt)
+www/
+android/
+dist/
+.gradle/

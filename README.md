@@ -159,6 +159,27 @@ Es ist also **keine** manuelle Installation nötig. Zum Beenden das Server-Fenst
 
 Der beigefügte Workflow (`.github/workflows/pages.yml`) veröffentlicht das Repository automatisch über GitHub Pages. In den Repo-Einstellungen unter **Pages → Source → GitHub Actions** aktivieren.
 
+### 📱 Android-App (APK)
+
+Die App lässt sich als eigenständige, **offline-fähige** Android-App (APK) verpacken – die Web-Inhalte werden dabei mit [Capacitor](https://capacitorjs.com/) in die App gebündelt (kein Server nötig).
+
+**Automatisch über GitHub Actions (empfohlen):**
+
+1. Im **Actions**-Tab den Workflow *„Android APK"* öffnen → **Run workflow**.
+2. Nach dem Lauf die fertige `FeuerwehrAkademie.apk` unter **Artifacts** herunterladen.
+3. Wird ein Versions-Tag gepusht (`git tag v1.0.0 && git push --tags`), hängt der Workflow die APK zusätzlich an ein **GitHub Release**.
+
+> Die APK wird als *Debug*-Variante gebaut und ist direkt installierbar (auf dem Gerät „Installation aus unbekannten Quellen" erlauben). Für eine Veröffentlichung im Play Store ist zusätzlich ein eigener Signatur-Schlüssel (Release-Signing) erforderlich.
+
+**Lokal bauen** (benötigt JDK 17 + Android SDK):
+
+```bash
+npm install
+npm run android:add        # bündelt Web-Assets & erzeugt das Android-Projekt
+cd android && ./gradlew assembleDebug
+# → android/app/build/outputs/apk/debug/app-debug.apk
+```
+
 ## 🏗️ Architektur
 
 ```
