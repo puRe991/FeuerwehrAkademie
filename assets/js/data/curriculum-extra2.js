@@ -8,52 +8,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS_2 = {
 
-  /* ------------------------------------------------------------------- C */
-  'c-fahrzeugkunde': [
-    {
-      id: 'c4', title: 'Löschwasserversorgung & Pumpensystem', duration: 18,
-      blocks: [
-        H2('quellen', 'Woher kommt das Löschwasser?'),
-        UL(
-          '<b>Hydranten</b> (Über-/Unterflur) am Trinkwassernetz – abhängige Löschwasserversorgung',
-          '<b>Offene Gewässer</b> (Teich, Fluss, Löschteich) – unabhängige Versorgung',
-          '<b>Löschwasserbehälter/-zisternen</b> und Löschwasserbrunnen',
-          '<b>Fahrzeugtank</b> für den schnellen Erstangriff'),
-        DEF('Abhängige/unabhängige Löschwasserversorgung', 'Abhängig = aus dem Leitungsnetz (Hydrant), begrenzt durch Netzleistung. Unabhängig = aus offenem Gewässer/Behälter, unabhängig vom Netz, aber aufwendiger herzustellen.'),
-        H2('tank', 'Der Löschwassertank – schnelle Reserve'),
-        P('Der Fahrzeugtank (600–2000 l und mehr) erlaubt den sofortigen Löschangriff, während parallel die Wasserversorgung aufgebaut wird. Faustwert: Ein C-Rohr mit ~100 l/min leert 1000 l in rund 10 Minuten – deshalb rasch nachspeisen.'),
-        H2('foerderarten', 'Wasserförderung – zwei Wege'),
-        TBL(['Verfahren', 'Anwendung'],[
-          ['Förderung über lange Wegstrecke', 'B-Leitung mit Verstärkerpumpen über große Entfernung'],
-          ['Pendelverkehr mit Tanklöschfahrzeugen', 'unwegsames Gelände, Vegetationsbrand'],
-        ]),
-        CO('tip', 'Wasser marsch – aber geplant', 'Die Wasserversorgung ist oft der Flaschenhals. Der Gruppenführer plant sie parallel zum Erstangriff, damit dem Angriffstrupp nie das Wasser ausgeht.'),
-      ],
-    },
-    {
-      id: 'c5', title: 'Wechsellader, Abrollbehälter & Logistik', duration: 16,
-      blocks: [
-        H2('wlf', 'Das Wechselladersystem (WLF/AB)'),
-        P('Ein <b>Wechselladerfahrzeug (WLF)</b> transportiert austauschbare <b>Abrollbehälter (AB)</b>. So wird ein Trägerfahrzeug für viele Aufgaben nutzbar – man tauscht nur den Behälter.'),
-        UL(
-          '<b>AB-Wasser/Schaum:</b> große Lösch-/Schaummittelmengen',
-          '<b>AB-Rüst/THL:</b> technische Hilfeleistung',
-          '<b>AB-Gefahrgut:</b> Ausstattung für ABC-Einsätze',
-          '<b>AB-Atemschutz, AB-Logistik, AB-Mulde</b> u. v. m.'),
-        H2('logistik', 'Einsatzlogistik'),
-        P('Bei längeren Einsätzen wird Nachschub organisiert: Atemluftflaschen, Kraftstoff, Löschmittel, Verpflegung und Ablösung. Die Logistik (Sachgebiet S4) hält die Einsatzfähigkeit über Stunden aufrecht.'),
-        H2('gwl', 'Gerätewagen & Sonderfahrzeuge'),
-        TBL(['Fahrzeug', 'Zweck'],[
-          ['GW-Logistik', 'Nachschub, Material, Verpflegung'],
-          ['GW-Messtechnik', 'Gefahrstoffmessung, Spürtrupp'],
-          ['GW-Höhenrettung', 'Spezialgerät für Höhen/Tiefen'],
-          ['ELW 2', 'Führungsunterstützung großer Lagen'],
-        ]),
-        CO('info', 'Modularität', 'Das Wechselladersystem macht Feuerwehren flexibel und wirtschaftlich: Ein WLF ersetzt mehrere Spezialfahrzeuge – die passende Ausstattung rollt bedarfsgerecht an die Einsatzstelle.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {
@@ -139,50 +93,6 @@ export const EXTRA_LESSONS_2 = {
           'Kommunikation mit Veranstalter und Ordnungsdienst',
           'Bei Gefahr: Veranstaltung stoppen, räumen, Feuerwehr nachfordern'),
         CO('tip', 'Prävention wirkt', 'Der beste Brand ist der, der nicht entsteht. Betrieblicher und organisatorischer Brandschutz verhindert weit mehr Schäden, als jede Feuerwehr je löschen kann.'),
-      ],
-    },
-  ],
-
-  /* ------------------------------------------------------------------- N */
-  'n-maschinist': [
-    {
-      id: 'n5', title: 'Elektrische Sicherheit & Schutzmaßnahmen', duration: 16,
-      blocks: [
-        H2('gefahr', 'Strom als Gefahr'),
-        P('Der Maschinist betreibt Stromerzeuger und elektrische Geräte. Elektrischer Strom ist unsichtbar und lebensgefährlich – Schutzmaßnahmen sind Pflicht.'),
-        DEF('Schutztrennung mit Isolationsüberwachung', 'Standard-Schutzmaßnahme tragbarer Feuerwehr-Stromerzeuger: Das Netz ist erdfrei, ein Isolationswächter überwacht permanent. Erster Fehler wird gemeldet (nicht sofort gefährlich), muss aber behoben werden.'),
-        H2('regeln', 'Sichere Bedienung'),
-        UL(
-          'Nur geprüfte Kabel und Geräte verwenden',
-          'Kabeltrommeln vollständig abrollen (Wärmestau)',
-          'Geräte nicht überlasten (Nennleistung beachten)',
-          'Bei Nässe besondere Vorsicht, Stecker trocken halten',
-          'Beschädigte Kabel/Geräte sofort außer Betrieb nehmen'),
-        H2('fremdstrom', 'Elektrische Anlagen im Einsatz'),
-        CO('danger', 'Abstand zu Spannung', 'Bei Bränden/Unfällen an elektrischen Anlagen (Trafo, Oberleitung, PV) gilt: Abstand halten, freischalten lassen, erst nach Bestätigung arbeiten. Löschen an Niederspannung nur mit geeignetem Löschmittel und Sicherheitsabstand.'),
-        H2('erdung', 'Potenzialausgleich'),
-        P('Bei manchen Einsätzen (z. B. Bahn) ist Erdung/Potenzialausgleich durch Fachpersonal nötig, bevor gearbeitet werden darf. Der Maschinist kennt die Grenzen seiner Geräte und ruft im Zweifel Fachkräfte.'),
-      ],
-    },
-    {
-      id: 'n6', title: 'Einsatzfahrt, Fahrphysik & Fahrsicherheit', duration: 18,
-      blocks: [
-        H2('sonderrecht', 'Sonder- und Wegerechte'),
-        P('Mit Blaulicht und Martinshorn nimmt der Maschinist Sonder- und Wegerechte in Anspruch (§§ 35, 38 StVO). Sie befreien von einzelnen Verkehrsregeln – aber nie von der Sorgfaltspflicht.'),
-        CO('danger', 'Defensiv trotz Eile', 'Die meisten schweren Feuerwehrunfälle passieren auf der Anfahrt. An Kreuzungen/roten Ampeln Schrittgeschwindigkeit, Blickkontakt suchen, mit Fehlern anderer rechnen. Lieber 30 Sekunden später und sicher ankommen.'),
-        H2('physik', 'Fahrphysik schwerer Fahrzeuge'),
-        KF(
-          'Langer Bremsweg, hohes Gewicht – Geschwindigkeit anpassen',
-          'Hoher Schwerpunkt → Kippgefahr in Kurven',
-          'Wasser im Tank „schwappt" und beeinflusst die Fahrdynamik',
-          'Breite/Höhe/Länge beachten (Unterführungen, enge Zufahrten)'),
-        H2('gurt', 'Sicherheit im Fahrzeug'),
-        UL(
-          'Anschnallpflicht – auch im Mannschaftsraum',
-          'Erst anschnallen/ausrüsten, wenn das Fahrzeug steht bzw. sicher',
-          'Ladung/Geräte gesichert (keine losen Teile)',
-          'Ein-/Aussteigen zur sicheren Seite (Verkehr!)'),
-        CO('tip', 'Ankommen ist Teil des Auftrags', 'Der Einsatz beginnt mit der sicheren Anfahrt. Wer verunfallt, hilft niemandem und bindet weitere Kräfte. Sicheres Fahren ist gelebte Verantwortung für die ganze Besatzung.'),
       ],
     },
   ],

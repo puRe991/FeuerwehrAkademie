@@ -7,33 +7,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS = {
 
-  /* ------------------------------------------------------------------- C */
-  'c-fahrzeugkunde': [
-    {
-      id: 'c3', title: 'Feuerwehrtechnische Beladung & Normung', duration: 18,
-      blocks: [
-        H2('normung', 'Warum genormt wird'),
-        P('Damit jede Einsatzkraft an jedem Fahrzeug „blind" die Geräte findet und Einheiten überörtlich zusammenarbeiten können, sind Fahrzeuge und Beladung genormt (DIN/EN). Die Beladung ist nach Verwendungszweck gegliedert.'),
-        H2('gruppen', 'Beladungsgruppen (Auszug)'),
-        TBL(['Gruppe', 'Beispiele'],[
-          ['Löschgeräte', 'Strahlrohre, Schläuche, Verteiler, Standrohr'],
-          ['Rettungsgeräte', 'tragbare Leitern, Sprungpolster, Rettungssatz'],
-          ['Technische Geräte', 'Motorsäge, Trennschleifer, Stromerzeuger, Lüfter'],
-          ['Mess-/Warngeräte', 'CO-Warner, Ex-Messgerät, Wärmebildkamera'],
-          ['Sanitätsmaterial', 'Verbandkasten, Krankentrage, Schleifkorbtrage'],
-        ]),
-        DEF('Normbeladung', 'Die DIN legt für jeden Fahrzeugtyp eine Mindestbeladung fest. Zusätzliche Beladung („Zusatzbeladung") ergänzt die Wehr nach örtlichem Bedarf.'),
-        H2('sicher', 'Ladungssicherung & Bereitschaft'),
-        UL(
-          'Geräte fest und gesichert verlasten (bei Unfall werden lose Geräte zu Geschossen)',
-          'Nach jedem Einsatz: Vollständigkeit prüfen, reinigen, Betriebsstoffe auffüllen',
-          'Regelmäßige Geräteprüfungen dokumentieren (Prüffristen einhalten)',
-          'Fahrzeug ist erst wieder „einsatzbereit", wenn Beladung vollständig ist'),
-        CO('tip', 'Ortskenntnis am Fahrzeug', 'Der beste Zeitpunkt, die Beladung zu lernen, ist im Dienst – nicht im Einsatz. Wer weiß, wo jedes Gerät liegt, spart im Ernstfall wertvolle Sekunden.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {
@@ -84,32 +57,6 @@ export const EXTRA_LESSONS = {
         CO('warn', 'Eigenschutz vor Löschversuch', 'Ein Entstehungsbrand kann in Minuten außer Kontrolle geraten. Im Zweifel: Menschen warnen, Bereich räumen, Feuerwehr rufen – kein Löschversuch unter Eigengefährdung.'),
         H2('raeumung', 'Räumung'),
         P('Im Ernstfall zählt die geordnete Räumung: bekannte Fluchtwege nutzen, Aufzüge meiden, Sammelplatz aufsuchen und Vollzähligkeit prüfen. Wer schon einmal geübt hat, handelt im Ernstfall ruhiger und schneller.'),
-      ],
-    },
-  ],
-
-  /* ------------------------------------------------------------------- N */
-  'n-maschinist': [
-    {
-      id: 'n4', title: 'Wasserförderung & Sonderaufgaben des Maschinisten', duration: 18,
-      blocks: [
-        H2('foerderung', 'Wasserförderung über lange Wegstrecke'),
-        P('Reicht das Löschwasser am Objekt nicht, fördert man über eine lange B-Leitung. Der Maschinist plant Pumpenabstände so, dass an jeder Folgepumpe genug Eingangsdruck ankommt.'),
-        KF(
-          'Reibungsverlust steigt mit Länge und Förderstrom',
-          'Je 10 m Höhenunterschied ca. 1 bar berücksichtigen',
-          'Eingangsdruck an der Folgepumpe min. 1,5 bar halten',
-          'Pumpenabstand richtet sich nach Gelände, Förderstrom und Ausgangsdruck'),
-        DEF('Verstärkerpumpe', 'In die Förderstrecke eingebaute Pumpe, die den Druck wieder anhebt. Sie „übernimmt" das ankommende Wasser mit Restdruck und fördert es weiter – die Abstimmung zwischen den Maschinisten ist entscheidend.'),
-        H2('offenes', 'Betrieb an offener Wasserstelle'),
-        P('An Teich/Fluss sichert der Maschinist Saugkorb (Ventilleine) und Saugleitung gegen Absinken/Verschmutzen. Er überwacht die Saughöhe und beugt Kavitation vor. Bei Frost: Entwässerung und Frostschutz beachten.'),
-        H2('sonder', 'Sonderaufgaben & Überwachung'),
-        UL(
-          'Betriebswerte laufend überwachen (Druck, Drehzahl, Temperatur, Tankfüllung)',
-          'Beleuchtung der Einsatzstelle und Verkehrssicherung',
-          'Bedienung von Seilwinde, Lichtmast, Aggregaten',
-          'Kommunikation mit dem Angriffstrupp über Wasserbedarf'),
-        CO('tip', 'Der ruhende Pol', 'Der Maschinist bleibt bei seiner Pumpe – ruhig, aufmerksam, zuverlässig. Wer am Wasser die Nerven behält und vorausschauend arbeitet, ist die stille Lebensversicherung des Angriffstrupps.'),
       ],
     },
   ],

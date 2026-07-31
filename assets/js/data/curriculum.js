@@ -43,6 +43,7 @@ import { MODULES_EXTRA } from './modules-extra.js';
    mehr auf. */
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
+import { LESSONS_C } from './content/c-fahrzeugkunde.js';
 import { LESSONS_D } from './content/d-geraetekunde.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
@@ -50,6 +51,7 @@ import { LESSONS_G } from './content/g-technische-hilfe.js';
 import { LESSONS_H } from './content/h-sprechfunk.js';
 import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
+import { LESSONS_N } from './content/n-maschinist.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
 
 export const MODULES = [
@@ -96,49 +98,7 @@ export const MODULES = [
     'Bedeutung von Wassertank, Pumpe und Besatzung erklären',
   ],
   tags: ['Fahrzeuge', 'DIN', 'Technik'],
-  lessons: [
-    {
-      id: 'c1', title: 'Systematik & Kurzbezeichnungen', duration: 20,
-      blocks: [
-        H2('system', 'Wie sich Fahrzeugnamen zusammensetzen'),
-        P('Feuerwehrfahrzeuge sind in Deutschland genormt (DIN EN 1846 / DIN 14530 ff.). Die Kurzbezeichnung verrät Typ und oft die Löschwassermenge.'),
-        TBL(['Kürzel', 'Bedeutung', 'Besatzung'],[
-          ['LF', 'Löschgruppenfahrzeug', '1/8 (Gruppe)'],
-          ['HLF', 'Hilfeleistungslöschgruppenfahrzeug', '1/8'],
-          ['TLF', 'Tanklöschfahrzeug (großer Wassertank)', '1/2 – 1/5'],
-          ['DLK', 'Drehleiter mit Korb', '1/2'],
-          ['RW', 'Rüstwagen (technische Hilfe)', '1/2'],
-          ['ELW', 'Einsatzleitwagen (Führung)', '1/x'],
-          ['TSF(-W)', 'Tragkraftspritzenfahrzeug (-Wasser)', '1/5 (Staffel)'],
-          ['MTF', 'Mannschaftstransportfahrzeug', '1/8'],
-        ]),
-        CO('info', 'Zahlenzusatz', 'Beim LF 20 steht die „20" für die Pumpenleistung (Nennförderstrom 2000 l/min bei 10 bar), nicht für die Tankgröße. Historisch (LF 8/6) bezeichnete die zweite Zahl den Wassertank in hundert Litern.'),
-        FIG('fahrzeug', 'Grundkomponenten eines Löschgruppenfahrzeugs: Besatzung, Löschwassertank und Feuerlöschpumpe.'),
-      ],
-    },
-    {
-      id: 'c2', title: 'Löschfahrzeuge & Sonderfahrzeuge', duration: 20,
-      blocks: [
-        H2('lf', 'Das (H)LF – das Arbeitspferd'),
-        P('Das Löschgruppenfahrzeug ist das Standardfahrzeug der meisten Wehren. Es transportiert eine komplette Gruppe (1/8), Löschwasser (600–2000 l), eine Feuerlöschkreiselpumpe und umfangreiche Beladung für Brandbekämpfung und einfache technische Hilfe.'),
-        KF(
-          'Feuerlöschkreiselpumpe (FPN 10-2000 beim LF 20)',
-          'Löschwasserbehälter 1000–2000 l',
-          'Tragbare Leitern, Schläuche, Armaturen',
-          '4 umluftunabhängige Atemschutzgeräte in der Mannschaftskabine',
-          'Beim HLF zusätzlich hydraulischer Rettungssatz (Schere/Spreizer)'),
-        H2('dlk', 'Drehleiter (DLK 23-12)'),
-        P('Die „23-12" bedeutet: <b>23 m Nennrettungshöhe</b> bei <b>12 m Ausladung</b>. Sie dient der Menschenrettung aus Höhen, dem Einsatz als Angriffsweg und als Arbeitsplattform (Wenderohr).'),
-        CO('tip', 'Der zweite Rettungsweg', 'In vielen Gebäuden bildet die Drehleiter den „zweiten Rettungsweg" der Feuerwehr. Deshalb müssen Flächen für die Feuerwehr (Aufstellflächen) freigehalten werden.'),
-        H2('sonder', 'Weitere Fahrzeuge'),
-        UL(
-          '<b>RW / Rüstwagen:</b> schwere technische Hilfe, Seilwinde, Stromerzeuger, umfangreiches Werkzeug.',
-          '<b>GW (Gerätewagen):</b> Spezialbeladung, z. B. GW-Gefahrgut, GW-Atemschutz, GW-Logistik.',
-          '<b>ELW 1/2:</b> Einsatzleitung und Kommunikation.',
-          '<b>SW / Schlauchwagen:</b> lange Schlauchstrecken für die Wasserförderung über lange Wegstrecke.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_C,
 },
 
 /* ======================================================================= D */
@@ -369,64 +329,7 @@ export const MODULES = [
     'Stromerzeuger und Aggregate sicher betreiben',
   ],
   tags: ['Maschinist', 'FwDV 2', 'Pumpe', 'Aggregate'],
-  lessons: [
-    {
-      id: 'n1', title: 'Aufgaben & Verantwortung', duration: 15,
-      blocks: [
-        H2('rolle', 'Wer ist der Maschinist?'),
-        P('Der Maschinist ist Fahrer des Feuerwehrfahrzeugs und bedient die eingebauten und tragbaren Aggregate – vor allem die <b>Feuerlöschkreiselpumpe</b>. Er ist eine Schlüsselfunktion der Gruppe: Ohne funktionierende Wasserförderung steht der Angriffstrupp ohne Wasser da.'),
-        KF(
-          'Führt das Fahrzeug sicher zur Einsatzstelle (Sonder- und Wegerechte)',
-          'Bedient Pumpe und Aggregate, überwacht Betriebswerte',
-          'Sichert die Einsatzstelle fahrzeugseitig (Verkehr, Beleuchtung)',
-          'Verantwortlich für Pflege, Prüfung und Einsatzbereitschaft'),
-        CO('warn', 'Sonder- & Wegerecht', 'Blaulicht + Martinshorn (§ 38 StVO) verpflichten andere zur „freien Bahn", entbinden aber nicht von der Sorgfaltspflicht. Der Maschinist muss defensiv und vorausschauend fahren – die schnellste Anfahrt nützt nichts, wenn die Gruppe verunglückt.'),
-        H2('voraussetzung', 'Voraussetzungen'),
-        P('Für die Funktion Maschinist gelten: gültige Fahrerlaubnis der passenden Klasse (oft C/C1 bzw. Feuerwehrführerschein), abgeschlossene Truppausbildung und der Lehrgang „Maschinisten für Löschfahrzeuge" nach FwDV 2.'),
-      ],
-    },
-    {
-      id: 'n2', title: 'Die Feuerlöschkreiselpumpe', duration: 25,
-      blocks: [
-        H2('prinzip', 'Funktionsprinzip'),
-        P('Die Feuerlöschkreiselpumpe (FP) erzeugt Druck durch ein schnell drehendes <b>Laufrad</b>: Das Wasser wird durch die Fliehkraft nach außen geschleudert, wodurch im Zentrum Unterdruck (Sog) und am Rand Überdruck entsteht. Da eine Kreiselpumpe nicht selbstständig ansaugt, braucht sie eine <b>Entlüftungseinrichtung</b>.'),
-        DEF('Bezeichnung FPN 10-2000', 'FP = Feuerlöschpumpe, N = Normaldruck, 10 = Nenndruck 10 bar, 2000 = Nennförderstrom 2000 l/min. Beim LF 20 verbaut.'),
-        FIG('kreiselpumpe', 'Feuerlöschkreiselpumpe: Das Laufrad schleudert das Wasser nach außen – Sog an der Saugseite, Druck an der Druckseite.'),
-        H2('ansaugen', 'Ansaugvorgang aus offenem Gewässer'),
-        STEPS(
-          'Saugleitung kuppeln, Saugkorb mit Ventil und Halteleine sichern',
-          'Alle Abgänge und Entlüftung schließen',
-          'Entlüftungseinrichtung (Trokomat/Kolbenpumpe) betätigen',
-          'Wenn Wasser ansteht (Manometer): Pumpe auf Drehzahl bringen',
-          'Druckabgang langsam öffnen, Betriebsdruck einregeln'),
-        H2('kavitation', 'Kavitation vermeiden'),
-        CO('danger', 'Kavitation', 'Bei zu hoher Saughöhe, zu hoher Drehzahl oder verstopftem Saugkorb fällt der Druck lokal unter den Dampfdruck – es bilden sich Dampfblasen, die schlagartig implodieren. Folgen: Leistungseinbruch, ratterndes Geräusch, Materialschäden am Laufrad. Praktische Grenze der geodätischen Saughöhe: ca. 7,5 m.'),
-        TBL(['Betriebswert', 'Richtwert'],[
-          ['Nenndruck Normaldruckpumpe', '10 bar'],
-          ['Eingangsdruck Folgepumpe (Förderstrecke)', 'min. 1,5 bar halten'],
-          ['Druckverlust je 10 m Höhe', 'ca. 1 bar'],
-          ['Max. praktische Saughöhe', 'ca. 7,5 m'],
-        ]),
-      ],
-    },
-    {
-      id: 'n3', title: 'Aggregate & Stromerzeuger', duration: 15,
-      blocks: [
-        H2('strom', 'Tragbarer Stromerzeuger'),
-        P('Stromerzeuger versorgen Beleuchtung, Rettungsgeräte, Lüfter und Tauchpumpen. Der Maschinist überwacht Auslastung, Tankinhalt und die elektrische Sicherheit.'),
-        KF(
-          'Schutzmaßnahme meist „Schutztrennung mit Isolationsüberwachung"',
-          'Nicht überlasten – Nennleistung (kVA) beachten',
-          'Ausreichend Abstand/Belüftung (Abgase – CO-Gefahr!)',
-          'Kabeltrommeln vollständig abrollen (Wärmestau vermeiden)'),
-        CO('danger', 'Abgase', 'Verbrennungsmotoren niemals in geschlossenen Räumen ohne Abgasführung betreiben – Kohlenstoffmonoxid ist tödlich. Auch tragbare Pumpen (TS) und Lüfter mit Verbrennungsmotor betreffen das.'),
-        H2('ts', 'Tragkraftspritze (TS)'),
-        P('Die Tragkraftspritze ist eine tragbare Feuerlöschkreiselpumpe mit eigenem Motor (z. B. PFPN 10-1000). Sie ermöglicht die Wasserentnahme dort, wo das Fahrzeug nicht hinkommt – etwa am Löschteich.'),
-        H2('pflege', 'Pflege & Prüfung'),
-        P('Regelmäßige Prüfungen (Saugprobe/Trockensaugprobe, Dichtheit, Förderleistung) und Pflege sichern die Einsatzbereitschaft. Nach jedem Einsatz: durchspülen (besonders nach Schmutz-/Salzwasser), auf Frostschutz achten.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_N,
 },
 
 /* ======================================================================= O */
