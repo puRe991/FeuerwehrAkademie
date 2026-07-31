@@ -51,8 +51,10 @@ import { LESSONS_G } from './content/g-technische-hilfe.js';
 import { LESSONS_H } from './content/h-sprechfunk.js';
 import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
+import { LESSONS_M } from './content/m-vorbeugender-brandschutz.js';
 import { LESSONS_N } from './content/n-maschinist.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
+import { LESSONS_K } from './content/k-absturzsicherung.js';
 
 export const MODULES = [
 
@@ -218,32 +220,7 @@ export const MODULES = [
     'Anschlagpunkte richtig auswählen',
   ],
   tags: ['Absturzsicherung', 'Höhenrettung', 'Sicherung'],
-  lessons: [
-    {
-      id: 'k1', title: 'Grundlagen & Ausrüstung', duration: 20,
-      blocks: [
-        H2('warum', 'Wann Absturzsicherung?'),
-        P('Sobald an Einsatzstellen Absturzgefahr besteht (Dächer, Gruben, Silos, Brücken), muss gesichert werden. Der <b>Gerätesatz Absturzsicherung</b> dient der Sicherung von Einsatzkräften – nicht als vollwertige Höhenrettung (dafür: Höhenrettungsgruppe).'),
-        CO('warn', 'Abgrenzung', 'Der Gerätesatz Absturzsicherung ist zur Sicherung und einfachen Rettung gedacht. Komplexe Rettungen aus großen Höhen/Tiefen sind Aufgabe speziell ausgebildeter Höhenretter.'),
-        H2('satz', 'Gerätesatz Absturzsicherung (Auszug)'),
-        UL(
-          '<b>Auffanggurt</b> (Ganzkörpergurt nach EN 361)',
-          '<b>Kernmantel-Dynamikseil</b> und Verbindungsmittel',
-          '<b>Bandschlingen</b> zum Anschlagen',
-          '<b>Karabiner</b> mit Verschlusssicherung (EN 362)',
-          '<b>Abseil-/Sicherungsgerät</b> und Auffanggerät',
-          'Feuerwehrhaltegurt ist <b>keine</b> Absturzsicherung!'),
-        FIG('auffangsystem', 'Aufbau eines Auffangsystems: Anschlagpunkt → Verbindungsmittel mit Falldämpfer → Auffanggurt (EN 361).'),
-        H2('anschlag', 'Anschlagpunkte'),
-        KF(
-          'Tragfähig und geprüft (im Zweifel höhere Sicherheit wählen)',
-          'Möglichst hoch anschlagen → geringere Sturzhöhe',
-          'Scharfe Kanten vermeiden/schützen (Kantenschutz)',
-          'Pendelsturz vermeiden – möglichst senkrecht über der Person'),
-        CO('danger', 'Sturzfaktor & Hängetrauma', 'Je höher der Sturzfaktor, desto größere Kräfte. Nach einem Sturz droht bei bewegungslosem Hängen im Gurt ein lebensgefährliches Hängetrauma – schnelle Rettung und richtige Lagerung sind entscheidend.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_K,
 },
 
 /* ======================================================================= L */
@@ -273,48 +250,7 @@ export const MODULES = [
     'Feuerwehrpläne und -zufahrten nutzen',
   ],
   tags: ['Brandschutz', 'Prävention', 'Baukunde'],
-  lessons: [
-    {
-      id: 'm1', title: 'Die drei Säulen & Rettungswege', duration: 20,
-      blocks: [
-        H2('saeulen', 'Drei Säulen des vorbeugenden Brandschutzes'),
-        UL(
-          '<b>Baulicher Brandschutz:</b> Brandabschnitte, feuerbeständige Wände/Decken, Rettungswege, Baustoffklassen.',
-          '<b>Anlagentechnischer Brandschutz:</b> Brandmeldeanlagen, Sprinkler, Rauch- und Wärmeabzug (RWA), Löschanlagen.',
-          '<b>Organisatorischer Brandschutz:</b> Brandschutzordnung, Flucht-/Rettungspläne, Unterweisungen, Brandschutzhelfer.'),
-        FIG('brandschutzsaeulen', 'Die drei Säulen des vorbeugenden Brandschutzes: baulich, anlagentechnisch und organisatorisch.'),
-        H2('rettungswege', 'Rettungswege'),
-        DEF('Erster & zweiter Rettungsweg', 'Aufenthaltsräume benötigen i. d. R. zwei voneinander unabhängige Rettungswege. Der erste ist meist der bauliche (Treppenraum), der zweite kann über Rettungsgeräte der Feuerwehr (Drehleiter) sichergestellt werden.'),
-        KF(
-          'Rettungswege müssen frei und benutzbar sein',
-          'Notausgänge nicht verstellen/verschließen',
-          'Feuerwehrzufahrten & Aufstellflächen freihalten',
-          'Fluchtwegkennzeichnung nach ASR A1.3 beachten'),
-        CO('warn', 'Freihalten von Zufahrten', 'Zugeparkte Feuerwehrzufahrten kosten wertvolle Minuten und Menschenleben. Sie sind rechtlich geschützt und dürfen nicht blockiert werden.'),
-      ],
-    },
-    {
-      id: 'm2', title: 'Anlagentechnik & Feuerwehrpläne', duration: 20,
-      blocks: [
-        H2('bma', 'Brandmeldeanlagen (BMA)'),
-        P('Eine BMA erkennt Brände frühzeitig (Rauch-, Wärme-, Flammenmelder) und alarmiert automatisch die Feuerwehr über die Leitstelle. Zentrales Element vor Ort:'),
-        UL(
-          '<b>Brandmelderzentrale (BMZ):</b> wertet Melder aus, steuert Alarmierung.',
-          '<b>Feuerwehr-Bedienfeld (FBF)</b> und <b>Feuerwehr-Anzeigetableau (FAT):</b> Bedienung/Anzeige für die Feuerwehr.',
-          '<b>Feuerwehr-Schlüsseldepot (FSD):</b> ermöglicht gewaltfreien Zutritt.'),
-        H2('loeschanlagen', 'Ortsfeste Löschanlagen'),
-        TBL(['Anlage', 'Prinzip'],[
-          ['Sprinkleranlage', 'selbsttätiges Auslösen einzelner Sprinkler bei Hitze'],
-          ['Gaslöschanlage', 'Sauerstoffverdrängung – z. B. Serverräume (kein Wasserschaden)'],
-          ['Schaumlöschanlage', 'Flüssigkeitsbrände in Industrie/Tanklagern'],
-          ['RWA', 'Rauch- und Wärmeabzug – hält Rettungswege raucharm'],
-        ]),
-        H2('plaene', 'Feuerwehrpläne'),
-        P('Feuerwehrpläne nach DIN 14095 geben der einrückenden Einheit einen schnellen Überblick über Objekt, Zufahrten, Gefahren, Löschwasser und Absperreinrichtungen. Sie liegen an definierten Stellen (z. B. FSD, BMZ) bereit.'),
-        CO('tip', 'Objektkenntnis', 'Wer sein Ausrückgebiet kennt – Sonderobjekte, Pflegeheime, Industrie, Löschwasserquellen – gewinnt im Ernstfall entscheidende Zeit. Objektbegehungen sind gelebter Brandschutz.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_M,
 },
 
 /* ======================================================================= N */

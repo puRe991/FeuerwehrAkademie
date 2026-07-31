@@ -7,43 +7,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS_3 = {
 
-  /* ------------------------------------------------------------------- K */
-  'k-absturzsicherung': [
-    {
-      id: 'k5', title: 'Anschlagpunkte & sichere Standplätze', duration: 16,
-      blocks: [
-        H2('anschlag', 'Der tragfähige Anschlagpunkt'),
-        P('Jede Sicherung ist nur so gut wie ihr Anschlagpunkt. Er muss die auftretenden Kräfte sicher aufnehmen – im Zweifel wird ein stärkerer oder ein zweiter (redundanter) Anschlagpunkt gewählt.'),
-        KF(
-          'Tragfähig und geprüft – massives Bauteil, kein loses Geländer',
-          'Möglichst hoch → geringere Sturzhöhe und Fangstoßkraft',
-          'Senkrecht über der Person → kein Pendelsturz',
-          'Scharfe Kanten schützen (Kantenschutz)'),
-        DEF('Redundanz', 'Sicherheitsrelevante Systeme werden doppelt ausgelegt: Fällt ein Anschlagpunkt oder ein Seil aus, hält das zweite. Ein einzelner Fehler darf nie zum Absturz führen.'),
-        H2('standplatz', 'Sicherer Standplatz'),
-        P('Wer sichert, braucht selbst einen sicheren, gegen Absturz gesicherten Standplatz. Der Sichernde steht so, dass er die Last kontrollieren kann und nicht selbst in die Gefahrenzone gezogen wird.'),
-        CO('warn', 'Erst sich selbst sichern', 'Bevor an der Kante gearbeitet wird, sichert sich jede Kraft im absturzgefährdeten Bereich selbst. Ungesichert nähert sich niemand dem Rand.'),
-      ],
-    },
-    {
-      id: 'k6', title: 'Retten aus Höhen & Tiefen – Ablauf', duration: 18,
-      blocks: [
-        H2('planung', 'Rettung planen'),
-        P('Die Rettung aus Höhen und Tiefen ist Teamarbeit unter Zeitdruck. Ein klarer Ablauf und ein Kommandogeber verhindern Fehler.'),
-        STEPS(
-          'Lage und Zugang erkunden, eigene Sicherung herstellen',
-          'Kontakt zur Person, Zustand grob einschätzen, beruhigen',
-          'Rettungsverfahren wählen (Ablassen, Aufziehen, begleitetes Abseilen)',
-          'Person sichern (Auffanggurt/Schleifkorbtrage), HWS-Schutz beachten',
-          'Kontrolliert bewegen, an Rettungsdienst übergeben'),
-        CO('danger', 'Hängetrauma', 'Bewegungsloses Hängen im Gurt kann in Minuten lebensbedrohlich werden. Schnell retten – nach der Befreiung NICHT abrupt flach lagern (Kauerposition, langsam, ärztlich überwachen).'),
-        H2('zusammen', 'Zusammenarbeit'),
-        P('Bei komplexen Lagen wird die Höhenrettungsgruppe alarmiert. Bis dahin sichert die Feuerwehr die Person und den Bereich. Die Drehleiter kann als Rettungsmittel und Arbeitsplattform dienen.'),
-        CO('tip', 'Ruhe und Redundanz', 'Zwei unabhängige Sicherungen, ein klarer Kommandogeber, ruhige Kommunikation – so gelingt die Rettung sicher, auch wenn es schnell gehen muss.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- S */
   's-rettung': [
     {

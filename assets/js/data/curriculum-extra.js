@@ -7,60 +7,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS = {
 
-  /* ------------------------------------------------------------------- K */
-  'k-absturzsicherung': [
-    {
-      id: 'k2', title: 'Sicherungsmethoden & Rettung', duration: 18,
-      blocks: [
-        H2('methoden', 'Selbst- und Fremdsicherung'),
-        P('Man unterscheidet, ob sich die Einsatzkraft selbst sichert oder durch andere gesichert wird:'),
-        UL(
-          '<b>Selbstsicherung:</b> die Einsatzkraft sichert sich mit Verbindungsmittel selbst am Anschlagpunkt (z. B. beim Arbeiten am Rand)',
-          '<b>Fremdsicherung (Halten):</b> ein Sicherungsposten hält die Person am Seil, bevor sie in den absturzgefährdeten Bereich geht',
-          '<b>Auffangsystem:</b> fängt einen Sturz mit Auffanggurt, Falldämpfer und mitlaufendem Auffanggerät ab'),
-        DEF('Falldämpfer', 'Bandfalldämpfer reißen bei einem Sturz kontrolliert auf und begrenzen die auf den Körper wirkende Fangstoßkraft (max. 6 kN). Ohne Falldämpfer können bereits kurze Stürze zu schweren inneren Verletzungen führen.'),
-        H2('freiraum', 'Sturzraum & lichte Höhe'),
-        CO('warn', 'Ausreichend Freiraum', 'Unter der Einsatzkraft muss genug freier Raum sein, damit sie im Sturzfall nicht aufschlägt, bevor das System greift (Seildehnung + Falldämpfer-Auszug + Sicherheitsabstand). Sonst hilft die beste Sicherung nichts.'),
-        H2('rettung', 'Rettung nach einem Sturz'),
-        STEPS(
-          'Situation überblicken, eigene Sicherung herstellen',
-          'Kontakt zur gestürzten Person aufnehmen, beruhigen',
-          'Schnellstmöglich aus der hängenden Position befreien (Hängetrauma!)',
-          'Person NICHT flach hinlegen – Hocke-/Kauerposition, langsam lagern',
-          'Rettungsdienst, ärztliche Überwachung (Bergungstod-Risiko)'),
-        CO('danger', 'Hängetrauma – Zeit zählt', 'Bewegungsloses Hängen im Gurt kann in Minuten lebensbedrohlich werden (Blut versackt in den Beinen). Schnelle Rettung ist Pflicht – aber nach der Befreiung nicht abrupt flach lagern (Rückstrom-Belastung des Herzens).'),
-      ],
-    },
-  ],
-
-  /* ------------------------------------------------------------------- M */
-  'm-vorbeugender-brandschutz': [
-    {
-      id: 'm3', title: 'Organisatorischer Brandschutz & Brandschutzhelfer', duration: 18,
-      blocks: [
-        H2('orga', 'Organisatorischer Brandschutz'),
-        P('Der organisatorische Brandschutz umfasst alle Regelungen und Maßnahmen, die im Betrieb Brände verhindern und im Ernstfall Schaden begrenzen – das „Verhalten" ergänzt Bau und Technik.'),
-        UL(
-          '<b>Brandschutzordnung (DIN 14096):</b> Teil A (Aushang), B (für alle Beschäftigten), C (für Personen mit besonderen Aufgaben)',
-          '<b>Flucht- und Rettungspläne</b> gut sichtbar aushängen',
-          '<b>Unterweisungen</b> und regelmäßige Räumungsübungen',
-          '<b>Brandschutzbeauftragte</b> und <b>Brandschutzhelfer</b> benennen'),
-        DEF('Brandschutzhelfer', 'Beschäftigte, die im Brandfall Erstmaßnahmen ergreifen: Alarmierung, Beginn der Räumung und – wenn gefahrlos möglich – Bekämpfung von Entstehungsbränden mit dem Feuerlöscher. Empfohlen: ca. 5 % der Beschäftigten.'),
-        H2('loescher', 'Feuerlöscher richtig einsetzen'),
-        STEPS(
-          'Löscher zum Brand tragen und entsichern (Sicherung ziehen)',
-          'Mit dem Wind (im Rücken) an den Brand herangehen',
-          'Brand von vorne und unten angreifen, nicht in die Flammen zielen',
-          'Flächenbrände von vorne nach hinten ablöschen',
-          'Genug Löscher gleichzeitig einsetzen – nicht nacheinander',
-          'Nach dem Löschen: Brandstelle beobachten (Rückzündung)'),
-        CO('warn', 'Eigenschutz vor Löschversuch', 'Ein Entstehungsbrand kann in Minuten außer Kontrolle geraten. Im Zweifel: Menschen warnen, Bereich räumen, Feuerwehr rufen – kein Löschversuch unter Eigengefährdung.'),
-        H2('raeumung', 'Räumung'),
-        P('Im Ernstfall zählt die geordnete Räumung: bekannte Fluchtwege nutzen, Aufzüge meiden, Sammelplatz aufsuchen und Vollzähligkeit prüfen. Wer schon einmal geübt hat, handelt im Ernstfall ruhiger und schneller.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- O */
   'o-baukunde': [
     {
