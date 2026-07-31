@@ -32,15 +32,10 @@ export const LEVELS = {
 
 /* Hilfsfunktionen zum kompakten Schreiben von Blöcken (gemeinsam genutzt) */
 import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
-import { EXTRA_LESSONS } from './curriculum-extra.js';
-import { EXTRA_LESSONS_2 } from './curriculum-extra2.js';
-import { EXTRA_LESSONS_3 } from './curriculum-deep.js';
 import { MODULES_EXTRA } from './modules-extra.js';
 
-/* Ausgebaute Module: vollständige Lektionstexte liegen je Modul in einer
-   eigenen Datei unter content/. Sie ersetzen die Kurzfassungen komplett –
-   die betreffenden Module tauchen deshalb in curriculum-extra*.js nicht
-   mehr auf. */
+/* Lektionstexte liegen je Modul in einer eigenen Datei unter content/.
+   Damit steht der komplette Inhalt eines Moduls an genau einer Stelle. */
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_C } from './content/c-fahrzeugkunde.js';
@@ -336,17 +331,6 @@ export const MODULES = [
 
 /* Weitere vollständige Module (S–Z) anhängen – echte A-bis-Z-Abdeckung */
 MODULES.push(...MODULES_EXTRA);
-
-/* Zusatz-Lektionen aus den Erweiterungsebenen einhängen (Inhaltstiefe) */
-for (const source of [EXTRA_LESSONS, EXTRA_LESSONS_2, EXTRA_LESSONS_3]) {
-  for (const m of MODULES) {
-    const extra = source[m.id];
-    if (extra && extra.length) {
-      m.lessons.push(...extra);
-      m.duration += extra.reduce((n, l) => n + (l.duration || 0), 0);
-    }
-  }
-}
 
 /* Moduldauer immer aus den Lektionen ableiten. So kann die angezeigte Zeit
    nicht mehr von den tatsächlichen Inhalten abweichen – sie wächst

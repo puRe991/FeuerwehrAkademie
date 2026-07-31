@@ -3,7 +3,7 @@
    Strategie: Cache-first für App-Assets, Network-first-Fallback.
    Für Feuerwehren im Einsatz wertvoll: Lerninhalte auch ohne Netz verfügbar.
    ========================================================================= */
-const CACHE = 'fwa-v48';
+const CACHE = 'fwa-v53';
 const ASSETS = [
   './',
   './index.html',
@@ -18,6 +18,10 @@ const ASSETS = [
   './assets/js/data/diagrams.js',
   './assets/js/data/pruefungssets.js',
   './assets/js/data/curriculum.js',
+  './assets/js/data/content/z-katastrophenschutz.js',
+  './assets/js/data/content/y-motorsaege.js',
+  './assets/js/data/content/x-wasserrettung.js',
+  './assets/js/data/content/w-naturgefahren.js',
   './assets/js/data/content/v-vegetationsbrand.js',
   './assets/js/data/content/u-knoten.js',
   './assets/js/data/content/t-wasserversorgung.js',
@@ -40,9 +44,6 @@ const ASSETS = [
   './assets/js/data/content/b-brennen-loeschen.js',
   './assets/js/data/content/e-loescheinsatz.js',
   './assets/js/data/content/f-atemschutz.js',
-  './assets/js/data/curriculum-extra.js',
-  './assets/js/data/curriculum-extra2.js',
-  './assets/js/data/curriculum-deep.js',
   './assets/js/data/modules-extra.js',
   './assets/js/data/exams.js',
   './assets/js/data/exams-extra.js',

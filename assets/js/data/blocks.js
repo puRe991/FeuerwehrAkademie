@@ -1,6 +1,6 @@
 /* =========================================================================
    BLOCKS — Hilfsfunktionen zum kompakten Schreiben von Lektions-Blöcken.
-   Von curriculum.js und curriculum-extra.js gemeinsam genutzt.
+   Von curriculum.js und allen content/-Dateien gemeinsam genutzt.
    Blocktypen siehe views/lesson.js (Renderer).
    ========================================================================= */
 export const P   = (html) => ({ t: 'p', html });
