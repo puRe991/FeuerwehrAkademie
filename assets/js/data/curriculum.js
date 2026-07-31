@@ -53,6 +53,8 @@ import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
 import { LESSONS_M } from './content/m-vorbeugender-brandschutz.js';
 import { LESSONS_N } from './content/n-maschinist.js';
+import { LESSONS_O } from './content/o-baukunde.js';
+import { LESSONS_P } from './content/p-arbeitsschutz.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
 import { LESSONS_K } from './content/k-absturzsicherung.js';
 
@@ -280,46 +282,7 @@ export const MODULES = [
     'Gebäude taktisch erkunden (Zugänge, Rettungswege, Ausbreitungswege)',
   ],
   tags: ['Baukunde', 'Statik', 'Objektkunde', 'Einsturz'],
-  lessons: [
-    {
-      id: 'o1', title: 'Baustoffe & Feuerwiderstand', duration: 20,
-      blocks: [
-        H2('klassen', 'Baustoffklassen (Brennbarkeit)'),
-        P('Baustoffe werden nach ihrem Brandverhalten klassifiziert (früher DIN 4102: A/B, heute europäisch DIN EN 13501-1: A1 bis F).'),
-        TBL(['Klasse (DIN 4102)', 'Bedeutung', 'Beispiel'],[
-          ['A1 / A2', 'nicht brennbar', 'Beton, Stahl, Mauerwerk'],
-          ['B1', 'schwer entflammbar', 'Gipskarton, bestimmte Dämmstoffe'],
-          ['B2', 'normal entflammbar', 'Holz, viele Kunststoffe'],
-          ['B3', 'leicht entflammbar', 'Papier, ungeschützter Schaumstoff'],
-        ]),
-        H2('widerstand', 'Feuerwiderstandsklassen'),
-        DEF('Feuerwiderstand (F 30 – F 90)', 'Gibt an, wie viele Minuten ein Bauteil im Normbrand seine Funktion behält. F 30 = feuerhemmend (30 min), F 90 = feuerbeständig (90 min). Europäisch: R/E/I mit Minutenangabe (z. B. REI 90).'),
-        CO('info', 'Merkhilfe', 'F 30 „feuerhemmend", F 60 „hochfeuerhemmend", F 90 „feuerbeständig". Die Zahl ist die garantierte Standzeit im Prüfnormbrand – kein Versprechen für den realen Brand.'),
-      ],
-    },
-    {
-      id: 'o2', title: 'Bauteilverhalten & Einsturzgefahr', duration: 20,
-      blocks: [
-        H2('verhalten', 'Wie Baustoffe im Brand versagen'),
-        UL(
-          '<b>Stahl:</b> unbrennbar, verliert aber ab ~500 °C rapide an Festigkeit und „fließt" – ungeschützte Stahlkonstruktionen (Hallen!) können plötzlich einstürzen.',
-          '<b>Beton:</b> nicht brennbar, aber Betonabplatzungen durch Wasserdampf im Inneren; Bewehrungsstahl verliert bei Hitze Tragkraft.',
-          '<b>Holz:</b> brennt kontrolliert ab (Abbrandrate ~0,7 mm/min), verkohlte Schicht schützt den Kern – Holzträger versagen oft berechenbarer als Stahl.',
-          '<b>Mauerwerk:</b> relativ formstabil, kann aber durch einseitige Erwärmung reißen.'),
-        CO('danger', 'Trügerischer Stahl', 'Eine ungeschützte Stahlhalle kann ohne Vorwarnung schlagartig kollabieren, wenn die Träger ihre kritische Temperatur erreichen. Bei ausgedehnten Hallenbränden defensiv vorgehen und Einsturzbereiche meiden.'),
-        H2('anzeichen', 'Anzeichen drohenden Einsturzes'),
-        KF(
-          'Risse in Wänden/Decken, sich weitende Fugen',
-          'Durchbiegung von Trägern und Decken',
-          'Abfallender Putz, knackende/knirschende Geräusche',
-          'Ausbauchende Wände, klemmende Türen/Fenster',
-          'Lange Brandeinwirkung auf tragende Bauteile'),
-        H2('taktik', 'Gebäude taktisch lesen'),
-        P('Bei der Erkundung achtet die Führungskraft auf: Zugänge und Rettungswege, Ausbreitungswege (Schächte, Leitungen, Fassade), tragende vs. nichttragende Wände, Keller-/Dachlage und Sonderbauteile (z. B. Photovoltaik auf dem Dach → Elektrogefahr, auch bei Nacht/verdecktem Zustand).'),
-        CO('warn', 'Photovoltaik & Speicher', 'PV-Anlagen stehen bei Lichteinfall dauerhaft unter Gleichspannung und lassen sich nicht einfach „abschalten". Batteriespeicher können thermisch durchgehen. Bei der Erkundung immer nach PV/Speicher fragen.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_O,
 },
 
 /* ======================================================================= P */
@@ -334,47 +297,7 @@ export const MODULES = [
     'Gefährdungen erkennen und Schutzmaßnahmen ableiten',
   ],
   tags: ['UVV', 'DGUV', 'Arbeitsschutz', 'Hygiene'],
-  lessons: [
-    {
-      id: 'p1', title: 'Unfallverhütung im Feuerwehrdienst', duration: 18,
-      blocks: [
-        H2('grundlage', 'Rechtliche Grundlage'),
-        P('Feuerwehrangehörige sind über die Unfallkasse gesetzlich unfallversichert. Zentrale Vorschrift ist die <b>DGUV Vorschrift 49</b> „Feuerwehren" (früher GUV-V C53), ergänzt durch DGUV Regeln und Informationen. Sie regelt Bau, Ausrüstung, Betrieb und Verhalten.'),
-        KF(
-          'Nur ausgebildete Kräfte an Geräten einsetzen',
-          'PSA bestimmungsgemäß und vollständig tragen',
-          'Sicherungsposten und Absperrungen einrichten',
-          'Anweisungen der Führungskraft befolgen – aber offensichtliche Gefahren melden'),
-        H2('gefaehrdungen', 'Typische Gefährdungen'),
-        TBL(['Gefährdung', 'Schutzmaßnahme'],[
-          ['Verkehr an der Einsatzstelle', 'Warnkleidung, Absperrung, Sicherungsfahrzeug'],
-          ['Absturz', 'Absturzsicherung, Auffanggurt, hoch anschlagen'],
-          ['Atemgifte/Rauch', 'umluftunabhängiger Atemschutz'],
-          ['Elektrizität', 'Abstand halten, freischalten lassen'],
-          ['Lärm/Vibration', 'Gehörschutz, Arbeitsrotation'],
-          ['Infektion/Kontamination', 'Handschuhe, Hygiene, Einsatzstellenhygiene'],
-        ]),
-        CO('tip', 'Sicheres Auftreten', 'Sicherheit ist kein Zeitverlust, sondern Voraussetzung. „Eigenschutz geht vor" ist kein Widerspruch zur Menschenrettung, sondern ihre Bedingung – ein verletzter Retter kann niemanden retten.'),
-      ],
-    },
-    {
-      id: 'p2', title: 'Einsatzstellenhygiene', duration: 17,
-      blocks: [
-        H2('warum', 'Warum Hygiene lebenswichtig ist'),
-        P('Brandrauch enthält krebserzeugende Stoffe (z. B. polyzyklische aromatische Kohlenwasserstoffe, PAK). Sie lagern sich auf PSA, Haut und Geräten ab. Konsequente <b>Einsatzstellenhygiene</b> senkt das langfristige Krebsrisiko der Einsatzkräfte deutlich.'),
-        DEF('Schwarz-Weiß-Trennung', 'Kontaminierte („schwarze") Bereiche/Ausrüstung werden konsequent von sauberen („weißen") getrennt – von der Einsatzstelle über den Transport bis zur Fahrzeughalle. Ziel: keine Verschleppung von Schadstoffen in Mannschaftsraum, Wache und nach Hause.'),
-        STEPS(
-          'Kontaminierte PSA an der Einsatzstelle grob reinigen/ablegen',
-          'Getrennt (Sack/Behälter) transportieren, nicht im Mannschaftsraum',
-          'Hände/Gesicht/Hals reinigen, nicht mit kontaminierten Händen essen/trinken',
-          'PSA fachgerecht reinigen lassen, duschen nach dem Einsatz',
-          'Kontaminierte Kleidung nicht mit privater Wäsche mischen'),
-        CO('danger', 'Unsichtbare Gefahr', 'Ruß auf der Haut wird über die Haut aufgenommen – besonders an Hals, Handgelenken und Kopf. „Dreckige" PSA ist kein Ehrenabzeichen, sondern ein Gesundheitsrisiko.'),
-        H2('psychisch', 'Psychische Gesundheit'),
-        P('Belastende Einsätze können nachwirken. Angebote wie <b>PSNV</b> (Psychosoziale Notfallversorgung) und offene Nachbesprechungen gehören zum Arbeitsschutz. Belastungen ernst nehmen – für sich und für Kameradinnen und Kameraden.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_P,
 },
 
 /* ======================================================================= Q */
