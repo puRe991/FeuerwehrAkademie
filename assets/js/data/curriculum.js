@@ -37,6 +37,12 @@ import { EXTRA_LESSONS_2 } from './curriculum-extra2.js';
 import { EXTRA_LESSONS_3 } from './curriculum-deep.js';
 import { MODULES_EXTRA } from './modules-extra.js';
 
+/* Ausgebaute Module: vollständige Lektionstexte liegen je Modul in einer
+   eigenen Datei unter content/. Sie ersetzen die Kurzfassungen komplett –
+   die betreffenden Module tauchen deshalb in curriculum-extra*.js nicht
+   mehr auf. */
+import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
+
 export const MODULES = [
 
 /* ======================================================================= A */
@@ -51,65 +57,7 @@ export const MODULES = [
     'Dienstgrade und Funktionen zuordnen',
   ],
   tags: ['Recht', 'Organisation', 'Grundlagen'],
-  lessons: [
-    {
-      id: 'a1', title: 'Aufgaben & Rechtsgrundlagen', duration: 20,
-      blocks: [
-        H2('aufgaben', 'Die vier Kernaufgaben'),
-        P('Die Feuerwehr ist Teil der nichtpolizeilichen Gefahrenabwehr. Ihre Aufgaben ergeben sich aus den <b>Brandschutz- und Hilfeleistungsgesetzen der Länder</b> (z. B. BHKG NRW, BayFwG, FwG BW). Die vier klassischen Schutzziele lassen sich mit einem Merkwort einprägen:'),
-        MNE([{l:'R',w:'Retten'},{l:'L',w:'Löschen'},{l:'B',w:'Bergen'},{l:'S',w:'Schützen'}],
-          'Retten (Menschen/Tiere aus Gefahr befreien), Löschen (Brände bekämpfen), Bergen (Sachwerte, auch Leichname), Schützen (vor weiteren Gefahren bewahren).'),
-        KF(
-          '<b>Retten</b> hat immer die höchste Priorität – Menschenrettung geht vor Brandbekämpfung.',
-          '<b>Löschen</b> umfasst die Bekämpfung von Schadenfeuern jeder Art.',
-          '<b>Bergen</b> meint das In-Sicherheit-Bringen von Sachwerten (Personen werden „gerettet", nicht „geborgen", solange sie leben).',
-          '<b>Schützen</b> = Abwehr weiterer Gefahren für Menschen, Umwelt und Sachwerte.'),
-        CO('danger', 'Merksatz', 'Menschenrettung hat absoluten Vorrang. Alle anderen Maßnahmen ordnen sich diesem Ziel unter.'),
-        H2('rechtsrahmen', 'Rechtlicher Rahmen'),
-        P('Feuerwehrrecht ist in Deutschland <b>Ländersache</b>. Es gibt kein bundeseinheitliches Feuerwehrgesetz. Jedes Bundesland regelt Trägerschaft, Aufgaben und Organisation in einem eigenen Gesetz.'),
-        TBL(['Ebene', 'Regelt', 'Beispiel'],[
-          ['Landesgesetz', 'Aufgaben, Träger, Pflichten', 'BHKG NRW, BayFwG'],
-          ['FwDV', 'bundeseinheitliche Taktik & Ausbildung', 'FwDV 3, 7, 100'],
-          ['DGUV Vorschrift', 'Arbeits- & Unfallschutz', 'DGUV V 49 (Feuerwehren)'],
-          ['Satzung', 'örtliche Regelungen der Gemeinde', 'Feuerwehrsatzung'],
-        ]),
-        DEF('Träger der Feuerwehr', 'In der Regel die Gemeinde. Sie ist verpflichtet, eine den örtlichen Verhältnissen entsprechende leistungsfähige Feuerwehr aufzustellen, auszurüsten und zu unterhalten (Pflichtaufgabe).'),
-      ],
-    },
-    {
-      id: 'a2', title: 'Organisation, Arten & Dienstgrade', duration: 25,
-      blocks: [
-        H2('arten', 'Arten von Feuerwehren'),
-        UL(
-          '<b>Freiwillige Feuerwehr (FF):</b> ehrenamtliche Kräfte – die häufigste Form in Deutschland.',
-          '<b>Berufsfeuerwehr (BF):</b> hauptamtliche Kräfte, Pflicht in Großstädten (i. d. R. > 100.000 Einwohner).',
-          '<b>Werkfeuerwehr (WF):</b> in Industrie-/Gewerbebetrieben, teils behördlich angeordnet.',
-          '<b>Pflichtfeuerwehr:</b> Ausnahme, wenn keine ausreichende FF zustande kommt.'),
-        H2('gliederung', 'Taktische Gliederung'),
-        P('Die kleinste selbstständige taktische Einheit ist die <b>Gruppe</b>. Einheiten bauen aufeinander auf:'),
-        TBL(['Einheit', 'Stärke (Führer + Mannschaft)', 'Kurzform'],[
-          ['Trupp', '0/2 bis 0/3', 'z. B. Angriffstrupp'],
-          ['Staffel', '1/5 = 6 Einsatzkräfte', '1/5/6'],
-          ['Gruppe', '1/8 = 9 Einsatzkräfte', '1/8/9'],
-          ['Zug', 'i. d. R. 1/21 = 22 (Verband)', 'Zugtrupp + 2 Gruppen'],
-        ]),
-        CO('info', 'Stärkeangabe lesen', 'Die Schreibweise „1/8/9" bedeutet: 1 Führer, 8 Mannschaft, 9 gesamt.'),
-        FIG('einheiten', 'Taktische Einheiten vom Trupp bis zum Zug – der rote Punkt ist der Führer.'),
-        H2('gruppe', 'Die Gruppe im Löscheinsatz (FwDV 3)'),
-        P('Eine Gruppe (1/8) besteht aus dem Gruppenführer und diesen Funktionen:'),
-        UL(
-          '<b>Melder</b> – unterstützt den Gruppenführer, übernimmt Sonderaufgaben.',
-          '<b>Maschinist</b> – bedient Fahrzeug und Pumpe.',
-          '<b>Angriffstrupp (A-Trupp)</b> – Menschenrettung & Brandbekämpfung, erstes Rohr.',
-          '<b>Wassertrupp (W-Trupp)</b> – stellt die Wasserversorgung her, dann Sicherheitstrupp.',
-          '<b>Schlauchtrupp (S-Trupp)</b> – verlegt Schläuche, unterstützt die Trupps.'),
-        FIG('gruppe', 'Die Gruppe im Löscheinsatz (FwDV 3) – Gruppenführer, Melder, Maschinist und die drei Trupps.'),
-        H2('dienstgrade', 'Dienstgrade & Funktionen'),
-        P('Dienstgrade richten sich nach dem Landesrecht und zeigen Ausbildungsstand/Funktion an. Wichtig ist die Unterscheidung zwischen <b>Dienstgrad</b> (Rang) und <b>Funktion</b> (Aufgabe im Einsatz, z. B. Gruppenführer).'),
-        CO('tip', 'Praxis', 'Im Einsatz zählt die Funktion, nicht der Dienstgrad. Wer die Funktion „Gruppenführer" wahrnimmt, führt – unabhängig vom Rang der Untergebenen.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_A,
 },
 
 /* ======================================================================= B */
@@ -1135,6 +1083,11 @@ for (const source of [EXTRA_LESSONS, EXTRA_LESSONS_2, EXTRA_LESSONS_3]) {
     }
   }
 }
+
+/* Moduldauer immer aus den Lektionen ableiten. So kann die angezeigte Zeit
+   nicht mehr von den tatsächlichen Inhalten abweichen – sie wächst
+   automatisch mit, wenn Lektionen ergänzt oder ausgebaut werden. */
+for (const m of MODULES) m.duration = m.lessons.reduce((n, l) => n + (l.duration || 0), 0);
 
 /* Schnellzugriff-Index */
 export const MODULE_BY_ID = Object.fromEntries(MODULES.map(m => [m.id, m]));

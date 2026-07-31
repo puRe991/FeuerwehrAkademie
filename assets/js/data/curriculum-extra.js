@@ -7,35 +7,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS = {
 
-  /* ------------------------------------------------------------------- A */
-  'a-rechtsgrundlagen': [
-    {
-      id: 'a3', title: 'Alarmierung, Einsatzablauf & Pflichten', duration: 20,
-      blocks: [
-        H2('alarm', 'Von der Alarmierung zum Einsatz'),
-        P('Jeder Einsatz folgt einem geregelten Ablauf. Er beginnt mit dem Notruf des Bürgers und endet mit der Wiederherstellung der Einsatzbereitschaft.'),
-        STEPS(
-          'Notruf 112 geht in der Leitstelle ein',
-          'Disponent erfasst die Lage und alarmiert nach Alarm- und Ausrückeordnung (AAO)',
-          'Ausrücken der Einheiten mit Sonder- und Wegerechten',
-          'Erkundung und Einsatzdurchführung an der Einsatzstelle',
-          'Rückkehr, Herstellen der Einsatzbereitschaft, Einsatzdokumentation'),
-        DEF('Alarm- und Ausrückeordnung (AAO)', 'Legt fest, welche Einheiten bei welchem Stichwort automatisch alarmiert werden. Sie sorgt für schnelle, bedarfsgerechte und einheitliche Alarmierung ohne Zeitverlust.'),
-        DEF('Schutzziel & Hilfsfrist', 'Das Schutzziel beschreibt, mit wie vielen Kräften die Feuerwehr in welcher Zeit (Hilfsfrist) an der Einsatzstelle sein soll (z. B. „ersteintreffende Einheit in 8–10 Minuten"). Grundlage der Bedarfsplanung der Gemeinde.'),
-        H2('pflichten', 'Rechte & Pflichten der Einsatzkräfte'),
-        UL(
-          '<b>Teilnahmepflicht</b> an Ausbildung und Einsatz (bei aktiver Mitgliedschaft)',
-          '<b>Weisungsgebundenheit</b> gegenüber der Einsatzleitung',
-          '<b>Verschwiegenheit</b> über persönliche Verhältnisse Betroffener',
-          '<b>Freistellung & Lohnfortzahlung</b> durch den Arbeitgeber bei Einsatz/Ausbildung',
-          '<b>Unfallversicherungsschutz</b> über die Unfallkasse'),
-        CO('info', 'Betreten & Wegerecht', 'Zur Gefahrenabwehr darf die Feuerwehr Grundstücke und Gebäude betreten und notfalls gewaltsam öffnen. Diese Eingriffsbefugnisse sind an die konkrete Gefahr gebunden – stets verhältnismäßig handeln.'),
-        H2('kosten', 'Kostenfreiheit & Ausnahmen'),
-        P('Die Brandbekämpfung und die Rettung von Menschen sind grundsätzlich <b>kostenfrei</b>. Kosten können jedoch u. a. bei vorsätzlich/grob fahrlässig verursachten Einsätzen, missbräuchlichem Alarm, Gefahrguttransporten oder bestimmten technischen Hilfeleistungen erhoben werden (Landesrecht/Satzung).'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- B */
   'b-brennen-loeschen': [
     {
