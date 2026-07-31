@@ -5,6 +5,8 @@
    gängigen Fach-/Sonderlehrgängen. Wird in curriculum.js an MODULES angehängt.
    ========================================================================= */
 import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
+import { LESSONS_V } from './content/v-vegetationsbrand.js';
+import { LESSONS_U } from './content/u-knoten.js';
 import { LESSONS_T } from './content/t-wasserversorgung.js';
 import { LESSONS_S } from './content/s-rettung.js';
 
@@ -52,47 +54,7 @@ export const MODULES_EXTRA = [
     'Leinen und Knoten richtig pflegen und prüfen',
   ],
   tags: ['Knoten', 'Stiche', 'Leine', 'Bunde'],
-  lessons: [
-    {
-      id: 'u1', title: 'Die wichtigsten Knoten', duration: 20,
-      blocks: [
-        H2('warum', 'Warum Knoten sitzen müssen'),
-        P('Knoten sichern Geräte, Personen und die Einsatzkraft selbst. Ein falscher oder schlecht gesteckter Knoten kann versagen – deshalb müssen die wichtigsten Knoten „im Schlaf" sitzen.'),
-        TBL(['Knoten', 'Zweck'],[
-          ['Mastwurf', 'Befestigen an Rundmaterial, Geräte hochziehen'],
-          ['Zimmermannsschlag (Schlag & Rundtörn)', 'schnelles Befestigen an Balken, verstellbar'],
-          ['Pfahlstich (Rettungsknoten)', 'feste Schlinge, z. B. zum Sichern einer Person'],
-          ['Doppelter Ankerstich', 'Bandschlinge am Anschlagpunkt'],
-          ['Kreuzknoten / Weberknoten', 'zwei Leinen verbinden'],
-          ['Achterknoten', 'sichere Endschlaufe, Stopperknoten'],
-        ]),
-        CO('tip', 'Üben, üben, üben', 'Knoten lernt man nur durch Wiederholung – bis sie unter Stress, mit Handschuhen und im Dunkeln sicher gelingen. Regelmäßiges Üben im Dienst zahlt sich im Ernstfall aus.'),
-        H2('mastwurf', 'Der Mastwurf – der Allrounder'),
-        P('Der Mastwurf ist der meistgenutzte Feuerwehrknoten: Er befestigt die Leine an Rundmaterial, dient zum Hochziehen von Geräten und lässt sich unter Last nachjustieren. Wichtig: sauber legen und mit einem Spierenstich/Halbschlag sichern.'),
-        FIG('mastwurf', 'Der Mastwurf – der Allrounder-Knoten, mit Halbschlag gesichert.'),
-      ],
-    },
-    {
-      id: 'u2', title: 'Leinen, Anwendung & Sicherheit', duration: 15,
-      blocks: [
-        H2('leinen', 'Feuerwehrleinen'),
-        DEF('Feuerwehrleine', 'Genormte Leine (meist 30 m) im Leinenbeutel, u. a. zum Sichern, Halten, Hochziehen von Geräten und zur Not-Selbstrettung. Sie ist keine Absturzsicherung – dafür braucht es den Gerätesatz Absturzsicherung.'),
-        H2('anwendung', 'Typische Anwendungen'),
-        UL(
-          'Geräte kontrolliert hochziehen (Mastwurf + Halbschlag)',
-          'Absperren und Kennzeichnen von Bereichen',
-          'Sichern von Personen/Gegenständen',
-          'Rückwegsicherung und Orientierung im Innenangriff'),
-        H2('sicherheit', 'Sicherheit & Pflege'),
-        KF(
-          'Leinen vor und nach Gebrauch auf Schäden prüfen',
-          'Beschädigte oder überlastete Leinen aussondern',
-          'Vor Nässe, Chemie, scharfen Kanten und Hitze schützen',
-          'Regelmäßige dokumentierte Prüfung durch Sachkundige'),
-        CO('warn', 'Kanten schützen', 'Über scharfe Kanten geführte Leinen können unter Last blitzartig reißen. Immer Kantenschutz verwenden und die Leine nicht ruckartig belasten.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_U,
 },
 
 /* ======================================================================= V */
@@ -107,48 +69,7 @@ export const MODULES_EXTRA = [
     'Wassermanagement im Gelände organisieren',
   ],
   tags: ['Vegetationsbrand', 'Waldbrand', 'LACES', 'Flächenbrand'],
-  lessons: [
-    {
-      id: 'v1', title: 'Brandverhalten & Taktik', duration: 22,
-      blocks: [
-        H2('verhalten', 'Wie Vegetationsbrände sich ausbreiten'),
-        P('Vegetationsbrände werden stark von <b>Wind, Gelände und Brennstoff</b> bestimmt. Wind treibt die Feuerfront, Hangaufwärts breitet sich Feuer deutlich schneller aus (Vorwärmung), trockener Bewuchs beschleunigt alles.'),
-        KF(
-          'Wind bestimmt Richtung und Geschwindigkeit der Front',
-          'Bergauf brennt es schneller (Hangneigung wirkt wie Wind)',
-          'Bodenfeuer, Lauffeuer und (gefährlich) Kronenfeuer unterscheiden',
-          'Flugfeuer entzündet Bereiche weit vor der Front'),
-        H2('taktik', 'Taktiken der Bekämpfung'),
-        TBL(['Verfahren', 'Prinzip'],[
-          ['Direkter Angriff', 'Wasser/Werkzeug direkt an der Flammenfront'],
-          ['Indirekter Angriff', 'Wundstreifen/Riegel vor der Front anlegen'],
-          ['Flankenangriff', 'Front von den Seiten her einengen'],
-          ['Riegelstellung', 'bedrohte Objekte/Siedlung schützen'],
-        ]),
-        DEF('Wundstreifen', 'Ein von brennbarem Material befreiter Geländestreifen (Werkzeug, Räumgerät, teils Gegenfeuer), der dem Feuer den Brennstoff entzieht und die Ausbreitung stoppt. Bei begrenztem Wasser oft wirksamer als reines Ablöschen.'),
-        CO('tip', 'Schwerpunkt: bedrohte Werte', 'Bei begrenzten Kräften zuerst Menschen und bedrohte Objekte (Siedlung, Infrastruktur) schützen – nicht das „schönste Feuer" bekämpfen.'),
-      ],
-    },
-    {
-      id: 'v2', title: 'Sicherheit (LACES) & Wassermanagement', duration: 23,
-      blocks: [
-        H2('gefahr', 'Die Hauptgefahr: Einschluss'),
-        P('Die größte Gefahr für Einsatzkräfte bei Vegetationsbränden ist der plötzliche Einschluss durch eine Winddrehung oder ein schnelles Überlaufen der Front. Dagegen schützt das Merkschema <b>LACES</b>.'),
-        MNE([{l:'L',w:'Lookout'},{l:'A',w:'Awareness'},{l:'C',w:'Communication'},{l:'E',w:'Escape routes'},{l:'S',w:'Safety zones'}],
-          'Beobachter (Lookout), Lageaufmerksamkeit (Awareness/Anchor), Kommunikation, festgelegte Fluchtwege (Escape routes) und Sicherheitszonen (Safety zones) – vor Beginn der Arbeit festlegen.'),
-        FIG('laces', 'LACES – die fünf Sicherheitsgrundsätze bei Vegetationsbränden gegen den Einschluss.'),
-        CO('danger', 'Winddrehung', 'Eine Winddrehung kann die Front in Sekunden auf die eigene Position lenken. Fluchtwege und Sicherheitszonen müssen immer bekannt und erreichbar sein; im Zweifel sofort zurückziehen.'),
-        H2('wasser', 'Wasser im Gelände managen'),
-        UL(
-          'Wasser ist knapp – sparsam und gezielt einsetzen',
-          'Pendelverkehr mit TLF, mobile Löschwasserbehälter (Faltbehälter)',
-          'Löschrucksäcke, Patschen und Handwerkzeug für den indirekten Angriff',
-          'Nachschub und Wasserentnahmestellen frühzeitig organisieren'),
-        H2('nachsorge', 'Nachlöschen & Glutnester'),
-        CO('warn', 'Rückzündung', 'Vegetationsbrände flammen aus Glutnestern (Wurzeln, Torf, Totholz) wieder auf. Systematische Nachlöscharbeiten mit Wärmebildkamera und eine Brandwache verhindern das Wiederaufflammen – der Einsatz ist erst mit „Feuer aus" beendet.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_V,
 },
 
 /* ======================================================================= W */
