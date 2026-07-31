@@ -46,6 +46,7 @@ import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
 import { LESSONS_I } from './content/i-gefahrgut.js';
+import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
 
 export const MODULES = [
@@ -426,64 +427,7 @@ export const MODULES = [
     'Eine strukturierte Lagebeurteilung durchführen',
   ],
   tags: ['Führung', 'FwDV 100', 'Einsatzleitung', 'Taktik'],
-  lessons: [
-    {
-      id: 'l1', title: 'Führungssystem & Führungsvorgang', duration: 30,
-      blocks: [
-        H2('system', 'Das Führungssystem'),
-        P('Führung ist die zielgerichtete Einflussnahme auf Menschen zur Erfüllung eines Auftrags. Die FwDV 100 beschreibt ein <b>Führungssystem</b> aus drei zusammenwirkenden Komponenten:'),
-        UL(
-          '<b>Führungsorganisation:</b> Aufbau der Führung (wer führt wen, Führungsstufen, Stab).',
-          '<b>Führungsvorgang:</b> der methodische Ablauf des Führens (Regelkreis).',
-          '<b>Führungsmittel:</b> Hilfsmittel der Führung (Kommunikation, Führungsassistenten, Kartenwerk, IT).'),
-        H2('vorgang', 'Der Führungsvorgang'),
-        P('Der Führungsvorgang ist ein <b>Regelkreis</b>, der ständig durchlaufen wird, solange der Einsatz läuft:'),
-        STEPS(
-          'Lagefeststellung – Erkundung & Kontrolle: Was ist passiert, was droht?',
-          'Planung – Beurteilung & Entschluss: Möglichkeiten abwägen, entscheiden',
-          'Befehlsgebung – Umsetzung: klare Aufträge erteilen',
-          'zurück zur Lagefeststellung: Wirkung kontrollieren, nachsteuern'),
-        CO('info', 'Regelkreis', 'Lagefeststellung → Planung → Befehlsgebung → (Kontrolle) → Lagefeststellung … Führung ist nie „fertig", sondern passt sich der sich ändernden Lage laufend an.'),
-        FIG('fuehrungsvorgang', 'Der Führungsvorgang als Regelkreis – er wird durchlaufen, solange der Einsatz läuft.'),
-        H2('beurteilung', 'Die Lagebeurteilung'),
-        P('Kern der Planung ist die Beurteilung der Lage. Strukturhilfe – vier Kernfragen:'),
-        KF(
-          '<b>Gefahren:</b> Welche Gefahren bestehen für wen? (Menschen, Umwelt, Sachwerte, Einsatzkräfte)',
-          '<b>Eigene Kräfte/Mittel:</b> Was habe ich, was fehlt mir?',
-          '<b>Möglichkeiten:</b> Welche Handlungsoptionen gibt es? Vor-/Nachteile?',
-          '<b>Entschluss:</b> Für welche Option entscheide ich mich – und warum?'),
-      ],
-    },
-    {
-      id: 'l2', title: 'Führungsstufen & Führungsorganisation', duration: 35,
-      blocks: [
-        H2('stufen', 'Führungsstufen A–D'),
-        P('Mit wachsender Einsatzgröße wächst die Führungsorganisation. Die FwDV 100 kennt vier Führungsstufen:'),
-        TBL(['Stufe', 'Umfang', 'Führung durch'],[
-          ['A', 'Führung selbstständiger Trupps', 'Truppführer'],
-          ['B', 'Führung mit einer Einheit (Gruppe/Staffel)', 'Gruppen-/Staffelführer'],
-          ['C', 'Führung mit mehreren Einheiten (Zug)', 'Zugführer + Führungsassistent'],
-          ['D', 'Führung mit Einheiten verschiedener Fachdienste', 'Verbandsführer + Führungsstab'],
-        ]),
-        FIG('fuehrungsstufen', 'Die vier Führungsstufen A–D wachsen mit der Einsatzgröße (FwDV 100).'),
-        H2('gefahrenmatrix', 'Die Gefahrenmatrix (Merkschema)'),
-        P('Zur schnellen, vollständigen Gefahreneinschätzung dient das bekannte Merkschema „<b>4 A – 1 C – 4 E</b>":'),
-        MNE([{l:'A',w:'Atemgifte'},{l:'A',w:'Angst'},{l:'A',w:'Ausbreitung'},{l:'A',w:'Atomar'},{l:'C',w:'Chemisch'},{l:'E',w:'Erkrankung'},{l:'E',w:'Explosion'},{l:'E',w:'Einsturz'},{l:'E',w:'Elektrizität'}],
-          'Für jede dieser Gefahren prüft die Führungskraft: Wer ist bedroht? Und leitet die passenden Maßnahmen ab.'),
-        H2('stab', 'Der Führungsstab'),
-        P('Bei Großschadenslagen unterstützt ein <b>Führungsstab</b> die Einsatzleitung. Sachgebiete (S1–S6):'),
-        TBL(['SG', 'Aufgabe'],[
-          ['S1', 'Personal / Innerer Dienst'],
-          ['S2', 'Lage (Lagedarstellung, Dokumentation)'],
-          ['S3', 'Einsatz (Planung, Führung der Maßnahmen)'],
-          ['S4', 'Versorgung / Logistik'],
-          ['S5', 'Presse- & Medienarbeit'],
-          ['S6', 'Information & Kommunikation (IuK)'],
-        ]),
-        CO('tip', 'Führungsgrundsatz', 'Führen heißt entscheiden. Lieber eine klare, zügige Entscheidung mit 80 % Information als eine perfekte Entscheidung, die zu spät kommt. Aber: Entschluss laufend an der Lage überprüfen.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_L,
 },
 
 /* ======================================================================= M */

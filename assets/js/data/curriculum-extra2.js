@@ -294,55 +294,6 @@ export const EXTRA_LESSONS_2 = {
     },
   ],
 
-  /* ------------------------------------------------------------------- L */
-  'l-fuehrung-fwdv100': [
-    {
-      id: 'l4', title: 'Einsatzabschnitte & Zusammenwirken', duration: 20,
-      blocks: [
-        H2('abschnitte', 'Gliederung in Einsatzabschnitte'),
-        P('Wächst eine Lage, gliedert die Einsatzleitung sie in <b>Einsatzabschnitte</b> – räumlich (z. B. „Abschnitt Nord/Süd") oder nach Aufgabe (z. B. „Menschenrettung", „Wasserversorgung", „Riegelstellung"). Jeder Abschnitt hat einen eigenverantwortlichen Leiter.'),
-        KF(
-          'Entlastet die Einsatzleitung (kleinere Führungsspanne)',
-          'Klare Verantwortung und kurze Wege vor Ort',
-          'Abschnittsleiter führen selbstständig im Rahmen des Auftrags',
-          'Die Einsatzleitung führt die Abschnittsleiter, nicht einzelne Trupps'),
-        H2('zusammenwirken', 'Zusammenwirken mit anderen'),
-        TBL(['Partner', 'Zusammenarbeit'],[
-          ['Rettungsdienst', 'medizinische Versorgung, gemeinsame Rettung'],
-          ['Polizei', 'Absperrung, Verkehr, Ermittlung'],
-          ['THW', 'technische Großhilfe, Statik, Logistik'],
-          ['Verwaltungsstab/Krisenstab', 'übergeordnete Koordination bei Großlagen'],
-          ['Fachberater/Energieversorger', 'Spezialwissen (Strom, Gas, Gefahrstoffe)'],
-        ]),
-        DEF('Politisch-administrativ vs. operativ-taktisch', 'Bei Großschadenslagen führt der operativ-taktische Stab (Feuerwehr/Einsatzleitung) den Einsatz, der Verwaltungs-/Krisenstab trifft übergeordnete Entscheidungen (Ressourcen, Bevölkerung, Öffentlichkeit). Beide arbeiten eng zusammen.'),
-        CO('tip', 'Einheit der Führung', 'Jede Einsatzkraft hat genau einen Vorgesetzten (Einheit der Führung). Klare Unterstellung verhindert widersprüchliche Befehle und Chaos.'),
-      ],
-    },
-    {
-      id: 'l5', title: 'Führungsverhalten, Stress & Entscheidungen', duration: 20,
-      blocks: [
-        H2('verhalten', 'Wie Führungskräfte wirken'),
-        P('Führung ist mehr als Befehle geben. Die Führungskraft gibt Orientierung, bleibt ruhig, trifft Entscheidungen und trägt Verantwortung – auch für die Sicherheit und Motivation ihrer Kräfte.'),
-        KF(
-          'Vorbild sein (Ruhe, Sicherheit, Fairness)',
-          'Klar und knapp kommunizieren, Aufträge kontrollieren',
-          'Verantwortung übernehmen, nicht abwälzen',
-          'Kräfte schonen (Ablösung, Pausen, PSNV)'),
-        H2('stress', 'Stress & menschliche Faktoren'),
-        P('Unter Stress verengt sich die Wahrnehmung („Tunnelblick"), Fehler häufen sich. Gute Führung baut Struktur (Führungsvorgang), teilt Aufgaben, hört zu und lässt Bedenken zu – der „Human Factor" entscheidet oft über Erfolg oder Unglück.'),
-        H2('entscheidung', 'Entscheiden unter Unsicherheit'),
-        STEPS(
-          'Lage rasch erfassen (Erkundung, Meldungen)',
-          'Wesentliches vom Unwesentlichen trennen (Schwerpunkt)',
-          'Handlungsoptionen abwägen (Nutzen, Risiko, Zeit)',
-          'Klar entscheiden und befehlen',
-          'Wirkung kontrollieren und nachsteuern'),
-        CO('info', 'Lieber gut & rechtzeitig als perfekt & zu spät', 'Eine zügige, tragfähige Entscheidung mit ausreichender Information schlägt die perfekte Entscheidung, die zu spät kommt. Aber: den Entschluss laufend an der Lage prüfen und anpassen.'),
-        CO('tip', 'Nachbesprechung', 'Nach dem Einsatz gehört die Nachbesprechung dazu: Was lief gut, was lernen wir? Wertschätzend, sachlich, ohne Schuldzuweisung – so wird die Wehr mit jedem Einsatz besser.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- M */
   'm-vorbeugender-brandschutz': [
     {

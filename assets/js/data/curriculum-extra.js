@@ -142,30 +142,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- L */
-  'l-fuehrung-fwdv100': [
-    {
-      id: 'l3', title: 'Führungsmittel, Führungsvorgang in der Praxis', duration: 22,
-      blocks: [
-        H2('mittel', 'Führungsmittel'),
-        P('Führungsmittel unterstützen die Führungskraft beim Führen. Sie ersetzen nicht das Denken, machen es aber schneller und sicherer.'),
-        UL(
-          '<b>Kommunikationsmittel:</b> Funk, Telefon, Melder',
-          '<b>Führungsassistenten:</b> unterstützen bei Lage, Dokumentation, Kommunikation',
-          '<b>Darstellungsmittel:</b> Lagekarte, taktische Zeichen, Einsatztagebuch',
-          '<b>IT/Einsatzführungssysteme:</b> digitale Lagedarstellung, Kräfteübersicht'),
-        H2('zeichen', 'Taktische Zeichen'),
-        P('Taktische Zeichen stellen Einheiten, Fahrzeuge, Gefahren und Maßnahmen einheitlich auf der Lagekarte dar. Sie schaffen ein gemeinsames Lagebild – jede Führungskraft „liest" dieselbe Karte gleich.'),
-        H2('praxis', 'Der Führungsvorgang in der Praxis'),
-        P('Unter Zeitdruck läuft der Regelkreis oft in Sekunden ab. Ein bewährtes Kurzschema für den ersten Entschluss:'),
-        MNE([{l:'G',w:'Gefahren'},{l:'A',w:'Aufgaben ableiten'},{l:'M',w:'Maßnahmen/Mittel'},{l:'E',w:'Entschluss & Befehl'}],
-          'Welche Gefahren bestehen für wen? Welche Aufgaben folgen daraus? Welche Mittel setze ich ein? Entschluss fassen und als Befehl umsetzen – dann Wirkung kontrollieren.'),
-        DEF('Beurteilung der Lage', 'Kern der Planung: aus Erkundung + Erfahrung die möglichen Handlungsoptionen abwägen (Vor-/Nachteile, Kräfte, Zeit, Risiko) und einen begründeten Entschluss fassen. „Kein Plan überlebt den ersten Kontakt" – deshalb laufend nachsteuern.'),
-        CO('tip', 'Delegieren & Führungsspanne', 'Eine Führungskraft kann nur begrenzt viele Untergebene direkt führen (Führungsspanne ~3–5 Einheiten). Bei größeren Lagen: Abschnitte bilden und delegieren, statt alles selbst zu machen.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- M */
   'm-vorbeugender-brandschutz': [
     {
