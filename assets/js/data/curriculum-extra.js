@@ -34,60 +34,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- D */
-  'd-geraetekunde': [
-    {
-      id: 'd3', title: 'Tragbare Leitern & Rettungsgeräte', duration: 18,
-      blocks: [
-        H2('leitern', 'Tragbare Leitern'),
-        P('Tragbare Leitern dienen als Angriffsweg, Rettungsweg und Arbeitsgerät. Sie werden von der Mannschaft getragen und in Stellung gebracht.'),
-        TBL(['Leiter', 'Rettungshöhe (ca.)', 'Merkmal'],[
-          ['Steckleiter', '2. OG (ca. 7,2 m)', 'aus Teilen zusammensteckbar'],
-          ['Klappleiter', 'innen, niedrig', 'kompakt, für Innenräume'],
-          ['Multifunktions-/Schiebleiter', '3. OG (bis ~14 m)', 'ausziehbar, mit Stützstangen'],
-          ['Hakenleiter', 'geschossweise', 'Spezialleiter (Einhängen)'],
-        ]),
-        CO('warn', 'Sicher anlegen', 'Anstellwinkel ca. 65–75°, Leiter mind. 1 m über die Austrittsstelle hinausragen lassen, gegen Wegrutschen/Umfallen sichern (Fußsicherung). Beim Besteigen: Leiter halten lassen, immer 3-Punkt-Kontakt.'),
-        FIG('leiterwinkel', 'Richtiger Anstellwinkel einer tragbaren Leiter: 65–75°, mit mindestens 1 m Überstand.'),
-        H2('rettung', 'Weitere Rettungsgeräte'),
-        UL(
-          '<b>Sprungrettungsgerät (Sprungpolster):</b> nur als letztes Mittel, wenn kein anderer Rettungsweg möglich ist',
-          '<b>Schleifkorbtrage / Krankentrage:</b> patientenschonender Transport',
-          '<b>Feuerwehrleine mit Feuerwehr-Haltegurt:</b> Selbstretten, Halten, Sichern (keine Absturzsicherung!)',
-          '<b>Rettungstuch:</b> Transport nicht gehfähiger Personen über kurze Strecken'),
-        H2('leine', 'Die Feuerwehrleine'),
-        DEF('Feuerwehr-Rettungsknoten', 'Genormter Knoten, mit dem eine Person zur Rettung an der Feuerwehrleine gesichert werden kann. Leinen sind nach Gebrauch und regelmäßig zu prüfen; beschädigte oder überlastete Leinen werden ausgesondert.'),
-        CO('tip', 'Knoten & Stiche sitzen im Schlaf', 'Mastwurf, Zimmermannsschlag, Pfahlstich (Rettungsknoten) und Doppelter Ankerstich gehören zum Handwerkszeug. Regelmäßig üben, bis sie unter Stress sicher sitzen.'),
-      ],
-    },
-  ],
-
-  /* ------------------------------------------------------------------- G */
-  'g-technische-hilfe': [
-    {
-      id: 'g3', title: 'Stabilisieren, Heben & neue Antriebe', duration: 20,
-      blocks: [
-        H2('stab', 'Fahrzeug stabilisieren'),
-        P('Vor jeder Arbeit am Unfallfahrzeug wird dieses gegen jede Bewegung gesichert. Ein wackelndes Fahrzeug gefährdet Patient und Retter und verfälscht die Rettung.'),
-        UL(
-          '<b>Unterbaumaterial</b> (Keile, Blöcke, Stufenkeile) unter tragende Punkte',
-          '<b>Reifen entlüften</b> bzw. auf Felge absetzen, damit das Fahrzeug „steht"',
-          '<b>Abstützsysteme</b> bei Fahrzeugen in Seiten-/Dachlage',
-          'Erst stabilisieren, dann Glasmanagement und Rettungsöffnung'),
-        H2('heben', 'Hebekissen & Winden'),
-        DEF('Hebekissen', 'Mit Druckluft befüllbare Kissen, die schwere Lasten anheben (Niederdruck für große Wege, Hochdruck für große Lasten). Grundsatz: „Heben und unterbauen im Wechsel" – nie unter eine nur schwebende Last greifen.'),
-        CO('warn', 'Sicher heben', 'Last immer synchron zum Heben unterbauen (Zug um Zug). Hebekissen nie überlappt stapeln über die zulässige Höhe, nie auf spitze Kanten. Der Kraftschluss muss jederzeit gesichert bleiben.'),
-        H2('antriebe', 'Alternative Antriebe'),
-        TBL(['Antrieb', 'Hauptgefahr', 'Grundregel'],[
-          ['Elektro/Hybrid', 'Hochvolt, Batteriebrand (thermal runaway)', 'orange HV-Leitungen nie trennen, freischalten, Rettungskarte'],
-          ['Gas (CNG/LPG)', 'Gasaustritt, Explosion, BLEVE', 'Zündquellen meiden, Gasflaschen kühlen/schützen'],
-          ['Wasserstoff', 'sehr leicht entzündlich, unsichtbare Flamme', 'Abstand, Fachberater, Belüftung beachten'],
-        ]),
-        CO('danger', 'Batterie-Rückzündung', 'Beschädigte HV-Batterien können sich Stunden später erneut entzünden (thermisches Durchgehen). Betroffene E-Fahrzeuge lange beobachten, ggf. in Wasserbad/Quarantäne – Herstellerhinweise beachten.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {

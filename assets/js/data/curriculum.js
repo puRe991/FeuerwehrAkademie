@@ -43,8 +43,10 @@ import { MODULES_EXTRA } from './modules-extra.js';
    mehr auf. */
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
+import { LESSONS_D } from './content/d-geraetekunde.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
+import { LESSONS_G } from './content/g-technische-hilfe.js';
 import { LESSONS_H } from './content/h-sprechfunk.js';
 import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
@@ -151,55 +153,7 @@ export const MODULES = [
     'Funktion des Hohlstrahlrohrs erklären',
   ],
   tags: ['PSA', 'Schläuche', 'Armaturen', 'Ausrüstung'],
-  lessons: [
-    {
-      id: 'd1', title: 'Persönliche Schutzausrüstung (PSA)', duration: 20,
-      blocks: [
-        H2('psa', 'Schutz von Kopf bis Fuß'),
-        P('Die PSA schützt die Einsatzkraft vor Hitze, mechanischen Einwirkungen, Nässe und Sichtbarkeitsrisiken. Sie ist normgerecht zu tragen – unvollständige PSA bedeutet Verzicht auf Schutz.'),
-        UL(
-          '<b>Feuerwehrhelm</b> (DIN EN 443) mit Nackenschutz und Visier',
-          '<b>Feuerwehrschutzanzug</b> / Überjacke & -hose (HuPF bzw. EN 469)',
-          '<b>Feuerwehrschutzhandschuhe</b> (EN 659)',
-          '<b>Feuerwehrstiefel</b> mit Zehen- und Durchtrittschutz',
-          '<b>Feuerwehr-Haltegurt</b> mit Feuerwehrleine',
-          'Ggf. <b>Flammschutzhaube</b> und <b>Warnkleidung</b> nach EN ISO 20471'),
-        CO('danger', 'Grundsatz', 'Keine PSA – kein Einsatz. Wer nicht vollständig geschützt ist, gefährdet sich selbst und blockiert seine Gruppe. Baumwoll-Unterbekleidung tragen (keine schmelzenden Kunstfasern auf der Haut).'),
-        H2('kennzeichnung', 'Funktionskennzeichnung'),
-        P('Helmkennzeichnung und Funktionswesten helfen, Funktionen im Einsatz auf einen Blick zu erkennen (z. B. farbige Helmkennung für Führungskräfte, Westen „Gruppenführer", „Einsatzleiter", „Atemschutzüberwachung").'),
-      ],
-    },
-    {
-      id: 'd2', title: 'Schläuche, Kupplungen & Armaturen', duration: 25,
-      blocks: [
-        H2('schlaeuche', 'Schlaucharten'),
-        TBL(['Typ', 'Verwendung', 'Größen'],[
-          ['Saugschlauch (A)', 'formstabil, Wasserentnahme aus offenem Gewässer', 'A-110'],
-          ['Druckschlauch B', 'Zubringer-/Verteilerleitung', 'B-75, meist 20 m'],
-          ['Druckschlauch C', 'Angriffsleitung zum Strahlrohr', 'C-42/C-52, 15 m'],
-          ['Druckschlauch D', 'Kleinlöschgeräte, wenig genutzt', 'D-25'],
-        ]),
-        DEF('Storz-Kupplung', 'Genormte Knaggenkupplung (Symmetrisch, „geschlechtslos"), die Schläuche und Armaturen schnell und dicht verbindet. Kupplungsgrößen: A, B, C, D.'),
-        H2('armaturen', 'Armaturen der Wasserführung'),
-        P('Armaturen steuern und verteilen das Löschwasser. Man unterscheidet Armaturen zur Wasserentnahme, -fortleitung und -abgabe.'),
-        UL(
-          '<b>Standrohr:</b> Wasserentnahme aus dem Unterflurhydranten.',
-          '<b>Verteiler (B-CBC):</b> teilt eine B-Leitung auf mehrere C-Leitungen auf – Schlüsselstelle des Gruppenführers.',
-          '<b>Sammelstück (A-2B):</b> führt zwei B-Leitungen zur Pumpe zusammen.',
-          '<b>Stützkrümmer:</b> nimmt die Rückstoßkraft am B-Rohr auf.',
-          '<b>Übergangsstücke</b> und <b>Blindkupplungen</b> zum Anpassen/Verschließen.'),
-        H2('strahlrohr', 'Das Hohlstrahlrohr'),
-        P('Das moderne Hohlstrahlrohr löst das alte Mehrzweckstrahlrohr zunehmend ab. Es erlaubt die stufenlose Regelung von <b>Durchflussmenge</b> und <b>Sprühbild</b> (Vollstrahl ↔ Sprühstrahl) direkt am Rohr.'),
-        KF(
-          'Vollstrahl: große Wurfweite, punktuelle Kühlung',
-          'Sprühstrahl: großer Wärmeschutz-„Schirm", effektive Rauchgaskühlung',
-          'Mannschutzbrause: schützt den Trupp vor Wärmestrahlung',
-          'Durchflussregelung: bedarfsgerechter Wassereinsatz, weniger Wasserschaden'),
-        FIG('strahlrohr', 'Hohlstrahlrohr: regelbar zwischen Vollstrahl (Wurfweite) und Sprühstrahl (Wärmeschutz).'),
-        CO('tip', 'Türprozedur', 'Vor dem Öffnen einer Brandraumtür kurze Sprühstöße („Puls-Gun-Technik") zur Rauchgaskühlung abgeben – reduziert die Flashover-Gefahr deutlich.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_D,
 },
 
 /* ======================================================================= E */
@@ -244,50 +198,7 @@ export const MODULES = [
     'Gefahren an der Einsatzstelle erkennen (Airbag, Batterie, Betriebsstoffe)',
   ],
   tags: ['THL', 'Verkehrsunfall', 'Rettung', 'Hydraulik'],
-  lessons: [
-    {
-      id: 'g1', title: 'Einsatzstelle & Gefahren', duration: 20,
-      blocks: [
-        H2('sichern', 'Einsatzstellensicherung'),
-        P('Die eigene Sicherheit hat Vorrang. Vor jeder Tätigkeit wird die Einsatzstelle gegen den fließenden Verkehr abgesichert und ein Sicherheitsabstand geschaffen.'),
-        STEPS(
-          'Warnkleidung tragen, Fahrzeug als Sperre schräg stellen (Verkehrsschutz)',
-          'Warnleuchten/Blaulicht, Verkehrswarnanlage, Warndreieck weit vorher',
-          'Brandschutz sicherstellen (C-Rohr/Löscher bereitstellen)',
-          'Fahrzeug gegen Wegrollen/Bewegung sichern, Zündung aus',
-          'Batterie ggf. abklemmen (Minuspol zuerst)'),
-        FIG('thstelle', 'Ordnung des Raumes an der THL-Einsatzstelle: innerer Bereich (Rettung), äußerer Bereich (Geräteablage) und Absperrbereich gegen den Verkehr.'),
-        H2('gefahren', 'Gefahren am Unfallfahrzeug'),
-        UL(
-          '<b>Nicht ausgelöste Airbags / Gurtstraffer:</b> Sicherheitsabstände einhalten (Front ~30 cm, Seite ~15 cm – herstellerabhängig).',
-          '<b>Betriebsstoffe:</b> Kraftstoff, Öl, Kühlmittel – Brand-/Rutschgefahr.',
-          '<b>Alternative Antriebe:</b> Hochvolt-Systeme (E-/Hybrid), Gasanlagen (CNG/LPG), Wasserstoff – besondere Verfahren!',
-          '<b>Fahrzeugstabilität:</b> Fahrzeug vor Arbeitsbeginn stabilisieren (Unterbau, Keile).'),
-        CO('danger', 'Hochvolt-Fahrzeuge', 'Bei E-Fahrzeugen orange gekennzeichnete HV-Leitungen niemals durchtrennen. Rettungsdatenblatt/Rettungskarte nutzen, HV-System freischalten, auf thermisches Durchgehen der Batterie achten.'),
-      ],
-    },
-    {
-      id: 'g2', title: 'Rettungssatz & patientengerechte Rettung', duration: 25,
-      blocks: [
-        H2('satz', 'Der hydraulische Rettungssatz'),
-        TBL(['Gerät', 'Funktion'],[
-          ['Spreizer', 'Aufdrücken, Ziehen, Quetschen – z. B. Türen öffnen'],
-          ['Schere', 'Durchtrennen von Blechen, Holmen, Pedalen'],
-          ['Rettungszylinder', 'Wegdrücken/Aufstemmen größerer Abstände'],
-          ['Pedalschneider/Kombigerät', 'kompakte Sonderarbeiten'],
-        ]),
-        CO('warn', 'Verstärkte Holme', 'Moderne Karosserien enthalten hochfeste (borlegierte) Stähle. Nicht jede Schere schneidet jeden Holm – Schnittstellen bewusst wählen, Herstellerhinweise beachten.'),
-        H2('ablauf', 'Patientenorientierte Rettung'),
-        P('Die Rettung richtet sich nach dem Zustand des Patienten. Man unterscheidet:'),
-        UL(
-          '<b>Sofortrettung / Crash-Rettung:</b> bei unmittelbarer Lebensgefahr (z. B. Brand, Atemstillstand) – schnellstmöglich, Kompromisse bei Schonung.',
-          '<b>Schonende Rettung:</b> Standard – abgestimmt mit dem Rettungsdienst, achsengerecht, unter HWS-Schutz.'),
-        H2('goldene', 'Die „goldene Stunde"'),
-        DEF('Golden Hour of Shock', 'Ziel ist, den Patienten möglichst innerhalb einer Stunde nach dem Unfall in der geeigneten Klinik zu haben. Feuerwehr und Rettungsdienst arbeiten deshalb parallel und eng abgestimmt („Innerer und äußerer Rettungsring").'),
-        CO('tip', 'Zusammenarbeit', 'Die technische Rettung folgt der Medizin: Der Notarzt/Rettungsdienst gibt Tempo und Rettungsweg vor. Ständige Kommunikation über den Zustand des Patienten ist Pflicht.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_G,
 },
 
 /* ======================================================================= H */
