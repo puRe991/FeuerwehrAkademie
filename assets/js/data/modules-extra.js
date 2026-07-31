@@ -5,6 +5,8 @@
    gängigen Fach-/Sonderlehrgängen. Wird in curriculum.js an MODULES angehängt.
    ========================================================================= */
 import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.js';
+import { LESSONS_T } from './content/t-wasserversorgung.js';
+import { LESSONS_S } from './content/s-rettung.js';
 
 export const MODULES_EXTRA = [
 
@@ -20,53 +22,7 @@ export const MODULES_EXTRA = [
     'Prioritäten der Menschenrettung einordnen',
   ],
   tags: ['Rettung', 'Selbstrettung', 'Rautek', 'Rettungsgeräte'],
-  lessons: [
-    {
-      id: 's1', title: 'Menschen retten', duration: 22,
-      blocks: [
-        H2('grundsatz', 'Retten hat Vorrang'),
-        P('Die Rettung von Menschen aus Lebensgefahr ist die vornehmste Aufgabe der Feuerwehr und hat absoluten Vorrang. „Retten" bedeutet, Menschen und Tiere aus einer lebensbedrohlichen Zwangslage zu befreien.'),
-        DEF('Retten vs. Bergen', 'Lebende Menschen werden gerettet, tote Menschen und Sachwerte werden geborgen. Diese Unterscheidung ist mehr als Wortklauberei – sie bestimmt Priorität und Vorgehen.'),
-        FIG('feuerwehraufgaben', 'Die vier Aufgaben der Feuerwehr: Retten, Löschen, Bergen, Schützen – die Menschenrettung hat immer Vorrang.'),
-        H2('griffe', 'Rettungsgriffe & Tragehilfen'),
-        TBL(['Methode', 'Anwendung'],[
-          ['Rautek-Rettungsgriff', 'schnelles Ziehen einer nicht gehfähigen Person aus dem Gefahrenbereich'],
-          ['Gehende Rettung', 'stützen/führen einer noch gehfähigen Person'],
-          ['Rettungstuch', 'Transport nicht gehfähiger Personen über kurze Strecken'],
-          ['Krankentrage / Schleifkorbtrage', 'schonender, längerer Transport'],
-          ['Tragering / Mehrhelfer-Griffe', 'schweres Heben im Team'],
-        ]),
-        STEPS(
-          'Eigensicherung und Lage prüfen (PSA, Atemschutz, Rückweg)',
-          'Person ansprechen, Zustand grob einschätzen',
-          'Geeignete Rettungsmethode wählen (Zustand, Weg, Gewicht)',
-          'Aus dem Gefahrenbereich bringen, dann medizinische Versorgung',
-          'An Rettungsdienst übergeben, Lage melden'),
-        CO('danger', 'Eigenschutz bleibt Bedingung', 'Keine Rettung ohne Eigenschutz. Im Brandrauch nur mit Atemschutz und Sicherheitstrupp, an Absturzkanten nur gesichert. Ein verunglückter Retter wird selbst zum Patienten.'),
-      ],
-    },
-    {
-      id: 's2', title: 'Selbstretten & Selbstschutz', duration: 23,
-      blocks: [
-        H2('warum', 'Wenn der Rückweg abgeschnitten ist'),
-        P('Gerät ein Trupp im Innenangriff in eine Notlage (Rückweg verlegt, Einsturz, Luftmangel), muss er sich notfalls selbst retten. Die Selbstrettung ist die letzte Möglichkeit, wenn kein normaler Rückzug mehr geht.'),
-        H2('mittel', 'Mittel der Selbstrettung'),
-        UL(
-          '<b>Feuerwehrleine mit Haltegurt:</b> Abrutschen/Ablassen über Fenster (nur im Notfall)',
-          '<b>Wandhangeln / Orientierung an der Wand:</b> Rückweg suchen',
-          '<b>Notruf „Mayday"</b> absetzen und auf den Sicherheitstrupp warten',
-          '<b>Türen als Rückzugsschutz</b> nutzen (Rauch/Wärme aussperren)'),
-        DEF('Selbstretten über die Leine', 'Mit Feuerwehrleine und Haltegurt kann sich eine Einsatzkraft im äußersten Notfall aus einem Fenster ablassen. Das ist eine Notmaßnahme mit hohem Risiko – der geordnete Rückzug hat immer Vorrang.'),
-        CO('warn', 'Ruhe rettet Luft', 'In der Notlage entscheidet Ruhe über Leben und Tod: ruhig atmen spart Luft, Panik vervielfacht den Verbrauch. Position halten, sich bemerkbar machen (rufen, klopfen, Lampe), Kräfte einteilen.'),
-        H2('vorbeugen', 'Notlagen vermeiden'),
-        KF(
-          'Rückweg merken und sichern (Schlauch als Leitlinie)',
-          'Rechtzeitig umkehren – Luftreserve für den Rückweg einplanen',
-          'Als Trupp zusammenbleiben, ständigen Kontakt halten',
-          'Auf Warnsignale (Hitze, Rauchverhalten) achten'),
-      ],
-    },
-  ],
+  lessons: LESSONS_S,
 },
 
 /* ======================================================================= T */
@@ -81,46 +37,7 @@ export const MODULES_EXTRA = [
     'Kavitation und Druckverluste einschätzen',
   ],
   tags: ['Wasserversorgung', 'Hydrant', 'Wasserförderung', 'Saugbetrieb'],
-  lessons: [
-    {
-      id: 't1', title: 'Löschwasserquellen & Entnahme', duration: 22,
-      blocks: [
-        H2('quellen', 'Woher das Wasser kommt'),
-        TBL(['Quelle', 'Art', 'Merkmal'],[
-          ['Überflurhydrant', 'abhängig (Netz)', 'schnell, sichtbar'],
-          ['Unterflurhydrant', 'abhängig (Netz)', 'mit Standrohr, geschützt'],
-          ['Offenes Gewässer', 'unabhängig', 'Saugbetrieb, ergiebig'],
-          ['Löschteich / Zisterne', 'unabhängig', 'bevorratet, gekennzeichnet'],
-          ['Fahrzeugtank', 'mitgeführt', 'schneller Erstangriff'],
-        ]),
-        DEF('Abhängig / unabhängig', 'Abhängige Löschwasserversorgung stammt aus dem Trinkwassernetz (Hydrant) und ist durch dessen Leistung begrenzt. Unabhängige Versorgung nutzt offene Gewässer/Behälter – aufwendiger, aber ergiebig und netzunabhängig.'),
-        H2('saugbetrieb', 'Wasserentnahme aus offenem Gewässer'),
-        STEPS(
-          'Saugschläuche kuppeln, Saugkorb mit Ventilleine sichern',
-          'Halteleine anbringen, Saugleitung zu Wasser bringen',
-          'Entlüftungseinrichtung betätigen, bis Wasser ansteht',
-          'Pumpe auf Betriebsdruck bringen, Druckabgang öffnen'),
-        CO('warn', 'Saughöhe & Sauberkeit', 'Praktische Saughöhe ca. 7,5 m. Saugkorb frei von Schmutz halten und nicht auf den Grund absinken lassen (Verstopfung, Kavitation).'),
-      ],
-    },
-    {
-      id: 't2', title: 'Wasserförderung über lange Wegstrecke', duration: 23,
-      blocks: [
-        H2('warum', 'Wenn das Objekt weit weg ist'),
-        P('Reicht die Löschwassermenge am Brandobjekt nicht, wird über eine lange B-Schlauchstrecke gefördert. Bei großen Entfernungen oder Höhenunterschieden kommen Verstärkerpumpen zum Einsatz.'),
-        KF(
-          'Reibungsverlust steigt mit Länge und Förderstrom',
-          'Je 10 m Höhenunterschied ca. 1 bar Druckverlust',
-          'Eingangsdruck an der Folgepumpe min. 1,5 bar halten',
-          'Kommunikation zwischen den Pumpen ist entscheidend'),
-        DEF('Pendelverkehr', 'Alternative zur Schlauchstrecke: Tanklöschfahrzeuge fahren im Wechsel zwischen Wasserentnahme und Einsatzstelle. Sinnvoll bei unwegsamem Gelände oder Vegetationsbränden, wo keine durchgehende Leitung möglich ist.'),
-        H2('kavitation', 'Kavitation vermeiden'),
-        CO('danger', 'Kavitation', 'Zu hohe Saughöhe, zu hohe Drehzahl oder ein verstopfter Saugkorb senken den Druck lokal unter den Dampfdruck – Dampfblasen bilden sich, die Förderung reißt ab und die Pumpe kann Schaden nehmen.'),
-        H2('planung', 'Die Wasserversorgung planen'),
-        P('Der Gruppenführer plant die Wasserversorgung parallel zum Erstangriff – der Fahrzeugtank überbrückt die Zeit, bis die Zubringerleitung steht. „Ohne Wasser kein Löschangriff": die Wasserversorgung ist oft der eigentliche Flaschenhals.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_T,
 },
 
 /* ======================================================================= U */
