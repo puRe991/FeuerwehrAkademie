@@ -45,6 +45,7 @@ import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
+import { LESSONS_H } from './content/h-sprechfunk.js';
 import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_L } from './content/l-fuehrung-fwdv100.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
@@ -301,48 +302,7 @@ export const MODULES = [
     'Grundlagen des Digitalfunks (TMO/DMO) beschreiben',
   ],
   tags: ['Funk', 'FwDV 810', 'TETRA', 'Kommunikation'],
-  lessons: [
-    {
-      id: 'h1', title: 'Grundlagen & Nachrichtenverkehr', duration: 20,
-      blocks: [
-        H2('warum', 'Warum diszipliniert funken?'),
-        P('Funk ist die Lebensader der Einsatzführung. Ein Funkkanal wird von vielen geteilt – deshalb gilt: <b>kurz, klar, eindeutig</b>. Erst denken, dann Sprechtaste drücken, kurz warten, dann sprechen.'),
-        KF(
-          'Disziplin: nur betriebsnotwendige Nachrichten',
-          'Klare Aussprache, normale Sprechgeschwindigkeit',
-          'Vollständige Rufnamen verwenden',
-          'Wichtige Angaben (Zahlen, Namen) buchstabieren'),
-        H2('ablauf', 'Ablauf einer Nachricht (Anruf)'),
-        STEPS(
-          'Anruf: „Florian Musterstadt 1/44 von Florian Musterstadt 11/1 – kommen"',
-          'Antwort der Gegenstelle: „…11/1 von …1/44 – kommen"',
-          'Nachricht durchgeben, Ende mit „kommen"',
-          'Empfang bestätigen: „verstanden" – Abschluss mit „Ende"'),
-        FIG('funkablauf', 'Ablauf eines Funkgesprächs: Anruf → Antwort → Nachricht → Bestätigung → Ende.'),
-        DEF('Wichtige Sprechgruppen', '„kommen" = Ende der eigenen Durchsage, Antwort erwartet. „verstanden" = Nachricht empfangen. „Ende" = Gespräch beendet. „Frage" = es folgt eine Frage. „Wiederholen Sie" = Nachricht bitte erneut.'),
-      ],
-    },
-    {
-      id: 'h2', title: 'Buchstabieralphabet & Digitalfunk', duration: 20,
-      blocks: [
-        H2('alphabet', 'Deutsches Buchstabieralphabet'),
-        P('Zum eindeutigen Buchstabieren wird das genormte Alphabet verwendet (Auszug):'),
-        TBL(['A–I', 'J–R', 'S–Z'],[
-          ['A Anton, B Berta, C Cäsar', 'J Julius, K Kaufmann, L Ludwig', 'S Samuel, T Theodor, U Ulrich'],
-          ['D Dora, E Emil, F Friedrich', 'M Martha, N Nordpol, O Otto', 'V Viktor, W Wilhelm, X Xanthippe'],
-          ['G Gustav, H Heinrich, I Ida', 'P Paula, Q Quelle, R Richard', 'Y Ypsilon, Z Zacharias'],
-        ]),
-        H2('digital', 'Digitalfunk BOS (TETRA)'),
-        P('Der bundesweite Digitalfunk für Behörden und Organisationen mit Sicherheitsaufgaben (BOS) basiert auf dem TETRA-Standard. Er bietet abhörsicheren, verschlüsselten Sprech- und Datenfunk.'),
-        UL(
-          '<b>TMO (Trunked Mode Operation):</b> Netzbetrieb über Basisstationen – große Reichweite, Gesprächsgruppen.',
-          '<b>DMO (Direct Mode Operation):</b> Direktbetrieb Gerät-zu-Gerät ohne Netz – für den lokalen Einsatzstellenfunk.',
-          '<b>Notruftaste:</b> priorisierte Notfallmeldung an die Leitstelle.',
-          '<b>Endgeräte:</b> HRT (Handfunk), MRT (Fahrzeugfunk), FRT (feste Station).'),
-        CO('info', 'Vorteil Digitalfunk', 'Bessere Sprachqualität, Abhörsicherheit durch Verschlüsselung, Gruppenkommunikation und Datenübertragung (Status/Text). Im Einsatzstellenfunk meist DMO, überörtlich TMO.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_H,
 },
 
 /* ======================================================================= I */

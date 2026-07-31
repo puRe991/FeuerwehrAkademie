@@ -88,34 +88,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- H */
-  'h-sprechfunk': [
-    {
-      id: 'h3', title: 'Meldungen, Lagemeldung & Funkdisziplin', duration: 18,
-      blocks: [
-        H2('arten', 'Arten von Nachrichten'),
-        P('Im Funkverkehr unterscheidet man nach Dringlichkeit und Form. Ordnung und Kürze halten den Kanal frei für das Wesentliche.'),
-        UL(
-          '<b>Gespräch:</b> wechselseitiger Austausch',
-          '<b>Spruch:</b> förmliche Nachricht mit festem Kopf (Absender, Empfänger, Uhrzeit)',
-          '<b>Durchsage/Sammelruf:</b> an mehrere Stellen gleichzeitig'),
-        H2('lagemeldung', 'Die Lagemeldung'),
-        P('Die erste Lagemeldung der ersteintreffenden Einheit ist entscheidend – sie ermöglicht der Leitstelle die richtige Nachalarmierung. Bewährtes Schema:'),
-        MNE([{l:'W',w:'Wer meldet'},{l:'W',w:'Wo'},{l:'W',w:'Was ist'},{l:'W',w:'Welche Maßnahmen'}],
-          'Beispiel: „Florian 11/1 an Leitstelle: An der Einsatzstelle eingetroffen, Wohnungsbrand 2. OG, eine Person gerettet, Menschenrettung läuft, Nachforderung Drehleiter – kommen."'),
-        H2('disziplin', 'Funkdisziplin'),
-        KF(
-          'Erst hören, ob der Kanal frei ist – nicht dazwischenfunken',
-          'Sprechtaste drücken, kurz warten, dann sprechen',
-          'Betriebsnotwendige Nachrichten – kein „Quatschfunk"',
-          'Zahlen/Namen buchstabieren, wichtige Nachrichten wiederholen lassen'),
-        CO('warn', 'Rufnamen & Verschlüsselung', 'Klartext im Funk kann mitgehört werden (Analogfunk). Personennamen, Diagnosen und sensible Daten möglichst vermeiden bzw. über gesicherte Wege übermitteln. Der Digitalfunk (TETRA) ist verschlüsselt.'),
-        H2('stoerung', 'Bei Funkstörungen'),
-        P('Fällt der Funk aus, greifen alternative Kommunikationswege: Melder (Person), Sichtzeichen, Mobiltelefon oder Rückgriff auf DMO. Wichtige Aufträge im Zweifel persönlich bestätigen lassen.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {
