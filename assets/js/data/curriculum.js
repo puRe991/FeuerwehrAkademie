@@ -44,6 +44,7 @@ import { MODULES_EXTRA } from './modules-extra.js';
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
+import { LESSONS_F } from './content/f-atemschutz.js';
 
 export const MODULES = [
 
@@ -224,62 +225,7 @@ export const MODULES = [
     'Notfallverfahren und Verhalten bei Gerätestörung kennen',
   ],
   tags: ['Atemschutz', 'FwDV 7', 'PA', 'Innenangriff'],
-  lessons: [
-    {
-      id: 'f1', title: 'Gerätekunde Pressluftatmer', duration: 25,
-      blocks: [
-        H2('warum', 'Warum Atemschutz?'),
-        P('Brandrauch ist die häufigste Todesursache bei Bränden. Er enthält u. a. <b>Kohlenstoffmonoxid (CO)</b>, <b>Kohlenstoffdioxid (CO₂)</b>, Blausäure (HCN) und reizende/toxische Pyrolyseprodukte, ist heiß und sichtbehindernd. Zusätzlich sinkt der Sauerstoffgehalt.'),
-        CO('danger', 'Kohlenstoffmonoxid', 'CO ist farb-, geruch- und geschmacklos und bindet ca. 200–300× stärker an Hämoglobin als Sauerstoff. Schon geringe Konzentrationen wirken tödlich – deshalb nie ohne umluftunabhängigen Atemschutz in den Rauch.'),
-        H2('aufbau', 'Aufbau des Pressluftatmers (PA)'),
-        UL(
-          '<b>Druckluftflasche(n):</b> Stahl 300 bar oder Composite bis 300 bar, z. B. 6,8 l.',
-          '<b>Druckminderer:</b> reduziert Flaschendruck auf Mitteldruck (~7 bar).',
-          '<b>Lungenautomat (LA):</b> liefert Atemluft nach Bedarf, meist Überdruck (Plus-System).',
-          '<b>Atemanschluss (Vollmaske):</b> dichtet ab, schützt das Gesicht.',
-          '<b>Warneinrichtung:</b> akustisches Signal bei ca. 50–55 bar Restdruck.',
-          '<b>Trageeinrichtung</b> mit Bebänderung.'),
-        FIG('pressluftatmer', 'Luftweg im Pressluftatmer: von der Hochdruckflasche über den Druckminderer und Lungenautomaten zur Maske.'),
-        DEF('Überdruck-System', 'In der Maske herrscht permanent leichter Überdruck. Vorteil: Bei einer Undichtigkeit strömt Luft nach außen – keine Schadstoffe nach innen. Preis: höherer Luftverbrauch.'),
-        H2('einsatzkurz', 'Einsatzkurzprüfung'),
-        P('Vor jedem Einsatz führt der Geräteträger die Einsatzkurzprüfung durch: Flaschendruck (voll ≥ 270 bar), Hochdruckdichtprüfung, Funktion der Warneinrichtung und Dichtsitz der Maske.'),
-      ],
-    },
-    {
-      id: 'f2', title: 'Einsatzgrundsätze & Überwachung', duration: 20,
-      blocks: [
-        H2('grundsaetze', 'Einsatzgrundsätze nach FwDV 7'),
-        UL(
-          'Atemschutz nur trupp­weise (mind. 2 Personen) einsetzen.',
-          'Ständige Verbindung halten (Sicht, Ruf, Leine/Funk).',
-          'Rückweg sichern und beobachten.',
-          'Vor Rückzug denken: rechtzeitig umkehren, bevor die Luft knapp wird.',
-          'Bei Störung/Gefahr: gemeinsam als Trupp zurückziehen.'),
-        H2('grenzen', 'Einsatzgrenzen'),
-        P('Voraussetzungen für den Geräteträger: körperliche Eignung (arbeitsmedizinische Vorsorge <b>G 26.3</b>), Mindestalter, gültige Ausbildung und regelmäßige Übungen sowie Belastungsübung (Atemschutzstrecke).'),
-        H2('ueberwachung', 'Atemschutzüberwachung'),
-        P('Für jeden eingesetzten Trupp wird eine Überwachung geführt: Notiert werden Namen, Einsatzbeginn, Anfangsdruck und der berechnete Rückzugs-/Warnzeitpunkt. Die Überwachung hält ständigen Kontakt.'),
-        CO('info', 'Faustformel Rückzug', 'Rückzug rechtzeitig antreten! Grundregel: Für den Rückweg mindestens so viel Luft einplanen wie für den Hinweg verbraucht wurde – zzgl. Sicherheitsreserve. Spätestens bei Ansprechen der Warneinrichtung (~55 bar) ist der Rückzug bereits abzuschließen.'),
-      ],
-    },
-    {
-      id: 'f3', title: 'Notfallverfahren', duration: 15,
-      blocks: [
-        H2('mayday', 'Notfallmeldung „Mayday"'),
-        P('Gerät ein Trupp in eine lebensbedrohliche Notlage (Orientierungsverlust, Einschluss, Luftmangel, Verletzung), setzt er unverzüglich einen Notruf über Funk ab.'),
-        MNE([{l:'M',w:'Mayday'},{l:'A',w:'Atemschutznotfall'},{l:'N',w:'Name/Trupp'},{l:'V',w:'Vitalstatus'}],
-          'Nach dem Absetzen: Ruhe bewahren, Standort halten, Luft sparen (ruhig atmen), Kontakt zur Wand/Leine halten, Signal geben (Rufen, Klopfen, Lampe).'),
-        H2('sparen', 'Luft sparen im Notfall'),
-        STEPS(
-          'Ruhig und tief atmen, Panik vermeiden – Panik verdreifacht den Verbrauch',
-          'Notruf absetzen und Position beschreiben',
-          'Zur Wand orientieren und Rückzugsweg suchen',
-          'Bemerkbar machen: rufen, klopfen, Lampe zur Decke richten',
-          'Auf Sicherheitstrupp warten, Kräfte einteilen'),
-        CO('danger', 'Sicherheitstrupp', 'Der Sicherheitstrupp geht mit zusätzlichem Atemschutz-Rettungsgerät (z. B. Reserveluft/Rettungsmaske) vor. Er wird sofort alarmiert, sobald ein Mayday eingeht.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_F,
 },
 
 /* ======================================================================= G */

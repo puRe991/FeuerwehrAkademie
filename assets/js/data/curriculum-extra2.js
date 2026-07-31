@@ -99,58 +99,6 @@ export const EXTRA_LESSONS_2 = {
     },
   ],
 
-  /* ------------------------------------------------------------------- F */
-  'f-atemschutz': [
-    {
-      id: 'f5', title: 'Gerätevarianten, Fluchthauben & Filter', duration: 18,
-      blocks: [
-        H2('einteilung', 'Einteilung der Atemschutzgeräte'),
-        P('Atemschutz teilt sich grundsätzlich in zwei Familien: <b>umluftabhängig</b> (Filtergeräte – reinigen die Umgebungsluft) und <b>umluftunabhängig</b> (Isoliergeräte – eigene Atemluft).'),
-        TBL(['Typ', 'Prinzip', 'Grenze'],[
-          ['Filtergerät', 'Filter reinigt Umgebungsluft', 'nur bei genug O₂ und bekannter, gefilterter Gefahr'],
-          ['Pressluftatmer (Behältergerät)', 'Druckluft aus Flasche', 'Standard der Feuerwehr, zeitlich begrenzt'],
-          ['Regenerationsgerät', 'chemische/O₂-Regeneration', 'lange Einsatzzeiten (Grubenwehr, Spezial)'],
-        ]),
-        CO('danger', 'Filter ≠ Universalschutz', 'Ein Filtergerät versagt bei Sauerstoffmangel und bei Stoffen, für die der Filter nicht ausgelegt ist. Im Brandeinsatz mit unbekanntem Rauch gilt immer: umluftunabhängiger Atemschutz.'),
-        H2('flucht', 'Fluchthauben & Selbstretter'),
-        P('Fluchthauben (Brandfluchthauben) schützen zu rettende Personen kurzzeitig vor Rauch beim Verlassen des Gebäudes. Sie sind Rettungsmittel für Betroffene – kein Ersatz für den PA der Einsatzkraft.'),
-        H2('lungenautomat', 'Lungenautomat & Maske'),
-        UL(
-          'Dichtsitz der Maske ist entscheidend (Bart/Brille können stören)',
-          'Überdrucksysteme verhindern Schadstoffeintritt bei Leckage',
-          'Vor Einsatz: Einsatzkurzprüfung, nach Einsatz: Reinigung & Prüfung',
-          'Maske und Lungenautomat sind persönlich anzupassen'),
-      ],
-    },
-    {
-      id: 'f6', title: 'Atemschutzunfall, Rettung & Zusammenarbeit', duration: 20,
-      blocks: [
-        H2('ursachen', 'Wie es zum Notfall kommt'),
-        UL(
-          'Orientierungsverlust in Rauch/Dunkelheit',
-          'Luftmangel durch Fehleinschätzung oder Gerätestörung',
-          'Einschluss durch Einsturz, verklemmte Türen, Verhängen',
-          'Gesundheitliche Probleme (Kreislauf, Überhitzung)',
-          'Absturz, Durchsturz durch geschwächte Böden/Decken'),
-        H2('mayday', 'Notfallmanagement'),
-        STEPS(
-          'Notruf „Mayday" absetzen: Wer, wo, was ist passiert, Luftvorrat',
-          'Ruhe bewahren, Luft sparen (ruhig atmen), Position halten',
-          'Bemerkbar machen: rufen, klopfen, Lampe zur Decke',
-          'Atemschutzüberwachung alarmiert sofort den Sicherheitstrupp',
-          'Sicherheitstrupp geht mit Rettungsausrüstung/Reserveluft vor'),
-        DEF('Rückzugssignal', 'Ein vereinbartes Signal (Funk, akustisch) für den sofortigen Rückzug aller Trupps – z. B. bei drohendem Einsturz oder Lageverschlechterung. Jeder Geräteträger muss es kennen und sofort befolgen.'),
-        H2('teamwork', 'Zusammenarbeit im Trupp (CRM-Gedanke)'),
-        KF(
-          'Klare Absprachen und ständige Kommunikation',
-          'Gegenseitige Kontrolle (Druck, Zustand, Orientierung)',
-          'Aufmerksamkeit teilen – nicht beide auf dieselbe Aufgabe fixieren',
-          'Entscheidungen laut aussprechen, Zweifel offen ansprechen'),
-        CO('tip', 'Der Trupp ist eine Einheit', 'Man geht gemeinsam vor und gemeinsam zurück. Ein Trupp lässt niemanden zurück – gegenseitiges Vertrauen und Aufmerksamkeit sind die beste Lebensversicherung.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- G */
   'g-technische-hilfe': [
     {

@@ -62,37 +62,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- F */
-  'f-atemschutz': [
-    {
-      id: 'f4', title: 'Atemgifte, Belastung & Vorgehen im Trupp', duration: 20,
-      blocks: [
-        H2('atemgifte', 'Einteilung der Atemgifte'),
-        P('Atemgifte wirken auf unterschiedliche Weise – die Einteilung hilft, die Gefahr einzuschätzen:'),
-        TBL(['Gruppe', 'Wirkung', 'Beispiel'],[
-          ['Erstickend', 'verdrängen Sauerstoff', 'CO₂, Stickstoff, Methan'],
-          ['Reizend/ätzend', 'schädigen Atemwege/Gewebe', 'Chlor, Ammoniak, nitrose Gase'],
-          ['Auf Blut/Nerven wirkend', 'stören Sauerstofftransport/Nerven', 'Kohlenstoffmonoxid, Blausäure'],
-        ]),
-        CO('danger', 'Sauerstoffmangel', 'Sinkt der Sauerstoffgehalt der Luft von normal 21 % ab, drohen ab ~17 % Leistungsabfall, ab ~11 % Bewusstlosigkeit, unter ~8 % rascher Tod. Umluftunabhängiger Atemschutz schützt – ein Filtergerät hier NICHT!'),
-        H2('luftverbrauch', 'Luftverbrauch realistisch einschätzen'),
-        P('Der Luftverbrauch hängt stark von Belastung und Stress ab: In Ruhe ~30 l/min, unter schwerer Arbeit und Stress leicht 60–100 l/min. Deshalb ist die Zeit im Gerät nie fix – rechtzeitiger Rückzug ist Pflicht.'),
-        KF(
-          'Ruhig und gleichmäßig atmen spart Luft und Kräfte',
-          'Hektik und Panik vervielfachen den Verbrauch',
-          'Reserve für den Rückweg immer einplanen',
-          'Die Atemschutzüberwachung rechnet mit – aber der Trupp ist selbst verantwortlich'),
-        H2('vorgehen', 'Im Trupp vorgehen'),
-        STEPS(
-          'Vor dem Einsatz: Einsatzkurzprüfung, Auftrag klären, Rückweg festlegen',
-          'Gemeinsam vorgehen, ständigen Kontakt halten (Sicht/Ruf/Körperkontakt)',
-          'Vorsichtig Türen/Räume erkunden, Wärme prüfen (Handrücken)',
-          'Regelmäßig Druck kontrollieren und melden',
-          'Bei Störung, Luftmangel oder Gefahr: gemeinsam zurückziehen'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- G */
   'g-technische-hilfe': [
     {
