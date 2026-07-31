@@ -55,6 +55,8 @@ import { LESSONS_M } from './content/m-vorbeugender-brandschutz.js';
 import { LESSONS_N } from './content/n-maschinist.js';
 import { LESSONS_O } from './content/o-baukunde.js';
 import { LESSONS_P } from './content/p-arbeitsschutz.js';
+import { LESSONS_Q } from './content/q-jugend.js';
+import { LESSONS_R } from './content/r-digital.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
 import { LESSONS_K } from './content/k-absturzsicherung.js';
 
@@ -312,43 +314,7 @@ export const MODULES = [
     'Kindeswohl und Prävention im Vereinsleben beachten',
   ],
   tags: ['Jugendfeuerwehr', 'Nachwuchs', 'Aufsichtspflicht', 'Pädagogik'],
-  lessons: [
-    {
-      id: 'q1', title: 'Auftrag & Rechtsrahmen', duration: 15,
-      blocks: [
-        H2('ziel', 'Was die Jugendfeuerwehr leistet'),
-        P('Die Jugendfeuerwehr (JF) verbindet <b>feuerwehrtechnische Grundausbildung</b> mit allgemeiner Jugendarbeit. Sie sichert den Nachwuchs, vermittelt Werte wie Teamgeist, Verantwortung und Hilfsbereitschaft und macht Kinder und Jugendliche fit für den späteren Einsatzdienst.'),
-        KF(
-          'Aufnahme meist ab 10 Jahren (landesabhängig, teils Kinderfeuerwehr ab 6)',
-          'Übergang in den aktiven Dienst i. d. R. ab 16/18 Jahren',
-          'Mischung aus Technik, Sport, Spiel und Gemeinschaft',
-          'Demokratische Mitbestimmung (Jugendsprecher, Gruppenstunden)'),
-        H2('recht', 'Rechtlicher Rahmen'),
-        DEF('Aufsichtspflicht', 'Betreuerinnen und Betreuer übernehmen für die Dauer der Veranstaltung die Aufsichtspflicht. Umfang richtet sich nach Alter, Reife und Gefährlichkeit der Tätigkeit. Grundsatz: so viel Freiheit wie möglich, so viel Aufsicht wie nötig.'),
-        UL(
-          '<b>Jugendschutzgesetz</b> und Jugendarbeitsschutz beachten',
-          '<b>Einverständniserklärungen</b> der Erziehungsberechtigten einholen',
-          'Kein Einsatz Minderjähriger im realen Gefahrenbereich',
-          'Qualifizierte Betreuer (JuLeiCa – Jugendleiter-Card empfohlen)'),
-      ],
-    },
-    {
-      id: 'q2', title: 'Sichere & altersgerechte Ausbildung', duration: 15,
-      blocks: [
-        H2('paedagogik', 'Altersgerecht ausbilden'),
-        P('Kinder und Jugendliche lernen anders als Erwachsene: kürzere Konzentrationsspannen, hoher Bewegungsdrang, starkes Bedürfnis nach Erfolgserlebnissen. Ausbildung sollte <b>handlungsorientiert, abwechslungsreich und altersgerecht</b> sein.'),
-        KF(
-          'Übungen in kleine, erlebbare Schritte gliedern',
-          'Sicherheit hat Vorrang – reduzierte Geräte, betreute Stationen',
-          'Erfolgserlebnisse schaffen, Wettbewerbe (Leistungsspange) motivieren',
-          'Vorbildfunktion der Betreuer – Sprache, Auftreten, PSA'),
-        H2('kindeswohl', 'Kindeswohl & Prävention'),
-        CO('warn', 'Schutzkonzept', 'Viele Feuerwehren haben ein Kinder- und Jugendschutzkonzept. Betreuer sollten geschult sein (Prävention sexualisierter Gewalt), erweitertes Führungszeugnis vorlegen und das „Vier-Augen-Prinzip" wahren. Kinderschutz ist Führungsaufgabe.'),
-        H2('gemeinschaft', 'Gemeinschaft & Bindung'),
-        P('Zeltlager, Ausflüge und gemeinsame Aktionen binden den Nachwuchs. Wer sich in der Jugendfeuerwehr wohlfühlt, bleibt der Feuerwehr oft ein Leben lang treu – Nachwuchsarbeit ist Investition in die Einsatzbereitschaft von morgen.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_Q,
 },
 
 /* ======================================================================= R */
@@ -363,45 +329,7 @@ export const MODULES = [
     'Rechtliche und sicherheitstechnische Grenzen beachten',
   ],
   tags: ['Wärmebild', 'Drohne', 'UAS', 'Technik', 'Digitalisierung'],
-  lessons: [
-    {
-      id: 'r1', title: 'Wärmebildkamera (WBK)', duration: 18,
-      blocks: [
-        H2('physik', 'Wie eine Wärmebildkamera „sieht"'),
-        P('Jeder Körper über dem absoluten Nullpunkt strahlt <b>Infrarotstrahlung</b> ab. Die Wärmebildkamera macht diese für das Auge unsichtbare Strahlung sichtbar und stellt Temperaturunterschiede als Bild dar – auch bei völliger Dunkelheit und im Rauch.'),
-        FIG('waermebild', 'Wärmebildkamera: Infrarotstrahlung wird über den Sensor in ein Falschfarbenbild umgesetzt – warme Bereiche hell, kalte dunkel.'),
-        H2('einsatz', 'Einsatzmöglichkeiten'),
-        KF(
-          'Personensuche im verrauchten Raum (Körperwärme)',
-          'Glutnester und Brandausbreitung in Wänden/Decken erkennen',
-          'Flüssigkeitsstände in Behältern abschätzen',
-          'Kontrolle nach dem Ablöschen (Nachlöscharbeiten)',
-          'Orientierung und Rückwegsicherung im Innenangriff'),
-        H2('grenzen', 'Grenzen & Fehlerquellen'),
-        CO('warn', 'Kein Röntgenblick', 'Die WBK sieht nur Oberflächentemperaturen – nicht durch Wände, Glas oder Wasser. Glas reflektiert IR (Spiegelbild!), heiße Umgebung „blendet", nasse Oberflächen verfälschen. Die Kamera ersetzt nie das systematische Absuchen und die eigene Sinne.'),
-        CO('danger', 'Verlass dich nicht blind', 'Ein Trupp darf sich nie allein auf die WBK verlassen: Bei Ausfall (Akku, Hitze) muss die Orientierung auch ohne Kamera funktionieren. Immer Wandkontakt und Rückweg sichern.'),
-      ],
-    },
-    {
-      id: 'r2', title: 'Drohnen (UAS) im Einsatz', duration: 17,
-      blocks: [
-        H2('was', 'Unbemannte Luftfahrtsysteme'),
-        P('Drohnen (fachlich UAS – Unmanned Aircraft Systems) liefern der Einsatzleitung schnell ein <b>Lagebild aus der Luft</b>. Mit Tageslicht- und Wärmebildkamera unterstützen sie die Erkundung erheblich.'),
-        H2('felder', 'Typische Einsatzfelder'),
-        UL(
-          '<b>Lageerkundung:</b> Überblick über ausgedehnte Schadenlagen, Dachflächen, unzugängliche Bereiche',
-          '<b>Vegetations-/Waldbrand:</b> Brandausbreitung und Glutnester aus der Luft',
-          '<b>Personensuche:</b> Vermisstensuche im Gelände (Wärmebild)',
-          '<b>Gefahrgut:</b> Erkundung aus sicherer Entfernung',
-          '<b>Dokumentation:</b> Lagekarten, Einsatznachbereitung'),
-        H2('recht', 'Rechtliche Grenzen'),
-        DEF('EU-Drohnenverordnung', 'Der Betrieb unterliegt EU-Recht (Kategorien Open/Specific/Certified), Registrierungs- und Kenntnisnachweispflichten. BOS haben teils Sonderregelungen, dennoch gelten Betriebsgrenzen, Flugverbotszonen und Fernpilot-Anforderungen.'),
-        CO('warn', 'Luftraum-Koordination', 'Bei Einsätzen mit Rettungshubschrauber ist die Luftraum-Koordination zwingend: Drohne und Hubschrauber dürfen sich nie gefährden. Der Drohnenbetrieb wird bei Bedarf sofort eingestellt.'),
-        H2('mehrwert', 'Mehrwert & Grenzen'),
-        P('Drohnen beschleunigen die Lagefeststellung und erhöhen die Sicherheit (Erkundung ohne Eigengefährdung). Sie ersetzen aber keine Erkundung am Boden und sind wetter- und akkuabhängig. Ausbildung und Übung der Fernpiloten sind entscheidend.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_R,
 },
 
 ];
