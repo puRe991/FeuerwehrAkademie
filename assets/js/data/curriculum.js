@@ -43,6 +43,7 @@ import { MODULES_EXTRA } from './modules-extra.js';
    mehr auf. */
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
+import { LESSONS_E } from './content/e-loescheinsatz.js';
 
 export const MODULES = [
 
@@ -208,48 +209,7 @@ export const MODULES = [
     'Das Kommando „zum Einsatz fertig" korrekt umsetzen',
   ],
   tags: ['FwDV 3', 'Löscheinsatz', 'Taktik', 'Gruppe'],
-  lessons: [
-    {
-      id: 'e1', title: 'Einsatzablauf & Truppaufgaben', duration: 25,
-      blocks: [
-        H2('grundsatz', 'Der Einsatzbefehl'),
-        P('Der Gruppenführer entwickelt aus der <b>Lageerkundung</b> seinen Entschluss und gibt den Einsatzbefehl in fester Reihenfolge. Der klassische Befehlsaufbau lautet:'),
-        MNE([{l:'E',w:'Einheit'},{l:'A',w:'Auftrag'},{l:'M',w:'Mittel'},{l:'Z',w:'Ziel'},{l:'W',w:'Weg'}],
-          '„Einheit – Auftrag – Mittel – Ziel – Weg": Wer macht was, womit, wozu und auf welchem Weg. Beispiel: „Angriffstrupp – zur Menschenrettung – mit C-Rohr – über die Treppe – vor!"'),
-        H2('trupps', 'Aufgaben der Trupps (Löscheinsatz)'),
-        TBL(['Trupp', 'Grundaufgabe', 'Danach'],[
-          ['Angriffstrupp', 'Menschenrettung & Brandbekämpfung (1. Rohr)', 'hält den Innenangriff'],
-          ['Wassertrupp', 'Wasserversorgung Verteiler ← Pumpe herstellen', 'stellt Sicherheitstrupp'],
-          ['Schlauchtrupp', 'Schlauchleitung Verteiler → Angriffstrupp verlegen', 'unterstützt / 2. Rohr'],
-        ]),
-        CO('info', 'Faustregel Wasserversorgung', 'Der Wassertrupp arbeitet „von der Pumpe zum Verteiler". Der Angriffstrupp arbeitet „vom Verteiler zum Brand". Der Verteiler ist die Nahtstelle.'),
-        FIG('wasserweg', 'Der Wasserweg: von der Pumpe über den Verteiler zum Strahlrohr – verbunden mit Storz-Kupplungen.'),
-        H2('sicherheit', 'Der Sicherheitstrupp'),
-        DEF('Sicherheitstrupp', 'Bei einem Atemschutzeinsatz muss ein zweiter, ausgerüsteter Trupp bereitstehen, um einen in Not geratenen Trupp zu retten. Grundsatz: „Kein Innenangriff unter Atemschutz ohne Sicherheitstrupp."'),
-      ],
-    },
-    {
-      id: 'e2', title: 'Wasserförderung & besondere Einsätze', duration: 25,
-      blocks: [
-        H2('foerderung', 'Wasserförderung über lange Wegstrecke'),
-        P('Reicht die Löschwassermenge am Objekt nicht aus, wird über eine lange B-Schlauchstrecke gefördert. Bei großen Höhenunterschieden oder Entfernungen kommen <b>Verstärkerpumpen</b> zum Einsatz.'),
-        KF(
-          'Reibungsverluste steigen mit Länge und Durchfluss',
-          'Höhenunterschied: je 10 m Höhe ≈ 1 bar Druckverlust',
-          'Eingangsdruck an Folgepumpe mind. 1,5 bar halten (Kavitation vermeiden)',
-          'Kommunikation zwischen den Pumpen ist entscheidend'),
-        H2('offenes', 'Wasserentnahme aus offenem Gewässer'),
-        STEPS(
-          'Saugschläuche kuppeln und mit Saugkorb + Ventilleine sichern',
-          'Halteleine anbringen, Saugleitung zu Wasser bringen',
-          'Entlüftungseinrichtung betätigen, bis Wasser ansteht',
-          'Pumpe langsam auf Betriebsdruck bringen, Druckabgang öffnen'),
-        CO('warn', 'Kavitation', 'Zu hohe Saughöhe oder verstopfter Saugkorb führen zu Kavitation (Dampfblasenbildung) – die Pumpe „reißt ab" und kann beschädigt werden. Max. geodätische Saughöhe praktisch ca. 7,5 m.'),
-        H2('riegel', 'Riegelstellung & Brandausbreitung'),
-        P('Bei ausgedehnten Bränden verhindert eine <b>Riegelstellung</b> das Übergreifen auf Nachbarobjekte. Der Gruppenführer bestimmt Abschnitte; Prioritäten sind Menschenrettung, dann Ausbreitungsverhinderung, dann Ablöschen.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_E,
 },
 
 /* ======================================================================= F */

@@ -62,33 +62,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- E */
-  'e-loescheinsatz': [
-    {
-      id: 'e3', title: 'Innenangriff & Brandbekämpfungsverfahren', duration: 22,
-      blocks: [
-        H2('grundsatz', 'Vorgehen im Innenangriff'),
-        P('Der Innenangriff ist der direkte Angriff auf den Brand im Gebäude – das wirksamste, aber auch gefährlichste Verfahren. Er verlangt Atemschutz, Sicherheitstrupp, Wasser am Rohr und höchste Disziplin.'),
-        KF(
-          'Immer geduckt vorgehen (Temperaturschichtung: unten kühler)',
-          'Tür kontrolliert öffnen (Türprozedur), vorher Rauchgase kühlen',
-          'Rückweg merken und sichern (Schlauch als Leitlinie)',
-          'Nur mit Wasser am Rohr vorgehen, Trupp bleibt zusammen'),
-        H2('verfahren', 'Brandbekämpfungsverfahren'),
-        TBL(['Verfahren', 'Prinzip'],[
-          ['Direkter Angriff', 'Wasser direkt auf das brennende Material – Kühlung'],
-          ['Indirekter Angriff', 'Wasser an heiße Oberflächen/Decke – Wasserdampf erstickt (nur ohne Personen im Raum!)'],
-          ['Offensiv (Innenangriff)', 'Vorgehen ins Gebäude, wenn vertretbar'],
-          ['Defensiv (Außenangriff)', 'Angriff von außen, wenn Innenangriff zu gefährlich (Einsturz, Vollbrand)'],
-        ]),
-        CO('danger', 'Offensiv vs. defensiv', 'Die Entscheidung trifft die Führungskraft nach Lagebeurteilung. Bei Einsturzgefahr, Vollbrand ohne Menschenleben oder unzureichenden Kräften ist der Wechsel in den defensiven Außenangriff die richtige, lebensrettende Entscheidung.'),
-        H2('rauchgas', 'Rauchgaskühlung & Ventilation'),
-        P('Kurze Sprühstöße in die heiße Rauchgasschicht senken die Temperatur und die Flashover-Gefahr. Durch <b>taktische Ventilation</b> (z. B. Überdrucklüfter) wird Rauch gezielt aus dem Gebäude gedrückt – nur koordiniert, sonst Anfachen des Feuers!'),
-        DEF('Überdruckbelüftung (PPV)', 'Ein Lüfter erzeugt vor dem Gebäude Überdruck und drückt Rauch/Wärme durch eine definierte Abluftöffnung heraus. Zwingend: Abluftöffnung schaffen und mit dem Innenangriff abstimmen.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- F */
   'f-atemschutz': [
     {
