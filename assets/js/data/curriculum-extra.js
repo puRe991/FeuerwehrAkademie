@@ -116,30 +116,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- I */
-  'i-gefahrgut': [
-    {
-      id: 'i3', title: 'Strahlenschutz & radiologische Gefahren', duration: 20,
-      blocks: [
-        H2('grundlagen', 'Ionisierende Strahlung'),
-        P('Bei A-Einsätzen (atomar/radiologisch) geht die Gefahr von <b>ionisierender Strahlung</b> aus. Man unterscheidet drei Strahlungsarten mit sehr unterschiedlicher Durchdringung.'),
-        TBL(['Strahlung', 'Reichweite/Abschirmung', 'Gefahr'],[
-          ['Alpha (α)', 'wenige cm Luft, Papier schirmt ab', 'gefährlich bei Inkorporation (Einatmen/Verschlucken)'],
-          ['Beta (β)', 'Meter in Luft, dünnes Metall/Plexiglas', 'Haut/Augen, auch Inkorporation'],
-          ['Gamma (γ) / Neutronen', 'sehr durchdringend, dicke Abschirmung nötig', 'Ganzkörperbestrahlung'],
-        ]),
-        FIG('strahlungsarten', 'Reichweite und Abschirmung: Alpha stoppt Papier, Beta Metall, Gamma erst dickes Blei/Beton.'),
-        H2('schutz', 'Die vier A des Strahlenschutzes'),
-        MNE([{l:'A',w:'Abstand'},{l:'A',w:'Aufenthaltszeit'},{l:'A',w:'Abschirmung'},{l:'A',w:'Aktivitätsbegrenzung'}],
-          'Großer Abstand (Dosis sinkt mit dem Quadrat der Entfernung!), kurze Aufenthaltszeit, Abschirmung nutzen, Aufnahme/Kontamination vermeiden (Atemschutz, Schutzkleidung).'),
-        DEF('Kontamination vs. Inkorporation', 'Kontamination = radioaktive Stoffe haften außen an (abwaschbar/Dekon). Inkorporation = radioaktive Stoffe sind in den Körper gelangt (eingeatmet/verschluckt) – deutlich gefährlicher, kaum umkehrbar.'),
-        CO('warn', 'Dosisleistungsmessgerät', 'Der Gefahrenbereich wird mit Messgeräten festgelegt. Faustwert: Grenze des Gefahrenbereichs oft bei 25 µSv/h. Ohne Messung großzügig Abstand halten und Fachkräfte/Strahlenschutz nachfordern.'),
-        H2('vorgehen', 'Vorgehen der ersten Einheit'),
-        P('Auch hier gilt die GAMS-Regel: Gefahr erkennen (Kennzeichen „Radioaktiv", Trefoil-Symbol), Absperren, Menschen retten (Menschenrettung hat auch hier Vorrang – die Strahlendosis bei kurzer Rettung bleibt meist vertretbar), Spezialkräfte anfordern.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {

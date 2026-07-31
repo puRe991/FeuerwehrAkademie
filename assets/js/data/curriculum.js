@@ -45,6 +45,7 @@ import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
+import { LESSONS_I } from './content/i-gefahrgut.js';
 import { LESSONS_J } from './content/j-erste-hilfe.js';
 
 export const MODULES = [
@@ -355,52 +356,7 @@ export const MODULES = [
     'Grundlagen der Dekontamination erklären',
   ],
   tags: ['ABC', 'Gefahrgut', 'FwDV 500', 'CBRN'],
-  lessons: [
-    {
-      id: 'i1', title: 'Erkennen & Kennzeichnung', duration: 25,
-      blocks: [
-        H2('gefahren', 'Die Gefahren der Gefahrstoffe'),
-        P('ABC steht für <b>Atomare (radiologische), Biologische und Chemische</b> Gefahren. Die möglichen Schädigungswege fasst man mit den „4 A" bzw. „AAAA" zusammen:'),
-        MNE([{l:'A',w:'Atemgifte'},{l:'A',w:'Angst'},{l:'A',w:'Ausbreitung'},{l:'A',w:'Atomare Gefahr'}],
-          'Ergänzt um: Chemische Gefahr, Erkrankung/Verletzung, Explosion, Einsturz, Elektrizität – die klassischen „Gefahren der Einsatzstelle".'),
-        CO('info', 'Gefahren der Einsatzstelle', 'Merkschema „4 A – 1 C – 4 E": Atemgifte, Angst, Ausbreitung, Atomare Gefahr | Chemische Gefahr | Erkrankung/Verletzung, Explosion, Einsturz, Elektrizität.'),
-        H2('kennzeichnung', 'Kennzeichnung im Transport'),
-        DEF('Orangefarbene Warntafel', 'An Gefahrgut-Transportern. Oben die <b>Gefahrnummer</b> (Kemler-Zahl), unten die <b>UN-Nummer</b> (Stoffnummer). Beispiel 33/1203 = leicht entzündlicher Stoff / Benzin.'),
-        FIG('warntafel', 'Orangefarbene Warntafel: oben die Gefahrnummer (Kemler), unten die UN-Stoffnummer.'),
-        UL(
-          '<b>Kemler-Zahl:</b> erste Ziffer = Hauptgefahr, weitere = Nebengefahren. Verdopplung = Verstärkung. Vorangestelltes „X" = darf nicht mit Wasser in Berührung kommen!',
-          '<b>UN-Nummer:</b> identifiziert den konkreten Stoff (Nachschlagen in Hommel/ERICARD).',
-          '<b>Gefahrzettel (Rauten):</b> Symbol + Klasse (z. B. Klasse 3 entzündbare Flüssigkeiten).',
-          '<b>GHS/CLP-Piktogramme:</b> Kennzeichnung ortsfester Gebinde/Chemikalien.'),
-        CO('danger', 'Erste Ziffer 0', 'Steht als zweite Ziffer eine 0, hat der Stoff keine weitere Nebengefahr. Ein „X" vor der Kemler-Zahl warnt: gefährliche Reaktion mit Wasser – kein Wasser einsetzen!'),
-      ],
-    },
-    {
-      id: 'i2', title: 'GAMS-Regel & Gefahrengruppen', duration: 30,
-      blocks: [
-        H2('gams', 'Die GAMS-Regel'),
-        P('Für die ersteintreffende Einheit ohne Spezialausrüstung gilt die <b>GAMS-Regel</b> als Handlungsrahmen:'),
-        MNE([{l:'G',w:'Gefahr erkennen'},{l:'A',w:'Absperren'},{l:'M',w:'Menschen retten'},{l:'S',w:'Spezialkräfte'}],
-          'Gefahr erkennen → Absperren (Abstand!) → Menschenrettung nur mit Eigenschutz → Spezialkräfte (Gefahrgutzug, Fachberater) nachfordern.'),
-        FIG('gams', 'Die GAMS-Regel als Handlungsrahmen der ersteintreffenden Einheit bei Gefahrgutlagen.'),
-        CO('warn', 'Abstand ist Schutz', 'Grundregel Abstand: bei unklarer Lage mind. 50 m, bei größeren Mengen/Explosionsgefahr deutlich mehr. Windrichtung beachten – immer von der windzugewandten Seite (Luv) annähern.'),
-        H2('gruppen', 'Gefahrengruppen (FwDV 500)'),
-        TBL(['Gruppe', 'Bedeutung', 'Schutz'],[
-          ['I', 'geringe Gefahr', 'umluftunabhängiger Atemschutz + Schutzkleidung (Form 1)'],
-          ['II', 'erhöhte Gefahr', 'Kontaminationsschutz (Form 2), erweiterte Maßnahmen'],
-          ['III', 'hohe Gefahr', 'Chemikalienschutzanzug (CSA, Form 3), Dekon zwingend'],
-        ]),
-        H2('dekon', 'Dekontamination'),
-        DEF('Dekontamination (Dekon)', 'Entfernen oder Unschädlichmachen gefährlicher Stoffe von Personen, Geräten und Kleidung. Es gibt Stufen von der Notdekon (schnell, lebensrettend) bis zur Standard-/Gerätedekon. Ziel: Verschleppung verhindern.'),
-        STEPS(
-          'Gefahrenbereich mit Zugangskontrolle einrichten (Schwarz-/Weißbereich)',
-          'Dekon-Platz an der Grenze aufbauen (Dekon-P für Personen)',
-          'Kontaminierte grob und fein dekontaminieren',
-          'Registrierung, ärztliche Kontrolle, Abtransport'),
-        CO('info', 'Zonenmodell', 'Klassisch: Gefahrenzone (rot, nur Schutzausrüstung), Dekon-/Absperrbereich (gelb), sicherer Bereich (grün). Übergänge nur über den Dekon-Platz.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_I,
 },
 
 /* ======================================================================= J */

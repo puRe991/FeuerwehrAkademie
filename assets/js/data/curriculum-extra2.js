@@ -251,56 +251,6 @@ export const EXTRA_LESSONS_2 = {
     },
   ],
 
-  /* ------------------------------------------------------------------- I */
-  'i-gefahrgut': [
-    {
-      id: 'i4', title: 'Chemische Grundlagen & Ausbreitung', duration: 20,
-      blocks: [
-        H2('zustand', 'Zustandsformen & Ausbreitung'),
-        P('Gefahrstoffe verhalten sich je nach Zustandsform sehr unterschiedlich – das bestimmt Ausbreitung und Schutzmaßnahmen.'),
-        TBL(['Form', 'Verhalten'],[
-          ['Gas/Dampf', 'breitet sich in Luft aus (Windrichtung!), teils schwerer/leichter als Luft'],
-          ['Flüssigkeit', 'fließt in Senken/Kanäle, bildet Dämpfe'],
-          ['Feststoff/Staub', 'Verwehung, Kontaktgefahr, Staubexplosion'],
-        ]),
-        H2('eigenschaften', 'Gefährliche Eigenschaften'),
-        UL(
-          '<b>Brennbar/entzündbar:</b> Flammpunkt, Zündtemperatur beachten',
-          '<b>Giftig/gesundheitsschädlich:</b> Aufnahme über Atmung, Haut, Verschlucken',
-          '<b>Ätzend/reizend:</b> Zerstörung von Gewebe/Material',
-          '<b>Oxidierend:</b> fördert Brände, reagiert heftig',
-          '<b>Umweltgefährlich:</b> Gewässer-/Bodenschäden'),
-        H2('dichte', 'Dichte & Wasserlöslichkeit'),
-        DEF('Relative Dichte & Löslichkeit', 'Ob ein Stoff auf Wasser schwimmt oder sinkt und ob er sich löst, entscheidet über die Ausbreitung im Gewässer und die Löschmittelwahl. Diese Angaben stehen im Nachschlagewerk (z. B. Hommel) zur UN-Nummer.'),
-        CO('warn', 'Nachschlagen statt raten', 'Im Zweifel niemals raten: Über UN-Nummer im Gefahrgut-Nachschlagewerk (Hommel, ERICARD, Einsatz-App) die Stoffdaten und empfohlenen Maßnahmen ermitteln – oder Fachberater/Giftinformationszentrale hinzuziehen.'),
-      ],
-    },
-    {
-      id: 'i5', title: 'Messen, Nachweisen & Einsatzhygiene', duration: 18,
-      blocks: [
-        H2('spuren', 'Spür- und Messtrupp'),
-        P('Der Spür-/Messtrupp bestimmt Art und Ausdehnung der Gefahr. Erst mit Messwerten lassen sich Gefahrenbereich und Schutzstufe sicher festlegen.'),
-        TBL(['Messgröße', 'Gerät/Methode'],[
-          ['Explosionsgefahr', 'Ex-Messgerät (% UEG)'],
-          ['Sauerstoff', 'O₂-Sensor'],
-          ['Giftige Gase', 'Prüfröhrchen, elektrochemische Sensoren, PID'],
-          ['Radioaktivität', 'Dosisleistungsmessgerät'],
-          ['pH/Stoffart', 'Indikatorpapier, Teststäbchen'],
-        ]),
-        H2('zonen', 'Gefahrenbereich festlegen'),
-        P('Auf Basis der Messwerte werden die Zonen (Gefahren-, Absperr-, sicherer Bereich) festgelegt. Der Zugang erfolgt nur über die Dekon-Stelle. Windrichtung laufend beobachten.'),
-        H2('hygiene', 'Einsatz- & Kontaminationshygiene'),
-        STEPS(
-          'Nur mit passender Schutzstufe in den Gefahrenbereich',
-          'Kontakt mit dem Stoff minimieren, nichts verschleppen',
-          'Beim Verlassen: Dekontamination (grob → fein)',
-          'Schutzkleidung/Geräte fachgerecht dekontaminieren oder entsorgen',
-          'Betroffene ärztlich kontrollieren, dokumentieren'),
-        CO('danger', 'Verschleppung vermeiden', 'Kontaminierte Kräfte und Geräte dürfen den sicheren Bereich nur nach Dekontamination betreten. Sonst verschleppt man den Gefahrstoff in Fahrzeuge, Wache und nach Hause.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {
