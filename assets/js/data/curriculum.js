@@ -42,6 +42,7 @@ import { MODULES_EXTRA } from './modules-extra.js';
    die betreffenden Module tauchen deshalb in curriculum-extra*.js nicht
    mehr auf. */
 import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
+import { LESSONS_B } from './content/b-brennen-loeschen.js';
 
 export const MODULES = [
 
@@ -72,65 +73,7 @@ export const MODULES = [
     'Gefahren wie Flashover und Backdraft erkennen',
   ],
   tags: ['Verbrennung', 'Löschmittel', 'Brandklassen', 'Chemie'],
-  lessons: [
-    {
-      id: 'b1', title: 'Verbrennung verstehen', duration: 25,
-      blocks: [
-        H2('dreieck', 'Das Verbrennungsdreieck'),
-        P('Eine Verbrennung ist eine <b>exotherme Oxidation</b> – ein Stoff reagiert unter Wärme- und Lichterscheinung mit Sauerstoff. Damit sie abläuft, müssen drei Faktoren gleichzeitig zusammenkommen:'),
-        KF(
-          '<b>Brennbarer Stoff</b> – fest, flüssig oder gasförmig',
-          '<b>Sauerstoff</b> – i. d. R. aus der Luft (~21 %)',
-          '<b>Zündtemperatur / Energie</b> – ausreichende Wärme zum Zünden'),
-        FIG('verbrennungsdreieck', 'Verbrennungsdreieck: Fehlt eine Seite, erlischt das Feuer – hier setzt jedes Löschverfahren an.'),
-        CO('info', 'Erweiterung: Verbrennungsfünfeck', 'Modern ergänzt man das Dreieck um das <b>richtige Mengenverhältnis</b> und den <b>ungestörten Kettenreaktions­ablauf</b> (Radikalkettenreaktion). Fehlt einer dieser fünf Faktoren, erlischt das Feuer – genau hier setzt jedes Löschverfahren an.'),
-        H2('begriffe', 'Wichtige Kenngrößen'),
-        DEF('Flammpunkt', 'Niedrigste Temperatur, bei der eine brennbare Flüssigkeit so viel Dampf abgibt, dass sich über ihr ein zündfähiges Dampf-Luft-Gemisch bildet (z. B. Benzin ca. −20 °C, Diesel ca. +55 °C).'),
-        DEF('Zündtemperatur', 'Temperatur, bei der sich ein brennbarer Stoff ohne äußere Zündquelle selbst entzündet (Selbstentzündung).'),
-        DEF('Explosionsgrenzen (UEG/OEG)', 'Bereich der Gas-/Dampfkonzentration in Luft, in dem ein zündfähiges Gemisch besteht. Unterhalb der UEG „zu mager", oberhalb der OEG „zu fett".'),
-        CO('warn', 'Gefahr', 'Flüssigkeiten brennen nie selbst – es brennt immer der Dampf über der Flüssigkeit. Deshalb ist der Flammpunkt so entscheidend.'),
-      ],
-    },
-    {
-      id: 'b2', title: 'Brandklassen & Löschmittel', duration: 20,
-      blocks: [
-        H2('klassen', 'Die Brandklassen nach DIN EN 2'),
-        TBL(['Klasse', 'Brennbare Stoffe', 'Geeignetes Löschmittel'],[
-          ['A', 'feste Stoffe (Holz, Papier, Textil, Kohle) – Glutbrände', 'Wasser, wässrige Netzmittel, ABC-Pulver'],
-          ['B', 'flüssige/flüssig werdende Stoffe (Benzin, Öl, Wachs, Lack)', 'Schaum, ABC/BC-Pulver, CO₂'],
-          ['C', 'Gase (Methan, Propan, Wasserstoff)', 'ABC/BC-Pulver – zuerst Gaszufuhr stoppen!'],
-          ['D', 'Metalle (Magnesium, Aluminium, Natrium)', 'Metallbrandpulver (D-Pulver), trockener Sand'],
-          ['F', 'Speiseöle/-fette in Frittier-/Küchengeräten', 'Fettbrand-Löscher (Verseifung), nie Wasser!'],
-        ]),
-        FIG('brandklassen', 'Die Brandklassen A–F – das geeignete Löschmittel richtet sich nach der Klasse.'),
-        CO('danger', 'Fettbrand niemals mit Wasser!', 'Wasser verdampft schlagartig im heißen Fett – es entsteht eine Fettexplosion (Dampfexplosion) mit meterhoher Stichflamme. Fettbrände nur ersticken (Deckel, F-Löscher).'),
-        CO('warn', 'Klasse E entfällt', 'Eine eigene „Brandklasse E" (elektrische Anlagen) gibt es offiziell nicht mehr. Entscheidend ist die Eignung des Löschmittels und der Sicherheitsabstand bei Spannung.'),
-        H2('wirkungen', 'Die vier Löschwirkungen'),
-        P('Jedes Löschmittel greift an mindestens einer Seite des Verbrennungsdreiecks an:'),
-        UL(
-          '<b>Abkühlen (Wasser):</b> Entzug von Wärmeenergie – Temperatur unter die Zündtemperatur senken.',
-          '<b>Ersticken (Schaum, CO₂, Sand):</b> Verdrängen/Trennen des Sauerstoffs vom Brennstoff.',
-          '<b>Trennen/Nährstoffentzug:</b> Entfernen des brennbaren Stoffs (z. B. Gaszufuhr absperren).',
-          '<b>Antikatalytischer Effekt (Pulver):</b> Unterbrechen der chemischen Kettenreaktion (Radikalfänger).'),
-        FIG('loeschwirkungen', 'Die vier Löschwirkungen – jedes Löschmittel greift an mindestens einer Seite des Verbrennungsdreiecks an.'),
-        DEF('Wasser als Löschmittel', '1 Liter Wasser bindet beim Verdampfen ca. 2,26 MJ Energie und dehnt sich auf ~1700 Liter Wasserdampf aus. Daher die enorme Kühlwirkung – aber auch das Risiko der Wasserdampfbildung in Innenräumen.'),
-      ],
-    },
-    {
-      id: 'b3', title: 'Brandphasen & extreme Brandereignisse', duration: 15,
-      blocks: [
-        H2('phasen', 'Der Brandverlauf'),
-        P('Ein Zimmerbrand durchläuft typische Phasen: <b>Entstehungsbrand → Schwelbrand/Wachstum → Vollbrand → Abklingen</b>. Der kritische Übergang vom Wachstum zum Vollbrand ist der Flashover.'),
-        FIG('brandverlauf', 'Typischer Temperaturverlauf eines Zimmerbrands – der Flashover markiert den sprunghaften Übergang zum Vollbrand.'),
-        H2('flashover', 'Flashover (Feuerübersprung)'),
-        DEF('Flashover', 'Schlagartige Durchzündung aller brennbaren Oberflächen in einem Raum, sobald diese durch Wärmestrahlung ihre Zündtemperatur erreichen. Vorwarnzeichen: starke Rauchgasschichtung, Pyrolysegase, „Rollover" (Flammenzungen im Rauch).'),
-        H2('backdraft', 'Backdraft (Rauchgasexplosion)'),
-        DEF('Backdraft', 'In einem sauerstoffarmen, geschlossenen Brandraum sammeln sich unverbrannte, heiße Pyrolysegase. Wird plötzlich Sauerstoff zugeführt (Tür/Fenster öffnen), zünden diese schlagartig explosionsartig durch.'),
-        CO('danger', 'Anzeichen für Backdraft-Gefahr', 'Pulsierender Rauch aus Ritzen, an Scheiben kondensierte Öle, nach innen gesogener Rauch, heiße Türen, pfeifende Geräusche. → Tür kontrolliert öffnen, Türprozedur anwenden, nicht ungeschützt öffnen!'),
-        CO('tip', 'Innenangriff-Grundsatz', 'Immer geduckt vorgehen, Temperaturschichtung beachten, mit dem Hohlstrahlrohr die Rauchgasschicht kühlen und Rückweg sichern. Nie ohne zweiten (Sicherheits-)Trupp und Wasser am Rohr.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_B,
 },
 
 /* ======================================================================= C */

@@ -7,32 +7,6 @@ import { P, H2, H3, UL, OL, KF, CO, DEF, STEPS, MNE, TBL, FIG } from './blocks.j
 
 export const EXTRA_LESSONS = {
 
-  /* ------------------------------------------------------------------- B */
-  'b-brennen-loeschen': [
-    {
-      id: 'b4', title: 'Löschmittel im Detail: Schaum, Pulver, CO₂', duration: 20,
-      blocks: [
-        H2('schaum', 'Löschschaum'),
-        P('Schaum entsteht aus <b>Wasser + Schaummittel + Luft</b>. Er legt sich als Decke auf brennende Flüssigkeiten, trennt Brennstoff und Sauerstoff (Ersticken) und kühlt. Entscheidend ist die Verschäumungszahl (VZ = Volumen Schaum ÷ Volumen Schaummittellösung).'),
-        TBL(['Schaumart', 'Verschäumungszahl', 'Einsatz'],[
-          ['Schwerschaum', 'bis 20', 'große Flüssigkeitsbrände, Wurfweite'],
-          ['Mittelschaum', '20–200', 'Flächen, Auffangräume'],
-          ['Leichtschaum', '200–1000', 'Fluten von Räumen/Kellern'],
-        ]),
-        DEF('Zumischer', 'Armatur, die dem Löschwasser Schaummittel in einem festen Prozentsatz (z. B. 3 %) beimischt. Kombiniert mit einem Schaumrohr, das Luft einbringt, entsteht der fertige Schaum.'),
-        CO('warn', 'Fluorfreie Schaummittel', 'Fluorhaltige Schaummittel (PFAS) stehen wegen ihrer Umwelt- und Gesundheitsschädlichkeit stark in der Kritik und werden zunehmend verboten. Moderne Wehren setzen auf fluorfreie Alternativen.'),
-        H2('pulver', 'Löschpulver'),
-        UL(
-          '<b>ABC-Pulver (Glutbrandpulver):</b> universell für feste, flüssige und gasförmige Stoffe',
-          '<b>BC-Pulver (Flammbrandpulver):</b> für Flüssigkeits- und Gasbrände',
-          '<b>D-Pulver (Metallbrandpulver):</b> speziell für Metallbrände'),
-        CO('info', 'Wirkung von Pulver', 'Pulver wirkt vor allem antikatalytisch (unterbricht die Kettenreaktion) – extrem schnelle Löschwirkung, aber keine Kühlung: Rückzündungsgefahr! Zudem starke Verschmutzung/Rückstände.'),
-        H2('co2', 'Kohlenstoffdioxid (CO₂)'),
-        P('CO₂ verdrängt den Sauerstoff (Ersticken) und hinterlässt keine Rückstände – ideal für elektrische Anlagen, Labore und empfindliche Technik. Nachteil: <b>Erstickungsgefahr</b> in geschlossenen Räumen für Personen, kaum Kühlwirkung.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- C */
   'c-fahrzeugkunde': [
     {
