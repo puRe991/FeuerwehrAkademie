@@ -140,40 +140,6 @@ export const EXTRA_LESSONS = {
     },
   ],
 
-  /* ------------------------------------------------------------------- J */
-  'j-erste-hilfe': [
-    {
-      id: 'j3', title: 'Wunden, Blutungen, Schock & Lagerung', duration: 20,
-      blocks: [
-        H2('blutung', 'Starke Blutungen stillen'),
-        P('Starke äußere Blutungen sind lebensbedrohlich und haben hohe Priorität. Schnelles, konsequentes Handeln rettet Leben.'),
-        STEPS(
-          'Eigenschutz: Einmalhandschuhe anziehen',
-          'Betroffenen hinlegen, verletzte Körperstelle hochhalten',
-          'Direkten Druck auf die Wunde ausüben (Druckverband)',
-          'Bei lebensbedrohlicher Extremitätenblutung: Tourniquet/Abbindung oberhalb der Wunde',
-          'Notruf, Betroffenen betreuen, auf Schock achten'),
-        DEF('Druckverband', 'Wundauflage + Druckpolster (z. B. Verbandpäckchen) fest über der Wunde anwickeln. Blutet es durch, den Verband nicht entfernen, sondern verstärken.'),
-        H2('schock', 'Der Schock'),
-        P('Ein Schock ist ein lebensbedrohliches Missverhältnis zwischen Sauerstoffbedarf und -angebot im Kreislauf (z. B. durch Blutverlust). Zeichen: blasse, kalte, schweißige Haut, Frieren, schneller Puls, Unruhe.'),
-        UL(
-          'Blutung stoppen (Ursache bekämpfen)',
-          'Flach lagern, Beine hochlagern (Schocklage) – außer bei bestimmten Verletzungen',
-          'Vor Wärmeverlust schützen (zudecken), beruhigen',
-          'Nichts zu essen/trinken geben, Notruf'),
-        H2('lagerung', 'Lagerungsarten'),
-        TBL(['Zustand', 'Lagerung'],[
-          ['bewusstlos, atmet', 'stabile Seitenlage'],
-          ['Schock', 'Schocklage (Beine hoch)'],
-          ['Atemnot / Herzprobleme', 'Oberkörper erhöht (sitzend)'],
-          ['Bauchverletzung', 'Knierolle (Beine angewinkelt)'],
-          ['Schädel-Hirn-Trauma', 'Oberkörper leicht erhöht, ruhigstellen'],
-        ]),
-        CO('tip', 'Betreuung nicht vergessen', 'Ansprache, Wärme und Zuwendung sind Teil der Ersten Hilfe. Ein betreuter, beruhigter Patient hat bessere Chancen – auch psychisch.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {

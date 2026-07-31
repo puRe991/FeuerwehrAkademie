@@ -45,6 +45,7 @@ import { LESSONS_A } from './content/a-rechtsgrundlagen.js';
 import { LESSONS_B } from './content/b-brennen-loeschen.js';
 import { LESSONS_E } from './content/e-loescheinsatz.js';
 import { LESSONS_F } from './content/f-atemschutz.js';
+import { LESSONS_J } from './content/j-erste-hilfe.js';
 
 export const MODULES = [
 
@@ -414,54 +415,7 @@ export const MODULES = [
     'Einen AED einsetzen',
   ],
   tags: ['Erste Hilfe', 'Reanimation', 'AED', 'Notfall'],
-  lessons: [
-    {
-      id: 'j1', title: 'Rettungskette & Basismaßnahmen', duration: 20,
-      blocks: [
-        H2('kette', 'Die Rettungskette'),
-        P('Der Behandlungserfolg hängt von einer lückenlosen Kette ab. Jedes Glied zählt – das schwächste bestimmt das Ergebnis.'),
-        UL(
-          '<b>Sofortmaßnahmen</b> (Absichern, Notruf, lebensrettende Handgriffe)',
-          '<b>Erste Hilfe</b> durch Anwesende',
-          '<b>Rettungsdienst</b> (Transport, notfallmedizinische Versorgung)',
-          '<b>Krankenhaus</b> (definitive Versorgung)'),
-        FIG('rettungskette', 'Die Rettungskette: Nur wenn alle Glieder greifen, gelingt die Versorgung.'),
-        H2('notruf', 'Notruf 112'),
-        MNE([{l:'W',w:'Wo'},{l:'W',w:'Was'},{l:'W',w:'Wie viele'},{l:'W',w:'Welche'},{l:'W',w:'Warten'}],
-          'Wo ist es passiert? Was ist geschehen? Wie viele Betroffene? Welche Verletzungen/Erkrankungen? Warten auf Rückfragen – nicht auflegen!'),
-        H2('auffinden', 'Auffinden einer Person'),
-        STEPS(
-          'Eigenschutz beachten, Bewusstsein prüfen (ansprechen, anfassen)',
-          'Bei fehlender Reaktion: laut um Hilfe rufen',
-          'Atemwege freimachen (Kopf überstrecken, Kinn anheben)',
-          'Atmung prüfen (max. 10 Sek.: sehen, hören, fühlen)',
-          'Normale Atmung → stabile Seitenlage; keine normale Atmung → Reanimation'),
-        FIG('seitenlage', 'Stabile Seitenlage: hält die Atemwege einer bewusstlosen Person mit normaler Atmung frei.'),
-      ],
-    },
-    {
-      id: 'j2', title: 'Reanimation & AED', duration: 20,
-      blocks: [
-        H2('hlw', 'Herz-Lungen-Wiederbelebung (HLW)'),
-        P('Bei Kreislaufstillstand (keine normale Atmung) sofort mit der HLW beginnen. Nach aktuellen ERC-Leitlinien im Verhältnis <b>30 : 2</b> (Kompressionen : Beatmungen).'),
-        KF(
-          'Druckpunkt: Mitte des Brustkorbs (untere Sternumhälfte)',
-          'Drucktiefe: 5–6 cm beim Erwachsenen',
-          'Frequenz: 100–120 pro Minute',
-          'Brustkorb vollständig entlasten, Unterbrechungen minimieren'),
-        FIG('hlw', 'Herz-Lungen-Wiederbelebung im Verhältnis 30 : 2 (Kompressionen : Beatmungen).'),
-        CO('tip', 'Nur-Drücken ist besser als Nichts', 'Wer sich eine Beatmung nicht zutraut, führt durchgehende Thoraxkompressionen durch. Entscheidend ist ununterbrochenes, kräftiges Drücken bis zum Eintreffen des Rettungsdienstes.'),
-        H2('aed', 'Automatisierter Externer Defibrillator (AED)'),
-        STEPS(
-          'AED sofort holen lassen und einschalten',
-          'Elektroden nach Bild aufkleben (rechts unter Schlüsselbein, links seitlich unter Achsel)',
-          'Analyse abwarten – dabei Patient nicht berühren',
-          'Bei Aufforderung Schock auslösen, danach sofort weiter drücken',
-          'Anweisungen des Geräts bis zum Eintreffen des Rettungsdienstes folgen'),
-        CO('danger', 'Zeit ist Leben', 'Mit jeder Minute ohne Reanimation sinkt die Überlebenswahrscheinlichkeit um ca. 10 %. Frühe HLW und frühe Defibrillation sind die entscheidenden Glieder.'),
-      ],
-    },
-  ],
+  lessons: LESSONS_J,
 },
 
 /* ======================================================================= K */

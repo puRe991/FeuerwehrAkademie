@@ -301,61 +301,6 @@ export const EXTRA_LESSONS_2 = {
     },
   ],
 
-  /* ------------------------------------------------------------------- J */
-  'j-erste-hilfe': [
-    {
-      id: 'j4', title: 'Internistische Notfälle: Herz & Kreislauf', duration: 20,
-      blocks: [
-        H2('herzinfarkt', 'Herzinfarkt'),
-        P('Beim Herzinfarkt verschließt sich ein Herzkranzgefäß – Herzmuskel stirbt ab. Jede Minute zählt.'),
-        KF(
-          'Starker Druck/Schmerz in der Brust, evtl. Ausstrahlung (Arm, Kiefer, Rücken)',
-          'Enge-/Vernichtungsgefühl, Angst, Atemnot, Blässe, kalter Schweiß',
-          'Bei Frauen/älteren Menschen oft untypisch (Übelkeit, Oberbauch)'),
-        STEPS(
-          'Notruf 112 (Verdacht Herzinfarkt nennen)',
-          'Beruhigen, Oberkörper erhöht lagern, enge Kleidung öffnen',
-          'Keine Anstrengung zulassen, Patient nicht allein lassen',
-          'Auf Herz-Kreislauf-Stillstand vorbereitet sein (AED holen)'),
-        H2('schlaganfall', 'Schlaganfall – der FAST-Test'),
-        MNE([{l:'F',w:'Face'},{l:'A',w:'Arms'},{l:'S',w:'Speech'},{l:'T',w:'Time'}],
-          'Face: hängt ein Mundwinkel? Arms: sinkt ein Arm ab? Speech: verwaschene Sprache? Time: sofort 112 – Zeit ist Hirn.'),
-        FIG('fast', 'Der FAST-Test erkennt einen Schlaganfall schnell – bei Auffälligkeit sofort den Notruf 112.'),
-        H2('weitere', 'Weitere internistische Notfälle'),
-        TBL(['Notfall', 'Erste Hilfe'],[
-          ['Krampfanfall', 'Umgebung sichern, nichts in den Mund, danach betreuen'],
-          ['Unterzuckerung', 'wenn wach & schluckfähig: Zucker geben'],
-          ['Asthmaanfall', 'aufrecht sitzen, eigenes Spray, beruhigen'],
-          ['Kollaps/Ohnmacht', 'Beine hoch, Atmung prüfen'],
-        ]),
-        CO('tip', 'Im Zweifel 112', 'Bei unklaren, aber bedrohlichen Symptomen lieber einmal zu viel den Notruf wählen. Der Disponent hilft weiter und schickt die passende Hilfe.'),
-      ],
-    },
-    {
-      id: 'j5', title: 'Thermische Notfälle, Vergiftungen & Verätzungen', duration: 18,
-      blocks: [
-        H2('verbrennung', 'Verbrennungen'),
-        STEPS(
-          'Hitzequelle entfernen, brennende Kleidung löschen (Decke, Wasser)',
-          'Kleinflächig kurz mit handwarmem Wasser kühlen (nicht großflächig – Unterkühlung!)',
-          'Wunde keimfrei bedecken, nicht öffnen/salben',
-          'Bei großflächigen/tiefen Verbrennungen: Notruf, Schock behandeln'),
-        CO('warn', 'Kühlen mit Maß', 'Nur kleine Flächen kurz kühlen. Großflächiges Kühlen droht mit gefährlicher Unterkühlung – besonders bei Kindern. Wärmeerhalt hat Vorrang.'),
-        H2('rauchgas', 'Rauchgasvergiftung'),
-        P('Rauchgas (v. a. CO, Blausäure) vergiftet auch, wenn die Person äußerlich unverletzt wirkt. Betroffene aus dem Gefahrenbereich bringen, Frischluft, Notruf – auch scheinbar Erholte ärztlich vorstellen (verzögerte Symptome).'),
-        H2('vergiftung', 'Vergiftungen'),
-        UL(
-          'Giftinformationszentrale kontaktieren (Beratung rund um die Uhr)',
-          'Reste/Verpackung sichern (Identifikation)',
-          'Kein Erbrechen erzwingen (Ausnahmen nur nach ärztlicher Anweisung)',
-          'Atemwege sichern, Vitalfunktionen überwachen'),
-        H2('veraetzung', 'Verätzungen'),
-        P('Bei Säuren/Laugen auf Haut/Auge: sofort mit viel Wasser spülen (Auge von innen nach außen, mind. 10–15 Min.), kontaminierte Kleidung entfernen, Notruf. Eigenschutz (Handschuhe) beachten.'),
-        CO('danger', 'Auge spülen', 'Verätzungen am Auge sind Notfälle: sofort und ausgiebig mit Wasser spülen und den Kopf so halten, dass die Spülflüssigkeit nicht ins gesunde Auge läuft.'),
-      ],
-    },
-  ],
-
   /* ------------------------------------------------------------------- K */
   'k-absturzsicherung': [
     {
