@@ -33,6 +33,7 @@ export const VIDEO_CATEGORIES = {
   baukunde:          { label: 'Objekt- & Baukunde',  color: '#8d6e63', icon: 'building' },
   arbeitsschutz:     { label: 'Arbeits- & Unfallschutz', color: '#d68910', icon: 'helmet' },
   digital:           { label: 'Digitale Einsatzunterstützung', color: '#00acc1', icon: 'target' },
+  rechtsgrundlagen:  { label: 'Rechtsgrundlagen & Organisation', color: '#455a64', icon: 'users' },
 };
 
 /* Videos. minutes = Länge in Minuten (für die Anzeige). */
@@ -268,6 +269,22 @@ export const LERNVIDEOS = [
     youtubeId: '2Xxq82w95gc',
     minutes: 9,
     desc: 'Wie unbemannte Fluggeräte die Lageerkundung bei Großschadenslagen verändern – vom ersten Überblick bis zur Personensuche.',
+  },
+  {
+    id: 'lv-aufgaben-feuerwehr',
+    title: 'Die Aufgaben der Feuerwehr',
+    category: 'rechtsgrundlagen',
+    youtubeId: 'd5ehpNEa6uI',
+    minutes: 6,
+    desc: 'Abwehrender und vorbeugender Brandschutz, Technische Hilfeleistung und Rettungsdienst: die gesetzlichen Aufgaben der Feuerwehr im Überblick.',
+  },
+  {
+    id: 'lv-dienstgrade',
+    title: 'Dienstgrade bei der Feuerwehr',
+    category: 'rechtsgrundlagen',
+    youtubeId: 'dE25a-OZrRc',
+    minutes: 8,
+    desc: 'Vom Feuerwehrmann bis zum Kreisbrandmeister: Laufbahnen, Dienstgrade und wer welche Funktion im Einsatz übernimmt.',
   },
 ];
 
