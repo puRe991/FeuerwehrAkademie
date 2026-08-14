@@ -249,6 +249,37 @@ export function resetAll() {
   persist(); emit();
 }
 
+/* ---- Fortschritt: Export / Import (Backup-Datei) ---- */
+const BACKUP_APP_ID = 'feuerwehr-akademie';
+const BACKUP_VERSION = 1;
+
+/** Kompletten Lernstand als Backup-JSON-String (für Datei-Download). */
+export function exportBackup() {
+  return JSON.stringify({
+    app: BACKUP_APP_ID,
+    version: BACKUP_VERSION,
+    exportedAt: new Date().toISOString(),
+    state,
+  }, null, 2);
+}
+
+/**
+ * Backup-JSON-String einspielen und den aktuellen Lernstand ersetzen.
+ * Gibt { ok: true } oder { ok: false, error } zurück, wirft nie.
+ */
+export function importBackup(json) {
+  let parsed;
+  try { parsed = JSON.parse(json); } catch { return { ok: false, error: 'invalid-json' }; }
+  const payload = parsed?.app === BACKUP_APP_ID ? parsed.state : null;
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return { ok: false, error: 'invalid-format' };
+  }
+  state = deepMerge(structuredClone(DEFAULT_STATE), payload);
+  persist();
+  emit();
+  return { ok: true };
+}
+
 /* --------------------- Abgeleitete Werte --------------------- */
 
 export function moduleProgress(moduleId, totalLessons) {

@@ -3,7 +3,7 @@
    ========================================================================= */
 import { LEVELS, MODULES } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
-import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll } from '../state.js';
+import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll, exportBackup, importBackup, todayStr } from '../state.js';
 import { esc, initials, toast, modal } from '../utils.js';
 
 const ROLES = [
@@ -114,7 +114,13 @@ export function renderProfile() {
         </div>
         <div class="card card--pad">
           <h3 style="margin-bottom:8px">Einstellungen</h3>
-          <button class="btn btn--danger btn--block" id="resetData">${icon('refresh')} Fortschritt zurücksetzen</button>
+          <div class="stack" style="--gap:8px">
+            <button class="btn btn--outline btn--block" id="exportData">${icon('download')} Fortschritt exportieren</button>
+            <button class="btn btn--outline btn--block" id="importData">${icon('upload')} Fortschritt importieren</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+            <button class="btn btn--danger btn--block" id="resetData">${icon('refresh')} Fortschritt zurücksetzen</button>
+          </div>
+          <p class="subtle" style="font-size:.8rem;margin:10px 0 0">Sichere deinen Fortschritt als Datei – z. B. vor einem Gerätewechsel oder Browser-Reset.</p>
         </div>
       </aside>
 
@@ -146,6 +152,47 @@ export function renderProfile() {
 }
 
 export function bindProfile(root, rerender) {
+  root.querySelector('#exportData')?.addEventListener('click', () => {
+    const json = exportBackup();
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `feuerwehr-akademie-fortschritt-${todayStr()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast('Fortschritt exportiert', 'ok');
+  });
+
+  const importInput = root.querySelector('#importFile');
+  root.querySelector('#importData')?.addEventListener('click', () => importInput?.click());
+  importInput?.addEventListener('change', () => {
+    const file = importInput.files?.[0];
+    importInput.value = '';
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result || '');
+      modal(`<h2 style="margin-top:0">Fortschritt importieren?</h2>
+        <p class="muted">Dein aktueller Lernfortschritt auf diesem Gerät wird durch den Inhalt von „${esc(file.name)}" ersetzt. Das kann nicht rückgängig gemacht werden.</p>
+        <div class="flex gap-sm" style="justify-content:flex-end;margin-top:16px">
+          <button class="btn btn--ghost" data-close>Abbrechen</button>
+          <button class="btn btn--danger" id="confirmImport">Ja, importieren</button>
+        </div>`, {}).root.addEventListener('click', e => {
+          if (e.target.closest('[data-close]')) e.target.closest('.modal-back').remove();
+          if (e.target.closest('#confirmImport')) {
+            const res = importBackup(text);
+            e.target.closest('.modal-back').remove();
+            if (res.ok) { toast('Fortschritt importiert', 'star'); rerender(); }
+            else toast('Datei ungültig – kein Feuerwehr-Akademie-Backup', 'bolt');
+          }
+        });
+    };
+    reader.readAsText(file);
+  });
+
   root.querySelector('#resetData')?.addEventListener('click', () => {
     modal(`<h2 style="margin-top:0">Fortschritt zurücksetzen?</h2>
       <p class="muted">Alle Lernfortschritte, Prüfungsergebnisse und Planspiel-Daten werden gelöscht. Dein Profil bleibt erhalten. Dies kann nicht rückgängig gemacht werden.</p>

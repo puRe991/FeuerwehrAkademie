@@ -40,6 +40,7 @@ export const ICON = {
   eye:       '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
   refresh:   '<path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>',
   download:  '<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+  upload:    '<path d="M12 21V9M7 14l5-5 5 5M4 3h16"/>',
 };
 
 export function icon(name, cls = '') {
