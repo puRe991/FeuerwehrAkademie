@@ -9,7 +9,7 @@ import { EXAMS } from '../data/exams.js';
 import { EXAM_SET_BY_ID, buildSetQuestions, setSize } from '../data/pruefungssets.js';
 import { figureHTML } from '../data/exam-figures.js';
 import { icon } from '../data/icons.js';
-import { saveExamResult, logActivity, recordQuestionResult, bestExam } from '../state.js';
+import { saveExamResult, logActivity, recordQuestionResult, bestExam, completeLesson } from '../state.js';
 import { esc, shuffle, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 
@@ -175,6 +175,11 @@ function finishSim(auto = false) {
   });
   saveExamResult(session.id, { score: r.score, passed: r.passed, correct: r.correct, total: r.total, kind: session.kind, mode: 'simulator' });
   logActivity('exam', session.id, { moduleId: session.id, title: session.title + ' · Simulation · ' + r.score + '%' });
+  if (r.passed && session.kind === 'module') {
+    // Bestandene Modulprüfung schließt automatisch das gesamte Lernfeld ab.
+    const m = MODULE_BY_ID[session.id];
+    if (m) m.lessons.forEach(l => completeLesson(session.id, l.id));
+  }
   if (r.passed) { confetti(); toast(`Bestanden mit ${r.score}%! +50 XP`, 'star'); }
   else toast(`${auto ? 'Zeit abgelaufen – ' : ''}${r.score}% – weiter üben! +10 XP`, 'bolt');
 }
