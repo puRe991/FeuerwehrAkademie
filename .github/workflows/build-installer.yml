@@ -1,0 +1,73 @@
+name: Windows-Installer bauen
+
+# Baut das professionelle Windows-Setup (FeuerwehrAkademie-Setup.exe) mit
+# Inno Setup auf einem Windows-Runner.
+#
+#  * Bei jedem Tag "v*" (z. B. v1.0.0) wird zusaetzlich automatisch ein
+#    GitHub-Release erstellt und die Setup.exe angehaengt.
+#  * Manuell ueber "Run workflow" startbar (mit optionaler Versionsnummer).
+#  * Das fertige Setup liegt danach immer als Build-Artefakt zum Download bereit.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Versionsnummer des Setups (z. B. 1.0.0)"
+        required: false
+        default: "1.0.0"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Setup.exe kompilieren
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Versionsnummer bestimmen
+        id: version
+        shell: pwsh
+        run: |
+          if ("${{ github.ref_type }}" -eq "tag") {
+            $v = "${{ github.ref_name }}".TrimStart("v")
+          } elseif ("${{ github.event.inputs.version }}") {
+            $v = "${{ github.event.inputs.version }}".TrimStart("v")
+          } else {
+            $v = "1.0.0"
+          }
+          if ($v -notmatch '^\d+(\.\d+){1,3}$') { $v = "1.0.0" }
+          "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          Write-Host "Setup-Version: $v"
+
+      - name: Inno Setup installieren
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+
+      - name: Setup kompilieren
+        shell: pwsh
+        run: |
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" `
+            "/DAppVersion=${{ steps.version.outputs.version }}" `
+            "installer\FeuerwehrAkademie.iss"
+
+      - name: Setup als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: FeuerwehrAkademie-Setup
+          path: installer/Output/FeuerwehrAkademie-Setup.exe
+          if-no-files-found: error
+
+      - name: Release erstellen und Setup anhaengen
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: installer/Output/FeuerwehrAkademie-Setup.exe
+          name: Feuerwehr Online Akademie ${{ steps.version.outputs.version }}
+          generate_release_notes: true

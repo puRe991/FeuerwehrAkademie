@@ -4,6 +4,10 @@
 *.bat -text
 *.cmd -text
 *.ps1 -text
+*.vbs -text
+
+# Icon-Datei ist binaer (nicht als Text behandeln/diffen)
+*.ico binary
 
 # Web-Quelltext einheitlich mit LF
 *.js   text eol=lf
