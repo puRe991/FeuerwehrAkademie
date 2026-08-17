@@ -15,3 +15,6 @@ npm-debug.log*
 
 # Vom Windows-Starter bei Bedarf heruntergeladener portabler Server
 tools/
+
+# Kompiliertes Setup (wird per CI/Inno Setup erzeugt, nicht eingecheckt)
+installer/Output/
