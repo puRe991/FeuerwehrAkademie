@@ -19,6 +19,7 @@ const DEFAULT_STATE = {
   mistakes: {},        // { [questionId]: { wrong, right, last: 'wrong'|'right', ts } } Fehler-Center
   knotsLearned: [],    // [knotId] im Knoten-Trainer als „geübt" markiert
   videosWatched: [],   // [videoId] in Lernvideos als „gesehen" markiert
+  reportsRead: [],     // [beispielId] in Lesebeispiele als „gelesen" markiert
   dailyQuiz: { day: null, correct: false }, // Frage des Tages – zuletzt beantworteter Tag
   streak: { count: 0, lastDay: null },
   xp: 0,
@@ -336,6 +337,19 @@ export function toggleVideoWatched(id) {
     const i = s.videosWatched.indexOf(id);
     if (i >= 0) s.videosWatched.splice(i, 1);
     else { s.videosWatched.push(id); s.xp = (s.xp || 0) + 15; }
+  });
+  touchStreak();
+}
+
+/* ---- Lesebeispiele (Aus der Praxis lernen) ---- */
+export function isReportRead(id) { return (state.reportsRead || []).includes(id); }
+
+export function toggleReportRead(id) {
+  update(s => {
+    if (!s.reportsRead) s.reportsRead = [];
+    const i = s.reportsRead.indexOf(id);
+    if (i >= 0) s.reportsRead.splice(i, 1);
+    else { s.reportsRead.push(id); s.xp = (s.xp || 0) + 10; }
   });
   touchStreak();
 }
