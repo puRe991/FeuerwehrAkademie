@@ -3,7 +3,8 @@
    ========================================================================= */
 import { LEVELS, MODULES } from '../data/curriculum.js';
 import { icon } from '../data/icons.js';
-import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll } from '../state.js';
+import { getState, setProfile, moduleProgress, isModulePassed, bestExam, level, resetAll,
+         listAccounts, switchAccount, createAccount, deleteAccount } from '../state.js';
 import { esc, initials, toast, modal } from '../utils.js';
 
 const ROLES = [
@@ -113,6 +114,11 @@ export function renderProfile() {
           <div class="between" style="padding:6px 0"><span class="muted">Planspiele</span><b>${Object.values(s.planspielResults).reduce((n,a)=>n+a.length,0)}</b></div>
         </div>
         <div class="card card--pad">
+          <h3 style="margin-bottom:8px">Benutzer</h3>
+          <p class="subtle" style="margin:0 0 10px;font-size:.85rem">${listAccounts().length} Profil${listAccounts().length === 1 ? '' : 'e'} auf diesem Gerät.</p>
+          <button class="btn btn--outline btn--block" id="switchUser">${icon('users')} Benutzer wechseln</button>
+        </div>
+        <div class="card card--pad">
           <h3 style="margin-bottom:8px">Einstellungen</h3>
           <button class="btn btn--danger btn--block" id="resetData">${icon('refresh')} Fortschritt zurücksetzen</button>
         </div>
@@ -146,6 +152,8 @@ export function renderProfile() {
 }
 
 export function bindProfile(root, rerender) {
+  root.querySelector('#switchUser')?.addEventListener('click', () => openUserSwitcher(rerender));
+
   root.querySelector('#resetData')?.addEventListener('click', () => {
     modal(`<h2 style="margin-top:0">Fortschritt zurücksetzen?</h2>
       <p class="muted">Alle Lernfortschritte, Prüfungsergebnisse und Planspiel-Daten werden gelöscht. Dein Profil bleibt erhalten. Dies kann nicht rückgängig gemacht werden.</p>
@@ -191,6 +199,102 @@ export function bindProfile(root, rerender) {
         m.close(); toast('Profil aktualisiert', 'ok'); rerender();
       }
     });
+  });
+}
+
+/* ---------- Benutzer-Umschalter (Mehrbenutzer) ---------- */
+
+function accountRow(a) {
+  const name = a.name || 'Neues Profil';
+  const sub = a.active ? 'Aktiv' : (a.role || `Level ${a.level} · ${a.xp} XP`);
+  return `
+  <div class="acct-row ${a.active ? 'acct-row--active' : ''}" data-acct="${esc(a.id)}">
+    <button class="acct-pick" data-switch="${esc(a.id)}" ${a.active ? 'aria-current="true"' : ''}>
+      <span class="avatar" style="width:40px;height:40px">${initials(a.name || '?')}</span>
+      <span class="acct-meta">
+        <b>${esc(name)}</b>
+        <span class="subtle">${esc(sub)}</span>
+      </span>
+      ${a.active ? `<span class="badge badge--red" style="margin-left:auto">Aktiv</span>` : icon('arrowr').replace('<svg ', '<svg style="width:18px;height:18px;margin-left:auto;color:var(--text-muted)" ')}
+    </button>
+    <button class="iconbtn acct-del" data-del="${esc(a.id)}" title="Profil löschen" aria-label="Profil ${esc(name)} löschen">${icon('x')}</button>
+  </div>`;
+}
+
+/**
+ * Öffnet einen Dialog zum Wechseln zwischen mehreren lokalen Nutzerprofilen,
+ * zum Anlegen eines neuen sowie zum Löschen bestehender Profile.
+ * `rerender` wird nach jedem State-Wechsel aufgerufen, damit die ganze App neu zeichnet.
+ */
+export function openUserSwitcher(rerender) {
+  const body = () => `
+    <h2 style="margin-top:0">${icon('users').replace('<svg ', '<svg style="width:22px;height:22px;vertical-align:-4px" ')} Benutzer wechseln</h2>
+    <p class="muted" style="margin-top:0">Mehrere Personen können dieses Gerät nutzen – jedes Profil hat eigenen Fortschritt, eigene Prüfungen und Streak.</p>
+    <div class="stack" style="--gap:8px" id="acctList">
+      ${listAccounts().map(accountRow).join('')}
+    </div>
+    <button class="btn btn--outline btn--block" id="addUser" style="margin-top:14px">${icon('star')} Neuen Benutzer hinzufügen</button>`;
+
+  const m = modal(body(), {});
+
+  const refresh = () => { m.root.querySelector('.modal').innerHTML = body(); };
+
+  m.root.addEventListener('click', e => {
+    const pick = e.target.closest('[data-switch]');
+    const del = e.target.closest('[data-del]');
+    const add = e.target.closest('#addUser');
+
+    if (pick) {
+      const id = pick.dataset.switch;
+      switchAccount(id);
+      m.close();
+      location.hash = '#/';
+      toast('Benutzer gewechselt', 'star');
+      // App-Shell (Avatar, Streak, Zähler) komplett neu aufbauen.
+      document.getElementById('appShell')?.remove();
+      rerender();
+      return;
+    }
+
+    if (add) {
+      createAccount();
+      m.close();
+      location.hash = '#/onboarding';
+      rerender();
+      return;
+    }
+
+    if (del) {
+      const id = del.dataset.del;
+      const acc = listAccounts().find(a => a.id === id);
+      const nm = acc?.name || 'dieses Profil';
+      const only = listAccounts().length <= 1;
+      const c = modal(`<h2 style="margin-top:0">Profil löschen?</h2>
+        <p class="muted">Der gesamte Fortschritt von <b>${esc(nm)}</b> (Lektionen, Prüfungen, Planspiele, Streak) wird unwiderruflich gelöscht.${only ? ' Da es das letzte Profil ist, startet anschließend die Ersteinrichtung.' : ''}</p>
+        <div class="flex gap-sm" style="justify-content:flex-end;margin-top:16px">
+          <button class="btn btn--ghost" data-close>Abbrechen</button>
+          <button class="btn btn--danger" id="confirmDel">Ja, löschen</button>
+        </div>`, {});
+      c.root.addEventListener('click', ev => {
+        if (ev.target.closest('[data-close]')) c.close();
+        if (ev.target.closest('#confirmDel')) {
+          const wasActive = acc?.active;
+          deleteAccount(id);
+          c.close();
+          toast('Profil gelöscht', 'ok');
+          if (wasActive) {
+            m.close();
+            // Nach Löschen des aktiven Kontos: neu laden (ggf. Onboarding).
+            location.hash = getState().profile ? '#/' : '#/onboarding';
+            document.getElementById('appShell')?.remove();
+            rerender();
+          } else {
+            refresh();
+          }
+        }
+      });
+      return;
+    }
   });
 }
 

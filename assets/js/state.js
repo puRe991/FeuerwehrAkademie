@@ -4,7 +4,8 @@
    Streak und Einstellungen im localStorage. Einfaches Pub/Sub-Modell.
    ========================================================================= */
 
-const KEY = 'fwa:v1';
+const PREFIX = 'fwa:v1';             // Speicher-Präfix je Konto: fwa:v1:<id>
+const REGISTRY_KEY = 'fwa:accounts'; // Liste aller Konten + aktives Konto
 
 const DEFAULT_STATE = {
   profile: null, // { name, role, level, unit, goal, createdAt }
@@ -23,18 +24,12 @@ const DEFAULT_STATE = {
   xp: 0,
 };
 
-let state = load();
-const subscribers = new Set();
-
-function load() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return structuredClone(DEFAULT_STATE);
-    const parsed = JSON.parse(raw);
-    return deepMerge(structuredClone(DEFAULT_STATE), parsed);
-  } catch {
-    return structuredClone(DEFAULT_STATE);
-  }
+/* --------------------- Speicher-Helfer --------------------- */
+function readJSON(key) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; } catch { return null; }
+}
+function writeJSON(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
 }
 
 function deepMerge(base, over) {
@@ -48,8 +43,118 @@ function deepMerge(base, over) {
   return base;
 }
 
+/* --------------------- Konten-Registry (Mehrbenutzer) ---------------------
+   Jeder Nutzer hat einen eigenen State-Blob unter fwa:v1:<id>. Die Registry
+   (fwa:accounts) führt alle Konten samt Kurzinfo und dem aktiven Konto.
+   -------------------------------------------------------------------------- */
+function uid() {
+  return 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
+function accountKey(id) { return `${PREFIX}:${id}`; }
+
+/** Kurzinfo je Konto (für Umschalter/Registry) aus dem State ableiten. */
+function summaryFields(st) {
+  const p = st.profile;
+  return { name: p?.name || null, role: p?.role || null, level: p?.level || 1, xp: st.xp || 0 };
+}
+
+function loadAccount(id) {
+  const parsed = readJSON(accountKey(id));
+  return parsed ? deepMerge(structuredClone(DEFAULT_STATE), parsed) : structuredClone(DEFAULT_STATE);
+}
+
+/**
+ * Registry laden. Beim allerersten Start – oder wenn noch ein altes
+ * Einzelprofil unter `fwa:v1` liegt – wird automatisch ein erstes Konto
+ * angelegt und der bisherige Fortschritt verlustfrei migriert.
+ */
+function initRegistry() {
+  const reg = readJSON(REGISTRY_KEY);
+  if (reg && Array.isArray(reg.accounts) && reg.accounts.length) {
+    if (!reg.accounts.some(a => a.id === reg.active)) reg.active = reg.accounts[0].id;
+    return reg;
+  }
+  const id = uid();
+  const legacy = readJSON(PREFIX); // altes Einzelprofil ohne Konto-Suffix
+  let st = structuredClone(DEFAULT_STATE);
+  if (legacy) {
+    st = deepMerge(st, legacy);
+    writeJSON(accountKey(id), st);
+    try { localStorage.removeItem(PREFIX); } catch {}
+  }
+  const fresh = { active: id, accounts: [{ id, ...summaryFields(st) }] };
+  writeJSON(REGISTRY_KEY, fresh);
+  return fresh;
+}
+
+let registry = initRegistry();
+let activeId = registry.active;
+let state = loadAccount(activeId);
+const subscribers = new Set();
+
 function persist() {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+  writeJSON(accountKey(activeId), state);
+  const acc = registry.accounts.find(a => a.id === activeId);
+  if (acc) { Object.assign(acc, summaryFields(state)); writeJSON(REGISTRY_KEY, registry); }
+}
+
+/* --------------------- Konten-API --------------------- */
+
+/** Alle Konten mit Kurzinfo; das aktive ist mit `active: true` markiert. */
+export function listAccounts() {
+  return registry.accounts.map(a => ({ ...a, active: a.id === activeId }));
+}
+
+export function activeAccountId() { return activeId; }
+
+/** Zu einem bestehenden Konto wechseln. Aktueller Stand wird zuvor gesichert. */
+export function switchAccount(id) {
+  if (id === activeId || !registry.accounts.some(a => a.id === id)) return;
+  persist();
+  activeId = id;
+  registry.active = id;
+  writeJSON(REGISTRY_KEY, registry);
+  state = loadAccount(id);
+  emit();
+}
+
+/** Neues, leeres Konto anlegen und aktivieren (führt anschließend ins Onboarding). */
+export function createAccount() {
+  persist();
+  const id = uid();
+  state = structuredClone(DEFAULT_STATE);
+  activeId = id;
+  registry.accounts.push({ id, ...summaryFields(state) });
+  registry.active = id;
+  writeJSON(accountKey(id), state);
+  writeJSON(REGISTRY_KEY, registry);
+  emit();
+  return id;
+}
+
+/**
+ * Konto löschen. War es das aktive Konto, wird zu einem anderen gewechselt –
+ * gibt es kein weiteres, wird ein frisches Konto angelegt.
+ */
+export function deleteAccount(id) {
+  const idx = registry.accounts.findIndex(a => a.id === id);
+  if (idx < 0) return;
+  registry.accounts.splice(idx, 1);
+  try { localStorage.removeItem(accountKey(id)); } catch {}
+  if (id === activeId) {
+    if (registry.accounts.length) {
+      activeId = registry.accounts[0].id;
+      state = loadAccount(activeId);
+    } else {
+      activeId = uid();
+      state = structuredClone(DEFAULT_STATE);
+      registry.accounts.push({ id: activeId, ...summaryFields(state) });
+      writeJSON(accountKey(activeId), state);
+    }
+    registry.active = activeId;
+  }
+  writeJSON(REGISTRY_KEY, registry);
+  emit();
 }
 
 export function getState() { return state; }

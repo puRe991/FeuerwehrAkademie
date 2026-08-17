@@ -80,11 +80,12 @@ function renderShell(activeHref) {
              </a>`;
         }).join('')}
       </nav>
-      <div class="sidebar__foot">
-        <a class="userchip" href="#/profil" style="text-decoration:none;color:inherit">
+      <div class="sidebar__foot" style="display:flex;align-items:center;gap:6px">
+        <a class="userchip" href="#/profil" style="text-decoration:none;color:inherit;flex:1;min-width:0">
           <span class="avatar">${p ? initials(p.name) : '?'}</span>
           <span class="meta"><b>${p ? esc(p.name) : 'Gast'}</b><span>Level ${level()} · ${s.xp || 0} XP</span></span>
         </a>
+        <button class="iconbtn" id="switchUser" aria-label="Benutzer wechseln" title="Benutzer wechseln">${icon('users')}</button>
       </div>
     </aside>
 
@@ -221,6 +222,11 @@ function setNavOpen(open) {
 function wireShell() {
   qs('#navToggle')?.addEventListener('click', () => setNavOpen(!qs('#appShell').classList.contains('nav-open')));
   qs('#scrim')?.addEventListener('click', () => setNavOpen(false));
+
+  qs('#switchUser')?.addEventListener('click', async () => {
+    const { openUserSwitcher } = await import('./views/profile.js');
+    openUserSwitcher(render);
+  });
 
   qs('#themeToggle')?.addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme');
