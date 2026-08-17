@@ -26,6 +26,8 @@ import { renderEinsatzkompass, bindEinsatzkompass, renderEinsatzkarte, bindEinsa
 import { EINSATZKOMPASS } from './data/einsatzkompass.js';
 import { renderLernvideoList, renderLernvideoDetail, bindLernvideos } from './views/lernvideos.js';
 import { LERNVIDEOS } from './data/lernvideos.js';
+import { renderLesebeispielList, renderLesebeispielDetail, bindLesebeispiele } from './views/lesebeispiele.js';
+import { LESEBEISPIELE } from './data/lesebeispiele.js';
 
 const app = qs('#app');
 
@@ -53,6 +55,8 @@ const NAV = [
   { href: '#/planspiele', label: 'Planspiele', icon: 'game', count: PLANSPIELE.length },
   { section: 'Im Einsatz' },
   { href: '#/einsatzkompass', label: 'Einsatzkompass', icon: 'compass', count: EINSATZKOMPASS.length },
+  { section: 'Aus der Praxis lernen' },
+  { href: '#/lesebeispiele', label: 'Lesebeispiele', icon: 'shield', count: LESEBEISPIELE.length },
   { section: 'Konto' },
   { href: '#/profil', label: 'Mein Profil', icon: 'award' },
   { href: '#/ausbilder', label: 'Ausbilder & Export', icon: 'chart' },
@@ -134,6 +138,8 @@ function routeView(parts) {
     case 'planspiel': return { html: renderPlanspiel(a), bind: bindPlanspiel };
     case 'lernvideos': return { html: renderLernvideoList(a || 'all'), bind: bindLernvideos };
     case 'lernvideo': return { html: renderLernvideoDetail(a), bind: bindLernvideos };
+    case 'lesebeispiele': return { html: renderLesebeispielList(a || 'all'), bind: bindLesebeispiele };
+    case 'lesebeispiel': return { html: renderLesebeispielDetail(a), bind: bindLesebeispiele };
     case 'lernpfad': return { html: renderLernpfad() };
     case 'glossar': return { html: renderGlossary(decodeURIComponent(a || '')), bind: bindGlossary };
     case 'karteikarten': return a === 'lernen'

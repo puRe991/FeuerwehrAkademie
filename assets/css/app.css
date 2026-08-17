@@ -359,6 +359,17 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 }
 .video-player__hint svg { width: 14px; height: 14px; }
 
+/* ---------- Lesebeispiele: „Aus der Praxis lernen" ---------- */
+.lb-badge {
+  display: inline-grid; place-items: center;
+  width: 30px; height: 30px; border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  color: var(--c); flex: none;
+}
+.lb-badge svg { width: 17px; height: 17px; }
+.lb-lehren { margin: 0; padding-left: 1.15em; display: grid; gap: 8px; }
+.lb-lehren li { line-height: 1.45; }
+
 /* ---------- Druck: nur die Taschenkarte ---------- */
 @media print {
   .sidebar, .topbar, .scrim, .no-print, .toast-wrap { display: none !important; }
