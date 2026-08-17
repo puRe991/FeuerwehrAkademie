@@ -60,6 +60,22 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
 .userchip .meta b { display: block; font-size: var(--fs-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .userchip .meta span { font-size: var(--fs-xs); color: var(--text-muted); }
 
+/* ---------- Benutzer-Umschalter ---------- */
+.acct-row { display: flex; align-items: center; gap: 6px; }
+.acct-pick {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px;
+  padding: 10px; border-radius: var(--r-md); border: 1.5px solid var(--border);
+  background: var(--surface); color: inherit; cursor: pointer; text-align: left;
+  transition: border-color var(--transition), background var(--transition);
+}
+.acct-pick:hover { border-color: var(--fw-red); background: var(--surface-2); }
+.acct-row--active .acct-pick { border-color: var(--fw-red); background: var(--surface-2); }
+.acct-meta { min-width: 0; line-height: 1.25; }
+.acct-meta b { display: block; font-size: var(--fs-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.acct-del { flex: none; }
+.acct-del:hover { background: var(--danger-bg, var(--surface-2)); color: var(--danger, var(--fw-red)); }
+.acct-row--active .acct-del { visibility: hidden; }
+
 /* ---------- Header ---------- */
 .main { display: flex; flex-direction: column; min-width: 0; }
 .topbar {
