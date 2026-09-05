@@ -16,6 +16,7 @@ import { EINSATZKOMPASS } from './einsatzkompass.js';
 import { EXAM_SETS } from './pruefungssets.js';
 import { MODULE_SOURCES } from './module-sources.js';
 import { LERNVIDEOS, VIDEO_CATEGORIES } from './lernvideos.js';
+import { DROHNEN_MODULE, DROHNEN_KATEGORIEN } from './drohnen.js';
 
 /* HTML entfernen + Whitespace normalisieren. */
 function plain(s = '') {
@@ -98,6 +99,16 @@ function buildIndex() {
     docs.push(doc('Lernvideo', v.title, `${cat?.label || 'Lernvideo'} · Video`, `#/lernvideo/${v.id}`, 'play', v.desc || ''));
   });
 
+  // 9) BOS-Drohnen: Module und Lektionen mit vollständigem Inhaltstext
+  DROHNEN_MODULE.forEach(m => {
+    const kat = DROHNEN_KATEGORIEN[m.category]?.label || 'BOS-Drohnen';
+    const body = [m.summary, (m.tags || []).join(' '), 'Drohnenmodul ' + m.code, m.objectives?.join(' ')].join(' ');
+    docs.push(doc('Drohnen-Modul', m.title, `BOS-Drohnen · ${kat}`, `#/drohne/${m.id}`, m.icon, body));
+    m.lessons.forEach(l => {
+      docs.push(doc('Drohnen-Lektion', l.title, `${m.code} · ${m.title}`, `#/drohnenlektion/${m.id}/${l.id}`, 'eye', collectText(l.blocks)));
+    });
+  });
+
   INDEX = docs;
   return docs;
 }
@@ -127,7 +138,7 @@ function snippet(bodyRaw, terms) {
 
 /* Relevanz-Gewichtung je Ergebnistyp (Tie-Breaker). */
 const TYPE_WEIGHT = {
-  Modul: 2, Lektion: 1.6, Glossar: 1.5, Lernvideo: 1.3, Einsatzkompass: 1.2,
+  Modul: 2, 'Drohnen-Modul': 2, Lektion: 1.6, 'Drohnen-Lektion': 1.6, Glossar: 1.5, Lernvideo: 1.3, Einsatzkompass: 1.2,
   Abschlussprüfung: 1, Planspiel: 1, Prüfungsfrage: 0.4,
 };
 

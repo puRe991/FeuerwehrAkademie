@@ -223,6 +223,67 @@ for (const k of EINSATZKOMPASS) {
 }
 
 /* --------------------------- Bericht --------------------------- */
+
+/* ---------------------------------------------------------------------
+   BOS-Drohnen: eigener Ausbildungsbereich (Module D1–D15)
+   Geprüft werden eindeutige IDs und Codes, gültige Kategorien, Lektionen
+   mit Inhaltsblöcken, das Lernzeit-Zielfenster von 60–90 Minuten je Modul,
+   die Vollständigkeit des Lernpfads sowie die Bild- und Diagrammverweise.
+   --------------------------------------------------------------------- */
+const { DROHNEN_MODULE, DROHNEN_KATEGORIEN, DROHNEN_STUFEN, DROHNEN_BY_ID } = await imp('drohnen.js');
+const { DROHNEN_BILDER } = await imp('drohnen-bilder.js');
+const { DROHNEN_DIAGRAMS } = await imp('drohnen-diagrams.js');
+
+const drIds = new Set(), drCodes = new Set();
+let drLessons = 0;
+for (const m of DROHNEN_MODULE) {
+  const where = `Drohnenmodul ${m.code || '?'}`;
+  if (!isStr(m.id)) err(`${where}: keine id`);
+  else if (drIds.has(m.id)) err(`Doppelte Drohnenmodul-ID "${m.id}"`); else drIds.add(m.id);
+  if (drCodes.has(m.code)) err(`Doppelter Drohnenmodul-Code "${m.code}"`); else drCodes.add(m.code);
+  if (!DROHNEN_KATEGORIEN[m.category]) err(`${where}: unbekannte Kategorie "${m.category}"`);
+  if (!isStr(m.summary)) err(`${where}: keine Zusammenfassung`);
+  if (!Array.isArray(m.objectives) || m.objectives.length < 3) err(`${where}: weniger als 3 Lernziele`);
+  if (!Array.isArray(m.lessons) || !m.lessons.length) { err(`${where}: keine Lektionen`); continue; }
+
+  // Zielvorgabe des Bereichs: 60–90 Minuten Lernzeit je Modul
+  if (m.duration < 60 || m.duration > 90) err(`${where}: Lernzeit ${m.duration} min liegt außerhalb von 60–90 min`);
+
+  const lesIds = new Set();
+  for (const l of m.lessons) {
+    drLessons++;
+    const lw = `${where}/${l.id || '?'}`;
+    if (!isStr(l.id)) err(`${lw}: keine Lektions-id`);
+    else if (lesIds.has(l.id)) err(`${where}: doppelte Lektions-ID "${l.id}"`); else lesIds.add(l.id);
+    if (!isStr(l.title)) err(`${lw}: kein Titel`);
+    if (!isInt(l.duration) || l.duration < 5) err(`${lw}: unplausible Dauer`);
+    if (!Array.isArray(l.blocks) || l.blocks.length < 5) { err(`${lw}: zu wenige Inhaltsblöcke`); continue; }
+    if (!l.blocks.some(b => b.t === 'h2')) err(`${lw}: keine Zwischenüberschrift (h2)`);
+    if (!l.blocks.some(b => b.t === 'quiz')) warn(`${lw}: kein Selbsttest hinterlegt`);
+    for (const b of l.blocks) {
+      if (b.t === 'img' && !DROHNEN_BILDER[b.key]) err(`${lw}: Bildverweis "${b.key}" fehlt im Bildregister`);
+      if (b.t === 'figd' && !DROHNEN_DIAGRAMS[b.key]) err(`${lw}: Schaubild "${b.key}" existiert nicht`);
+      if (b.t === 'quiz' && b.items.some(q => !isStr(q.q) || !isStr(q.a))) err(`${lw}: Selbsttestfrage ohne Frage oder Antwort`);
+      if (b.t === 'check' && (!Array.isArray(b.items) || !b.items.length)) err(`${lw}: leere Checkliste`);
+    }
+  }
+}
+
+// Jedes Bild braucht Urheber, Lizenz und Quelle – Lizenzpflicht
+for (const [key, b] of Object.entries(DROHNEN_BILDER)) {
+  if (!isStr(b.file)) err(`Bild "${key}": kein Dateipfad`);
+  if (!isStr(b.alt)) err(`Bild "${key}": kein Alternativtext`);
+  if (!isStr(b.author)) err(`Bild "${key}": kein Urheber angegeben`);
+  if (!isStr(b.license) || !isStr(b.licenseUrl)) err(`Bild "${key}": Lizenzangabe unvollständig`);
+  if (!isStr(b.source)) err(`Bild "${key}": keine Quellenangabe`);
+}
+
+// Lernpfad muss alle Module genau einmal enthalten
+const imPfad = DROHNEN_STUFEN.flatMap(st => st.modules);
+for (const id of imPfad) if (!DROHNEN_BY_ID[id]) err(`Drohnen-Lernpfad verweist auf unbekanntes Modul "${id}"`);
+for (const m of DROHNEN_MODULE) if (!imPfad.includes(m.id)) err(`Drohnenmodul ${m.code} fehlt im Lernpfad`);
+if (new Set(imPfad).size !== imPfad.length) err('Drohnen-Lernpfad enthält ein Modul mehrfach');
+
 const line = '─'.repeat(60);
 console.log(line);
 console.log('  Inhalts-Validierung – Feuerwehr Online Akademie');
@@ -235,6 +296,7 @@ console.log(`  Glossar:         ${GLOSSARY.length}`);
 console.log(`  Karteikarten:    ${FLASHCARDS.length}`);
 console.log(`  Planspiele:      ${PLANSPIELE.length}`);
 console.log(`  Einsatzkompass:  ${EINSATZKOMPASS.length}`);
+console.log(`  BOS-Drohnen:     ${DROHNEN_MODULE.length} Module · ${drLessons} Lektionen`);
 console.log(line);
 
 if (warnings.length) {

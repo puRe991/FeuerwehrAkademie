@@ -123,6 +123,25 @@ Unter **Prüfungen** gibt es einen eigenen Bereich für den Nachwuchs. Die Übun
 
 > **Hinweis:** Die Übungsprüfungen ersetzen keine Abnahme vor Ort. Die genauen Anforderungen legen die jeweiligen Kreis- und Landesjugendfeuerwehren fest.
 
+## 🚁 BOS-Drohnen – eigener Ausbildungsbereich
+
+Ein vollständiger Lernbereich für den Betrieb unbemannter Luftfahrzeuge (UAS) in der Gefahrenabwehr – erreichbar über **BOS-Drohnen → Drohnen-Ausbildung**. **15 Module mit 60 Lektionen, rund 20 Stunden Lernzeit und 180 Selbsttestfragen**; jedes Modul ist auf **60–90 Minuten** ausgelegt und in vier Lektionen gegliedert.
+
+**Rechtsgrundlage ist durchgehend das EU-Recht:** Durchführungsverordnung (EU) 2019/947 (Betrieb, Kategorien, Nachweise), delegierte Verordnung (EU) 2019/945 (Produkte, Klassen C0–C6), Verordnung (EU) 376/2014 (Ereignismeldung, Just Culture) und die DSGVO. Nationales Recht kommt nur dort vor, wo die EU-Verordnungen es ausdrücklich öffnen.
+
+| Stufe | Module |
+|---|---|
+| **1 · Einstieg** | D1 Grundlagen & Einsatzwert · D2 EU-Recht I: Kategorie OFFEN (A1/A2/A3, Klassen C0–C6, Registrierung) |
+| **2 · Recht & Luftraum** | D3 EU-Recht II: Kategorie SPEZIELL, SORA, STS/PDRA, Betriebshandbuch · D4 Luftraum, Geo-Zonen, Koordination mit der Luftrettung · D14 Datenschutz & Persönlichkeitsrechte |
+| **3 · Technik & Mensch** | D5 Systemkunde & Failsafe · D6 Akkumanagement & Flugzeitplanung · D7 Nutzlasten & Wärmebild · D8 Meteorologie & Flugphysik · D9 Human Factors & Crew Resource Management |
+| **4 · Einsatz & Qualität** | D10 Flugbetrieb, Checklisten, Notverfahren · D11 Brand- und Vegetationsbrandeinsatz · D12 THL, Vermisstensuche, Wasser, ABC · D13 Daten, Kartografie & Livebild · D15 Sicherheitsmanagement, Ausbildung, Kompetenzerhalt |
+
+**Didaktik:** Jede Lektion kombiniert Fachtext mit **Schaubildern** (eigene, themenfähige Inline-SVG), **Fotos** unter freien Lizenzen, **Tabellen**, **Merkhilfen**, **Rechtsnorm-Kästen**, **Fallbeispielen mit Arbeitsauftrag**, **Funk-/Sprechbeispielen**, **abhakbaren Checklisten**, **Zeitleisten** und einem **Selbsttest mit aufklappbarer Musterlösung**. Der Fortschritt läuft über denselben Store wie die Feuerwehr-Module (XP, Streak, Ausbilder-Auswertung).
+
+**Medien & Recht:** Alle Fotos stammen von Wikimedia Commons und stehen unter freien Lizenzen (CC BY, CC BY-SA, CC0 oder gemeinfrei). Sie liegen **lokal** unter `assets/img/drohnen/` – der Bereich funktioniert damit offline und überträgt keine Daten an Dritte. Urheber, Lizenz und Quelle werden an jedem Bild automatisch ausgewiesen; eine Gesamtübersicht steht unter **BOS-Drohnen → Bildnachweis**. Videoplätze sind als **Click-to-Load** angelegt: Erst nach ausdrücklichem Klick wird eine Verbindung zu `youtube-nocookie.com` aufgebaut. Ausbilder tragen geprüfte YouTube-IDs in `assets/js/data/drohnen-modules-*.js` ein (Feld `youtubeId`), bis dahin zeigt die Karte einen Suchvorschlag.
+
+> **Hinweis:** Der Bereich ersetzt weder den Kompetenznachweis nach EU-Recht noch die praktische Flugausbildung, die Betriebsgenehmigung oder das Betriebshandbuch der eigenen Einheit.
+
 ## 🃏 Weitere Lernwerkzeuge
 
 - **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt und um **kuratierte HLFS-Merkkarten** (Faustwerte & Merkregeln: Strahlrohr-l/min, Verschäumungszahlen, 4A-1C-4E, GAMS, 30:2 u. a.) ergänzt; gekonnte Karten kehren seltener zurück, schwierige öfter.
@@ -181,6 +200,7 @@ FeuerwehrAkademie/
 ├── server.ps1                 Mitgelieferter Offline-Webserver (Windows)
 ├── installer/                 Windows-Setup (Inno Setup) → FeuerwehrAkademie-Setup.exe
 └── assets/
+    ├── img/drohnen/           Fotos des Drohnenbereichs (freie Lizenzen, lokal)
     ├── css/
     │   ├── design-system.css  Design-Tokens, Komponenten, Themes
     │   └── app.css            App-Layout & spezifische Komponenten
@@ -189,7 +209,8 @@ FeuerwehrAkademie/
         ├── state.js           Persistenter Store (localStorage, Pub/Sub)
         ├── utils.js           DOM-Helfer, Toasts, Modals, Konfetti
         ├── data/              Inhalte (Curriculum, Prüfungen, Planspiele, Icons)
-        └── views/             Ansichten (Dashboard, Module, Lektion, Prüfung, Planspiel …)
+        │   └── drohnen*.js    BOS-Drohnen: Module D1–D15, Blocktypen, Schaubilder, Bildregister
+        └── views/             Ansichten (Dashboard, Module, Lektion, Prüfung, Planspiel, Drohnen …)
 ```
 
 **Technik:** Vanilla JavaScript (ES-Module), kein Framework, kein Build-Schritt. Alle Daten bleiben lokal auf dem Gerät.
@@ -207,6 +228,7 @@ Geprüft werden u. a.:
 - **Fragenbank:** jede Frage hat eine gültige, eindeutige ID, einen Fragetext und eine Erklärung; die `correct`-Indizes liegen im gültigen Bereich; Fragetypen (`single`/`multiple`/`truefalse`) sind stimmig (z. B. Wahr/Falsch mit genau zwei Optionen und einer Lösung) – **Fragen ohne richtige Antwort oder mit doppelten IDs fallen sofort auf**.
 - **Prüfungssets:** alle Quell-Verweise zeigen auf existierende Fragenpools, und die Sets lassen sich fehlerfrei zusammenstellen.
 - **Curriculum:** eindeutige Modul-IDs/-Codes, gültige Kategorien und Level, Lektionen mit Inhaltsblöcken.
+- **BOS-Drohnen:** eindeutige Modul-IDs/-Codes, gültige Kategorien, Lektionen mit Inhaltsblöcken und Zwischenüberschriften, **Lernzeit je Modul im Zielfenster 60–90 Minuten**, vollständige Bild- und Schaubildverweise, Lizenzangaben (Urheber, Lizenz, Quelle) zu jedem Foto sowie ein Lernpfad, der jedes Modul genau einmal enthält.
 - **Querverweise:** Glossar-, Karteikarten- und Quellen-Bezüge verweisen nur auf **vorhandene Module**; jedes Modul hat Quellenangaben.
 - **Einsatzkompass & Planspiele:** eindeutige IDs, vollständige Pflichtfelder.
 
