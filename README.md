@@ -142,6 +142,15 @@ Ein vollständiger Lernbereich für den Betrieb unbemannter Luftfahrzeuge (UAS) 
 
 > **Hinweis:** Der Bereich ersetzt weder den Kompetenznachweis nach EU-Recht noch die praktische Flugausbildung, die Betriebsgenehmigung oder das Betriebshandbuch der eigenen Einheit.
 
+**PDF-Lernunterlagen:** Für Präsenzunterricht und Selbststudium lässt sich zu jedem Modul eine eigene, druckfertige PDF-Datei erzeugen – mit Deckblatt, Lernzielen, allen Lektionen samt Schaubildern, Fotos (inkl. Lizenznachweis), Tabellen, Checklisten und den Selbsttests mit Musterlösungen:
+
+```
+node scripts/drohnen-pdf.mjs            # → dist/drohnen-pdf/ (15 PDFs, A4)
+node scripts/drohnen-pdf.mjs /zielpfad  # eigenes Zielverzeichnis
+```
+
+Die Dateien werden aus denselben Datenmodulen erzeugt wie die App – eine Inhaltsänderung wirkt damit automatisch in App und PDF. (Benötigt Playwright/Chromium; die Ausgabe unter `dist/` ist bewusst nicht eingecheckt.)
+
 ## 🃏 Weitere Lernwerkzeuge
 
 - **Karteikarten (Spaced Repetition):** Nachhaltiges Lernen mit dem Leitner-System. Karten werden automatisch aus den Definitionen und Merkhilfen des Curriculums sowie dem Glossar erzeugt und um **kuratierte HLFS-Merkkarten** (Faustwerte & Merkregeln: Strahlrohr-l/min, Verschäumungszahlen, 4A-1C-4E, GAMS, 30:2 u. a.) ergänzt; gekonnte Karten kehren seltener zurück, schwierige öfter.
