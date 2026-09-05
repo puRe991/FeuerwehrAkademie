@@ -133,9 +133,7 @@ li { margin-bottom: .3em; }
 a { color: inherit; text-decoration: none; }
 
 /* Deckblatt */
-.cover { height: 247mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page; }
-.cover__brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: 9pt; color: #6b7683; }
-.cover__mark { width: 26px; height: 26px; border-radius: 7px; background: #d81f26; }
+.cover { height: 247mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page; padding-top: 8mm; }
 .cover__mid { }
 .cover__code { display: inline-block; background: var(--c); color: #fff; font-weight: 800; font-size: 11pt; padding: 4px 12px; border-radius: 6px; letter-spacing: .06em; }
 .cover__sum { font-size: 12pt; color: #46505c; margin-top: .6em; max-width: 150mm; }
@@ -223,7 +221,6 @@ function moduleHtml(m) {
 
   const cover = `
   <section class="cover" style="--c:${cat.color}">
-    <div class="cover__brand"><span class="cover__mark"></span> Feuerwehr Online Akademie · BOS-Drohnen</div>
     <div class="cover__mid">
       <span class="cover__code">Modul ${esc(m.code)} · ${esc(cat.label)}</span>
       <h1 style="margin-top:.5em">${esc(m.title)}</h1>
