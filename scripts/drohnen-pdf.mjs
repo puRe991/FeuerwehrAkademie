@@ -290,9 +290,8 @@ for (const m of DROHNEN_MODULE) {
     preferCSSPageSize: true,
     displayHeaderFooter: true,
     headerTemplate: '<div></div>',
-    footerTemplate: `<div style="width:100%;font-size:7.5pt;color:#6b7683;padding:0 16mm;display:flex;justify-content:space-between;font-family:sans-serif">
-      <span>Feuerwehr Online Akademie · BOS-Drohnen · Modul ${m.code}</span>
-      <span>Seite <span class="pageNumber"></span> von <span class="totalPages"></span></span></div>`,
+    footerTemplate: `<div style="width:100%;font-size:7.5pt;color:#6b7683;padding:0 16mm;text-align:right;font-family:sans-serif">
+      Seite <span class="pageNumber"></span> von <span class="totalPages"></span></div>`,
   });
   created.push(file);
   console.log(`✓ ${path.basename(file)}`);
