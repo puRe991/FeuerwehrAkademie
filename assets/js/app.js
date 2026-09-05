@@ -28,6 +28,8 @@ import { renderLernvideoList, renderLernvideoDetail, bindLernvideos } from './vi
 import { LERNVIDEOS } from './data/lernvideos.js';
 import { renderLesebeispielList, renderLesebeispielDetail, bindLesebeispiele } from './views/lesebeispiele.js';
 import { LESEBEISPIELE } from './data/lesebeispiele.js';
+import { renderDrohnenHome, renderDrohnenModul, renderDrohnenLektion, renderDrohnenBildnachweis, bindDrohnen } from './views/drohnen.js';
+import { DROHNEN_MODULE } from './data/drohnen.js';
 
 const app = qs('#app');
 
@@ -55,6 +57,8 @@ const NAV = [
   { href: '#/planspiele', label: 'Planspiele', icon: 'game', count: PLANSPIELE.length },
   { section: 'Im Einsatz' },
   { href: '#/einsatzkompass', label: 'Einsatzkompass', icon: 'compass', count: EINSATZKOMPASS.length },
+  { section: 'BOS-Drohnen' },
+  { href: '#/drohnen', label: 'Drohnen-Ausbildung', icon: 'eye', count: DROHNEN_MODULE.length },
   { section: 'Aus der Praxis lernen' },
   { href: '#/lesebeispiele', label: 'Lesebeispiele', icon: 'shield', count: LESEBEISPIELE.length },
   { section: 'Konto' },
@@ -111,6 +115,8 @@ function renderShell(activeHref) {
 
 function isActive(current, href) {
   if (href === '#/') return current === '#/' || current === '' || current === '#';
+  // Der Drohnenbereich umfasst mehrere Routen-Präfixe (#/drohnen, #/drohne, #/drohnenlektion)
+  if (href === '#/drohnen') return /^#\/drohnen?(\/|$)|^#\/drohnenlektion(\/|$)/.test(current);
   return current.startsWith(href);
 }
 
@@ -141,6 +147,11 @@ function routeView(parts) {
     case 'lernvideo': return { html: renderLernvideoDetail(a), bind: bindLernvideos };
     case 'lesebeispiele': return { html: renderLesebeispielList(a || 'all'), bind: bindLesebeispiele };
     case 'lesebeispiel': return { html: renderLesebeispielDetail(a), bind: bindLesebeispiele };
+    case 'drohnen':
+      if (a === 'bildnachweis') return { html: renderDrohnenBildnachweis(), bind: bindDrohnen };
+      return { html: renderDrohnenHome(a || 'all'), bind: bindDrohnen };
+    case 'drohne': return { html: renderDrohnenModul(a), bind: bindDrohnen };
+    case 'drohnenlektion': return { html: renderDrohnenLektion(a, b), bind: bindDrohnen };
     case 'lernpfad': return { html: renderLernpfad() };
     case 'glossar': return { html: renderGlossary(decodeURIComponent(a || '')), bind: bindGlossary };
     case 'karteikarten': return a === 'lernen'

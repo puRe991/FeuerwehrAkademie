@@ -399,3 +399,114 @@ mark { background: var(--warn-bg); color: inherit; border-radius: 3px; padding: 
   .ek-section { break-inside: avoid; }
   .fade-up { animation: none !important; }
 }
+
+
+/* =====================================================================
+   BOS-DROHNEN — Blocktypen des Drohnen-Lernbereichs
+   (Selbsttest, Foto mit Lizenznachweis, Checkliste, Funkbeispiel,
+   Rechtsnorm, Fallbeispiel, Zeitleiste, Click-to-Load-Video)
+   ===================================================================== */
+
+/* Lernpfad-Stufen */
+.dr-path { display: grid; gap: 14px; }
+@media (min-width: 900px) { .dr-path { grid-template-columns: repeat(2, 1fr); } }
+.dr-stufe .chip { text-decoration: none; }
+
+/* Foto mit Lizenzzeile */
+.dr-photo .dr-credit {
+  font-size: .78rem; color: var(--text-subtle); text-align: center;
+  margin-top: 6px; line-height: 1.5;
+}
+.dr-photo .dr-credit a { color: inherit; text-decoration: underline; }
+
+/* Selbsttest */
+.dr-quiz {
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  background: var(--surface-2); padding: 16px; margin: 1.5em 0;
+}
+.dr-quiz__t {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 800; margin-bottom: 10px; color: var(--fw-blue);
+}
+.dr-q { border-top: 1px solid var(--border); padding: 10px 0 4px; }
+.dr-q:first-of-type { border-top: none; }
+.dr-q summary { cursor: pointer; font-weight: 600; line-height: 1.5; }
+.dr-q summary::marker { color: var(--fw-red); }
+.dr-q__a {
+  margin-top: 8px; padding: 10px 14px; border-left: 3px solid var(--fw-red);
+  background: var(--surface); border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: .96rem; line-height: 1.6;
+}
+
+/* Checkliste */
+.dr-check {
+  border: 1px solid var(--border); border-left: 4px solid #2e9e5b;
+  border-radius: var(--r-sm); background: var(--surface-2);
+  padding: 14px 16px; margin: 1.4em 0;
+}
+.dr-check__t { display: flex; align-items: center; gap: 8px; font-weight: 800; margin-bottom: 10px; }
+.dr-check__i { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; cursor: pointer; line-height: 1.5; }
+.dr-check__i input { margin-top: 4px; flex: none; accent-color: #2e9e5b; }
+
+/* Funk-/Sprechbeispiel */
+.dr-funk {
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  background: var(--surface-2); padding: 14px 16px; margin: 1.4em 0;
+}
+.dr-funk__t { display: flex; align-items: center; gap: 8px; font-weight: 800; margin-bottom: 10px; }
+.dr-funk__l { display: grid; grid-template-columns: minmax(110px, 170px) 1fr; gap: 12px; padding: 7px 0; border-top: 1px dashed var(--border); }
+.dr-funk__l:first-of-type { border-top: none; }
+.dr-funk__l b { color: var(--fw-red); font-size: .88rem; }
+.dr-funk__l span { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: .9rem; line-height: 1.6; }
+@media (max-width: 620px) { .dr-funk__l { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Rechtsnorm */
+.dr-law {
+  border: 1px solid var(--border); border-left: 4px solid #16607a;
+  border-radius: var(--r-sm); background: var(--surface-2);
+  padding: 14px 16px; margin: 1.4em 0;
+}
+.dr-law__ref { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #16607a; }
+.dr-law__t { font-weight: 800; margin: .3em 0 .4em; }
+.dr-law p { margin: 0; line-height: 1.65; }
+
+/* Fallbeispiel */
+.dr-case {
+  border: 1px solid var(--border); border-left: 4px solid #e67e22;
+  border-radius: var(--r-sm); background: var(--surface-2);
+  padding: 14px 16px; margin: 1.4em 0;
+}
+.dr-case__t { display: flex; align-items: center; gap: 8px; font-weight: 800; margin-bottom: 8px; color: #c66a10; }
+.dr-case p { margin: 0 0 .6em; line-height: 1.65; }
+.dr-case__q { font-size: .95rem; }
+.dr-case__q ol { margin: .4em 0 0; padding-left: 1.3em; }
+.dr-case__q li { margin-bottom: .3em; }
+
+/* Zeitleiste */
+.dr-time {
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  background: var(--surface-2); padding: 14px 16px; margin: 1.4em 0;
+}
+.dr-time__t { display: flex; align-items: center; gap: 8px; font-weight: 800; margin-bottom: 10px; }
+.dr-time__i { display: grid; grid-template-columns: minmax(120px, 190px) 1fr; gap: 12px; padding: 8px 0; border-top: 1px solid var(--border); }
+.dr-time__i:first-of-type { border-top: none; }
+.dr-time__i b { color: var(--fw-blue); }
+@media (max-width: 620px) { .dr-time__i { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Video mit Click-to-Load */
+.dr-video {
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  background: var(--surface-2); padding: 14px 16px; margin: 1.5em 0;
+}
+.dr-video__head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dr-video__head .subtle { margin-left: auto; font-size: .85rem; }
+.dr-video__load { width: 100%; text-align: left; font-size: .9rem; }
+.dr-video__frame { margin-top: 12px; }
+
+/* Fotos im Reader nicht überdehnen */
+.prose .dr-photo img { max-height: 460px; object-fit: cover; }
+
+/* Layout-Hilfen für den Drohnenbereich */
+.dr-grid-2 { display: grid; gap: var(--gap); }
+@media (min-width: 900px) { .dr-grid-2 { grid-template-columns: 1fr 1fr; } }
+.dr-stats { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }

@@ -3,7 +3,7 @@
    Strategie: Cache-first für App-Assets, Network-first-Fallback.
    Für Feuerwehren im Einsatz wertvoll: Lerninhalte auch ohne Netz verfügbar.
    ========================================================================= */
-const CACHE = 'fwa-v28';
+const CACHE = 'fwa-v29';
 const ASSETS = [
   './',
   './index.html',
@@ -56,6 +56,26 @@ const ASSETS = [
   './assets/js/views/einsatzkompass.js',
   './assets/js/views/lernvideos.js',
   './assets/js/views/lesebeispiele.js',
+  './assets/js/data/drohnen.js',
+  './assets/js/data/drohnen-blocks.js',
+  './assets/js/data/drohnen-diagrams.js',
+  './assets/js/data/drohnen-bilder.js',
+  './assets/js/data/drohnen-modules-1.js',
+  './assets/js/data/drohnen-modules-2.js',
+  './assets/js/data/drohnen-modules-3.js',
+  './assets/js/data/drohnen-modules-4.js',
+  './assets/js/data/drohnen-modules-5.js',
+  './assets/js/views/drohnen.js',
+  './assets/img/drohnen/bergrettung-uas.jpg',
+  './assets/img/drohnen/bos-drohne-nutzlast.jpg',
+  './assets/img/drohnen/bos-drohne-start.jpg',
+  './assets/img/drohnen/einsatzstelle-drohne.jpg',
+  './assets/img/drohnen/kleindrohne.jpg',
+  './assets/img/drohnen/kopter-komponenten.jpg',
+  './assets/img/drohnen/lipo-aufgeblaeht.jpg',
+  './assets/img/drohnen/tethered-uas.jpg',
+  './assets/img/drohnen/vegetationsbrand-start.jpg',
+  './assets/img/drohnen/waermebild-hund.jpg',
 ];
 
 self.addEventListener('install', e => {
