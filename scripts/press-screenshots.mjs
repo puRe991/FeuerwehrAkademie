@@ -52,6 +52,10 @@ const shots = [
   ['lernvideos', '#/lernvideos'],
   ['profil', '#/profil'],
   ['ausbilder', '#/ausbilder'],
+  ['drohnen', '#/drohnen'],
+  ['drohnen-lektion', '#/drohnenlektion/dr-grundlagen/dr-g1'],
+  ['lesebeispiele', '#/lesebeispiele'],
+  ['lesebeispiel-detail', '#/lesebeispiel/lb-2026-homburg'],
 ];
 
 const browser = await chromium.launch();
