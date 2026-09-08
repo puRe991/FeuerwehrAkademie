@@ -3,10 +3,14 @@
    Bewusst getrennt von den umfangreichen Curriculum-Dateien gehalten,
    damit Quellenangaben leicht gepflegt werden können.
 
-   Jeder Eintrag: { stand: 'Jahr', refs: [ { ref, title } … ], note? }
-   `ref`   = Kurzbezeichnung der Vorschrift/Norm (z. B. „FwDV 3")
-   `title` = ausgeschriebener Titel / Gegenstand
-   `note`  = optionaler modulspezifischer Hinweis
+   Jeder Eintrag: { stand: 'Jahr', refs: [ { ref, edition?, title } … ], note? }
+   `ref`     = Kurzbezeichnung der Vorschrift/Norm (z. B. „FwDV 3")
+   `edition` = Ausgabe-/Fassungsstand DIESES Bezugsdokuments (z. B. „02/2008").
+               Bewusst je Dokument geführt: Viele FwDV stammen aus den Jahren
+               1999–2014. Ein pauschales Jahr über alle Module hinweg würde
+               eine Aktualität suggerieren, die es nicht gibt.
+   `title`   = ausgeschriebener Titel / Gegenstand
+   `note`    = optionaler modulspezifischer Hinweis
 
    Wichtig: Die genannten Vorschriften sind bundeseinheitliche bzw.
    normative Bezugsdokumente. Verbindlich sind stets deren jeweils
@@ -22,13 +26,18 @@ export const SOURCE_DISCLAIMER =
   'deiner Feuerwehr sowie die Hersteller- und Geräteangaben. Bei ' +
   'Abweichungen gelten die örtlichen Regelungen.';
 
-const STAND = '2025';
+/* Stand der redaktionellen Aufbereitung dieser Lerninhalte – NICHT zu
+   verwechseln mit dem Ausgabejahr der jeweiligen Vorschrift, das je
+   Bezugsdokument im Feld `edition` steht.
+   Letzte Prüfung der Bezugsdokumente auf Aktualität: 09/2026
+   (Prüfprotokoll: docs/quellenstand-pruefung.md). */
+const STAND = '09/2026';
 
 export const MODULE_SOURCES = {
   'a-rechtsgrundlagen': { stand: STAND, refs: [
     { ref: 'Landesbrandschutzgesetze', title: 'z. B. BHKG NRW, BayFwG, FwG BW – Aufgaben, Träger, Pflichten' },
-    { ref: 'FwDV 100', title: 'Führung und Leitung im Einsatz (Organisation, Einheiten)' },
-    { ref: 'FwDV 2', title: 'Ausbildung der Freiwilligen Feuerwehren' },
+    { ref: 'FwDV 100', edition: '1999 (Änd. 2005)', title: 'Führung und Leitung im Einsatz (Organisation, Einheiten)' },
+    { ref: 'FwDV 2', edition: '01/2012', title: 'Ausbildung der Freiwilligen Feuerwehren' },
   ], note: 'Feuerwehrrecht ist Ländersache – maßgeblich ist das Gesetz deines Bundeslandes.' },
 
   'b-brennen-loeschen': { stand: STAND, refs: [
@@ -40,41 +49,41 @@ export const MODULE_SOURCES = {
   'c-fahrzeugkunde': { stand: STAND, refs: [
     { ref: 'DIN EN 1846', title: 'Feuerwehrfahrzeuge – Klassifizierung und Anforderungen' },
     { ref: 'DIN 14530', title: 'Löschfahrzeuge (Normbeladung, Kennwerte)' },
-    { ref: 'FwDV 3', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'FwDV 3', edition: '02/2008', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
   ] },
 
   'd-geraetekunde': { stand: STAND, refs: [
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'DIN EN 469', title: 'Schutzkleidung für die Feuerwehr' },
     { ref: 'HuPF', title: 'Herstellungs- und Prüfungsbeschreibung für Feuerwehrschutzkleidung' },
-    { ref: 'FwDV 1', title: 'Grundtätigkeiten – Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'FwDV 1', edition: '2006/2007', title: 'Grundtätigkeiten – Lösch- und Hilfeleistungseinsatz' },
   ] },
 
   'e-loescheinsatz': { stand: STAND, refs: [
-    { ref: 'FwDV 3', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
-    { ref: 'FwDV 1', title: 'Grundtätigkeiten – Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'FwDV 3', edition: '02/2008', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'FwDV 1', edition: '2006/2007', title: 'Grundtätigkeiten – Lösch- und Hilfeleistungseinsatz' },
   ] },
 
   'f-atemschutz': { stand: STAND, refs: [
-    { ref: 'FwDV 7', title: 'Atemschutz' },
+    { ref: 'FwDV 7', edition: '2002 (Änd. 2005)', title: 'Atemschutz' },
     { ref: 'DGUV Information 205-020', title: 'Auswahl und Einsatz von Atemschutzgeräten' },
     { ref: 'G 26 / arbeitsmed. Vorsorge', title: 'Eignung als Atemschutzgeräteträger' },
   ] },
 
   'g-technische-hilfe': { stand: STAND, refs: [
-    { ref: 'FwDV 3', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'FwDV 3', edition: '02/2008', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'DIN 14751', title: 'Hydraulische Rettungsgeräte' },
   ] },
 
   'h-sprechfunk': { stand: STAND, refs: [
-    { ref: 'FwDV 810', title: 'Fernmeldedienst / Sprechfunkverkehr (BOS)' },
+    { ref: 'FwDV/DV 810', edition: '2018', title: 'Sprech- und Datenfunkverkehr (BOS-Digitalfunk)' },
     { ref: 'TR-BOS', title: 'Technische Richtlinien BOS-Digitalfunk (TETRA)' },
     { ref: 'BOS-Funkrichtlinie', title: 'Betrieb im BOS-Funk' },
   ] },
 
   'i-gefahrgut': { stand: STAND, refs: [
-    { ref: 'FwDV 500', title: 'Einheiten im ABC-Einsatz' },
+    { ref: 'FwDV 500', edition: '01/2022', title: 'Einheiten im ABC-Einsatz' },
     { ref: 'ADR / GGVSEB', title: 'Gefahrgutrecht Straße (Kennzeichnung, Klassen)' },
     { ref: 'ERICards / Hommel', title: 'Ersteinsatzhilfen für Gefahrstoffe' },
   ] },
@@ -85,13 +94,13 @@ export const MODULE_SOURCES = {
   ], note: 'Die Reanimations-Algorithmen richten sich nach den jeweils aktuellen ERC-/GRC-Leitlinien.' },
 
   'k-absturzsicherung': { stand: STAND, refs: [
-    { ref: 'FwDV 1', title: 'Grundtätigkeiten (Sichern, Halten, Rückhalten)' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'FwDV 1', edition: '2006/2007', title: 'Grundtätigkeiten (Sichern, Halten, Rückhalten)' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'DIN EN 354/358/361/1891', title: 'Persönliche Schutzausrüstung gegen Absturz' },
   ], note: 'Umfang und Ausbildung der Absturzsicherung regeln die Länder unterschiedlich.' },
 
   'l-fuehrung-fwdv100': { stand: STAND, refs: [
-    { ref: 'FwDV 100', title: 'Führung und Leitung im Einsatz' },
+    { ref: 'FwDV 100', edition: '1999 (Änd. 2005)', title: 'Führung und Leitung im Einsatz' },
   ] },
 
   'm-vorbeugender-brandschutz': { stand: STAND, refs: [
@@ -101,9 +110,9 @@ export const MODULE_SOURCES = {
   ] },
 
   'n-maschinist': { stand: STAND, refs: [
-    { ref: 'FwDV 2', title: 'Ausbildung – Lehrgang Maschinist' },
+    { ref: 'FwDV 2', edition: '01/2012', title: 'Ausbildung – Lehrgang Maschinist' },
     { ref: 'DIN EN 1028', title: 'Feuerlöschkreiselpumpen' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
   ] },
 
   'o-baukunde': { stand: STAND, refs: [
@@ -113,7 +122,7 @@ export const MODULE_SOURCES = {
 
   'p-arbeitsschutz': { stand: STAND, refs: [
     { ref: 'DGUV Vorschrift 1', title: 'Grundsätze der Prävention' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'ArbSchG', title: 'Arbeitsschutzgesetz' },
   ] },
 
@@ -130,48 +139,48 @@ export const MODULE_SOURCES = {
   ] },
 
   's-rettung': { stand: STAND, refs: [
-    { ref: 'FwDV 1', title: 'Grundtätigkeiten – Retten und Selbstretten' },
-    { ref: 'FwDV 7', title: 'Atemschutz (Notfalltraining, Selbstrettung)' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'FwDV 1', edition: '2006/2007', title: 'Grundtätigkeiten – Retten und Selbstretten' },
+    { ref: 'FwDV 7', edition: '2002 (Änd. 2005)', title: 'Atemschutz (Notfalltraining, Selbstrettung)' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
   ] },
 
   't-wasserversorgung': { stand: STAND, refs: [
     { ref: 'DVGW W 405', title: 'Bereitstellung von Löschwasser (öffentliche Wasserversorgung)' },
-    { ref: 'FwDV 3', title: 'Wasserförderung im Einheiten-Einsatz' },
+    { ref: 'FwDV 3', edition: '02/2008', title: 'Wasserförderung im Einheiten-Einsatz' },
     { ref: 'DIN 14210 ff.', title: 'Löschwasserbehälter und -entnahmestellen' },
   ] },
 
   'u-knoten': { stand: STAND, refs: [
-    { ref: 'FwDV 1', title: 'Grundtätigkeiten – Knoten, Stiche und Bunde' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'FwDV 1', edition: '2006/2007', title: 'Grundtätigkeiten – Knoten, Stiche und Bunde' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
   ] },
 
   'v-vegetationsbrand': { stand: STAND, refs: [
     { ref: 'vfdb / AGBF-Empfehlungen', title: 'Vegetationsbrandbekämpfung (Taktik, GAMS/Riegelstellung)' },
-    { ref: 'FwDV 3', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
+    { ref: 'FwDV 3', edition: '02/2008', title: 'Einheiten im Lösch- und Hilfeleistungseinsatz' },
   ], note: 'Für die Vegetationsbrandbekämpfung gibt es keine eigene FwDV; maßgeblich sind Fachempfehlungen und örtliche Konzepte.' },
 
   'w-naturgefahren': { stand: STAND, refs: [
-    { ref: 'FwDV 100', title: 'Führung und Leitung bei ausgedehnten Lagen' },
+    { ref: 'FwDV 100', edition: '1999 (Änd. 2005)', title: 'Führung und Leitung bei ausgedehnten Lagen' },
     { ref: 'Landeskatastrophenschutzgesetze', title: 'Zuständigkeiten bei Großschadenslagen' },
     { ref: 'DWD-Warnkriterien', title: 'Unwetterwarnstufen des Deutschen Wetterdienstes' },
   ] },
 
   'x-wasserrettung': { stand: STAND, refs: [
-    { ref: 'FwDV 8', title: 'Tauchen' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'FwDV 8', edition: '03/2014', title: 'Tauchen' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'DLRG/Wasserwacht', title: 'Fachempfehlungen zur Wasser- und Eisrettung' },
   ], note: 'Wasser-, Eis- und Bootsrettung sind stark landes-/organisationsabhängig geregelt.' },
 
   'y-motorsaege': { stand: STAND, refs: [
     { ref: 'DGUV Information 214-059', title: 'Ausbildung im Umgang mit der Motorsäge' },
-    { ref: 'DGUV Vorschrift 49', title: 'Unfallverhütungsvorschrift Feuerwehren' },
+    { ref: 'DGUV Vorschrift 49', edition: '05/2025', title: 'Unfallverhütungsvorschrift Feuerwehren' },
     { ref: 'GUV-Modulausbildung', title: 'Motorsägen-Ausbildungsmodule (z. B. Modul A–C)' },
   ] },
 
   'z-katastrophenschutz': { stand: STAND, refs: [
     { ref: 'ZSKG', title: 'Zivilschutz- und Katastrophenhilfegesetz (Bund)' },
     { ref: 'Landeskatastrophenschutzgesetze', title: 'Katastrophenschutz der Länder' },
-    { ref: 'FwDV 100', title: 'Führung und Leitung im Einsatz' },
+    { ref: 'FwDV 100', edition: '1999 (Änd. 2005)', title: 'Führung und Leitung im Einsatz' },
   ] },
 };

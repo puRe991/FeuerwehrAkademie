@@ -1,0 +1,96 @@
+Feuerwehr Online Akademie
+Proprietäre Lizenz — Alle Rechte vorbehalten
+
+Copyright (c) 2025–2026 [PLATZHALTER: Vor- und Nachname des Rechteinhabers]
+
+===========================================================================
+1. GEGENSTAND
+===========================================================================
+
+Diese Lizenz gilt für die Software "Feuerwehr Online Akademie" einschließlich
+ihres Quellcodes, ihrer Gestaltung sowie sämtlicher darin enthaltener
+Lerninhalte (Modultexte, Lektionen, Prüfungsfragen mit Erklärungen,
+Planspiele, Taschenkarten des Einsatzkompasses, Glossar und Schaubilder) —
+nachfolgend "das Werk".
+
+Ausgenommen sind die unter Ziffer 5 genannten Inhalte Dritter, die unter
+ihren jeweils eigenen Lizenzbedingungen stehen.
+
+===========================================================================
+2. RECHTEVORBEHALT
+===========================================================================
+
+Alle Rechte am Werk verbleiben beim Rechteinhaber. Ohne dessen vorherige
+ausdrückliche schriftliche Zustimmung ist es nicht gestattet, das Werk oder
+Teile davon
+
+  a) zu vervielfältigen, zu verbreiten oder öffentlich zugänglich zu machen,
+  b) zu bearbeiten, zu übersetzen oder davon abgeleitete Werke zu erstellen,
+  c) zu vermieten, zu verleihen, zu unterlizenzieren oder zu verkaufen,
+  d) in andere Lern- oder Softwareprodukte zu übernehmen,
+  e) zum Training oder zur Auswertung maschineller Lernverfahren zu nutzen.
+
+===========================================================================
+3. EINGERÄUMTE NUTZUNG
+===========================================================================
+
+Soweit der Rechteinhaber das Werk zugänglich macht, wird der berechtigten
+Nutzerin bzw. dem berechtigten Nutzer ein einfaches, nicht übertragbares,
+widerrufliches Recht eingeräumt, das Werk zum Zweck der eigenen
+feuerwehrtechnischen Aus- und Fortbildung zu nutzen.
+
+Der Ausdruck einzelner Taschenkarten, Prüfungszeugnisse und
+Ausbildungsnachweise für den eigenen Dienstgebrauch ist ausdrücklich
+gestattet.
+
+Eine darüber hinausgehende Nutzung — insbesondere die Nutzung durch
+Feuerwehren, Landkreise, Bildungsträger oder Unternehmen im Rahmen ihrer
+Ausbildung — bedarf einer gesonderten schriftlichen Vereinbarung mit dem
+Rechteinhaber.
+
+===========================================================================
+4. GEWÄHRLEISTUNG UND HAFTUNG
+===========================================================================
+
+Das Werk wird ohne Gewähr für Richtigkeit, Vollständigkeit und Aktualität
+bereitgestellt. Es dient der Aus- und Fortbildung und ersetzt weder die
+praktische Ausbildung am Standort noch den eigenverantwortlichen Lagecheck
+im Einsatz.
+
+Verbindlich sind stets die geltenden Feuerwehr-Dienstvorschriften, die
+Vorschriften des jeweiligen Bundeslandes und der eigenen Feuerwehr sowie
+die Hersteller- und Geräteangaben. Bei Abweichungen gelten die örtlichen
+Regelungen.
+
+Eine Haftung für Schäden, die aus der Nutzung oder Nichtnutzung des Werkes
+entstehen, ist ausgeschlossen, soweit nicht Vorsatz oder grobe
+Fahrlässigkeit vorliegt oder zwingende gesetzliche Haftungstatbestände
+(insbesondere Verletzung von Leben, Körper oder Gesundheit) berührt sind.
+
+Siehe hierzu auch docs/haftungsausschluss.md.
+
+===========================================================================
+5. INHALTE DRITTER
+===========================================================================
+
+Das Werk enthält Fotografien Dritter, die unter freien Lizenzen stehen und
+NICHT von dieser proprietären Lizenz erfasst werden. Sie bleiben unter ihrer
+jeweiligen Ursprungslizenz (CC BY, CC BY-SA, CC0 bzw. gemeinfrei).
+
+Urheber, Lizenz und Quelle jedes einzelnen Bildes sind in
+assets/js/data/drohnen-bilder.js hinterlegt, werden in der Anwendung an
+jedem Bild ausgewiesen und zusätzlich auf einer eigenen Bildnachweis-Seite
+zusammengefasst. Der Prüfnachweis liegt unter docs/bildnachweis-pruefung.md.
+
+Die Copyleft-Wirkung der CC-BY-SA-Lizenzen erstreckt sich ausschließlich auf
+die betreffenden Fotografien und auf davon abgeleitete Bearbeitungen. Sie
+erfasst nicht den Quellcode, die Lerninhalte oder die Gestaltung des Werkes,
+da diese lediglich mit den Bildern zusammengestellt ("aggregiert") und nicht
+aus ihnen abgeleitet sind.
+
+===========================================================================
+6. KONTAKT
+===========================================================================
+
+Anfragen zu Lizenzen, Nutzungsrechten und Kooperationen:
+[PLATZHALTER: E-Mail-Adresse des Rechteinhabers]

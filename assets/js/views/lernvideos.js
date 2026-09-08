@@ -13,14 +13,17 @@ import { isVideoWatched, toggleVideoWatched, getState } from '../state.js';
 import { esc, fmtDuration, toast, confetti } from '../utils.js';
 import { notFound } from './modules.js';
 
-const YT_THUMB = id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/* Bewusst KEIN Vorschaubild von Googles Bild-CDN: Ein solches <img> würde
+   schon beim Seitenaufbau – also vor jeder Nutzerentscheidung – eine
+   Verbindung zu Google herstellen und die IP-Adresse übertragen. Das
+   widerspräche dem Versprechen „erst bei Klick" und wäre ohne Einwilligung
+   datenschutzrechtlich unzulässig. Stattdessen zeigt die App ein neutrales,
+   themenfarbiges Panel; erst der Klick lädt youtube-nocookie.com. */
 const YT_EMBED = id => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
 
 /* Vorschaubild bzw. neutrales Themen-Panel, wenn (noch) keine ID hinterlegt. */
 function thumb(v, cat) {
-  const inner = v.youtubeId
-    ? `<img class="video-thumb__img" src="${YT_THUMB(v.youtubeId)}" alt="" loading="lazy" decoding="async">`
-    : '';
+  const inner = '';
   return `<div class="video-thumb" style="--c:${cat.color}">
     ${inner}
     <span class="video-thumb__badge">${icon(cat.icon)}</span>
@@ -93,7 +96,6 @@ export function renderLernvideoDetail(id) {
         <div class="video-player" id="videoPlayer" data-id="${esc(v.id)}" data-yt="${esc(v.youtubeId)}" data-title="${esc(v.title)}">
           ${v.youtubeId
             ? `<button class="video-player__facade" id="videoLoad" type="button" style="--c:${cat.color}" aria-label="Video abspielen: ${esc(v.title)}">
-                 <img class="video-thumb__img" src="${YT_THUMB(v.youtubeId)}" alt="" loading="lazy" decoding="async">
                  <span class="video-player__play">${icon('play')}</span>
                  <span class="video-player__hint">${icon('lock')} Erst bei Klick wird YouTube geladen</span>
                </button>`

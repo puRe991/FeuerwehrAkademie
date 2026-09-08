@@ -14,10 +14,10 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 |---|---|
 | 📚 **Module A–Z** | **26 Ausbildungsmodule (A bis Z)** mit **139 Lektionen** – von Rechtsgrundlagen, Brandlehre, Atemschutz und Gefahrgut über Maschinist, Baukunde und Führung (FwDV 100) bis zu Rettung, Wasserversorgung, Knoten, Vegetationsbrand, Naturgefahren, Wasserrettung, Motorsäge und Katastrophenschutz |
 | 🎯 **Personalisiert** | Adaptive Lernempfehlung, individueller Lernpfad je nach Ausbildungsniveau, Fortschritts-Tracking |
-| 📝 **Prüfungen** | **665 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
+| 📝 **Prüfungen** | **996 Prüfungsfragen** in drei Stufen (Grundlagen · Aufbau · Prüfung) mit sofortiger Auswertung, Erklärungen und Leistungsnachweisen |
 | ⏱️ **Prüfungssimulator** | **Ernstmodus** für jede Modul- und Abschlussprüfung: fester Countdown mit Zeitlimit (Auto-Abgabe bei Ablauf), **keine Auflösung während der Prüfung**, freie Navigation über ein Fragen-Raster mit Markierungen, danach Bestanden/Durchgefallen mit ausdruckbarem **Prüfungszeugnis** |
 | 🔁 **Wiederholung** | **Fehler-/Wiederholungs-Center** („Meine Schwachstellen"): sammelt automatisch alle in Prüfungen falsch beantworteten Fragen und lässt sie gezielt üben – eine richtig gelöste Frage verschwindet aus der Liste. Aus Fehlern lernt man am meisten. |
-| 🎓 **Abschlussprüfungen** | 8 modulübergreifende Gesamtprüfungen (Truppmann, Truppführer, Atemschutz, Maschinist, Führung, Einsatzdienst, Großes Examen A–Z, Hessische Feuerwehrleistungsübung) mit gemischter Fragenauswahl |
+| 🎓 **Abschlussprüfungen** | 9 modulübergreifende Gesamtprüfungen (Truppmann/MTA, Truppführer, Atemschutz, Maschinist, Gruppen-/Zugführung, Einsatzdienst & Sonderlagen, Großes Examen A–Z, Hessische Feuerwehrleistungsübung, Rechenaufgaben Schaum & Wasserlieferung) mit gemischter Fragenauswahl – dazu 4 Prüfungssets der Jugendfeuerwehr (Jugendflamme 1–3, Leistungsspange) |
 | ✅ **Realitätsnah kalibriert** | Zwei klar getrennte Modi: **Modulprüfungen = Übungsmodus** (Lernen mit Erklärungen), **Abschlussprüfungen = Prüfungsmodus** – Fragenzahl, Zeit und Bestehensgrenze sind an **echte Lehrgangsprüfungen** angelehnt (z. B. Gruppen-/Zugführer 20 Fragen / 60 min / 60 %, Truppmann-MTA ~50 Fragen / ≥ 50 %). Jede Prüfung zeigt einen **Realitätscheck**, welcher echten Prüfung sie entspricht. Details & Quellen: [`docs/pruefungen-echtheit-vergleich.md`](docs/pruefungen-echtheit-vergleich.md) |
 | 🧒 **Jugendfeuerwehr** | Eigener Bereich mit altersgerechten Übungsprüfungen zur Vorbereitung auf die **Jugendflamme (Stufe 1–3)** und die **Leistungsspange** – Notruf 112, Knoten, Gerätekunde, Erste Hilfe und Teamwissen |
 | 📊 **Schaubilder** | 39 theme-fähige Erklär-Grafiken in den Lektionen – in **jedem** Modul mindestens eines (Brandklassen, Verbrennungsdreieck, Löschfahrzeug, Wasserweg, HLW 30:2, FAST, Warntafel, Strahlungsarten, Führungsstufen, Kreiselpumpe, STOP-Prinzip, Auffangsystem, Deichverteidigung, Motorsägen-Rückschlag u. v. m.) |
@@ -26,7 +26,7 @@ Eine moderne, offline-fähige Lernplattform (PWA) für die Feuerwehr-Aus- und Fo
 | 🪢 **Knoten-Trainer** | Schritt-für-Schritt-Anleitungen für die wichtigsten Feuerwehrknoten (Mastwurf gestochen/gelegt, Halbmastwurf, Zimmermannsstich, Schotenstich, Kreuzknoten) mit farbcodierten Schaubildern (rot = loses Ende, blau = festes Teil), Merksatz, Fortschritt und „geübt"-Markierung |
 | 🃏 **Karteikarten** | Spaced Repetition (Leitner-System) – Karten automatisch aus dem Curriculum generiert, fällige Karten zur richtigen Zeit |
 | 🔎 **Volltextsuche** | Durchsucht **alle** Inhalte auf einmal – Modultexte, komplette Lektionsinhalte, alle Prüfungsfragen, Glossar, Planspiele, Einsatzkompass und die FwDV-/Quellenangaben. Mehrwortsuche (UND), Relevanz-Ranking und hervorgehobene Textausschnitte |
-| 📖 **Glossar** | 90+ Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
+| 📖 **Glossar** | 92 Fachbegriffe und Abkürzungen als durchsuchbares Nachschlagewerk – mindestens drei Begriffe je Modul (A–Z), verlinkt mit den Modulen |
 | 📚 **Quellen & Stand** | Jedes Modul weist seine fachlichen **Bezugsdokumente** (FwDV, DIN/EN, DGUV, DVGW, Landesrecht …) samt inhaltlichem Stand aus – mit klarem Verbindlichkeitshinweis, dass die geltenden Vorschriften des Bundeslandes und der eigenen Feuerwehr Vorrang haben |
 | 👨‍🏫 **Ausbilder-Ansicht** | Gesamtauswertung, druckbarer Ausbildungsnachweis, Export/Import (JSON) und CSV-Export |
 | ☀️ **Frage des Tages** | Täglicher Kurz-Anreiz auf dem Dashboard: eine deterministisch aus dem Datum gewählte Frage (für alle gleich), ein Versuch pro Tag – füttert Streak, XP und das Fehler-Center |
@@ -238,9 +238,34 @@ Der GitHub-Actions-Workflow (`.github/workflows/content-check.yml`) führt zusä
 
 Alle Lernfortschritte, Prüfungsergebnisse und Profildaten werden ausschließlich **lokal im Browser** (`localStorage`) gespeichert. Es gibt keinen Server, keine Anmeldung und kein Tracking.
 
+Die Anwendung baut beim Aufruf **keine Verbindung zu Dritten** auf:
+
+- Schriften (Inter, JetBrains Mono) sind **lokal eingebunden**, nicht über Google Fonts – siehe [`assets/fonts/LIZENZ.md`](assets/fonts/LIZENZ.md)
+- **keine** externen Vorschaubilder, kein CDN, keine Cookies, keine Analyse-Werkzeuge
+- Lernvideos werden erst **nach ausdrücklichem Klick** über `youtube-nocookie.com` geladen
+
+Ausführlich: [`docs/datenschutz.md`](docs/datenschutz.md)
+
 ## 📋 Fachlicher Hinweis
 
 Die Inhalte dienen der **Aus- und Fortbildung** und orientieren sich an den geltenden FwDV. Sie ersetzen **keine** praktische Ausbildung am Standort. Maßgeblich sind stets die aktuellen Feuerwehr-Dienstvorschriften, die Landesvorschriften, die Unfallverhütungsvorschriften (DGUV) sowie die Hersteller- und Dienstanweisungen. Im Zweifel gelten die Anordnungen der zuständigen Führungskraft.
+
+## ⚖️ Rechtliches
+
+| Dokument | Inhalt |
+|---|---|
+| [`LICENSE`](LICENSE) | Proprietäre Lizenz – alle Rechte vorbehalten. Enthält den Umgang mit den frei lizenzierten Inhalten Dritter |
+| [`docs/impressum.md`](docs/impressum.md) | Impressum nach § 5 DDG |
+| [`docs/datenschutz.md`](docs/datenschutz.md) | Datenschutzerklärung (DSGVO/TDDDG) |
+| [`docs/haftungsausschluss.md`](docs/haftungsausschluss.md) | Haftungsausschluss und Verbindlichkeitshinweis |
+| [`docs/bildnachweis-pruefung.md`](docs/bildnachweis-pruefung.md) | Prüfnachweis der Bildrechte (alle 10 Fotos gegen die Quelle verifiziert) |
+| [`docs/quellenstand-pruefung.md`](docs/quellenstand-pruefung.md) | Prüfprotokoll zur Aktualität der Bezugsvorschriften |
+
+> ⚠️ **Vor jeder Veröffentlichung:** Impressum und Datenschutzerklärung enthalten
+> `[PLATZHALTER: …]`-Felder, die durch die echten Betreiberdaten ersetzt werden
+> müssen. Ebenso ist die **fachliche Abnahme durch eine qualifizierte Ausbilderin
+> bzw. einen qualifizierten Ausbilder** noch offen – bis dahin dürfen die Inhalte
+> nicht als fachlich geprüft beworben werden.
 
 ## 🤝 Erweitern
 

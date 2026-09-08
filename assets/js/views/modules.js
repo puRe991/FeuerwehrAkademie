@@ -163,10 +163,10 @@ function sourcesCard(m) {
   if (!src) return '';
   return `<div class="card card--pad">
     <h3 style="margin-bottom:4px">${icon('book').replace('<svg ','<svg style="width:20px;height:20px;vertical-align:-3px" ')} Quellen &amp; Stand</h3>
-    <p class="subtle" style="font-size:.82rem;margin:0 0 10px">Inhaltlicher Stand: ${esc(src.stand)} · orientiert an folgenden Bezugsdokumenten:</p>
+    <p class="subtle" style="font-size:.82rem;margin:0 0 10px">Redaktioneller Stand: ${esc(src.stand)} · orientiert an folgenden Bezugsdokumenten (mit deren jeweiligem Ausgabestand):</p>
     <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
       ${src.refs.map(r => `<li style="font-size:.88rem;line-height:1.35">
-        <b>${esc(r.ref)}</b><br><span class="muted">${esc(r.title)}</span>
+        <b>${esc(r.ref)}</b>${r.edition ? ` <span class="badge badge--blue" style="font-size:.72rem">Ausgabe ${esc(r.edition)}</span>` : ''}<br><span class="muted">${esc(r.title)}</span>
       </li>`).join('')}
     </ul>
     ${src.note ? `<p class="subtle" style="font-size:.82rem;margin:10px 0 0"><i>${esc(src.note)}</i></p>` : ''}

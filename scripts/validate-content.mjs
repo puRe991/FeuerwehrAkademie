@@ -284,6 +284,37 @@ for (const id of imPfad) if (!DROHNEN_BY_ID[id]) err(`Drohnen-Lernpfad verweist 
 for (const m of DROHNEN_MODULE) if (!imPfad.includes(m.id)) err(`Drohnenmodul ${m.code} fehlt im Lernpfad`);
 if (new Set(imPfad).size !== imPfad.length) err('Drohnen-Lernpfad enthält ein Modul mehrfach');
 
+/* ------------------- 9) README-Zahlen gegen Ist-Stand ------------------- */
+/* Verhindert, dass Werbezahlen in der README und die tatsächlichen Inhalte
+   auseinanderlaufen. Ein Käufer, der hier eine Abweichung findet, misstraut
+   zu Recht allen weiteren Angaben. */
+{
+  const { readFileSync } = await import('node:fs');
+  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
+
+  const jfSets = EXAM_SETS.filter(s => s.id.startsWith('jf-')).length;
+  const soll = [
+    ['Module (Badge)',        /badge\/Module-(\d+)/,                MODULES.length],
+    ['Lektionen (Badge)',     /badge\/Lektionen-(\d+)/,             lessonTotal],
+    ['Fragen (Badge)',        /badge\/Pr%C3%BCfungsfragen-(\d+)/,   questionCount],
+    ['Abschlussprüfungen (Badge)', /badge\/Abschlusspr%C3%BCfungen-(\d+)/, EXAM_SETS.length - jfSets],
+    ['Schaubilder (Badge)',   /badge\/Schaubilder-(\d+)/,           null],
+    ['Planspiele (Badge)',    /badge\/Planspiele-(\d+)/,            PLANSPIELE.length],
+    ['Einsatzkompass (Badge)', /badge\/Einsatzkompass-(\d+)/,       EINSATZKOMPASS.length],
+    ['Fragen (Fließtext)',    /\*\*(\d+) Prüfungsfragen\*\*/,      questionCount],
+    ['Glossar (Fließtext)',   /(\d+) Fachbegriffe/,                 GLOSSARY.length],
+    ['Lektionen (Fließtext)', /\*\*(\d+) Lektionen\*\*/,           lessonTotal],
+  ];
+
+  for (const [label, re, ist] of soll) {
+    if (ist === null) continue;                 // ohne zählbare Quelle: übersprungen
+    const m = readme.match(re);
+    if (!m) { warn(`README: Angabe „${label}" nicht gefunden – Prüfung übersprungen`); continue; }
+    if (Number(m[1]) !== ist)
+      err(`README nennt ${m[1]} bei „${label}", tatsächlich sind es ${ist}`);
+  }
+}
+
 const line = '─'.repeat(60);
 console.log(line);
 console.log('  Inhalts-Validierung – Feuerwehr Online Akademie');
